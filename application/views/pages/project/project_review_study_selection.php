@@ -1,5 +1,5 @@
 <div class="card">
-	<?php $this->load->view('pages/project/planning/partials/card_header', ['active_tab' => 'conducting']); ?>
+	<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'conducting']); ?>
 	<div class="card-body">
 		<h4>Conducting</h4>
 		<ul class="nav nav-pills nav-justified flex-column flex-sm-row">

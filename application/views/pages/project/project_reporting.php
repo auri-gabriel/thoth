@@ -1,5 +1,5 @@
 <div class="card">
-	<?php $this->load->view('pages/project/planning/partials/card_header', ['active_tab' => 'reporting']); ?>
+	<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'reporting']); ?>
 	<div class="card-body">
 		<h4>Reporting</h4>
 		<?php

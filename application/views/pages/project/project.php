@@ -1,6 +1,6 @@
 <div class="container py-4">
 	<div class="card shadow-sm mb-4">
-		<?php $this->load->view('pages/project/planning/partials/card_header', ['active_tab' => 'overview']); ?>
+		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'overview']); ?>
 		<div class="card-body bg-light">
 			<div class="row g-4 mb-4">
 				<div class="col-md-4">
