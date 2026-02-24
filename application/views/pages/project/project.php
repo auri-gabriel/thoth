@@ -17,7 +17,7 @@
 				<?php } ?>
 			</div>
 		</div>
-		<div class="card-body">
+		<div class="card-body bg-light">
 			<div class="row g-4 mb-4">
 				<div class="col-md-4">
 					<div class="p-3 bg-light rounded h-100">
@@ -104,4 +104,3 @@
 		</div>
 	</div>
 </div>
-
