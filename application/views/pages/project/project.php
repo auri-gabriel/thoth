@@ -25,9 +25,9 @@
 			<?php
 		}
 		?>
+	<div class="container">
+		<!-- Project content -->
 	</div>
-	<div class="card-body">
-		<h4>Review</h4>
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<h5><i class="fas fa-align-justify opt fa-2x"></i> Description</h5>

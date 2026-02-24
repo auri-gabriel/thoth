@@ -41,3 +41,8 @@
 	</div>
 </div>
 
+			<body>
+			    <div class="container">
+			        <!-- Main content here -->
+			    </div>
+

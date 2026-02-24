@@ -1,66 +1,69 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand"
-	   href="<?= (isset($_SESSION['logged_in']) ? base_url('dashboard') : base_url()) ?>">
-		<img id="logo"
-			 src="<?= base_url('assets/img/icone.svg'); ?>"
-			 width="30"
-			 height="30"
-			 class="d-inline-block align-top"
-			 alt="">
-		Thoth</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
-			aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="menu">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="<?= base_url('about') ?>">About</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= base_url('help') ?>">Help</a>
-			</li>
-			<li class="nav-item">
-				<form class="form-inline my-2 my-lg-0" action="<?= base_url('search') ?>">
-					<input class="form-control opt" name="search" type="search" placeholder="Search in Thoth"
-						   aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0 opt"><span class="fas fa-search"></span>
-						Search
-					</button>
-				</form>
-			</li>
-		</ul>
-		<ul class="navbar-nav mr-5">
-			<?php
-			if (isset($_SESSION['logged_in'])) {
-				?>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+	<div class="container-fluid">
+		<a class="navbar-brand d-flex align-items-center gap-2"
+			 href="<?= (isset($_SESSION['logged_in']) ? base_url('dashboard') : base_url()) ?>">
+			<img id="logo"
+					 src="<?= base_url('assets/img/icone.svg'); ?>"
+					 width="30"
+					 height="30"
+					 class="d-inline-block align-top me-2"
+					 alt="">
+			Thoth
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu"
+						aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="menu">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
 				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('profile') ?>"><span
-							class="fas fa-address-card fa-lg"></span> <?= $this->session->name; ?></a>
+					<a class="nav-link" href="<?= base_url('about') ?>">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url("sign_out"); ?>"><span
-							class="fas fa-sign-out-alt fa-lg"></span>
-						Sign out</a>
+					<a class="nav-link" href="<?= base_url('help') ?>">Help</a>
 				</li>
+				<li class="nav-item">
+					<form class="d-flex align-items-center" action="<?= base_url('search') ?>">
+						<input class="form-control me-2 opt" name="search" type="search" placeholder="Search in Thoth"
+									 aria-label="Search">
+						<button class="btn btn-outline-success opt d-flex align-items-center gap-1" type="submit">
+							<span class="fas fa-search"></span> Search
+						</button>
+					</form>
+				</li>
+			</ul>
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
 				<?php
-			} else {
+				if (isset($_SESSION['logged_in'])) {
+					?>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= base_url('profile') ?>">
+							<span class="fas fa-address-card fa-lg"></span> <?= $this->session->name; ?>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= base_url('sign_out'); ?>">
+							<span class="fas fa-sign-out-alt fa-lg"></span> Sign out
+						</a>
+					</li>
+					<?php
+				} else {
+					?>
+					<li class="nav-item">
+						<a class="nav-link aut" href="<?= base_url('login'); ?>">
+							<span class="fas fa-sign-in-alt fa-lg"></span> Sign in
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= base_url('sign_up'); ?>">
+							<span class="fas fa-user-plus fa-lg"></span> Sign up
+						</a>
+					</li>
+					<?php
+				}
 				?>
-				<li class="nav-item">
-					<a class="nav-link aut" href="<?= base_url("login"); ?>"><span
-							class="fas fa-sign-in-alt fa-lg"></span>
-						Sign in</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url("sign_up"); ?>"><span
-							class="fas fa-user-plus fa-lg"></span>
-						Sign up</a>
-				</li>
-				<?php
-			}
-			?>
-		</ul>
+			</ul>
+		</div>
 	</div>
 </nav>
 

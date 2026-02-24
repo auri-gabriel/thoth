@@ -1,9 +1,9 @@
 <div class="card">
 	<div class="card-header">
 		<h4>Results of <?= $search; ?></h4>
+	<div class="container">
+		<!-- Search content -->
 	</div>
-	<div class="card-body">
-		<table id="tableSearch" class="table table-responsive-sm">
 			<thead>
 			<tr>
 				<th scope="col">Title</th>

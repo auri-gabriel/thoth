@@ -1,9 +1,9 @@
 <div class="card">
 	<div class="card-header">
 		<h4>My Projects</h4>
+	<div class="container">
+		<!-- Dashboard content -->
 	</div>
-	<div class="card-body">
-		<table id="table_my_projects" class="table table-responsive-sm">
 			<thead>
 			<a href="<?= base_url('new_project'); ?>" class="btn btn-success new-project"><span
 					class="fas fa-folder-plus"></span> Create New Project</a>

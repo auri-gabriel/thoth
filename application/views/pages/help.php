@@ -2,9 +2,9 @@
 	<h4 class="">Help</h4>
 	<div class="card card-header" data-toggle="collapse" href="#signin">
 		<div class="col-sm-12">Sign In <i class="fas fa-sign-in-alt fa-lg"></i></div>
+	<div class="container">
+		<!-- Help content -->
 	</div>
-	<div class="collapse" id="signin">
-		<div class="card card-body">
 			<h6>Coming soon</h6>
 		</div>
 	</div>

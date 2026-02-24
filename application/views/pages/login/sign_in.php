@@ -3,9 +3,9 @@
 		<div class="card">
 			<div class="card-header">
 				<h4>Sign In</h4>
+			<div class="container py-5">
+				<!-- Sign in form -->
 			</div>
-			<div class="card-body">
-				<?php echo form_open('Login_Controller/log_into', array('class' => 'form-signin')); ?>
 				<div class="form-group">
 					<label for="InputEmail1">Email address</label>
 					<input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp"
