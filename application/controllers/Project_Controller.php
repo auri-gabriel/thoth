@@ -42,7 +42,7 @@ class Project_Controller extends Pattern_Controller
 			$data['rules'] = $this->Project_Model->get_all_rules();
 			$data['question_types'] = $this->Project_Model->get_all_types();
 
-			$this->load_views('pages/project/project_planning', $data);
+			$this->load_views('pages/project/planning/planning', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
