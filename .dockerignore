@@ -1,0 +1,15 @@
+# Ignore files/folders for Docker build
+.git
+.gitignore
+node_modules
+npm-debug.log
+docs/
+export/
+*.md
+*.rst
+*.drawio
+*.sql
+*.log
+*.DS_Store
+application/cache/
+application/logs/
