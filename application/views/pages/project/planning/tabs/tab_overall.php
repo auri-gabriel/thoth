@@ -3,7 +3,7 @@
 
 		<!-- Domains -->
 		<div class="col-sm-12 col-md-6 mb-4">
-			<div class="card shadow-sm h-100">
+			<div class="card shadow-sm h-100 bg-light">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-2">
 						<label for="domain" class="mb-0"><strong>Domains</strong></label>
@@ -43,7 +43,7 @@
 
 		<!-- Languages -->
 		<div class="col-sm-12 col-md-6 mb-4">
-			<div class="card shadow-sm h-100">
+			<div class="card shadow-sm h-100 bg-light">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-2">
 						<label for="language" class="mb-0"><strong>Languages</strong></label>
@@ -86,7 +86,7 @@
 
 		<!-- Study Types -->
 		<div class="col-sm-12 col-md-6 mb-4">
-			<div class="card shadow-sm h-100">
+			<div class="card shadow-sm h-100 bg-light">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-2">
 						<label for="study_type" class="mb-0"><strong>Study Type</strong></label>
@@ -129,7 +129,7 @@
 
 		<!-- Keywords -->
 		<div class="col-sm-12 col-md-6 mb-4">
-			<div class="card shadow-sm h-100">
+			<div class="card shadow-sm h-100 bg-light">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-2">
 						<label for="keywords" class="mb-0"><strong>Keywords</strong></label>
@@ -169,7 +169,7 @@
 
 		<!-- Date Range -->
 		<div class="col-sm-12 col-md-4 mb-4">
-			<div class="card shadow-sm h-100">
+			<div class="card shadow-sm h-100 bg-light">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-2">
 						<label for="start_date" class="mb-0"><strong>Start and End Date</strong></label>
