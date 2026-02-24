@@ -1,22 +1,6 @@
 <div class="container py-4">
 	<div class="card shadow-sm mb-4">
-		<div class="card-header bg-white text-center pb-3">
-			<h3 class="mb-2 fw-bold"><?= $project->get_title(); ?></h3>
-			<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
-			<div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
-				<a href="<?= base_url('open/' . $project->get_id()) ?>" class="btn btn-primary opt">Overview <i class="fas fa-binoculars"></i></a>
-				<a href="<?= base_url('planning/' . $project->get_id()) ?>" class="btn btn-outline-primary opt">Planning <i class="fas fa-list"></i></a>
-				<?php if ($this->session->level == "4") { ?>
-					<a href="<?= base_url('study_selection_adm/' . $project->get_id()) ?>" class="btn btn-outline-primary opt">Conducting <i class="fas fa-play-circle"></i></a>
-				<?php } else { ?>
-					<a href="<?= base_url('conducting/' . $project->get_id()) ?>" class="btn btn-outline-primary opt">Conducting <i class="fas fa-play-circle"></i></a>
-				<?php } ?>
-				<a href="<?= base_url('reporting/' . $project->get_id()) ?>" class="btn btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
-				<?php if ($project->get_planning() == 100) { ?>
-					<a href="<?= base_url('export/' . $project->get_id()) ?>" class="btn btn-outline-primary opt">Export <i class="fas fa-file-download"></i></a>
-				<?php } ?>
-			</div>
-		</div>
+		<?php $this->load->view('pages/project/planning/partials/card_header', ['active_tab' => 'overview']); ?>
 		<div class="card-body bg-light">
 			<div class="row g-4 mb-4">
 				<div class="col-md-4">
