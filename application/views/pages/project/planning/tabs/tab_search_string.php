@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_search_string">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_search_string">
 	<div class="form-inline">
 		<label for="term"><strong>Search String</strong></label>
 		<a onclick="modal_help('modal_help_ss')" class="float-right opt">
@@ -120,7 +120,7 @@
 				</a>
 				<textarea class="form-control" id="string_<?= $search_string->get_database()->get_name() ?>"><?= $search_string->get_description() ?></textarea>
 				<button type="button" class="btn btn-info opt"
-						onclick="generate_string('<?= $search_string->get_database()->get_name() ?>');">
+					onclick="generate_string('<?= $search_string->get_database()->get_name() ?>');">
 					Generate
 				</button>
 				<hr>

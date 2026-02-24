@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_criteria">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_criteria">
 	<div class="form-inline">
 		<label for="id_criteria"><strong>Criteria</strong></label>
 		<a onclick="modal_help('modal_help_criteria')" class="float-right opt">
@@ -49,9 +49,9 @@
 					<td>
 						<div class="form-check">
 							<input id="selected_<?= str_replace(' ', '', $ic->get_id()) ?>"
-								   type="checkbox" <?= $checked ?>
-								   class="form-check-input"
-								   onchange="select_criteria_inclusion($(this).parents('tr'))">
+								type="checkbox" <?= $checked ?>
+								class="form-check-input"
+								onchange="select_criteria_inclusion($(this).parents('tr'))">
 						</div>
 					</td>
 					<td><?= $ic->get_id() ?></td>
@@ -100,9 +100,9 @@
 					<td>
 						<div class="form-check">
 							<input id="selected_<?= str_replace(' ', '', $ec->get_id()) ?>"
-								   type="checkbox" <?= $checked ?>
-								   class="form-check-input"
-								   onchange="select_criteria_exclusion($(this).parents('tr'))">
+								type="checkbox" <?= $checked ?>
+								class="form-check-input"
+								onchange="select_criteria_exclusion($(this).parents('tr'))">
 						</div>
 					</td>
 					<td><?= $ec->get_id() ?></td>

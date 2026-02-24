@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_search_strategy">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_search_strategy">
 	<div class="form-inline">
 		<label for="search_strategy"><strong>Search Strategy</strong></label>
 		<a onclick="modal_help('modal_help_strategy')" class="float-right opt">

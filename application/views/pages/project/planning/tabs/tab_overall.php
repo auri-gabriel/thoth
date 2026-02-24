@@ -1,4 +1,4 @@
-<div class="tab-pane active container-fluid" role="tabpanel" id="tab_overall">
+<div class="tab-pane active container-fluid bg-light" role="tabpanel" id="tab_overall">
 	<div class="row">
 
 		<!-- Domains -->

@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_research">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_research">
 	<div class="form-inline">
 		<label for="id_research_question"><strong>Research Questions</strong></label>
 		<span onclick="modal_help('modal_help_rq')" class="float-right opt">

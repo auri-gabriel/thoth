@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_quality">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_quality">
 
 	<!-- General Score Section -->
 	<div class="form-inline">
@@ -115,7 +115,7 @@
 		<div class="input-group col-md-2">
 			<label for="score" id="lbl_score" class="col-sm-12">Score: 50%</label>
 			<input type="range" min="0" max="100" class="form-control-range" id="score" step="5"
-				   oninput="update_text_score(this.value)" onchange="update_text_score(this.value)">
+				oninput="update_text_score(this.value)" onchange="update_text_score(this.value)">
 		</div>
 		<div class="input-group col-md-6">
 			<label for="desc_score" class="col-sm-12">Description</label>
@@ -179,7 +179,7 @@
 					<td><?= $qa->get_weight() ?></td>
 					<td>
 						<select class="form-control" id="min_to_<?= $qa->get_id() ?>"
-								data-qa="<?= $qa->get_id() ?>" onchange="edit_min_score_qa(this)">
+							data-qa="<?= $qa->get_id() ?>" onchange="edit_min_score_qa(this)">
 							<option value=""></option>
 							<?php
 							$min = $qa->get_min_to_approve();

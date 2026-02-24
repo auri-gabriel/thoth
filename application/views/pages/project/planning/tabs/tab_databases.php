@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid" role="tabpanel" id="tab_databases">
+<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_databases">
 	<div class="form-inline">
 		<label for="databases"><strong>Data Bases</strong></label>
 		<a onclick="modal_help('modal_help_database')" class="float-right opt">
