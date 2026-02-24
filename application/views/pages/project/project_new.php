@@ -3,9 +3,9 @@
 		<div class="card">
 			<div class="card-header">
 				<h4>New Project</h4>
-			<div class="container">
-				<!-- Project new content -->
 			</div>
+			<div class="card-body">
+				<?php echo form_open('Project_Controller/created_project', array('class' => 'form-new-project')); ?>
 				<div class="form-group">
 					<label for="title">Title</label>
 					<input type="text" name="title" class="form-control" id="title" placeholder="Enter title" required>
@@ -39,7 +39,7 @@
 					</p>
 				</div>
 				<button type="submit" class="btn btn-success">Create Project</button>
-				</form>
+				<?php echo form_close(); ?>
 			</div>
 		</div>
 	</div>
