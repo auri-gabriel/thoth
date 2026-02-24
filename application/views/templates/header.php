@@ -13,8 +13,11 @@
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="<?= base_url('assets/img/favicon.png'); ?>"/>
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
+	<!-- Bootstrap (legacy, can be removed after migration) -->
+	<!-- <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>"> -->
+
+	<!-- New SCSS Theme (Bootstrap 5 + custom) -->
+	<link rel="stylesheet" href="<?= base_url('assets/css/theme.css'); ?>">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
@@ -31,8 +34,8 @@
 	<!-- Select -->
 	<link rel="stylesheet" href="<?= base_url('assets/css/select2.min.css'); ?>">
 
-	<!-- My CSS Files -->
-	<link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
+	<!-- My CSS Files (legacy, can be removed after migration) -->
+	<!-- <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>"> -->
 	<link rel="preload" href="<?= base_url('assets/img/loading.gif'); ?>" as="image">
 
 	<!-- JQuery-->
