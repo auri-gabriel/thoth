@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_search_string">
+<div class="tab-pane container-fluid" role="tabpanel" id="tab_search_string">
 	<div class="form-inline">
 		<label for="term"><strong>Search String</strong></label>
 		<a onclick="modal_help('modal_help_ss')" class="float-right opt">

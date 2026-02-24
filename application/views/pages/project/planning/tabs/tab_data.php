@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_data">
+<div class="tab-pane container-fluid" role="tabpanel" id="tab_data">
 	<div class="form-inline">
 		<label for="id_data_extraction"><strong>Data Extraction</strong></label>
 		<a onclick="modal_help('modal_help_data_extraction')" class="float-right opt">

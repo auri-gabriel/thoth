@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_criteria">
+<div class="tab-pane container-fluid" role="tabpanel" id="tab_criteria">
 	<div class="form-inline">
 		<label for="id_criteria"><strong>Criteria</strong></label>
 		<a onclick="modal_help('modal_help_criteria')" class="float-right opt">

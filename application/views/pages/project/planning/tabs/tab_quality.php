@@ -1,4 +1,4 @@
-<div class="tab-pane container-fluid bg-light" role="tabpanel" id="tab_quality">
+<div class="tab-pane container-fluid" role="tabpanel" id="tab_quality">
 
 	<!-- General Score Section -->
 	<div class="form-inline">
