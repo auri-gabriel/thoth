@@ -64,6 +64,10 @@ class Project_Controller extends Pattern_Controller
 			// Add for Study Selection tab
 			$data['count_papers'] = $this->Project_Model->count_papers_sel_by_user($id);
 			$data['criterias'] = $this->Project_Model->get_evaluation_selection($id);
+			// Add for Quality Assessment tab
+			$data['project_quality'] = $this->Project_Model->get_project_quality($id);
+			$data['count_papers_qa'] = $this->Project_Model->count_papers_qa_by_user($id);
+			$data['qas_score'] = $this->Project_Model->get_evaluation_qa($id);
 
 
 			$this->load_views('pages/project/conducting/conducting', $data);
