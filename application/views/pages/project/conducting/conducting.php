@@ -9,10 +9,22 @@
             $this->load->view('pages/project/conducting/partials/tab_nav');
 
             // Tab content
-            $this->load->view('pages/project/conducting/tabs/tab_import');
-            $this->load->view('pages/project/conducting/tabs/tab_selection');
-            $this->load->view('pages/project/conducting/tabs/tab_quality');
-            $this->load->view('pages/project/conducting/tabs/tab_extraction');
+            ?>
+            <div class="tab-content mt-3">
+                <div class="tab-pane fade show active" id="tab_import" role="tabpanel">
+                    <?php $this->load->view('pages/project/conducting/tabs/tab_import'); ?>
+                </div>
+                <div class="tab-pane fade" id="tab_selection" role="tabpanel">
+                    <?php $this->load->view('pages/project/conducting/tabs/tab_selection'); ?>
+                </div>
+                <div class="tab-pane fade" id="tab_quality" role="tabpanel">
+                    <?php $this->load->view('pages/project/conducting/tabs/tab_quality'); ?>
+                </div>
+                <div class="tab-pane fade" id="tab_extraction" role="tabpanel">
+                    <?php $this->load->view('pages/project/conducting/tabs/tab_extraction'); ?>
+                </div>
+            </div>
+            <?php
         } else {
             $this->load->view('pages/project/conducting/partials/alert_incomplete');
         }
