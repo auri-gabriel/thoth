@@ -1,49 +1,49 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header">
-				<h4><?= $this->session->name; ?></h4>
-			</div>
-			<div class="card-body">
-				<div class="form-inline">
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="name">Name</label>
-						<input type="text" name="name" class="form-control col-md-12" id="name" placeholder="Name"
-							   required>
+
+<section class="profile-section py-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 col-lg-6">
+				<div class="card shadow-sm border-0">
+					<div class="card-header bg-white text-center">
+						<h2 class="fw-bold mb-0">Profile: <?= htmlspecialchars($this->session->name); ?></h2>
 					</div>
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="email">Email address</label>
-						<input type="email" name="email" class="form-control col-md-12" id="email"
-							   aria-describedby="emailHelp"
-							   placeholder="Enter email" required>
+					<div class="card-body p-4">
+						<form method="post" action="#">
+							<div class="mb-3">
+								<label for="name" class="form-label">Name</label>
+								<input type="text" name="name" class="form-control form-control-lg" id="name" placeholder="Name" required>
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Email address</label>
+								<input type="email" name="email" class="form-control form-control-lg" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+							</div>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<label for="new_password" class="form-label">New Password</label>
+									<input type="password" name="new_password" class="form-control form-control-lg" id="new_password" placeholder="Password">
+								</div>
+								<div class="col-md-6">
+									<label for="confirm_password" class="form-label">Confirm Password</label>
+									<input type="password" name="confirm_password" class="form-control form-control-lg" id="confirm_password" placeholder="Confirm Password">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<label for="institution" class="form-label">Institution</label>
+									<input type="text" name="institution" class="form-control form-control-lg" id="institution" placeholder="Institution">
+								</div>
+								<div class="col-md-6">
+									<label for="lattes_link" class="form-label">Lattes Link</label>
+									<input type="text" name="lattes_link" class="form-control form-control-lg" id="lattes_link" placeholder="Lattes Link">
+								</div>
+							</div>
+							<div class="d-grid gap-2">
+								<button type="submit" class="btn btn-success btn-lg">Save</button>
+							</div>
+						</form>
 					</div>
 				</div>
-				<div class="form-inline">
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="new_password">New Password</label>
-						<input type="password" name="new_password" class="form-control col-md-12" id="new_password"
-							   placeholder="Password">
-					</div>
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="InputPassword">Confirm Password</label>
-						<input type="password" name="confirm_password" class="form-control col-md-12" id="confirm_password"
-							   placeholder="Confirm Password">
-					</div>
-				</div>
-				<div class="form-inline">
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="name">Institution</label>
-						<input type="text" name="institution" class="form-control col-md-12" id="institution"
-							   placeholder="Institution">
-					</div>
-					<div class="form-group opt col-md-5">
-						<label class="opt" for="lattes_link">Lattes Link</label>
-						<input type="email" name="lattes_link" class="form-control col-md-12" id="lattes_link"
-							   placeholder="Lattes Link">
-					</div>
-				</div>
-				<button type="submit" class="btn btn-success float-right opt">Save</button>
 			</div>
 		</div>
 	</div>
-</div>
+</section>
