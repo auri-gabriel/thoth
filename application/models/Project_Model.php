@@ -98,7 +98,7 @@ class Project_Model extends Pattern_Model
 
 	public function get_project_selection($id_project)
 	{
-		$project = $this->fetch_base_project($id_project, ['planning', 'import']);
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality']);
 		$project->set_errors($this->update_progress_up_to($id_project, 'import'));
 		$project->set_inclusion_rule($this->get_inclusion_rule($id_project));
 		$project->set_exclusion_rule($this->get_exclusion_rule($id_project));
