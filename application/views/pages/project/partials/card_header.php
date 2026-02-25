@@ -42,9 +42,10 @@
 		<?php if ($project->get_planning() == 100): ?>
 			<span class="d-none d-md-inline">&nbsp;</span>
 			<a href="<?= base_url('export/' . $project->get_id()) ?>"
-			   class="btn btn-sm btn-outline-primary opt btn-export">
-				<i class="fas fa-file-download me-1"></i> Export
-			</a>
+			   class="btn btn-sm opt btn-export <?= (isset($active_tab) && $active_tab === 'export') ? 'btn-primary' : 'btn-outline-primary' ?>"
+			   aria-current="<?= (isset($active_tab) && $active_tab === 'export') ? 'page' : false ?>">
+			   <i class="fas fa-file-download me-1"></i> Export
+		   </a>
 		<?php endif; ?>
 	</nav>
 </div>
