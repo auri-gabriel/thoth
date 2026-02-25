@@ -72,7 +72,7 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach ($project->get_questions_quality() as $qa) { ?>
+							<?php foreach ($project_quality->get_questions_quality() as $qa) { ?>
 								<tr>
 									<td><?= $qa->get_id() ?></td>
 									<td><?= $qa->get_description() ?></td>
