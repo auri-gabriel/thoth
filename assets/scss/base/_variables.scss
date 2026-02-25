@@ -1,32 +1,31 @@
 @use "sass:color";
 @import url("/fonts/inter.css");
 
-// === BASE COLORS ===
-$primary: hsl(225, 65%, 40%);
-$secondary: hsl(0, 0%, 18%);
+$primary: hsl(350, 80%, 41%); // Muted burnt orange
+$secondary: hsl(220, 13%, 18%); // Deep blue-gray for contrast
 
-// Semantic colors
-$success: hsl(120, 77%, 27%);
-$info: hsl(206, 100%, 42%);
-$warning: hsl(33, 100%, 50%);
-$danger: hsl(358, 63%, 51%);
-$light: hsl(210, 17%, 98%);
-$dark: hsl(0, 0%, 12%);
+// Semantic colors (modernized)
+$success: hsl(142, 71%, 45%); // Vibrant green
+$info: hsl(204, 86%, 53%); // Bright blue
+$warning: hsl(36, 100%, 50%); // Orange-yellow
+$danger: hsl(350, 84%, 54%); // Strong red
+$light: hsl(0, 0%, 100%); // Pure white
+$dark: hsl(220, 13%, 18%); // Deep blue-gray
 
 // Custom grayscale — more contrast, cooler tones
-$gray-50: hsl(0, 0%, 98%);
-$gray-100: hsl(0, 0%, 96%);
-$gray-200: hsl(0, 0%, 90%);
-$gray-300: hsl(0, 0%, 82%);
-$gray-400: hsl(0, 0%, 64%);
-$gray-500: hsl(0, 0%, 45%);
-$gray-600: hsl(0, 0%, 32%);
-$gray-700: hsl(0, 0%, 25%);
-$gray-800: hsl(0, 0%, 15%);
-$gray-900: hsl(0, 0%, 9%);
+$gray-50: hsl(36, 100%, 99%); // Off-white with a hint of orange
+$gray-100: hsl(36, 100%, 97%);
+$gray-200: hsl(36, 20%, 92%);
+$gray-300: hsl(36, 12%, 85%);
+$gray-400: hsl(36, 8%, 70%);
+$gray-500: hsl(36, 6%, 55%);
+$gray-600: hsl(36, 8%, 40%);
+$gray-700: hsl(36, 12%, 28%);
+$gray-800: hsl(36, 16%, 18%);
+$gray-900: hsl(36, 20%, 10%);
 
 // Body
-$body-bg: $gray-100;
+$body-bg: $gray-50;
 $body-color: $gray-900;
 
 // === TYPOGRAPHY ===
@@ -89,7 +88,7 @@ $input-btn-focus-box-shadow: none;
 
 // === LINKS ===
 $link-color: $primary;
-$link-hover-color: color.mix(black, $primary, 10%);
+$link-hover-color: color.mix($primary, black, 15%);
 $link-decoration: underline;
 
 // === CARDS ===
