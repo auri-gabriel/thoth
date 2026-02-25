@@ -270,6 +270,7 @@ class Project_Model extends Pattern_Model
 		$project->set_inclusion_criteria($this->get_criteria($id_project, "Inclusion"));
 		$project->set_exclusion_criteria($this->get_criteria($id_project, "Exclusion"));
 		$project->set_papers($this->get_papers_selection($id_project));
+		$project->set_databases($this->get_databases($id_project));
 
 		$project->set_errors($errors);
 
