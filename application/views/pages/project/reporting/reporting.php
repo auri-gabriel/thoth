@@ -1,9 +1,11 @@
 <div class="container py-4">
 	<div class="card">
 		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'reporting']); ?>
-		<?php $this->load->view('pages/project/reporting/partials/tab_nav'); ?>
-		<div class="card-body">
-			<div class="tab-content">
+		<div class="card-body bg-light">
+			<h4>Reporting</h4>
+			<?php $this->load->view('pages/project/reporting/partials/tab_nav'); ?>
+		</div>
+			<div class="tab-content p-3">
 				<div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
 					<?php $this->load->view('pages/project/reporting/tabs/tab_overview'); ?>
 				</div>
