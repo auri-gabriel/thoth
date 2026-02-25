@@ -5,56 +5,117 @@ require_once APPPATH . 'models/Pattern_Model.php';
 
 class Project_Model extends Pattern_Model
 {
-	public function get_project_reviewer_selection($id_project)
-	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
+	// =========================================================================
+	// Private Helpers — Project Hydration & Progress
+	// =========================================================================
 
+	/**
+	 * Fetches the project row and hydrates only the fields you request.
+	 *
+	 * Always sets: id, title
+	 * Optional fields: 'planning', 'import', 'selection', 'quality',
+	 *                  'extraction', 'description', 'objectives',
+	 *                  'start_date', 'end_date'
+	 */
+	private function fetch_base_project($id_project, array $fields = [])
+	{
 		$project = new Project();
+
 		$this->db->select('project.*');
 		$this->db->from('project');
 		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
+		$row = $this->db->get()->row();
 
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
+		if (!$row) {
+			return $project;
 		}
 
+		$project->set_id($row->id_project);
+		$project->set_title($row->title);
 
+		$field_map = [
+			'planning'   => function () use ($project, $row) { $project->set_planning($row->planning); },
+			'import'     => function () use ($project, $row) { $project->set_import($row->import); },
+			'selection'  => function () use ($project, $row) { $project->set_selection($row->selection); },
+			'quality'    => function () use ($project, $row) { $project->set_quality($row->quality); },
+			'extraction' => function () use ($project, $row) { $project->set_extraction($row->extraction); },
+			'description'=> function () use ($project, $row) { $project->set_description($row->description); },
+			'objectives' => function () use ($project, $row) { $project->set_objectives($row->objectives); },
+			'start_date' => function () use ($project, $row) { $project->set_start_date($row->start_date); },
+			'end_date'   => function () use ($project, $row) { $project->set_end_date($row->end_date); },
+		];
+
+		foreach ($fields as $field) {
+			if (isset($field_map[$field])) {
+				($field_map[$field])();
+			}
+		}
+
+		return $project;
+	}
+
+	/**
+	 * Runs update_progress_* calls in pipeline order, stopping at $last_stage.
+	 *
+	 * Stage order: planning → import → selection → quality → extraction
+	 */
+	private function update_progress_up_to($id_project, $last_stage)
+	{
+		$stages = ['planning', 'import', 'selection', 'quality', 'extraction'];
+		$errors = [];
+
+		foreach ($stages as $stage) {
+			$errors = array_merge($errors, $this->{"update_progress_{$stage}"}($id_project));
+			if ($stage === $last_stage) {
+				break;
+			}
+		}
+
+		return $errors;
+	}
+
+	// =========================================================================
+	// Public — get_project_* methods
+	// =========================================================================
+
+	public function get_project_import($id_project)
+	{
+		$project = $this->fetch_base_project($id_project, ['planning']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'planning'));
+		$project->set_databases($this->get_databases($id_project));
+
+		return $project;
+	}
+
+	public function get_project_reviewer_selection($id_project)
+	{
+		$project = $this->fetch_base_project($id_project, ['planning', 'import']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'import'));
 		$project->set_members($this->get_members($id_project));
-		$project->set_errors($errors);
+
+		return $project;
+	}
+
+	public function get_project_selection($id_project)
+	{
+		$project = $this->fetch_base_project($id_project, ['planning', 'import']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'import'));
+		$project->set_inclusion_rule($this->get_inclusion_rule($id_project));
+		$project->set_exclusion_rule($this->get_exclusion_rule($id_project));
+		$project->set_inclusion_criteria($this->get_criteria($id_project, "Inclusion"));
+		$project->set_exclusion_criteria($this->get_criteria($id_project, "Exclusion"));
+		$project->set_papers($this->get_papers_selection($id_project));
+		$project->set_databases($this->get_databases($id_project));
 
 		return $project;
 	}
 
 	public function get_project_quality($id_project)
 	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
-		$errors = array_merge($errors, $this->update_progress_selection($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-		}
-
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'selection'));
 		$project->set_questions_quality($this->get_qas($id_project));
 		$project->set_papers($this->get_papers_qa($id_project));
-		$project->set_errors($errors);
 		$project->set_members($this->get_members($id_project));
 
 		return $project;
@@ -62,28 +123,8 @@ class Project_Model extends Pattern_Model
 
 	public function get_project_extraction($id_project)
 	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
-		$errors = array_merge($errors, $this->update_progress_selection($id_project));
-		$errors = array_merge($errors, $this->update_progress_quality($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-			$project->set_quality($row->quality);
-		}
-
-		$project->set_errors($errors);
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'quality'));
 		$project->set_papers($this->get_papers_ex($id_project));
 		$project->set_questions_extraction($this->get_qes($id_project));
 
@@ -92,139 +133,75 @@ class Project_Model extends Pattern_Model
 
 	public function get_project_overview($id_project)
 	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
-		$errors = array_merge($errors, $this->update_progress_selection($id_project));
-		$errors = array_merge($errors, $this->update_progress_quality($id_project));
-		$errors = array_merge($errors, $this->update_progress_extraction($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_description($row->description);
-			$project->set_objectives($row->objectives);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-			$project->set_quality($row->quality);
-			$project->set_extraction($row->extraction);
-		}
-
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality', 'extraction', 'description', 'objectives']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'extraction'));
 		$project->set_members($this->get_members($id_project));
-		$project->set_errors($errors);
 
 		return $project;
 	}
 
-	public function get_project_import($id_project)
+	public function get_project_report($id_project)
 	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-		}
-
-		$project->set_databases($this->get_databases($id_project));
-		$project->set_errors($errors);
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality', 'extraction']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'extraction'));
+		$project->set_questions_quality($this->get_qas($id_project));
+		$project->set_members($this->get_members($id_project));
 
 		return $project;
 	}
 
 	public function get_project_export($id_project)
 	{
-		$errors = array();
-		array_push($errors, $this->update_progress_planning($id_project));
-		array_push($errors, $this->update_progress_import($id_project));
-		array_push($errors, $this->update_progress_selection($id_project));
-		array_push($errors, $this->update_progress_quality($id_project));
-		array_push($errors, $this->update_progress_extraction($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_description($row->description);
-			$project->set_objectives($row->objectives);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-			$project->set_quality($row->quality);
-			$project->set_extraction($row->extraction);
-		}
-
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality', 'extraction', 'description', 'objectives']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'extraction'));
 		$project->set_members($this->get_members($id_project));
-		$project->set_errors($errors);
-		$project->set_domains($this->get_domains($id_project));
-		$project->set_languages($this->get_languages($id_project));
-		$project->set_study_types($this->get_study_types($id_project));
-		$project->set_keywords($this->get_keywords($id_project));
-		$project->set_databases($this->get_databases($id_project));
-		$project->set_research_questions($this->get_rqs($id_project));
-		$project->set_search_strategy($this->get_search_strategy($id_project));
-		$project->set_search_strings($this->get_search_strings($id_project));
-		$project->set_terms($this->get_terms($id_project));
-		$project->set_inclusion_rule($this->get_inclusion_rule($id_project));
-		$project->set_exclusion_rule($this->get_exclusion_rule($id_project));
-		$project->set_inclusion_criteria($this->get_criteria($id_project, "Inclusion"));
-		$project->set_exclusion_criteria($this->get_criteria($id_project, "Exclusion"));
-		$project->set_quality_scores($this->get_general_scores($id_project));
-		$project->set_score_min($this->get_min_to_app($id_project));
-		$project->set_questions_quality($this->get_qas($id_project));
-		$project->set_questions_extraction($this->get_qes($id_project));
+		$this->_set_full_planning_relations($project, $id_project);
 
 		return $project;
 	}
 
 	public function get_project_export_latex($id_project)
 	{
-		$errors = array();
-		array_push($errors, $this->update_progress_planning($id_project));
-		array_push($errors, $this->update_progress_import($id_project));
-		array_push($errors, $this->update_progress_selection($id_project));
-		array_push($errors, $this->update_progress_quality($id_project));
-		array_push($errors, $this->update_progress_extraction($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_description($row->description);
-			$project->set_objectives($row->objectives);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-			$project->set_quality($row->quality);
-			$project->set_extraction($row->extraction);
-		}
-
+		$project = $this->fetch_base_project($id_project, ['planning', 'import', 'selection', 'quality', 'extraction', 'description', 'objectives']);
+		$project->set_errors($this->update_progress_up_to($id_project, 'extraction'));
 		$project->set_members($this->get_researchs($id_project));
-		$project->set_errors($errors);
+		$this->_set_full_planning_relations($project, $id_project);
+
+		return $project;
+	}
+
+	public function get_project_planning($id_project)
+	{
+		$project = $this->fetch_base_project($id_project, ['planning', 'start_date', 'end_date']);
+		$project->set_errors([]);
+		$this->_set_full_planning_relations($project, $id_project);
+
+		return $project;
+	}
+
+	public function get_project_edit($id_project)
+	{
+		return $this->fetch_base_project($id_project, ['description', 'objectives']);
+	}
+
+	public function get_project_members($id_project)
+	{
+		$project = $this->fetch_base_project($id_project, []);
+		$project->set_members($this->get_members($id_project));
+
+		return $project;
+	}
+
+	// =========================================================================
+	// Private — shared relation loader for planning/export views
+	// =========================================================================
+
+	/**
+	 * Sets all the planning-related relations on a project object.
+	 * Used by get_project_planning, get_project_export, get_project_export_latex.
+	 */
+	private function _set_full_planning_relations($project, $id_project)
+	{
 		$project->set_domains($this->get_domains($id_project));
 		$project->set_languages($this->get_languages($id_project));
 		$project->set_study_types($this->get_study_types($id_project));
@@ -242,40 +219,11 @@ class Project_Model extends Pattern_Model
 		$project->set_score_min($this->get_min_to_app($id_project));
 		$project->set_questions_quality($this->get_qas($id_project));
 		$project->set_questions_extraction($this->get_qes($id_project));
-
-		return $project;
 	}
 
-	public function get_project_selection($id_project)
-	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-		}
-
-		$project->set_inclusion_rule($this->get_inclusion_rule($id_project));
-		$project->set_exclusion_rule($this->get_exclusion_rule($id_project));
-		$project->set_inclusion_criteria($this->get_criteria($id_project, "Inclusion"));
-		$project->set_exclusion_criteria($this->get_criteria($id_project, "Exclusion"));
-		$project->set_papers($this->get_papers_selection($id_project));
-		$project->set_databases($this->get_databases($id_project));
-
-		$project->set_errors($errors);
-
-		return $project;
-	}
+	// =========================================================================
+	// Public — Project CRUD
+	// =========================================================================
 
 	public function created_project($title, $description, $objectives, $email)
 	{
@@ -329,6 +277,27 @@ class Project_Model extends Pattern_Model
 
 		return $id_project;
 	}
+
+	public function edit_project($title, $description, $objectives, $id_project)
+	{
+		$data = array(
+			'title' => $title,
+			'description' => $description,
+			'objectives' => $objectives
+		);
+		$this->db->where('id_project', $id_project);
+		$this->db->update('project', $data);
+	}
+
+	public function deleted_project($id_project)
+	{
+		$this->db->where('id_project', $id_project);
+		$this->db->delete('project');
+	}
+
+	// =========================================================================
+	// Private — Progress updaters
+	// =========================================================================
 
 	private function exist_row($table, $id_project, $where = array(), $join = array())
 	{
@@ -496,76 +465,7 @@ class Project_Model extends Pattern_Model
 		$this->db->where('id_project', $id_project);
 		$this->db->update('project', array('import' => number_format((float)$progress, 2)));
 
-
 		return $errors;
-	}
-
-	public function count_papers_by_status_sel($id_project)
-	{
-		$ids_p_d = $this->get_ids_project_database($id_project);
-		$id_bibs = array();
-		$total = 0;
-		$cont[1] = 0;
-		$cont[2] = 0;
-		$cont[3] = 0;
-		$cont[4] = 0;
-		$cont[5] = 0;
-		$cont[6] = 0;
-
-		if (sizeof($ids_p_d) > 0) {
-			$id_bibs = $this->get_ids_bibs($ids_p_d);
-		}
-
-		if (sizeof($id_bibs) > 0) {
-
-			$this->db->select('status_selection, COUNT(*) as count');
-			$this->db->from('papers');
-			$this->db->group_by('status_selection');
-			$this->db->where_in('id_bib', $id_bibs);
-			$query = $this->db->get();
-
-			foreach ($query->result() as $row) {
-				$cont[$row->status_selection] = $row->count;
-				$total += $row->count;
-			}
-		}
-		$cont[6] = $total;
-
-		return $cont;
-	}
-
-	public function count_papers_by_status_qa($id_project)
-	{
-		$ids_p_d = $this->get_ids_project_database($id_project);
-		$id_bibs = array();
-		$total = 0;
-		$cont[1] = 0;
-		$cont[2] = 0;
-		$cont[3] = 0;
-		$cont[4] = 0;
-		$cont[5] = 0;
-
-		if (sizeof($ids_p_d) > 0) {
-			$id_bibs = $this->get_ids_bibs($ids_p_d);
-		}
-
-		if (sizeof($id_bibs) > 0) {
-
-			$this->db->select('status_qa, COUNT(*) as count');
-			$this->db->from('papers');
-			$this->db->group_by('status_qa');
-			$this->db->where_in('id_bib', $id_bibs);
-			$this->db->where('status_selection', 1);
-			$query = $this->db->get();
-
-			foreach ($query->result() as $row) {
-				$cont[$row->status_qa] = $row->count;
-				$total += $row->count;
-			}
-		}
-		$cont[5] = $total;
-
-		return $cont;
 	}
 
 	private function update_progress_selection($id_project)
@@ -592,42 +492,53 @@ class Project_Model extends Pattern_Model
 		return $errors;
 	}
 
-	public function get_project_edit($id_project)
+	private function update_progress_quality($id_project)
 	{
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
+		$errors = array();
+		$progress = 0;
 
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_description($row->description);
-			$project->set_objectives($row->objectives);
+		$count_papers = $this->count_papers_by_status_qa($id_project);
+
+		if ($count_papers[5] > 0) {
+			$unc = ($count_papers[3] * 100) / $count_papers[5];
+			$progress = 100 - $unc;
+			if ($count_papers[1] == 0) {
+				$progress = 0;
+			}
+		}
+		if ($progress == 0) {
+			array_push($errors, "Evaluate at least one paper in the quality step to move to the extraction step");
 		}
 
-		return $project;
+		$this->db->where('id_project', $id_project);
+		$this->db->update('project', array('quality' => number_format((float)$progress, 2)));
+		return $errors;
 	}
 
-	public function get_project_members($id_project)
+	private function update_progress_extraction($id_project)
 	{
+		$errors = array();
+		$progress = 0;
 
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
+		$count_papers = $this->count_papers_extraction($id_project);
 
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
+		if ($count_papers[4] > 0) {
+			$unc = ($count_papers[2] * 100) / $count_papers[4];
+			$progress = 100 - $unc;
+
+			array_push($errors, "There are still " . number_format((float)$unc, 2) . " of the articles to be evaluated in the extraction.");
+		} else {
+			array_push($errors, "Evaluate at least one paper in the extraction step to move to the reporting step");
 		}
 
-		$project->set_members($this->get_members($id_project));
-
-		return $project;
+		$this->db->where('id_project', $id_project);
+		$this->db->update('project', array('extraction' => number_format((float)$progress, 2)));
+		return $errors;
 	}
+
+	// =========================================================================
+	// Private — Data getters (members, domains, papers, etc.)
+	// =========================================================================
 
 	private function get_members($id_project)
 	{
@@ -670,91 +581,6 @@ class Project_Model extends Pattern_Model
 		}
 
 		return $members;
-	}
-
-	private function update_progress_quality($id_project)
-	{
-		$errors = array();
-		$progress = 0;
-
-		$count_papers = $this->count_papers_by_status_qa($id_project);
-
-		if ($count_papers[5] > 0) {
-			$unc = ($count_papers[3] * 100) / $count_papers[5];
-			$progress = 100 - $unc;
-			if ($count_papers[1] == 0) {
-				$progress = 0;
-			}
-		}
-		if ($progress == 0) {
-			array_push($errors, "Evaluate at least one paper in the quality step to move to the extraction step");
-		}
-
-		$this->db->where('id_project', $id_project);
-		$this->db->update('project', array('quality' => number_format((float)$progress, 2)));
-		return $errors;
-	}
-
-	private function update_progress_extraction($id_project)
-	{
-		$errors = array();
-		$progress = 0;
-
-		$count_papers = $this->count_papers_extraction($id_project);
-
-		if ($count_papers[4] > 0) {
-			$unc = ($count_papers[2] * 100) / $count_papers[4];
-			$progress = 100 - $unc;
-
-			array_push($errors, "There are still " . number_format((float)$unc, 2) . " of the articles to be evaluated in the extraction.");
-		} else {
-			array_push($errors, "Evaluate at least one paper in the extraction step to move to the reporting step");
-		}
-
-
-		$this->db->where('id_project', $id_project);
-		$this->db->update('project', array('extraction' => number_format((float)$progress, 2)));
-		return $errors;
-	}
-
-	public function get_project_planning($id_project)
-	{
-		$errors = array();
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_start_date($row->start_date);
-			$project->set_end_date($row->end_date);
-			$project->set_planning($row->planning);
-		}
-
-		$project->set_errors($errors);
-		$project->set_domains($this->get_domains($id_project));
-		$project->set_languages($this->get_languages($id_project));
-		$project->set_study_types($this->get_study_types($id_project));
-		$project->set_keywords($this->get_keywords($id_project));
-		$project->set_databases($this->get_databases($id_project));
-		$project->set_research_questions($this->get_rqs($id_project));
-		$project->set_search_strategy($this->get_search_strategy($id_project));
-		$project->set_search_strings($this->get_search_strings($id_project));
-		$project->set_terms($this->get_terms($id_project));
-		$project->set_inclusion_rule($this->get_inclusion_rule($id_project));
-		$project->set_exclusion_rule($this->get_exclusion_rule($id_project));
-		$project->set_inclusion_criteria($this->get_criteria($id_project, "Inclusion"));
-		$project->set_exclusion_criteria($this->get_criteria($id_project, "Exclusion"));
-		$project->set_quality_scores($this->get_general_scores($id_project));
-		$project->set_score_min($this->get_min_to_app($id_project));
-		$project->set_questions_quality($this->get_qas($id_project));
-		$project->set_questions_extraction($this->get_qes($id_project));
-
-		return $project;
 	}
 
 	private function get_domains($id_project)
@@ -961,113 +787,6 @@ class Project_Model extends Pattern_Model
 			return $score;
 		}
 		return null;
-	}
-
-	public function get_all_languages()
-	{
-		$languages = array();
-		$this->db->select('*');
-		$this->db->from('language');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($languages, $row->description);
-		}
-		return $languages;
-	}
-
-	public function get_all_study_types()
-	{
-		$types = array();
-		$this->db->select('*');
-		$this->db->from('study_type');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($types, $row->description);
-		}
-		return $types;
-	}
-
-	public function get_all_databases()
-	{
-		$databases = array();
-		$this->db->select('*');
-		$this->db->from('data_base');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($databases, $row->name);
-		}
-		return $databases;
-	}
-
-	public function get_all_rules()
-	{
-		$rules = array();
-		$this->db->select('*');
-		$this->db->from('rule');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($rules, $row->description);
-		}
-		return $rules;
-	}
-
-	public function get_all_types()
-	{
-		$rules = array();
-		$this->db->select('*');
-		$this->db->from('types_question');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($rules, $row->type);
-		}
-		return $rules;
-	}
-
-	public function get_num_papers($id_project)
-	{
-		$data2 = array();
-		foreach ($this->get_databases($id_project) as $database) {
-			$id_database = $this->get_id_database($database->get_name());
-
-			$id_project_database = $this->get_id_project_database($id_database, $id_project);
-
-			$id_bib = $this->get_ids_bibs($id_project_database);
-
-			if (sizeof($id_bib) > 0) {
-				$this->db->where_in('id_bib', $id_bib);
-				$this->db->from('papers');
-				$data2[$database->get_name()] = $this->db->count_all_results();
-			} else {
-				$data2[$database->get_name()] = 0;
-			}
-		}
-		return $data2;
-	}
-
-	public function get_name_bibs($id_project)
-	{
-		$data2 = array();
-		foreach ($this->get_databases($id_project) as $database) {
-			$id_database = $this->get_id_database($database->get_name());
-			$id_project_database = $this->get_id_project_database($id_database, $id_project);
-
-			$this->db->select('name');
-			$this->db->from('bib_upload');
-			$this->db->where('id_project_database', $id_project_database);
-			$query = $this->db->get();
-
-			$data = array();
-			foreach ($query->result() as $row) {
-				array_push($data, $row->name);
-			}
-			$data2[$database->get_name()] = $data;
-		}
-		return $data2;
 	}
 
 	private function get_num_bib($database, $id_project)
@@ -1312,6 +1031,10 @@ class Project_Model extends Pattern_Model
 		return $papers;
 	}
 
+	// =========================================================================
+	// Public — Lookups & counts
+	// =========================================================================
+
 	public function get_level($email, $id_project)
 	{
 		$this->db->select('level');
@@ -1360,12 +1083,509 @@ class Project_Model extends Pattern_Model
 		return $levels;
 	}
 
-	public function deleted_project($id_project)
+	public function get_all_languages()
 	{
-		$this->db->where('id_project', $id_project);
-		$this->db->delete('project');
+		$languages = array();
+		$this->db->select('*');
+		$this->db->from('language');
+		$query = $this->db->get();
 
+		foreach ($query->result() as $row) {
+			array_push($languages, $row->description);
+		}
+		return $languages;
 	}
+
+	public function get_all_study_types()
+	{
+		$types = array();
+		$this->db->select('*');
+		$this->db->from('study_type');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($types, $row->description);
+		}
+		return $types;
+	}
+
+	public function get_all_databases()
+	{
+		$databases = array();
+		$this->db->select('*');
+		$this->db->from('data_base');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($databases, $row->name);
+		}
+		return $databases;
+	}
+
+	public function get_all_rules()
+	{
+		$rules = array();
+		$this->db->select('*');
+		$this->db->from('rule');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($rules, $row->description);
+		}
+		return $rules;
+	}
+
+	public function get_all_types()
+	{
+		$rules = array();
+		$this->db->select('*');
+		$this->db->from('types_question');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($rules, $row->type);
+		}
+		return $rules;
+	}
+
+	public function get_num_papers($id_project)
+	{
+		$data2 = array();
+		foreach ($this->get_databases($id_project) as $database) {
+			$id_database = $this->get_id_database($database->get_name());
+
+			$id_project_database = $this->get_id_project_database($id_database, $id_project);
+
+			$id_bib = $this->get_ids_bibs($id_project_database);
+
+			if (sizeof($id_bib) > 0) {
+				$this->db->where_in('id_bib', $id_bib);
+				$this->db->from('papers');
+				$data2[$database->get_name()] = $this->db->count_all_results();
+			} else {
+				$data2[$database->get_name()] = 0;
+			}
+		}
+		return $data2;
+	}
+
+	public function get_name_bibs($id_project)
+	{
+		$data2 = array();
+		foreach ($this->get_databases($id_project) as $database) {
+			$id_database = $this->get_id_database($database->get_name());
+			$id_project_database = $this->get_id_project_database($id_database, $id_project);
+
+			$this->db->select('name');
+			$this->db->from('bib_upload');
+			$this->db->where('id_project_database', $id_project_database);
+			$query = $this->db->get();
+
+			$data = array();
+			foreach ($query->result() as $row) {
+				array_push($data, $row->name);
+			}
+			$data2[$database->get_name()] = $data;
+		}
+		return $data2;
+	}
+
+	public function count_papers_by_status_sel($id_project)
+	{
+		$ids_p_d = $this->get_ids_project_database($id_project);
+		$id_bibs = array();
+		$total = 0;
+		$cont[1] = 0;
+		$cont[2] = 0;
+		$cont[3] = 0;
+		$cont[4] = 0;
+		$cont[5] = 0;
+		$cont[6] = 0;
+
+		if (sizeof($ids_p_d) > 0) {
+			$id_bibs = $this->get_ids_bibs($ids_p_d);
+		}
+
+		if (sizeof($id_bibs) > 0) {
+
+			$this->db->select('status_selection, COUNT(*) as count');
+			$this->db->from('papers');
+			$this->db->group_by('status_selection');
+			$this->db->where_in('id_bib', $id_bibs);
+			$query = $this->db->get();
+
+			foreach ($query->result() as $row) {
+				$cont[$row->status_selection] = $row->count;
+				$total += $row->count;
+			}
+		}
+		$cont[6] = $total;
+
+		return $cont;
+	}
+
+	public function count_papers_by_status_qa($id_project)
+	{
+		$ids_p_d = $this->get_ids_project_database($id_project);
+		$id_bibs = array();
+		$total = 0;
+		$cont[1] = 0;
+		$cont[2] = 0;
+		$cont[3] = 0;
+		$cont[4] = 0;
+		$cont[5] = 0;
+
+		if (sizeof($ids_p_d) > 0) {
+			$id_bibs = $this->get_ids_bibs($ids_p_d);
+		}
+
+		if (sizeof($id_bibs) > 0) {
+
+			$this->db->select('status_qa, COUNT(*) as count');
+			$this->db->from('papers');
+			$this->db->group_by('status_qa');
+			$this->db->where_in('id_bib', $id_bibs);
+			$this->db->where('status_selection', 1);
+			$query = $this->db->get();
+
+			foreach ($query->result() as $row) {
+				$cont[$row->status_qa] = $row->count;
+				$total += $row->count;
+			}
+		}
+		$cont[5] = $total;
+
+		return $cont;
+	}
+
+	public function get_logs_project($id_project)
+	{
+		$data = array();
+		$this->db->select('name,activity,time');
+		$this->db->from('activity_log');
+		$this->db->join('user', 'user.id_user = activity_log.id_user');
+		$this->db->where('activity_log.id_project', $id_project);
+		$this->db->order_by('activity_log.time DESC');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			$data2 = array(
+				'name' => $row->name,
+				'activity' => $row->activity,
+				'time' => $row->time
+			);
+			array_push($data, $data2);
+		}
+
+		return $data;
+	}
+
+	public function get_status()
+	{
+		$levels = array();
+		$this->db->select('*');
+		$this->db->from('status_selection');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($levels, array($row->id_status, $row->description));
+		}
+		return $levels;
+	}
+
+	public function get_status_qa()
+	{
+		$levels = array();
+		$this->db->select('*');
+		$this->db->from('status_qa');
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			array_push($levels, array($row->id_status, $row->status));
+		}
+		return $levels;
+	}
+
+	// =========================================================================
+	// Public — Members management
+	// =========================================================================
+
+	public function add_member($email, $level, $id_project)
+	{
+		$id_level = null;
+		$this->db->select('id_level');
+		$this->db->from('levels');
+		$this->db->where('level', $level);
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			$id_level = $row->id_level;
+		}
+
+		$id_user = $this->get_id_name_user($email);
+
+		$data = array(
+			'id_user' => $id_user[0],
+			'id_project' => $id_project,
+			'level' => $id_level
+		);
+
+		$this->db->insert('members', $data);
+		$id_member = $this->db->insert_id();
+		if ($id_level == 1 || $id_level == 3) {
+
+			$project_databases = $this->get_ids_project_database($id_project);
+
+			$id_bibs = array();
+			if (sizeof($project_databases) > 0) {
+				$id_bibs = $this->get_ids_bibs($project_databases);
+			}
+
+			$id_papers = array();
+			if (sizeof($id_bibs) > 0) {
+				$id_papers = $this->get_ids_papers($id_bibs);
+			}
+
+			$gen_score = $this->gen_score_min($id_project);
+
+			if (sizeof($id_papers) > 0) {
+				$status_selection = array();
+				$status_qa = array();
+				foreach ($id_papers as $paper) {
+					$insert = array(
+						'id_paper' => $paper,
+						'id_member' => $id_member,
+						'id_status' => 3,
+						'note' => ""
+					);
+					array_push($status_selection, $insert);
+					$insert_qa = array(
+						'id_paper' => $paper,
+						'id_member' => $id_member,
+						'id_status' => 3,
+						'note' => "",
+						'score' => 0,
+						'id_gen_score' => $gen_score
+					);
+
+
+					array_push($status_qa, $insert_qa);
+
+				}
+
+				$this->db->insert_batch('papers_selection', $status_selection);
+				$this->db->insert_batch('papers_qa', $status_qa);
+
+				$data = array(
+					'status_selection' => 3,
+					'check_status_selection' => false,
+					'status_qa' => 3,
+					'check_qa' => false,
+					'id_gen_score' => $gen_score,
+					'score' => 0,
+				);
+
+				$this->db->where_in('id_paper', $id_papers);
+				$this->db->update('papers', $data);
+
+			}
+		}
+		return $id_user[1];
+	}
+
+	public function delete_member($email, $id_project)
+	{
+		$this->validate_adm($email, $id_project);
+		$user = $this->get_id_name_user($email);
+		$id_member = $this->get_id_member($user[0], $id_project);
+
+		$this->db->where('id_project', $id_project);
+		$this->db->where('id_members', $id_member);
+		$this->db->delete('members');
+
+		$project_databases = $this->get_ids_project_database($id_project);
+
+		$id_bibs = array();
+		if (sizeof($project_databases) > 0) {
+			$id_bibs = $this->get_ids_bibs($project_databases);
+		}
+
+		if (sizeof($id_bibs) > 0) {
+
+			$this->db->select('id_paper');
+			$this->db->from('papers');
+			$this->db->where_in('id_bib', $id_bibs);
+			$query = $this->db->get();
+			$papers = array();
+			foreach ($query->result() as $row) {
+				array_push($papers, $row->id_paper);
+			}
+
+			foreach ($papers as $id_paper) {
+				$this->db->select('id_status');
+				$this->db->from('papers_selection');
+				$this->db->where('id_paper', $id_paper);
+				$query = $this->db->get();
+				$paper = array();
+				foreach ($query->result() as $row) {
+					array_push($paper, $row->id_status);
+				}
+
+				$correct = true;
+				for ($i = 0; $i < (sizeof($paper) - 1); $i++) {
+					if ($paper[$i] != $paper[$i + 1]) {
+						$correct = false;
+					}
+				}
+
+				if ($correct) {
+					$data = array(
+						'status_selection' => $paper[0]
+					);
+
+					$this->db->where('id_paper', $id_paper);
+					$this->db->update('papers', $data);
+				} else {
+					$data = array(
+						'status_selection' => 3,
+						'check_status_selection' => false,
+					);
+
+					$this->db->where('id_paper', $id_paper);
+					$this->db->update('papers', $data);
+				}
+			}
+		}
+	}
+
+	public function edit_level($email, $level, $id_project)
+	{
+		$this->validate_adm($email, $id_project);
+		$gen_score = $this->gen_score_min($id_project);
+
+		$id_level = null;
+		$this->db->select('id_level');
+		$this->db->from('levels');
+		$this->db->where('level', $level);
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			$id_level = $row->id_level;
+		}
+
+		$user = $this->get_id_name_user($email);
+		$id_member = $this->get_id_member($user[0], $id_project);
+
+		$old_level = null;
+		$this->db->select('id_level');
+		$this->db->from('levels');
+		$this->db->join('members', 'members.level = levels.id_level');
+		$this->db->where('id_members', $id_member);
+		$this->db->where('id_project', $id_project);
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			$old_level = $row->id_level;
+		}
+
+		if ($id_level == $old_level) {
+			return true;
+		}
+
+		$data = array(
+			'level' => $id_level
+		);
+
+		$this->db->where('id_members', $id_member);
+		$this->db->update('members', $data);
+
+
+		if ($id_level == 1 || $id_level == 3) {
+
+			if ($old_level != 1 && $old_level != 3) {
+				$project_databases = $this->get_ids_project_database($id_project);
+
+				$id_bibs = array();
+				if (sizeof($project_databases) > 0) {
+					$id_bibs = $this->get_ids_bibs($project_databases);
+				}
+
+				$id_papers = array();
+				if (sizeof($id_bibs) > 0) {
+					$id_papers = $this->get_ids_papers($id_bibs);
+				}
+
+				if (sizeof($id_papers) > 0) {
+					$status_selection = array();
+					foreach ($id_papers as $paper) {
+						$insert = array(
+							'id_paper' => $paper,
+							'id_member' => $id_member,
+							'id_status' => 3,
+							'note' => ""
+						);
+						array_push($status_selection, $insert);
+
+					}
+
+					$this->db->insert_batch('papers_selection', $status_selection);
+
+					$status_qa = array();
+					foreach ($id_papers as $paper) {
+						$insert = array(
+							'id_paper' => $paper,
+							'id_member' => $id_member,
+							'id_status' => 3,
+							'note' => "",
+							'score' => 0,
+							'id_gen_score' => $gen_score
+						);
+						array_push($status_qa, $insert);
+
+					}
+
+					$this->db->insert_batch('papers_qa', $status_qa);
+					$data = array(
+						'status_qa' => 3,
+						'check_qa' => false,
+						'status_selection' => 3,
+						'check_status_selection' => false,
+					);
+
+					$this->db->where_in('id_paper', $id_papers);
+					$this->db->update('papers', $data);
+				}
+			}
+		} else {
+			$this->db->where('id_member', $id_member);
+			$this->db->delete('papers_selection');
+
+			$this->db->where('id_member', $id_member);
+			$this->db->delete('papers_qa');
+
+		}
+	}
+
+	private function validate_adm($email, $id_project)
+	{
+		$members = $this->get_members($id_project);
+		if (sizeof($members) == 1) {
+			throw new Exception('The project must contain at least one member and this is the administrator.');
+		}
+
+		foreach ($members as $mem) {
+			if ($mem->get_level() == "Administrator") {
+				if ($mem->get_email() != $email) {
+					return true;
+				}
+			}
+		}
+		throw new Exception('The project must contain at least one member and this is the administrator.');
+	}
+
+	// =========================================================================
+	// Public — Paper counts & reviewer stats
+	// =========================================================================
 
 	public function count_papers_reviewer($id_project)
 	{
@@ -1576,244 +1796,9 @@ class Project_Model extends Pattern_Model
 		return $cont;
 	}
 
-	public function get_logs_project($id_project)
-	{
-		$data = array();
-		$this->db->select('name,activity,time');
-		$this->db->from('activity_log');
-		$this->db->join('user', 'user.id_user = activity_log.id_user');
-		$this->db->where('activity_log.id_project', $id_project);
-		$this->db->order_by('activity_log.time DESC');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$data2 = array(
-				'name' => $row->name,
-				'activity' => $row->activity,
-				'time' => $row->time
-			);
-			array_push($data, $data2);
-		}
-
-		return $data;
-	}
-
-	public function add_member($email, $level, $id_project)
-	{
-		$id_level = null;
-		$this->db->select('id_level');
-		$this->db->from('levels');
-		$this->db->where('level', $level);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$id_level = $row->id_level;
-		}
-
-		$id_user = $this->get_id_name_user($email);
-
-		$data = array(
-			'id_user' => $id_user[0],
-			'id_project' => $id_project,
-			'level' => $id_level
-		);
-
-		$this->db->insert('members', $data);
-		$id_member = $this->db->insert_id();
-		if ($id_level == 1 || $id_level == 3) {
-
-			$project_databases = $this->get_ids_project_database($id_project);
-
-			$id_bibs = array();
-			if (sizeof($project_databases) > 0) {
-				$id_bibs = $this->get_ids_bibs($project_databases);
-			}
-
-			$id_papers = array();
-			if (sizeof($id_bibs) > 0) {
-				$id_papers = $this->get_ids_papers($id_bibs);
-			}
-
-			$gen_score = $this->gen_score_min($id_project);
-
-			if (sizeof($id_papers) > 0) {
-				$status_selection = array();
-				$status_qa = array();
-				foreach ($id_papers as $paper) {
-					$insert = array(
-						'id_paper' => $paper,
-						'id_member' => $id_member,
-						'id_status' => 3,
-						'note' => ""
-					);
-					array_push($status_selection, $insert);
-					$insert_qa = array(
-						'id_paper' => $paper,
-						'id_member' => $id_member,
-						'id_status' => 3,
-						'note' => "",
-						'score' => 0,
-						'id_gen_score' => $gen_score
-					);
-
-
-					array_push($status_qa, $insert_qa);
-
-				}
-
-				$this->db->insert_batch('papers_selection', $status_selection);
-				$this->db->insert_batch('papers_qa', $status_qa);
-
-				$data = array(
-					'status_selection' => 3,
-					'check_status_selection' => false,
-					'status_qa' => 3,
-					'check_qa' => false,
-					'id_gen_score' => $gen_score,
-					'score' => 0,
-				);
-
-				$this->db->where_in('id_paper', $id_papers);
-				$this->db->update('papers', $data);
-
-			}
-		}
-		return $id_user[1];
-	}
-
-	public function get_status()
-	{
-		$levels = array();
-		$this->db->select('*');
-		$this->db->from('status_selection');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($levels, array($row->id_status, $row->description));
-		}
-		return $levels;
-	}
-
-	public function get_status_qa()
-	{
-		$levels = array();
-		$this->db->select('*');
-		$this->db->from('status_qa');
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			array_push($levels, array($row->id_status, $row->status));
-		}
-		return $levels;
-	}
-
-	public function edit_project($title, $description, $objectives, $id_project)
-	{
-		$data = array(
-			'title' => $title,
-			'description' => $description,
-			'objectives' => $objectives
-		);
-		$this->db->where('id_project', $id_project);
-		$this->db->update('project', $data);
-	}
-
-	public function get_project_report($id_project)
-	{
-		$errors = array();
-		$errors = array_merge($errors, $this->update_progress_planning($id_project));
-		$errors = array_merge($errors, $this->update_progress_import($id_project));
-		$errors = array_merge($errors, $this->update_progress_selection($id_project));
-		$errors = array_merge($errors, $this->update_progress_quality($id_project));
-		$errors = array_merge($errors, $this->update_progress_extraction($id_project));
-
-		$project = new Project();
-		$this->db->select('project.*');
-		$this->db->from('project');
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$project->set_title($row->title);
-			$project->set_id($row->id_project);
-			$project->set_planning($row->planning);
-			$project->set_import($row->import);
-			$project->set_selection($row->selection);
-			$project->set_quality($row->quality);
-			$project->set_extraction($row->extraction);
-		}
-
-		$project->set_errors($errors);
-		$project->set_questions_quality($this->get_qas($id_project));
-		$project->set_members($this->get_members($id_project));
-
-		return $project;
-	}
-
-	public function delete_member($email, $id_project)
-	{
-		$this->validate_adm($email, $id_project);
-		$user = $this->get_id_name_user($email);
-		$id_member = $this->get_id_member($user[0], $id_project);
-
-		$this->db->where('id_project', $id_project);
-		$this->db->where('id_members', $id_member);
-		$this->db->delete('members');
-
-		$project_databases = $this->get_ids_project_database($id_project);
-
-		$id_bibs = array();
-		if (sizeof($project_databases) > 0) {
-			$id_bibs = $this->get_ids_bibs($project_databases);
-		}
-
-		if (sizeof($id_bibs) > 0) {
-
-			$this->db->select('id_paper');
-			$this->db->from('papers');
-			$this->db->where_in('id_bib', $id_bibs);
-			$query = $this->db->get();
-			$papers = array();
-			foreach ($query->result() as $row) {
-				array_push($papers, $row->id_paper);
-			}
-
-			foreach ($papers as $id_paper) {
-				$this->db->select('id_status');
-				$this->db->from('papers_selection');
-				$this->db->where('id_paper', $id_paper);
-				$query = $this->db->get();
-				$paper = array();
-				foreach ($query->result() as $row) {
-					array_push($paper, $row->id_status);
-				}
-
-				$correct = true;
-				for ($i = 0; $i < (sizeof($paper) - 1); $i++) {
-					if ($paper[$i] != $paper[$i + 1]) {
-						$correct = false;
-					}
-				}
-
-				if ($correct) {
-					$data = array(
-						'status_selection' => $paper[0]
-					);
-
-					$this->db->where('id_paper', $id_paper);
-					$this->db->update('papers', $data);
-				} else {
-					$data = array(
-						'status_selection' => 3,
-						'check_status_selection' => false,
-					);
-
-					$this->db->where('id_paper', $id_paper);
-					$this->db->update('papers', $data);
-				}
-			}
-		}
-	}
+	// =========================================================================
+	// Public — Evaluation & selection
+	// =========================================================================
 
 	private function get_criteria_evaluation($id_paper, $id_cri, $id_member)
 	{
@@ -1872,130 +1857,9 @@ class Project_Model extends Pattern_Model
 		return $papers;
 	}
 
-	public function edit_level($email, $level, $id_project)
-	{
-		$this->validate_adm($email, $id_project);
-		$gen_score = $this->gen_score_min($id_project);
-
-		$id_level = null;
-		$this->db->select('id_level');
-		$this->db->from('levels');
-		$this->db->where('level', $level);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$id_level = $row->id_level;
-		}
-
-		$user = $this->get_id_name_user($email);
-		$id_member = $this->get_id_member($user[0], $id_project);
-
-		$old_level = null;
-		$this->db->select('id_level');
-		$this->db->from('levels');
-		$this->db->join('members', 'members.level = levels.id_level');
-		$this->db->where('id_members', $id_member);
-		$this->db->where('id_project', $id_project);
-		$query = $this->db->get();
-
-		foreach ($query->result() as $row) {
-			$old_level = $row->id_level;
-		}
-
-		if ($id_level == $old_level) {
-			return true;
-		}
-
-		$data = array(
-			'level' => $id_level
-		);
-
-		$this->db->where('id_members', $id_member);
-		$this->db->update('members', $data);
-
-
-		if ($id_level == 1 || $id_level == 3) {
-
-			if ($old_level != 1 && $old_level != 3) {
-				$project_databases = $this->get_ids_project_database($id_project);
-
-				$id_bibs = array();
-				if (sizeof($project_databases) > 0) {
-					$id_bibs = $this->get_ids_bibs($project_databases);
-				}
-
-				$id_papers = array();
-				if (sizeof($id_bibs) > 0) {
-					$id_papers = $this->get_ids_papers($id_bibs);
-				}
-
-				if (sizeof($id_papers) > 0) {
-					$status_selection = array();
-					foreach ($id_papers as $paper) {
-						$insert = array(
-							'id_paper' => $paper,
-							'id_member' => $id_member,
-							'id_status' => 3,
-							'note' => ""
-						);
-						array_push($status_selection, $insert);
-
-					}
-
-					$this->db->insert_batch('papers_selection', $status_selection);
-
-					$status_qa = array();
-					foreach ($id_papers as $paper) {
-						$insert = array(
-							'id_paper' => $paper,
-							'id_member' => $id_member,
-							'id_status' => 3,
-							'note' => "",
-							'score' => 0,
-							'id_gen_score' => $gen_score
-						);
-						array_push($status_qa, $insert);
-
-					}
-
-					$this->db->insert_batch('papers_qa', $status_qa);
-					$data = array(
-						'status_qa' => 3,
-						'check_qa' => false,
-						'status_selection' => 3,
-						'check_status_selection' => false,
-					);
-
-					$this->db->where_in('id_paper', $id_papers);
-					$this->db->update('papers', $data);
-				}
-			}
-		} else {
-			$this->db->where('id_member', $id_member);
-			$this->db->delete('papers_selection');
-
-			$this->db->where('id_member', $id_member);
-			$this->db->delete('papers_qa');
-
-		}
-	}
-
-	private function validate_adm($email, $id_project)
-	{
-		$members = $this->get_members($id_project);
-		if (sizeof($members) == 1) {
-			throw new Exception('The project must contain at least one member and this is the administrator.');
-		}
-
-		foreach ($members as $mem) {
-			if ($mem->get_level() == "Administrator") {
-				if ($mem->get_email() != $email) {
-					return true;
-				}
-			}
-		}
-		throw new Exception('The project must contain at least one member and this is the administrator.');
-	}
+	// =========================================================================
+	// Public — Reporting / charts
+	// =========================================================================
 
 	public function get_papers_database($id_project)
 	{
@@ -2457,4 +2321,3 @@ class Project_Model extends Pattern_Model
 	}
 
 }
-
