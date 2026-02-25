@@ -32,47 +32,162 @@
 
 
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			// Overview tab charts
-			if (document.getElementById('funnel')) {
-				Highcharts.chart('funnel', {
-					chart: {
-						type: 'funnel'
-					},
-					title: {
-						text: '<?= $project->get_title() ?> Funnel'
-					},
-					plotOptions: {},
-					legend: {
-						enabled: false
-					},
-					series: [<?= json_encode($funnel) ?>],
-					responsive: {
-						rules: [{
-							condition: {
-								maxWidth: 500
-							},
-							chartOptions: {}
-						}]
-					}
-				});
-			}
-			if (document.getElementById('act')) {
-				Highcharts.chart('act', {
-					chart: {
-						type: 'line'
-					},
-					title: {
-						text: 'Failure of Daily Project Activities'
-					},
-					xAxis: {
-						categories: <?= json_encode($activity['categories']) ?>
-					},
-					yAxis: {},
-					plotOptions: {},
-					series: <?= json_encode($activity['series']) ?>
-				});
-			}
+		   document.addEventListener('DOMContentLoaded', function() {
+			   // Overview tab charts
+			   if (document.getElementById('overview_tab_funnel')) {
+				   Highcharts.chart('overview_tab_funnel', {
+					   chart: {
+						   type: 'funnel'
+					   },
+					   title: {
+						   text: '<?= $project->get_title() ?> Funnel'
+					   },
+					   plotOptions: {},
+					   legend: {
+						   enabled: false
+					   },
+					   series: [<?= json_encode($funnel) ?>],
+					   responsive: {
+						   rules: [{
+							   condition: {
+								   maxWidth: 500
+							   },
+							   chartOptions: {}
+						   }]
+					   }
+				   });
+			   }
+			   if (document.getElementById('overview_tab_act')) {
+				   Highcharts.chart('overview_tab_act', {
+					   chart: {
+						   type: 'line'
+					   },
+					   title: {
+						   text: 'Failure of Daily Project Activities'
+					   },
+					   xAxis: {
+						   categories: <?= json_encode($activity['categories']) ?>
+					   },
+					   yAxis: {},
+					   plotOptions: {},
+					   series: <?= json_encode($activity['series']) ?>
+				   });
+			   }
+			   if (document.getElementById('overview_tab_papers_per_database')) {
+				   Highcharts.chart('overview_tab_papers_per_database', {
+					   chart: {
+						   plotBackgroundColor: null,
+						   plotBorderWidth: null,
+						   plotShadow: false,
+						   type: 'pie'
+					   },
+					   title: {
+						   text: 'Papers per Database'
+					   },
+					   tooltip: {
+						   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
+					   },
+					   plotOptions: {
+						   column: {
+							   colorByPoint: true
+						   },
+						   pie: {
+							   allowPointSelect: true,
+							   cursor: 'pointer',
+							   dataLabels: {}
+						   }
+					   },
+					   series: [{
+						   name: 'Brands',
+						   colorByPoint: true,
+						   data: <?= json_encode($databases); ?>
+					   }]
+				   });
+			   }
+			   if (document.getElementById('overview_tab_papers_per_selection')) {
+				   Highcharts.chart('overview_tab_papers_per_selection', {
+					   chart: {
+						   plotBackgroundColor: null,
+						   plotBorderWidth: null,
+						   plotShadow: false,
+						   type: 'pie'
+					   },
+					   title: {
+						   text: 'Papers per Status Selection'
+					   },
+					   tooltip: {
+						   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
+					   },
+					   plotOptions: {
+						   pie: {
+							   allowPointSelect: true,
+							   cursor: 'pointer',
+							   dataLabels: {}
+						   }
+					   },
+					   series: [{
+						   name: 'Brands',
+						   colorByPoint: true,
+						   data: <?= json_encode($status_selection); ?>
+					   }]
+				   });
+			   }
+			   if (document.getElementById('overview_tab_papers_per_quality')) {
+				   Highcharts.chart('overview_tab_papers_per_quality', {
+					   chart: {
+						   plotBackgroundColor: null,
+						   plotBorderWidth: null,
+						   plotShadow: false,
+						   type: 'pie'
+					   },
+					   title: {
+						   text: 'Papers per Status Quality'
+					   },
+					   tooltip: {
+						   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
+					   },
+					   plotOptions: {
+						   pie: {
+							   allowPointSelect: true,
+							   cursor: 'pointer',
+							   dataLabels: {}
+						   }
+					   },
+					   series: [{
+						   name: 'Brands',
+						   colorByPoint: true,
+						   data: <?= json_encode($status_qa); ?>
+					   }]
+				   });
+			   }
+			   if (document.getElementById('overview_tab_papers_gen_score')) {
+				   Highcharts.chart('overview_tab_papers_gen_score', {
+					   chart: {
+						   plotBackgroundColor: null,
+						   plotBorderWidth: null,
+						   plotShadow: false,
+						   type: 'pie'
+					   },
+					   title: {
+						   text: 'Papers per General Score'
+					   },
+					   tooltip: {
+						   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
+					   },
+					   plotOptions: {
+						   pie: {
+							   allowPointSelect: true,
+							   cursor: 'pointer',
+							   dataLabels: {}
+						   }
+					   },
+					   series: [{
+						   name: 'Brands',
+						   colorByPoint: true,
+						   data: <?= json_encode($gen_score); ?>
+					   }]
+				   });
+			   }
 
 			// Import tab chart
 			if (document.querySelector('#import_tab_papers_per_database')) {
