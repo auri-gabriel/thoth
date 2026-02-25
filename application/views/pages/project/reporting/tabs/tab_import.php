@@ -1,6 +1,13 @@
 
-<div class="card">
-    <div class="card-body">
-        <div id="import_tab_papers_per_database"></div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="mb-3"><strong>Papers per Database</strong></h6>
+                    <div id="import_tab_papers_per_database"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

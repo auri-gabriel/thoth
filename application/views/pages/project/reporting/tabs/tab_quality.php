@@ -1,11 +1,20 @@
-<div class="card">
-	<div class="card-body">
-		<div id="quality_tab_papers_per_quality"></div>
-	</div>
-</div>
-<br>
-<div class="card">
-	<div class="card-body">
-		<div id="quality_tab_papers_gen_score"></div>
+<div class="container-fluid">
+	<div class="row g-4">
+		<div class="col-md-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<h6 class="mb-3"><strong>Papers per Quality</strong></h6>
+					<div id="quality_tab_papers_per_quality"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<h6 class="mb-3"><strong>General Score</strong></h6>
+					<div id="quality_tab_papers_gen_score"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

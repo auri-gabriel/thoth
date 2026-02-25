@@ -1,6 +1,13 @@
 
-<div class="card">
-    <div class="card-body">
-        <div id="extraction_content"></div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="mb-3"><strong>Extraction Data</strong></h6>
+                    <div id="extraction_content"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
