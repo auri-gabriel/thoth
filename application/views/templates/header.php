@@ -60,15 +60,15 @@
 	<script src="<?= base_url('assets/js/buttons.colVis.min.js'); ?>"></script>
 
 
-	<!-- Highcharts -->
-	<script src="<?= base_url('assets/js/highcharts.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/highcharts-more.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/series-label.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/funnel.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/venn.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/exporting.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/export-data.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/pattern-fill.js'); ?>"></script>
+	<!-- Highcharts (latest, from node_modules via symlink) -->
+	<script src="<?= base_url('assets/node_modules/highcharts/highcharts.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/highcharts-more.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/series-label.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/funnel.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/venn.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/exporting.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/export-data.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/highcharts/modules/pattern-fill.js'); ?>"></script>
 
 
 	<!-- SweetAlert -->
