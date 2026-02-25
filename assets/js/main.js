@@ -475,10 +475,15 @@ $(document).ready(function () {
 	});
 
 
+	// Bootstrap 5 tab navigation with hash support
 	if (location.hash) {
-		$("a[href='" + location.hash + "']").tab("show");
+		var triggerEl = document.querySelector("a[href='" + location.hash + "']");
+		if (triggerEl) {
+			var tab = new bootstrap.Tab(triggerEl);
+			tab.show();
+		}
 	}
-	$(document.body).on("click", "a[data-toggle]", function (event) {
+	$(document.body).on("click", "a[data-bs-toggle]", function (event) {
 		location.hash = this.getAttribute("href");
 	});
 
@@ -501,8 +506,12 @@ $(document).ready(function () {
 		exibe_loading();
 	});
 	$(window).on("popstate", function () {
-		var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-		$("a[href='" + anchor + "']").tab("show");
+		var anchor = location.hash || $("a[data-bs-toggle='pill']").first().attr("href");
+		var triggerEl = document.querySelector("a[href='" + anchor + "']");
+		if (triggerEl) {
+			var tab = new bootstrap.Tab(triggerEl);
+			tab.show();
+		}
 	});
 
 });

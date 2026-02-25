@@ -261,23 +261,23 @@
 		</script>
 		<ul class="nav nav-pills nav-justified flex-column flex-sm-row">
 			<li class="nav-item">
-				<a data-toggle="pill" class="nav-link active flex-sm-fill text-sm-center" href="#tab_over">Overview <i
+				<a data-bs-toggle="pill" class="nav-link active flex-sm-fill text-sm-center" href="#tab_over">Overview <i
 						class="fas fa-binoculars"></i></a>
 			</li>
 			<li class="nav-item">
-				<a data-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_import">Import Studies <i
+				<a data-bs-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_import">Import Studies <i
 						class="fas fa-upload"></i></a>
 			</li>
 			<li class="nav-item">
-				<a data-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_selection">Study Selection
+				<a data-bs-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_selection">Study Selection
 					<i class="fas fa-clipboard-check"></i></a>
 			</li>
 			<li class="nav-item">
-				<a data-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_qa">Quality Assessment <i
+				<a data-bs-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_qa">Quality Assessment <i
 						class="fas fa-star-half-alt"></i></a>
 			</li>
 			<li class="nav-item">
-				<a data-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_ex">Data Extraction <i
+				<a data-bs-toggle="pill" class="nav-link flex-sm-fill text-sm-center" href="#tab_ex">Data Extraction <i
 						class="fas fa-external-link-square-alt"></i></a>
 			</li>
 		</ul>
