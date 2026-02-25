@@ -58,9 +58,12 @@ class Project_Controller extends Pattern_Controller
 			$this->validate_level($id, array(1, 2, 3, 4));
 
 			$this->load->model("Project_Model");
-			$data['project'] = $this->Project_Model->get_project_import($id);
+			$data['project'] = $this->Project_Model->get_project_selection($id);
 			$data['bib'] = $this->Project_Model->get_name_bibs($id);
 			$data['num_papers'] = $this->Project_Model->get_num_papers($id);
+			// Add for Study Selection tab
+			$data['count_papers'] = $this->Project_Model->count_papers_sel_by_user($id);
+			$data['criterias'] = $this->Project_Model->get_evaluation_selection($id);
 
 
 			$this->load_views('pages/project/conducting/conducting', $data);
