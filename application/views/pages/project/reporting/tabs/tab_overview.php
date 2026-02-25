@@ -5,17 +5,7 @@ $(document).ready(function () {
     Highcharts.chart('funnel', {
         chart: { type: 'funnel' },
         title: { text: '<?=$project->get_title()?> Funnel' },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    softConnector: true
-                },
-                center: ['40%', '50%'],
-                neckWidth: '30%',
-                neckHeight: '25%',
-                width: '80%'
-            }
-        },
+        plotOptions: {},
         legend: { enabled: false },
         series: [<?=json_encode($funnel)?>],
         responsive: {
@@ -29,13 +19,8 @@ $(document).ready(function () {
         chart: { type: 'line' },
         title: { text: 'Failure of Daily Project Activities' },
         xAxis: { categories: <?=json_encode($activity['categories'])?> },
-        yAxis: { title: { text: 'Activities' } },
-        plotOptions: {
-            line: {
-                dataLabels: { enabled: true },
-                enableMouseTracking: false
-            }
-        },
+        yAxis: {},
+        plotOptions: {},
         series:  <?=json_encode($activity['series'])?>
     });
     Highcharts.chart('papers_per_database', {
