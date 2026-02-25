@@ -1,6 +1,5 @@
 <html lang="en">
 <head>
-<div class="container">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
@@ -99,10 +98,8 @@
 	<script src="<?= base_url('assets/js/export.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/terms.js'); ?>"></script>
 
-	</head>
-	<body>
-
+</head>
+<body>
 	<div id="loading" class="load">
 		<img src="<?= base_url('assets/img/loading.gif'); ?>">
 	</div>
-	</body>
