@@ -63,7 +63,7 @@ class Project_Controller extends Pattern_Controller
 			$data['num_papers'] = $this->Project_Model->get_num_papers($id);
 
 
-			$this->load_views('pages/project/project_conducting', $data);
+			$this->load_views('pages/project/conducting/conducting', $data);
 
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());

@@ -1,4 +1,3 @@
-
 <script src="<?= base_url('assets/js/bibupload.js'); ?>"></script>
 <div class="card">
     <?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'conducting']); ?>
