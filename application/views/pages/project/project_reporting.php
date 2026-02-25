@@ -264,20 +264,9 @@
 		</ul>
 	</div>
 	<div class="tab-content">
-		<div class="tab-pane container-fluid active" id="tab_over">
-			<br>
-			<div class="card">
-				<div class="card-body">
-					<div id="funnel"></div>
-				</div>
-			</div>
-			<br>
-			<div class="card">
-				<div class="card-body">
-					<div id="act"></div>
-				</div>
-			</div>
-		</div>
+		   <div class="tab-pane container-fluid active" id="tab_over">
+			   <?php $this->load->view('pages/project/reporting/tabs/tab_overview'); ?>
+		   </div>
 		<div class="tab-pane container-fluid" id="tab_import">
 			<br>
 			<div class="card">

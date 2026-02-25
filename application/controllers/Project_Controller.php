@@ -131,7 +131,7 @@ class Project_Controller extends Pattern_Controller
 			$data['count_papers_sel'] = $this->Project_Model->count_papers_reviewer($id);
 
 
-			$this->load_views('pages/project/project_reporting', $data);
+			$this->load_views('pages/project/reporting/reporting', $data);
 
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
