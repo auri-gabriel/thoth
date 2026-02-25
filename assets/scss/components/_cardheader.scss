@@ -1,0 +1,71 @@
+// Modern project card header styles for Thoth
+// Place in assets/scss/components/_cardheader.scss
+
+@import "../base/variables";
+
+.project-card-header {
+	background: $gray-100;
+	border-bottom: 2px solid $primary;
+	box-shadow: 0 2px 8px rgba(79, 140, 255, 0.06);
+	padding: 1.25rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	@media (min-width: 768px) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.project-title {
+		color: $primary;
+		font-weight: 700;
+		font-size: 1.5rem;
+		margin-bottom: 0.25rem;
+	}
+	.project-stages-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem;
+		.btn {
+			border-radius: 0;
+			font-weight: 500;
+			min-width: 110px;
+			transition:
+				background 0.18s,
+				color 0.18s,
+				border 0.18s;
+		}
+		.btn-primary,
+		.btn-outline-primary.active,
+		.btn-outline-primary[aria-current="page"] {
+			background: $primary;
+			color: $light;
+			border-color: $primary;
+		}
+		.btn-outline-primary {
+			background: transparent;
+			color: $primary;
+			border-color: $primary;
+		}
+		.btn-outline-primary:hover,
+		.btn-outline-primary:focus {
+			background: $primary;
+			color: $light;
+			border-color: $primary;
+		}
+		.stage-arrow {
+			color: $gray-500;
+			font-size: 1.2em;
+			margin: 0 0.25rem;
+			user-select: none;
+		}
+		.btn-export {
+			border-radius: 2rem;
+			min-width: 90px;
+			margin-left: 0.5rem;
+			font-weight: 500;
+		}
+	}
+}
