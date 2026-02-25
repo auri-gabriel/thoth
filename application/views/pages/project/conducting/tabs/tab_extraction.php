@@ -3,9 +3,14 @@
 <br>
 <?php
 if ($project->get_planning() == 100 && $project->get_import() == 100 && $project->get_selection() > 0 && $project->get_quality() > 0) {
-    $done = number_format((float)($count_papers[1] * 100) / $count_papers[4], 2);
-    $to_do = number_format((float)($count_papers[2] * 100) / $count_papers[4], 2);
-    $rem = number_format((float)($count_papers[3] * 100) / $count_papers[4], 2)
+    // Prevent division by zero
+    if (!empty($count_papers[4]) && $count_papers[4] != 0) {
+        $done = number_format((float)($count_papers[1] * 100) / $count_papers[4], 2);
+        $to_do = number_format((float)($count_papers[2] * 100) / $count_papers[4], 2);
+        $rem = number_format((float)($count_papers[3] * 100) / $count_papers[4], 2);
+    } else {
+        $done = $to_do = $rem = 0;
+    }
 
     ?>
     <h6>Progress Data Extraction</h6>
