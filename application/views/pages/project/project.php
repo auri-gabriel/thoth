@@ -2,27 +2,43 @@
 	<div class="card shadow-sm mb-4">
 		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'overview']); ?>
 		<div class="card-body bg-light">
+
 			<div class="row g-4 mb-4">
 				<div class="col-md-4">
-					<div class="p-3 bg-light rounded h-100">
-						<h5 class="fw-bold mb-2"><i class="fas fa-align-justify opt me-2"></i>Description</h5>
-						<p class="mb-0"><?= $project->get_description(); ?></p>
+					<div class="card shadow-sm h-100 border-0">
+						<div class="card-body bg-white rounded-3">
+							<div class="d-flex align-items-center mb-2">
+								<div class="me-2 text-primary"><i class="fas fa-align-justify fa-lg"></i></div>
+								<h5 class="fw-bold mb-0">Description</h5>
+							</div>
+							<p class="mb-0 text-secondary small"><?= $project->get_description(); ?></p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="p-3 bg-light rounded h-100">
-						<h5 class="fw-bold mb-2"><i class="fas fa-bullseye opt me-2"></i>Objectives</h5>
-						<p class="mb-0"><?= $project->get_objectives(); ?></p>
+					<div class="card shadow-sm h-100 border-0">
+						<div class="card-body bg-white rounded-3">
+							<div class="d-flex align-items-center mb-2">
+								<div class="me-2 text-success"><i class="fas fa-bullseye fa-lg"></i></div>
+								<h5 class="fw-bold mb-0">Objectives</h5>
+							</div>
+							<p class="mb-0 text-secondary small"><?= $project->get_objectives(); ?></p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="p-3 bg-light rounded h-100">
-						<h5 class="fw-bold mb-2"><i class="fas fa-users opt me-2"></i>Members</h5>
-						<ul class="list-unstyled mb-0">
-							<?php foreach ($project->get_members() as $member) { ?>
-								<li><?= $member->get_name() . " - " . $member->get_level(); ?></li>
-							<?php } ?>
-						</ul>
+					<div class="card shadow-sm h-100 border-0">
+						<div class="card-body bg-white rounded-3">
+							<div class="d-flex align-items-center mb-2">
+								<div class="me-2 text-info"><i class="fas fa-users fa-lg"></i></div>
+								<h5 class="fw-bold mb-0">Members</h5>
+							</div>
+							<ul class="list-unstyled mb-0">
+								<?php foreach ($project->get_members() as $member) { ?>
+									<li class="mb-1"><span class="fw-semibold text-dark"><?= $member->get_name() ?></span> <span class="badge bg-light text-secondary border ms-1"><?= $member->get_level(); ?></span></li>
+								<?php } ?>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
