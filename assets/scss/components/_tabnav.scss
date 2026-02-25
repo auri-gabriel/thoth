@@ -1,0 +1,50 @@
+// Modern tab navigation styles for Thoth
+// Place in assets/scss/components/_tabnav.scss
+
+@import "../base/variables";
+
+.modern-tabs {
+	gap: 0.5rem;
+	.modern-tab {
+		border-radius: 0; // No rounded corners
+		transition:
+			background 0.2s,
+			color 0.2s,
+			box-shadow 0.2s;
+		background: $gray-100;
+		color: $dark;
+		margin-bottom: 2px;
+		border: 2px solid transparent;
+		font-weight: 500;
+	}
+	.modern-tab.active,
+	.modern-tab:focus,
+	.modern-tab:hover {
+		background: $primary;
+		color: $light;
+		border-color: $primary;
+		box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
+	}
+	.icon-circle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.2rem;
+		height: 2.2rem;
+		border-radius: 50%;
+		background: $gray-200;
+		margin-bottom: 0.25rem;
+		transition: background 0.2s;
+	}
+	.modern-tab.active .icon-circle,
+	.modern-tab:focus .icon-circle,
+	.modern-tab:hover .icon-circle {
+		background: $primary;
+		color: $light;
+	}
+	.tab-label {
+		font-size: 1rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+	}
+}
