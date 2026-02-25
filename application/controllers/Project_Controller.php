@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'controllers/Pattern_Controller.php';
 
+/**
+ * @property CI_Loader $load
+ * @property CI_Input $input
+ * @property CI_Session $session
+ * @property Project_Model $Project_Model
+ */
 class Project_Controller extends Pattern_Controller
 {
 	/**
