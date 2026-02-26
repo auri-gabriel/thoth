@@ -1,6 +1,6 @@
 </div>
 <br>
-<footer class="footer bg-body-tertiary border-top mt-5 py-4">
+<footer class="footer bg-body-tertiary border-top py-4">
 	<div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
 		<div class="small text-secondary text-center text-md-start">
 			&copy; <?= date('Y') ?> Thoth — Open Source SLR Platform
@@ -17,4 +17,5 @@
 </footer>
 <input type="hidden" id="base_url" value="<?= base_url() ?>">
 </body>
+
 </html>
