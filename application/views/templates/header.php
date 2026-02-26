@@ -86,7 +86,6 @@
 	<script src="<?= base_url('assets/js/loading.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/main.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/title.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/overall.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/research_question.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/database.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/search_string.js'); ?>"></script>
@@ -97,6 +96,7 @@
 	<script src="<?= base_url('assets/js/objects/Extraction_Answer.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/export.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/terms.js'); ?>"></script>
+	<script src="<?= base_url('assets/js/SwalAdapter.js'); ?>"></script>
 
 </head>
 

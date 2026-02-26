@@ -112,10 +112,6 @@ $(document).ready(function () {
 		searching: false,
 	});
 
-	table_domains = $("#table_domains").DataTable(configDataTables);
-	table_languages = $("#table_languages").DataTable(configDataTables);
-	table_study_type = $("#table_study_type").DataTable(configDataTables);
-	table_keywords = $("#table_keywords").DataTable(configDataTables);
 	table_research_question = $("#table_research_question").DataTable(
 		configDataTables,
 	);
@@ -133,14 +129,6 @@ $(document).ready(function () {
 		configDataTables,
 	);
 
-	table_imported_studies = $("#table_imported_studies").DataTable({
-		responsive: true,
-		order: [[1, "asc"]],
-		paginate: false,
-		info: false,
-		searching: false,
-		columnDefs: [{ orderable: false, targets: 2 }],
-	});
 	table_my_projects = $("#table_my_projects").DataTable({
 		responsive: true,
 		order: [[0, "asc"]],

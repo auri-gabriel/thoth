@@ -14,7 +14,7 @@ function add_domain() {
 			domain: domain,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -44,7 +44,7 @@ function delete_domain(value) {
 	let row = table_domains.row(value);
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -64,7 +64,7 @@ function delete_domain(value) {
 					domain: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -77,7 +77,7 @@ function delete_domain(value) {
 					table_domains.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Domain has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Domain has been deleted.", "success");
 		}
 	});
 }
@@ -108,7 +108,7 @@ function edit_domain() {
 			now: now,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -134,7 +134,7 @@ function edit_domain() {
 		},
 	});
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Success",
 		text: "The domain was edited",
 		type: "success",
@@ -149,7 +149,7 @@ function edit_domain() {
 
 function validate_domain(domain) {
 	if (!domain) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The domain can not be empty!",
@@ -161,7 +161,7 @@ function validate_domain(domain) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (domain.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The domain has already been registered!",
@@ -188,7 +188,7 @@ function add_language() {
 			language: language,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -213,7 +213,7 @@ function add_language() {
 
 function validate_language(language) {
 	if (!language) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The language can not be empty!",
@@ -225,7 +225,7 @@ function validate_language(language) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (language.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The language has already been registered!",
@@ -239,7 +239,7 @@ function validate_language(language) {
 function delete_language(value) {
 	let row = table_languages.row(value);
 	let id_project = $("#id_project").val();
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -259,7 +259,7 @@ function delete_language(value) {
 					language: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -272,7 +272,7 @@ function delete_language(value) {
 					table_languages.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Language has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Language has been deleted.", "success");
 		}
 	});
 }
@@ -293,7 +293,7 @@ function add_study_type() {
 			study_type: study_type,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -318,7 +318,7 @@ function add_study_type() {
 
 function validate_study_type(study_type) {
 	if (!study_type) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The study type can not be empty!",
@@ -330,7 +330,7 @@ function validate_study_type(study_type) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (study_type.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The study type has already been registered!",
@@ -346,7 +346,7 @@ function delete_study_type(value) {
 	let row = table_study_type.row(value);
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -366,7 +366,7 @@ function delete_study_type(value) {
 					study_type: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -379,7 +379,7 @@ function delete_study_type(value) {
 					table_study_type.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Study Type has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Study Type has been deleted.", "success");
 		}
 	});
 }
@@ -400,7 +400,7 @@ function add_keywords() {
 			keywords: keywords,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -452,7 +452,7 @@ function edit_keyword() {
 			old: old,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -476,7 +476,7 @@ function edit_keyword() {
 		},
 	});
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Success",
 		text: "The keyword was edited",
 		type: "success",
@@ -491,7 +491,7 @@ function edit_keyword() {
 
 function validate_keywords(keyword) {
 	if (!keyword) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The keyword can not be empty!",
@@ -503,7 +503,7 @@ function validate_keywords(keyword) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (keyword.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The keyword has already been registered!",
@@ -518,7 +518,7 @@ function delete_keywords(value) {
 	let row = table_keywords.row(value);
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -538,7 +538,7 @@ function delete_keywords(value) {
 					keywords: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -551,7 +551,7 @@ function delete_keywords(value) {
 					table_keywords.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Keyword has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Keyword has been deleted.", "success");
 		}
 	});
 }
@@ -573,7 +573,7 @@ function add_date() {
 			end_date: end_date,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -582,7 +582,7 @@ function add_date() {
 			});
 		},
 		success: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The dates was edited",
 				type: "success",
@@ -595,7 +595,7 @@ function add_date() {
 
 function validate_date(start_date, end_date) {
 	if (!start_date) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start date can not be empty!",
@@ -604,7 +604,7 @@ function validate_date(start_date, end_date) {
 	}
 
 	if (!end_date) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end date can not be empty!",
@@ -613,7 +613,7 @@ function validate_date(start_date, end_date) {
 	}
 
 	if (!(start_date < end_date)) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end date can not be greater than start date!",
@@ -623,3 +623,20 @@ function validate_date(start_date, end_date) {
 
 	return true;
 }
+
+let configDataTables = {
+	language: lang,
+	responsive: true,
+	order: [[0, "asc"]],
+	paginate: false,
+	info: false,
+	searching: false,
+	ordering: false,
+};
+
+$(document).ready(function () {
+	table_domains = $("#table_domains").DataTable(configDataTables);
+	table_languages = $("#table_languages").DataTable(configDataTables);
+	table_study_type = $("#table_study_type").DataTable(configDataTables);
+	table_keywords = $("#table_keywords").DataTable(configDataTables);
+});
