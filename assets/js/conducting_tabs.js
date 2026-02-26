@@ -15,10 +15,10 @@ $(document).ready(function () {
 	// Map tab IDs to controller endpoints
 	var projectId = $("#conducting-tabs").data("project-id");
 	var tabEndpoints = {
-		"#tab_import": "/project/conducting_import",
-		"#tab_selection": "/project/conducting_selection",
-		"#tab_quality": "/project/conducting_quality",
-		"#tab_extraction": "/project/conducting_extraction",
+		"#tab_import": "/projects/conducting/import",
+		"#tab_selection": "/projects/conducting/selection",
+		"#tab_quality": "/projects/conducting/quality",
+		"#tab_extraction": "/projects/conducting/extraction",
 	};
 
 	// Initial load for active tab

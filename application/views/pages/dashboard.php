@@ -1,11 +1,10 @@
-
 <section class="dashboard-section py-4">
 	<div class="container">
 		<div class="row mb-4">
 			<div class="col-12 text-center">
 				<h2 class="fw-bold">My Projects</h2>
 				<hr class="my-3">
-				<a href="<?= base_url('new_project'); ?>" class="btn btn-success new-project mb-3">
+				<a href="<?= site_url('projects/new'); ?>" class="btn btn-success new-project mb-3">
 					<span class="fas fa-folder-plus"></span> Create New Project
 				</a>
 			</div>
@@ -36,14 +35,14 @@
 									</td>
 									<td class="align-middle">
 										<div class="d-flex flex-wrap gap-2">
-											<a href="<?= base_url('open/' . $project['project']->get_id()); ?>" class="btn btn-success btn-sm">
+											<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="btn btn-success btn-sm">
 												<span class="fas fa-folder-open"></span> Open
 											</a>
 											<?php if ($project['level'] == 1) { ?>
-												<a href="<?= base_url('edit/' . $project['project']->get_id()); ?>" class="btn btn-warning btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/edit'); ?>" class="btn btn-warning btn-sm">
 													<span class="fas fa-edit"></span> Edit
 												</a>
-												<a href="<?= base_url('add_research/' . $project['project']->get_id()); ?>" class="btn btn-info btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/add-research'); ?>" class="btn btn-info btn-sm">
 													<span class="fas fa-users-cog"></span> Add
 												</a>
 												<button type="button"
@@ -63,4 +62,3 @@
 		</div>
 	</div>
 </section>
-

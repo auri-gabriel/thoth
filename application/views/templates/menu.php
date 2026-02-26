@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top" style="z-index: 1000;">
 	<div class="container">
-		<a class="navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white" href="<?= (isset($_SESSION['logged_in']) ? base_url('dashboard') : base_url()) ?>" title="Thoth - Evidence Synthesis Platform">
+		<a class="navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white" href="<?= (isset($_SESSION['logged_in']) ? site_url('dashboard') : site_url()) ?>" title="Thoth - Evidence Synthesis Platform">
 			<h1 class="mb-0">
 				<span class="me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0" style="height: 32px; font-size: 1rem; font-weight: bold;">
 					<img id="logo" src="<?= base_url('assets/img/icone.svg'); ?>" width="24" height="24" class="d-inline-block align-top me-2" alt="">
@@ -17,13 +17,13 @@
 		<div class="collapse navbar-collapse" id="menu">
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center flex-row gap-2">
 				<li class="nav-item d-flex align-items-center">
-					<a class="nav-link" href="<?= base_url('about') ?>">About</a>
+					<a class="nav-link" href="<?= site_url('about') ?>">About</a>
 				</li>
 				<li class="nav-item d-flex align-items-center">
-					<a class="nav-link" href="<?= base_url('help') ?>">Help</a>
+					<a class="nav-link" href="<?= site_url('help') ?>">Help</a>
 				</li>
 				<li class="nav-item align-self-center" style="min-width: 260px;">
-					<form class="d-flex w-100 align-items-center" action="<?= base_url('search') ?>" style="margin-bottom: 0;">
+					<form class="d-flex w-100 align-items-center" action="<?= site_url('search') ?>" style="margin-bottom: 0;">
 						<input class="form-control me-2 opt flex-grow-1 align-self-center" name="search" type="search" placeholder="Search in Thoth" aria-label="Search" style="height: 38px;">
 						<button class="btn btn-outline-primary opt d-flex align-items-center gap-1 align-self-center" type="submit" style="height: 38px;">
 							<span class="fas fa-search"></span> <span class="d-none d-md-inline">Search</span>
@@ -32,23 +32,23 @@
 				</li>
 				<?php if (isset($_SESSION['logged_in'])): ?>
 					<li class="nav-item d-flex align-items-center ms-3">
-						<a class="nav-link" href="<?= base_url('profile') ?>">
+						<a class="nav-link" href="<?= site_url('profile') ?>">
 							<span class="fas fa-address-card fa-lg"></span> <?= $this->session->name; ?>
 						</a>
 					</li>
 					<li class="nav-item d-flex align-items-center">
-						<a class="nav-link" href="<?= base_url('sign_out'); ?>">
+						<a class="nav-link" href="<?= site_url('logout'); ?>">
 							<span class="fas fa-sign-out-alt fa-lg"></span> Sign out
 						</a>
 					</li>
 				<?php else: ?>
 					<li class="nav-item d-flex align-items-center ms-3">
-						<a class="nav-link aut" href="<?= base_url('login'); ?>">
+						<a class="nav-link aut" href="<?= site_url('login'); ?>">
 							<span class="fas fa-sign-in-alt fa-lg"></span> Sign in
 						</a>
 					</li>
 					<li class="nav-item d-flex align-items-center">
-						<a class="nav-link" href="<?= base_url('sign_up'); ?>">
+						<a class="nav-link" href="<?= site_url('signup'); ?>">
 							<span class="fas fa-user-plus fa-lg"></span> Sign up
 						</a>
 					</li>

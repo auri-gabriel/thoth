@@ -49,31 +49,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
 $route['default_controller'] = 'Home_Controller';
+
+// Authentication & User
 $route['login'] = 'Login_Controller/sign_in';
-$route['sign_up'] = 'Login_Controller/sign_up';
-$route['sign_out'] = 'Login_Controller/sign_out';
+$route['signup'] = 'Login_Controller/sign_up';
+$route['logout'] = 'Login_Controller/sign_out';
 $route['profile'] = 'User_Controller/profile';
+$route['dashboard'] = 'User_Controller';
+
+// Static pages
 $route['about'] = 'About_Controller';
 $route['help'] = 'Help_Controller';
+
+// Search
 $route['search'] = 'Search_Controller';
-$route['dashboard'] = 'User_Controller';
-$route['open/(:num)'] = 'Project_Controller/open/$1';
-$route['planning/(:num)'] = 'Project_Controller/planning/$1';
-$route['conducting/(:num)'] = 'Project_Controller/conducting/$1';
-$route['reporting/(:num)'] = 'Project_Controller/reporting/$1';
-$route['study_selection/(:num)'] = 'Project_Controller/study_selection/$1';
-$route['quality_assessment/(:num)'] = 'Project_Controller/quality_assessment/$1';
-$route['data_extraction/(:num)'] = 'Project_Controller/data_extraction/$1';
-$route['edit/(:num)'] = 'Project_Controller/edit/$1';
-$route['new_project'] = 'Project_Controller/new_project';
-$route['add_research/(:num)'] = 'Project_Controller/add_research/$1';
-$route['study_selection_adm/(:num)'] = 'Project_Controller/review_study_selection/$1';
-$route['quality_adm/(:num)'] = 'Project_Controller/review_qa/$1';
-$route['export/(:num)'] = 'Project_Controller/export/$1';
-$route['project/conducting_import'] = 'Project_Conducting_Controller/conducting_import';
-$route['project/conducting_selection'] = 'Project_Conducting_Controller/conducting_selection';
-$route['project/conducting_quality'] = 'Project_Conducting_Controller/conducting_quality';
-$route['project/conducting_extraction'] = 'Project_Conducting_Controller/conducting_extraction';
+
+// Project resourceful routes
+$route['projects/new'] = 'Project_Controller/new_project';
+$route['projects/(:num)'] = 'Project_Controller/open/$1';
+$route['projects/(:num)/edit'] = 'Project_Controller/edit/$1';
+$route['projects/(:num)/planning'] = 'Project_Controller/planning/$1';
+$route['projects/(:num)/conducting'] = 'Project_Controller/conducting/$1';
+$route['projects/(:num)/reporting'] = 'Project_Controller/reporting/$1';
+$route['projects/(:num)/study-selection'] = 'Project_Controller/study_selection/$1';
+$route['projects/(:num)/quality-assessment'] = 'Project_Controller/quality_assessment/$1';
+$route['projects/(:num)/data-extraction'] = 'Project_Controller/data_extraction/$1';
+$route['projects/(:num)/add-research'] = 'Project_Controller/add_research/$1';
+$route['projects/(:num)/study-selection-admin'] = 'Project_Controller/review_study_selection/$1';
+$route['projects/(:num)/quality-admin'] = 'Project_Controller/review_qa/$1';
+$route['projects/(:num)/export'] = 'Project_Controller/export/$1';
+
+// Project Conducting
+$route['projects/conducting/import'] = 'Project_Conducting_Controller/conducting_import';
+$route['projects/conducting/selection'] = 'Project_Conducting_Controller/conducting_selection';
+$route['projects/conducting/quality'] = 'Project_Conducting_Controller/conducting_quality';
+$route['projects/conducting/extraction'] = 'Project_Conducting_Controller/conducting_extraction';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

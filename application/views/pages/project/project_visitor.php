@@ -2,21 +2,21 @@
 	<div class="text-center card-header">
 		<h4><?= $project->get_title(); ?></h4>
 		<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
-		<a href="<?= base_url('open/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-primary opt">Overview <i class="fas fa-binoculars"></i></a>
+		<a href="<?= site_url('projects/' . $project->get_id()) ?>"
+			class="btn form-inline btn-primary opt">Overview <i class="fas fa-binoculars"></i></a>
 
-		<a href="<?= base_url('planning/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-outline-primary opt">Planning <i class="fas fa-list"></i></a>
+		<a href="<?= site_url('projects/' . $project->get_id() . '/planning') ?>"
+			class="btn form-inline btn-outline-primary opt">Planning <i class="fas fa-list"></i></a>
 
 
-		<a href="<?= base_url('reporting/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
+		<a href="<?= site_url('projects/' . $project->get_id() . '/reporting') ?>"
+			class="btn form-inline btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
 		<?php
 		if ($project->get_planning() == 100) {
-			?>
-			<a href="<?= base_url('export/' . $project->get_id()) ?>"
-			   class="btn form-inline btn-outline-primary opt">Export <i class="fas fa-file-download"></i></a>
-			<?php
+		?>
+			<a href="<?= site_url('projects/' . $project->get_id() . '/export') ?>"
+				class="btn form-inline btn-outline-primary opt">Export <i class="fas fa-file-download"></i></a>
+		<?php
 		}
 		?>
 	</div>
@@ -52,9 +52,9 @@
 						<div class="col-md-12">
 							<div class="progress">
 								<div class="progress-bar bg-success" role="progressbar"
-									 style="width: <?= $project->get_planning() ?>%"
-									 aria-valuenow="<?= $project->get_planning() ?>" aria-valuemin="0"
-									 aria-valuemax="100"><?= $project->get_planning() ?>%
+									style="width: <?= $project->get_planning() ?>%"
+									aria-valuenow="<?= $project->get_planning() ?>" aria-valuemin="0"
+									aria-valuemax="100"><?= $project->get_planning() ?>%
 								</div>
 							</div>
 						</div>
@@ -64,9 +64,9 @@
 						<div class="col-md-12">
 							<div class="progress">
 								<div class="progress-bar bg-info" role="progressbar"
-									 style="width: <?= $project->get_import() ?>%"
-									 aria-valuenow="<?= $project->get_import() ?>" aria-valuemin="0"
-									 aria-valuemax="100">
+									style="width: <?= $project->get_import() ?>%"
+									aria-valuenow="<?= $project->get_import() ?>" aria-valuemin="0"
+									aria-valuemax="100">
 									<?= $project->get_import() ?>%
 								</div>
 							</div>
@@ -77,9 +77,9 @@
 						<div class="col-md-12">
 							<div class="progress">
 								<div class="progress-bar bg-warning" role="progressbar"
-									 style="width: <?= $project->get_selection() ?>%"
-									 aria-valuenow="<?= $project->get_selection() ?>" aria-valuemin="0"
-									 aria-valuemax="100">
+									style="width: <?= $project->get_selection() ?>%"
+									aria-valuenow="<?= $project->get_selection() ?>" aria-valuemin="0"
+									aria-valuemax="100">
 									<?= $project->get_selection() ?>%
 								</div>
 							</div>
@@ -90,9 +90,9 @@
 						<div class="col-md-12">
 							<div class="progress">
 								<div class="progress-bar bg-secondary" role="progressbar"
-									 style="width: <?= $project->get_quality() ?>%"
-									 aria-valuenow="<?= $project->get_quality() ?>" aria-valuemin="0"
-									 aria-valuemax="100">
+									style="width: <?= $project->get_quality() ?>%"
+									aria-valuenow="<?= $project->get_quality() ?>" aria-valuemin="0"
+									aria-valuemax="100">
 									<?= $project->get_quality() ?>%
 								</div>
 							</div>
@@ -103,9 +103,9 @@
 						<div class="col-sm-12">
 							<div class="progress">
 								<div class="progress-bar bg-danger" role="progressbar"
-									 style="width: <?= $project->get_extraction() ?>%"
-									 aria-valuenow="<?= $project->get_extraction() ?>" aria-valuemin="0"
-									 aria-valuemax="100"><?= $project->get_extraction() ?>%
+									style="width: <?= $project->get_extraction() ?>%"
+									aria-valuenow="<?= $project->get_extraction() ?>" aria-valuemin="0"
+									aria-valuemax="100"><?= $project->get_extraction() ?>%
 								</div>
 							</div>
 						</div>
@@ -135,4 +135,3 @@
 		</div>
 	</div>
 </div>
-
