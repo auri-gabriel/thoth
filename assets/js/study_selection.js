@@ -1,4 +1,209 @@
 $(document).ready(function () {
+	table_papers = $("#table_papers").DataTable({
+		initComplete: function () {
+			let size = this.api().columns().data().length;
+			this.api()
+				.columns(size - 1)
+				.every(function () {
+					let column = this;
+					let select = $(
+						'<select id="select_status' +
+							(size - 1) +
+							'" class="form-control" ><option value=""></option></select>',
+					)
+						.appendTo($(column.footer()).empty())
+						.on("change", function () {
+							let val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+							column.search(val ? "^" + val + "$" : "", true, false).draw();
+						});
+
+					column
+						.data()
+						.unique()
+						.sort()
+						.each(function (d, j) {
+							if (d != "") {
+								select.append('<option value="' + d + '">' + d + "</option>");
+							}
+						});
+				});
+			this.api()
+				.columns(size - 2)
+				.every(function () {
+					let column = this;
+					let select = $(
+						'<select id="select_status' +
+							(size - 2) +
+							'" class="form-control" ><option value=""></option></select>',
+					)
+						.appendTo($(column.footer()).empty())
+						.on("change", function () {
+							let val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+							column.search(val ? "^" + val + "$" : "", true, false).draw();
+						});
+
+					column
+						.data()
+						.unique()
+						.sort()
+						.each(function (d, j) {
+							if (d != "") {
+								select.append('<option value="' + d + '">' + d + "</option>");
+							}
+						});
+				});
+		},
+		responsive: true,
+		order: [[0, "asc"]],
+		select: {
+			style: "single",
+		},
+		dom: "Bfrtip",
+		buttons: [
+			{ extend: "copy", text: '<i class="fas fa-copy fa-2x"></i>' },
+			{ extend: "csv", text: '<i class="fas fa-file-csv fa-2x"></i>' },
+			{ extend: "excel", text: '<i class="fas fa-file-excel fa-2x"></i>' },
+			{ extend: "pdf", text: '<i class="fas fa-file-pdf fa-2x"></i>' },
+			{ extend: "print", text: '<i class="fas fa-print fa-2x"></i>' },
+			{
+				text: '<i class="far fa-clone fa-2x"></i>',
+				action: function () {
+					exibe_loading();
+					let id_project = $("#id_project").val();
+					let titles = [];
+					let papers = [];
+					let size = table_papers.columns().data().length;
+					table_papers.rows().every(function (rowIdx, tableLoop, rowLoop) {
+						let data = this.data();
+						if (data[size - 1] != "Duplicate") {
+							let title = data[1].replace(/[^a-zA-Z0-9]/g, "");
+							if (titles.indexOf(title) == -1) {
+								titles.push(title);
+							} else {
+								papers.push(data[0]);
+								let old_count = 0;
+								switch (data[size - 1]) {
+									case "Accepted":
+									case "1":
+										old_count = parseInt($("#count_acc").text());
+										old_count--;
+										$("#count_acc").text(old_count);
+										break;
+									case "Rejected":
+									case "2":
+										old_count = parseInt($("#count_rej").text());
+										old_count--;
+										$("#count_rej").text(old_count);
+										break;
+									case "Unclassified":
+									case "3":
+										old_count = parseInt($("#count_unc").text());
+										old_count--;
+										$("#count_unc").text(old_count);
+										break;
+									case "Duplicate":
+									case "4":
+										old_count = parseInt($("#count_dup").text());
+										old_count--;
+										$("#count_dup").text(old_count);
+										break;
+									case "Removed":
+									case "5":
+										old_count = parseInt($("#count_rem").text());
+										old_count--;
+										$("#count_rem").text(old_count);
+										break;
+								}
+								let paper = $(table_papers.cell(rowIdx, size - 1).node());
+								paper.removeClass("text-danger");
+								paper.removeClass("text-success");
+								paper.removeClass("text-dark");
+								paper.removeClass("text-info");
+								paper.addClass("text-warning");
+								table_papers
+									.cell(rowIdx, size - 1)
+									.data("Duplicate")
+									.draw();
+								let new_count = parseInt($("#count_dup").text());
+								new_count++;
+								$("#count_dup").text(new_count);
+								update_progress();
+							}
+						}
+					});
+
+					if (papers.length > 0) {
+						$.ajax({
+							type: "POST",
+							url:
+								base_url + "Selection_Controller/edit_status_selection_papers/",
+							data: {
+								id_project: id_project,
+								ids_paper: papers,
+								status: "4",
+							},
+							error: function () {
+								Swal({
+									type: "error",
+									title: "Error",
+									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
+									showCancelButton: false,
+									confirmButtonText: "Ok",
+								});
+							},
+							success: function () {
+								let creat = true;
+								let y = document.getElementById(
+									"select_status" + (size - 1),
+								).options;
+								for (let i = 0; i < y.length; i++) {
+									if (y[i].value == "Duplicate") {
+										creat = false;
+									}
+								}
+
+								if (creat) {
+									console.log(y[1].value);
+									let op = document.createElement("option");
+									op.text = "Duplicate";
+									op.value = "Duplicate";
+									let select = document.getElementById(
+										"select_status" + (size - 1),
+									);
+									select.add(op);
+								}
+								Swal({
+									title: "Success",
+									html:
+										"The <strong>" +
+										papers.length +
+										"</strong> papers was duplicate",
+									type: "success",
+									showCancelButton: false,
+									confirmButtonText: "Ok",
+								});
+							},
+						});
+					} else {
+						Swal({
+							title: "Success",
+							html:
+								"The <strong>" +
+								papers.length +
+								"</strong> papers was duplicate",
+							type: "success",
+							showCancelButton: false,
+							confirmButtonText: "Ok",
+						});
+						remove_loading();
+					}
+				},
+			},
+		],
+	});
+
 	$("#edit_status_selection").on("change", function () {
 		let status = this.value;
 		let id_paper = $("#id_paper").val();
