@@ -6,15 +6,13 @@
 				<input type="hidden" id="id_paper">
 				<h5 class="modal-title" id="paper_title">Title Paper</h5>
 				<small id="paper_id"></small>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<input type="hidden" id="index_paper">
-				<div class="form-inline">
+				<div class="d-flex flex-wrap align-items-end gap-2">
 					<div class="col-md-6">
-						<h6>Doi</h6><a class="float-right opt"><i class="fas fa-question-circle"></i></a>
+						<h6>Doi</h6><a class="float-end opt"><i class="fas fa-question-circle"></i></a>
 						<a target="_blank" id="paper_doi"><i class="fas fa-external-link-alt"></i></a>
 					</div>
 					<div class="col-md-6">
@@ -42,14 +40,14 @@
 							<option value="3">Unclassified</option>
 						</select>
 					</div>
-					</hr>
+					
 					<div class="col-md-12">
 						<h6>Abstract</h6>
-						<p id="paper_abstract"</p>
+						<p id="paper_abstract"></p>
 					</div>
 					<div class="col-md-12">
 						<h6>Keywords</h6>
-						<p id="paper_keywords"</p>
+						<p id="paper_keywords"></p>
 					</div>
 				</div>
 				<hr>
@@ -71,7 +69,7 @@
 							<?php foreach ($project->get_inclusion_criteria() as $ic) { ?>
 								<tr>
 									<td></td>
-									<td class="<?= $ic->get_pre_selected() ? "font-weight-bold" : "" ?>">
+									<td class="<?= $ic->get_pre_selected() ? "fw-bold" : "" ?>">
 										<?= $ic->get_id() ?>
 									</td>
 									<td><?= $ic->get_description() ?></td>
@@ -97,7 +95,7 @@
 							<?php foreach ($project->get_exclusion_criteria() as $ec) { ?>
 								<tr>
 									<td></td>
-									<td class="<?= $ec->get_pre_selected() ? "font-weight-bold" : "" ?>">
+									<td class="<?= $ec->get_pre_selected() ? "fw-bold" : "" ?>">
 										<?= $ec->get_id() ?>
 									</td>
 									<td><?= $ec->get_description() ?></td>

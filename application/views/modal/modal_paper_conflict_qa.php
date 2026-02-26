@@ -6,16 +6,14 @@
 				<input type="hidden" id="id_paper_conf_qa">
 				<h5 class="modal-title" id="paper_title_conf_qa">Title Paper</h5>
 				<small id="paper_id_conf_qa"></small>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<input type="hidden" id="index_paper_conf_qa">
 				<input type="hidden" id="old_status_conf_qa">
-				<div class="form-inline">
+				<div class="d-flex flex-wrap align-items-end gap-2">
 					<div class="col-md-6">
-						<h6>Doi</h6><a class="float-right opt"><i class="fas fa-question-circle"></i></a>
+						<h6>Doi</h6><a class="float-end opt"><i class="fas fa-question-circle"></i></a>
 						<a target="_blank" id="paper_doi_conf_qa"><i class="fas fa-external-link-alt"></i></a>
 					</div>
 					<div class="col-md-6">
@@ -34,14 +32,14 @@
 						<h6>Database</h6>
 						<p id="paper_database_conf_qa"></p>
 					</div>
-					</hr>
+					
 					<div class="col-md-12">
 						<h6>Abstract</h6>
-						<p id="paper_abstract_conf_qa"</p>
+						<p id="paper_abstract_conf_qa"></p>
 					</div>
 					<div class="col-md-12">
 						<h6>Keywords</h6>
-						<p id="paper_keywords_conf_qa"</p>
+						<p id="paper_keywords_conf_qa"></p>
 					</div>
 				</div>
 				<hr>
@@ -63,11 +61,11 @@
 				</table>
 				<hr>
 				<h5>Quality Questions</h5>
-				<div class="form-inline">
-					<h6>Score: </h6> <h6 class="font-weight-bold" id="score_paper_qa_conf">0</h6>
+				<div class="d-flex flex-wrap align-items-end gap-2">
+					<h6>Score: </h6> <h6 class="fw-bold" id="score_paper_qa_conf">0</h6>
 				</div>
-				<div class="form-inline">
-					<h6>General Score: </h6> <h6 class="font-weight-bold" id="gen_score_qa_conf"></h6>
+				<div class="d-flex flex-wrap align-items-end gap-2">
+					<h6>General Score: </h6> <h6 class="fw-bold" id="gen_score_qa_conf"></h6>
 				</div>
 				<table class="table table-responsive-sm" id="table_qa_eva_conf">
 					<caption>List of Quality Questions</caption>
@@ -91,7 +89,7 @@
 									<option value=""></option>
 									<?php foreach ($qa->get_scores() as $score) { ?>
 										<option
-											data-toggle="tooltip" data-placement="top"
+											data-bs-toggle="tooltip" data-bs-placement="top"
 											title="<?= $score->get_description() ?>"
 											value="<?= $score->get_score_rule() ?>">
 											<?= $score->get_score_rule() ?>

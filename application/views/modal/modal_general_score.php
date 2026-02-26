@@ -4,14 +4,12 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalTitle">Edit General Score</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<input type="hidden" id="index_score">
 				<input type="hidden" id="old_desc">
-				<div class="form-inline">
+				<div class="d-flex flex-wrap align-items-end gap-2">
 					<div class="input-group col-md-5">
 						<label for="edit_start_interval" class="col-sm-12'">General Score Interval</label>
 						<input type="number" id="edit_start_interval" class="form-control" step="0.5" placeholder="4.5"
@@ -25,7 +23,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-danger" data-dismiss="modal">Cancel</a>
+					<a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
 					<a class="btn btn-success" onclick="edit_general_score()">Save</a>
 				</div>
 			</div>
