@@ -19,7 +19,7 @@
 					<div class="col-md-3">
 						<label for="select_type" class="form-label">Type</label>
 						<div class="input-group">
-							<select class="form-control" id="select_type" aria-label="Criteria Type">
+							<select class="form-select" id="select_type" aria-label="Criteria Type">
 								<option value="Inclusion">Inclusion</option>
 								<option value="Exclusion">Exclusion</option>
 							</select>
@@ -70,7 +70,7 @@
 						<label for="rule_inclusion" class="form-label"><strong>Inclusion Rule</strong></label>
 						<div class="input-group">
 							<span class="input-group-text bg-success text-white"><i class="fas fa-check-circle"></i></span>
-							<select class="form-control opt" id="rule_inclusion" onchange="edit_inclusion_rule();" aria-label="Inclusion Rule">
+							<select class="form-select opt" id="rule_inclusion" onchange="edit_inclusion_rule();" aria-label="Inclusion Rule">
 								<?php foreach ($rules as $rule):
 									$selected = ($rule == $project->get_inclusion_rule()) ? 'selected' : '';
 								?>
@@ -121,7 +121,7 @@
 						<label for="rule_exclusion" class="form-label"><strong>Exclusion Rule</strong></label>
 						<div class="input-group">
 							<span class="input-group-text bg-danger text-white"><i class="fas fa-times-circle"></i></span>
-							<select class="form-control opt" id="rule_exclusion" onchange="edit_exclusion_rule();" aria-label="Exclusion Rule">
+							<select class="form-select opt" id="rule_exclusion" onchange="edit_exclusion_rule();" aria-label="Exclusion Rule">
 								<?php foreach ($rules as $rule):
 									$selected = ($rule == $project->get_exclusion_rule()) ? 'selected' : '';
 								?>
