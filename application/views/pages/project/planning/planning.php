@@ -1,6 +1,6 @@
 <div class="container py-4">
 	<div class="card">
-		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'planning']); ?>
+		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'planning', 'is_owner' => true]); ?>
 		<div class="card-body bg-light">
 			<h4>Planning</h4>
 			<?php $this->load->view('pages/project/planning/partials/tab_nav'); ?>

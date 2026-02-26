@@ -1,6 +1,6 @@
 <div class="container py-4 project-overview">
 	<div class="card shadow-sm mb-4">
-		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'overview']); ?>
+		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'overview', 'is_owner' => false]); ?>
 		<div class="card-body bg-light">
 			<div class="project-summary">
 				<div class="summary-card">

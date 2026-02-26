@@ -2,7 +2,7 @@
 <script src="<?= base_url('assets/js/conducting_tabs.js'); ?>"></script>
 <div class="container py-4" id="conducting-tabs" data-project-id="<?= htmlspecialchars($project->get_id(), ENT_QUOTES, 'UTF-8'); ?>">
 	<div class="card">
-		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'conducting']); ?>
+		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'conducting', 'is_owner' => true]); ?>
 		<div class="card-body bg-light">
 			<h4>Conducting</h4>
 			<?php $this->load->view('pages/project/conducting/partials/tab_nav'); ?>

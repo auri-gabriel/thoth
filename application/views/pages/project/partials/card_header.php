@@ -3,6 +3,9 @@
 		<h4 class="project-title" aria-label="Project Title"><?= htmlspecialchars($project->get_title()); ?></h4>
 		<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
 	</div>
+	<?php
+	$is_owner = isset($is_owner) ? $is_owner : ($this->session->level == "4");
+	?>
 	<nav class="project-stages-nav" aria-label="Project stages navigation">
 		<!-- Overview -->
 		<a href="<?= site_url('projects/' . $project->get_id()) ?>"
@@ -18,21 +21,23 @@
 			<i class="fas fa-list me-1"></i> Planning
 		</a>
 		<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
-		<!-- Conducting -->
-		<?php if ($this->session->level == "4"): ?>
-			<a href="<?= site_url('projects/' . $project->get_id() . '/study-selection-admin') ?>"
-				class="btn btn-sm opt <?= (isset($active_tab) && $active_tab === 'conducting') ? 'btn-primary' : 'btn-outline-primary' ?>"
-				aria-current="<?= (isset($active_tab) && $active_tab === 'conducting') ? 'page' : false ?>">
-				<i class="fas fa-play-circle me-1"></i> Conducting
-			</a>
-		<?php else: ?>
-			<a href="<?= site_url('projects/' . $project->get_id() . '/conducting') ?>"
-				class="btn btn-sm opt <?= (isset($active_tab) && $active_tab === 'conducting') ? 'btn-primary' : 'btn-outline-primary' ?>"
-				aria-current="<?= (isset($active_tab) && $active_tab === 'conducting') ? 'page' : false ?>">
-				<i class="fas fa-play-circle me-1"></i> Conducting
-			</a>
+		<!-- Conducting (only for owner) -->
+		<?php if ($is_owner): ?>
+			<?php if ($this->session->level == "4"): ?>
+				<a href="<?= site_url('projects/' . $project->get_id() . '/study-selection-admin') ?>"
+					class="btn btn-sm opt <?= (isset($active_tab) && $active_tab === 'conducting') ? 'btn-primary' : 'btn-outline-primary' ?>"
+					aria-current="<?= (isset($active_tab) && $active_tab === 'conducting') ? 'page' : false ?>">
+					<i class="fas fa-play-circle me-1"></i> Conducting
+				</a>
+			<?php else: ?>
+				<a href="<?= site_url('projects/' . $project->get_id() . '/conducting') ?>"
+					class="btn btn-sm opt <?= (isset($active_tab) && $active_tab === 'conducting') ? 'btn-primary' : 'btn-outline-primary' ?>"
+					aria-current="<?= (isset($active_tab) && $active_tab === 'conducting') ? 'page' : false ?>">
+					<i class="fas fa-play-circle me-1"></i> Conducting
+				</a>
+			<?php endif; ?>
+			<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
 		<?php endif; ?>
-		<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
 		<!-- Reporting -->
 		<a href="<?= site_url('projects/' . $project->get_id() . '/reporting') ?>"
 			class="btn btn-sm opt <?= (isset($active_tab) && $active_tab === 'reporting') ? 'btn-primary' : 'btn-outline-primary' ?>"
