@@ -5,7 +5,7 @@
 ## Screenshot
 
 <p align="center">
-   <img src="docs/readme/thoth-screenshot.png" alt="Thoth Systematic Review Platform Screenshot" width="800" />
+   <img src="./docs/readme/screenshot.png" alt="Thoth Systematic Review Platform Screenshot" width="800" />
 </p>
 
 <p align="center"><em>Example of the Thoth project dashboard and progress tracking interface.</em></p>
