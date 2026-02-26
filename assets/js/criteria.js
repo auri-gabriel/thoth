@@ -707,3 +707,22 @@ function edit_exclusion_rule() {
 		},
 	});
 }
+
+let configDataTables = {
+	language: lang,
+	responsive: true,
+	order: [[0, "asc"]],
+	paginate: false,
+	info: false,
+	searching: false,
+	ordering: false,
+};
+
+$(document).ready(function () {
+	table_criteria_inclusion = $("#table_criteria_inclusion").DataTable(
+		configDataTables,
+	);
+	table_criteria_exclusion = $("#table_criteria_exclusion").DataTable(
+		configDataTables,
+	);
+});

@@ -86,9 +86,6 @@
 	<script src="<?= base_url('assets/js/loading.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/main.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/title.js'); ?>"></script>
-
-
-	<script src="<?= base_url('assets/js/criteria.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/project.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/help.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/objects/Extraction_Chars.js'); ?>"></script>

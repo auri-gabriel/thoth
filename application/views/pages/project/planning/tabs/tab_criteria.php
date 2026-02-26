@@ -176,3 +176,4 @@
 		<a href="#tab_quality" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <i class="fas fa-forward ms-1"></i></a>
 	</div>
 </div>
+<script src="<?= base_url('assets/js/criteria.js'); ?>"></script>
