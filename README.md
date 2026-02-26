@@ -28,35 +28,54 @@ This project is licensed under the MIT License. See [LICENSE.txt](license.txt) f
 
 Follow these steps to set up and run Thoth locally using Docker:
 
-1. **Clone the repository**
+## Running Locally with Docker
+
+1. **Clone the repository:**
+
    ```sh
    git clone https://github.com/unipampa-lesse/thoth-legacy.git
    cd thoth-legacy
    ```
 
-2. **Configure application settings**
+2. **Copy and configure application settings:**
+
    ```sh
    cp application/config/database_sample.php application/config/database.php
    cp application/config/config_sample.php application/config/config.php
    # (Optional) Edit these files to adjust database credentials or other settings
    ```
 
-3. **Build and start the containers**
+3. **Build and start the containers:**
+
    ```sh
    docker compose up --build
    ```
-   The application will be available at [http://localhost:8080](http://localhost:8080).
 
-4. **Initialize the database**
+   - The app will be available at [http://localhost:8080](http://localhost:8080)
+
+4. **Initialize the database:**
+
    ```sh
    docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
    ```
-   Replace `<mysql_container_name>` with the actual container name (e.g., `thoth-db-1`).
 
-5. **Default credentials**
-   - Refer to your database seed or contact your administrator for the default login credentials.
+   Replace `<mysql_container_name>` with the actual name (e.g., `thoth-db-1`).
 
-6. **Stopping the application**
+5. **Create and set permissions for the sessions directory:**
+   If you encounter errors related to session save path or permissions, run:
+
+   ```sh
+   mkdir -p application/cache/sessions
+   chmod 777 application/cache/sessions
+   ```
+
+   This ensures PHP can write session files.
+
+6. **Default credentials:**
+   - Check your database seed or ask your admin for the default login.
+
+7. **Stopping the app:**
+
    ```sh
    docker compose down -v
    ```
