@@ -52,7 +52,7 @@
 						</div>
 					</div>
 					<form action="https://www.overleaf.com/docs" method="post" target="_blank">
-						<textarea rows="16" class="form-control mb-3" name="snip" id="latex"></textarea>
+						<textarea rows="16" class="form-control mb-3" name="snip" id="text_area-latex"></textarea>
 						<button type="submit" class="btn btn-success opt"><i class="far fa-plus-square"></i> New Project in Overleaf</button>
 					</form>
 				</div>

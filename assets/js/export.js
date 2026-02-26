@@ -57,7 +57,9 @@ $(document).ready(function () {
 					});
 				},
 				success: function (latex) {
-					$("#latex").val(latex);
+					console.log(latex);
+
+					$("#text_area-latex").val(latex);
 					Swal.fire({
 						title: "Generate Latex",
 						html: "<strong>LaTex file generated</strong>",
@@ -68,7 +70,7 @@ $(document).ready(function () {
 				},
 			});
 		} else {
-			$("#latex").val("");
+			$("#text_area-latex").val("");
 		}
 	});
 });
