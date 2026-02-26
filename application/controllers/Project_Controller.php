@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once APPPATH . 'controllers/Pattern_Controller.php';
 
@@ -8,6 +8,15 @@ require_once APPPATH . 'controllers/Pattern_Controller.php';
  * @property CI_Input $input
  * @property CI_Session $session
  * @property Project_Model $Project_Model
+ * @property Criteria_Model $Criteria_Model
+ * @property Selection_Model $Selection_Model
+ * @property Overall_Model $Overall_Model
+ * @property Research_Model $Research_Model
+ * @property Quality_Model $Quality_Model
+ * @property User_Model $User_Model
+ * @property Search_String_Model $Search_String_Model
+ * @property Database_Model $Database_Model
+ * @property Extraction_Model $Extraction_Model
  */
 class Project_Controller extends Pattern_Controller
 {
@@ -27,7 +36,7 @@ class Project_Controller extends Pattern_Controller
 			$this->load->view('pages/project/conducting/tabs/tab_import', $data);
 		} catch (Exception $e) {
 			http_response_code(403);
-			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+			echo '<div class="text-danger">' . $e->getMessage() . '</div>';
 		}
 	}
 
@@ -47,7 +56,7 @@ class Project_Controller extends Pattern_Controller
 			$this->load->view('pages/project/conducting/tabs/tab_selection', $data);
 		} catch (Exception $e) {
 			http_response_code(403);
-			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+			echo '<div class="text-danger">' . $e->getMessage() . '</div>';
 		}
 	}
 
@@ -67,7 +76,7 @@ class Project_Controller extends Pattern_Controller
 			$this->load->view('pages/project/conducting/tabs/tab_quality', $data);
 		} catch (Exception $e) {
 			http_response_code(403);
-			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+			echo '<div class="text-danger">' . $e->getMessage() . '</div>';
 		}
 	}
 
@@ -86,7 +95,7 @@ class Project_Controller extends Pattern_Controller
 			$this->load->view('pages/project/conducting/tabs/tab_extraction', $data);
 		} catch (Exception $e) {
 			http_response_code(403);
-			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+			echo '<div class="text-danger">' . $e->getMessage() . '</div>';
 		}
 	}
 
@@ -103,7 +112,6 @@ class Project_Controller extends Pattern_Controller
 			$data['logs'] = $this->Project_Model->get_logs_project($id);
 
 			$this->load_views('pages/project/project', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -156,7 +164,6 @@ class Project_Controller extends Pattern_Controller
 
 
 			$this->load_views('pages/project/conducting/conducting', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -166,23 +173,6 @@ class Project_Controller extends Pattern_Controller
 	/**
 	 * @param $id
 	 */
-	public function study_selection($id)
-	{
-		try {
-			$this->validate_level($id, array(1, 2, 3, 4));
-
-			$this->load->model("Project_Model");
-			$data['project'] = $this->Project_Model->get_project_selection($id);
-			$data['count_papers'] = $this->Project_Model->count_papers_sel_by_user($id);
-			$data['criterias'] = $this->Project_Model->get_evaluation_selection($id);
-
-			$this->load_views('pages/project/project_study_selection', $data);
-
-		} catch (Exception $e) {
-			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url());
-		}
-	}
 
 	/**
 	 * @param $id
@@ -211,7 +201,6 @@ class Project_Controller extends Pattern_Controller
 
 			// $this->load_views('pages/project/project_reporting', $data);
 			$this->load_views('pages/project/reporting/reporting', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -236,7 +225,6 @@ class Project_Controller extends Pattern_Controller
 			$data['conflicts'] = $this->Selection_Model->get_conflicts($id);
 
 			$this->load_views('pages/project/project_review_study_selection', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -261,7 +249,6 @@ class Project_Controller extends Pattern_Controller
 			$data['conflicts'] = $this->Quality_Model->get_conflicts($id);
 
 			$this->load_views('pages/project/project_review_qa', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -271,44 +258,10 @@ class Project_Controller extends Pattern_Controller
 	/**
 	 * @param $id
 	 */
-	public function quality_assessment($id)
-	{
-		try {
-			$level = $this->validate_level($id, array(1, 2, 3, 4));
-
-			$this->load->model("Project_Model");
-			$data['project'] = $this->Project_Model->get_project_quality($id);
-			$data['count_papers'] = $this->Project_Model->count_papers_qa_by_user($id);
-			$data['qas_score'] = $this->Project_Model->get_evaluation_qa($id);
-
-
-			$this->load_views('pages/project/project_quality_assessment', $data);
-
-		} catch (Exception $e) {
-			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url());
-		}
-	}
 
 	/**
 	 * @param $id
 	 */
-	public function data_extraction($id)
-	{
-		try {
-			$this->validate_level($id, array(1, 2, 3, 4));
-
-			$this->load->model("Project_Model");
-			$data['project'] = $this->Project_Model->get_project_extraction($id);
-			$data['count_papers'] = $this->Project_Model->count_papers_extraction($id);
-
-			$this->load_views('pages/project/project_data_extraction', $data);
-
-		} catch (Exception $e) {
-			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url());
-		}
-	}
 
 	/**
 	 * @param $id
@@ -321,7 +274,6 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_export($id);
 
 			$this->load_views('pages/project/project_export', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -358,7 +310,6 @@ class Project_Controller extends Pattern_Controller
 			$data['levels'] = $this->Project_Model->get_levels();
 
 			$this->load_views('pages/project/project_add_research', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -377,7 +328,6 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_edit($id);
 
 			$this->load_views('pages/project/project_edit', $data);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -408,7 +358,6 @@ class Project_Controller extends Pattern_Controller
 			$this->insert_log($activity, 1, $id_project);
 
 			redirect('open/' . $id_project);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -457,7 +406,6 @@ class Project_Controller extends Pattern_Controller
 
 			foreach ($t->get_synonyms() as $s) {
 				$this->Search_String_Model->add_synonym($s, $t->get_description(), $id_project);
-
 			}
 		}
 		$ok = true;
@@ -514,7 +462,6 @@ class Project_Controller extends Pattern_Controller
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -537,7 +484,6 @@ class Project_Controller extends Pattern_Controller
 			$this->insert_log($activity, 1, $id_project);
 
 			echo $name;
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -563,7 +509,6 @@ class Project_Controller extends Pattern_Controller
 
 			$activity = "Edited project";
 			$this->insert_log($activity, 1, $id_project);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -586,7 +531,6 @@ class Project_Controller extends Pattern_Controller
 
 			$activity = "Deleted project " . $id_project;
 			$this->insert_log($activity, 1, null);
-
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -642,7 +586,6 @@ class Project_Controller extends Pattern_Controller
 				} else {
 					$inst .= $member->get_institution() . ", ";
 				}
-
 			}
 			$templateProcessor->setValue('instituition', $inst);
 
@@ -671,7 +614,6 @@ class Project_Controller extends Pattern_Controller
 				} else {
 					$languages .= $language . ", ";
 				}
-
 			}
 			$templateProcessor->setValue('language', $languages);
 
@@ -735,7 +677,6 @@ class Project_Controller extends Pattern_Controller
 					} else {
 						$synonyms .= $syn . ' OR ';
 					}
-
 				}
 				$templateProcessor->setValue($id2, $synonyms);
 			}
@@ -811,7 +752,6 @@ class Project_Controller extends Pattern_Controller
 				$len = sizeof($rules);
 				for ($j = 0; $j < $len; $j++) {
 					$scores .= $rules[$j]->get_score_rule() . " - " . $rules[$j]->get_description() . ";\n";
-
 				}
 				$templateProcessor->setValue($id3, $scores);
 
@@ -843,15 +783,12 @@ class Project_Controller extends Pattern_Controller
 					$options .= $ops[$j] . ";\n";
 				}
 				$templateProcessor->setValue($id4, $options);
-
 			}
 
 			//$file = 'C:\xampp\htdocs\Thoth\export\P' . $id_project . '.docx';
 			$file = './export/P' . $id_project . '.docx';
 			$templateProcessor->saveAs($file);
-
-		} catch
-		(Exception $e) {
+		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
 		}
@@ -1442,7 +1379,6 @@ class Project_Controller extends Pattern_Controller
 			foreach ($caracter as $key => $value) {
 				$paper->set_publisher(str_replace($key, $value, $paper->get_publisher()));
 			}
-
 		}
 
 		foreach ($papers as $paper) {
@@ -1527,7 +1463,6 @@ class Project_Controller extends Pattern_Controller
 
 			$activity = "Deleted member " . $email;
 			$this->insert_log($activity, 1, null);
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -1551,11 +1486,8 @@ class Project_Controller extends Pattern_Controller
 
 			$activity = "Edit level " . $level . " member " . $email;
 			$this->insert_log($activity, 1, null);
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
 	}
-
-
 }
