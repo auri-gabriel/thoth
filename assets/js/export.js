@@ -2,7 +2,6 @@ $(document).ready(function () {
 	$("input[name='inlineRadioOptions']").click(function () {
 		let step = $("input[name='inlineRadioOptions']:checked").val();
 
-			Swal.fire({
 		$.ajax({
 			type: "POST",
 			url: base_url + "project_export/export_bib",
@@ -12,7 +11,6 @@ $(document).ready(function () {
 			},
 			error: function () {
 				Swal.fire({
-			Swal.fire({
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 					showCancelButton: false,
@@ -38,7 +36,6 @@ $(document).ready(function () {
 			steps.push($(this).val());
 		});
 
-					Swal.fire({
 		if (steps.length > 0) {
 			$.ajax({
 				type: "POST",
