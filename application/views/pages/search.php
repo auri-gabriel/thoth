@@ -33,7 +33,7 @@
 									<td class="align-middle">
 										<div class="d-flex flex-wrap gap-2">
 											<?php if (!is_null($project['level'])) { ?>
-												<a href="<?= base_url('open/' . $project['project']->get_id()); ?>" class="btn btn-success btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="btn btn-success btn-sm">
 													<span class="fas fa-folder-open"></span> Open
 												</a>
 											<?php } else { ?>
@@ -42,10 +42,10 @@
 												</a>
 											<?php }
 											if ($project['level'] == 1) { ?>
-												<a href="<?= base_url('edit/' . $project['project']->get_id()); ?>" class="btn btn-warning btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/edit'); ?>" class="btn btn-warning btn-sm">
 													<span class="fas fa-edit"></span> Edit
 												</a>
-												<a href="<?= base_url('add_research/' . $project['project']->get_id()); ?>" class="btn btn-info btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/add-research'); ?>" class="btn btn-info btn-sm">
 													<span class="fas fa-users-cog"></span> Add
 												</a>
 												<button type="button"
