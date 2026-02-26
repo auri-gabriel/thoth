@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="table-responsive mt-3">
-					<table id="table_databases" class="table table-hover align-middle mb-0">
+					<table id="table_databases" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Databases</caption>
 						<thead class="table-light">
 							<tr>

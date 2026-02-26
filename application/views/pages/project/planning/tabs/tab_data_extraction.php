@@ -60,7 +60,7 @@
 				</div>
 
 				<div class="table-responsive mt-4">
-					<table id="table_data_extraction" class="table table-hover align-middle mb-0">
+					<table id="table_data_extraction" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Data Extraction</caption>
 						<thead class="table-light">
 							<tr>
@@ -79,7 +79,7 @@
 									<td><?= $qe->get_type() ?></td>
 									<td>
 										<?php if ($qe->get_type() !== "Text"): ?>
-											<table id="table_<?= $qe->get_id() ?>" class="table table-sm mb-0">
+											<table id="table_<?= $qe->get_id() ?>" class="table table-bordered table-sm mb-0">
 												<thead class="table-light">
 													<tr>
 														<th>Option</th>

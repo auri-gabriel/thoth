@@ -39,7 +39,7 @@
 						<strong>Inclusion Criteria</strong>
 					</div>
 					<div class="table-responsive">
-						<table id="table_criteria_inclusion" class="table table-hover align-middle mb-2">
+						<table id="table_criteria_inclusion" class="table table-bordered table-hover align-middle mb-2">
 							<caption class="visually-hidden">List of Inclusion Criteria</caption>
 							<thead class="table-light">
 								<tr>
@@ -97,7 +97,7 @@
 						<strong>Exclusion Criteria</strong>
 					</div>
 					<div class="table-responsive">
-						<table id="table_criteria_exclusion" class="table table-hover align-middle mb-2">
+						<table id="table_criteria_exclusion" class="table table-bordered table-hover align-middle mb-2">
 							<caption class="visually-hidden">List of Exclusion Criteria</caption>
 							<thead class="table-light">
 								<tr>

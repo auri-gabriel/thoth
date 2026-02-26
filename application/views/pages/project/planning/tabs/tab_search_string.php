@@ -47,7 +47,7 @@
 				<div id="related-terms" class="mb-3"></div>
 
 				<div class="table-responsive mt-4">
-					<table id="table_search_string" class="table table-hover align-middle mb-0">
+					<table id="table_search_string" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Terms</caption>
 						<thead class="table-light">
 							<tr>
@@ -61,7 +61,7 @@
 								<tr>
 									<td class="fw-semibold"><?= $term->get_description() ?></td>
 									<td>
-										<table id="table_<?= $term->get_description() ?>" class="table table-sm mb-0">
+										<table id="table_<?= $term->get_description() ?>" class="table table-bordered table-sm mb-0">
 											<thead class="table-light">
 												<tr>
 													<th>Synonym</th>

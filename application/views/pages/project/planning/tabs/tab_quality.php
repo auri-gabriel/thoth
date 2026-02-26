@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div class="table-responsive mt-3 mb-4">
-					<table id="table_general_score" class="table table-hover align-middle mb-0">
+					<table id="table_general_score" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of General Score</caption>
 						<thead class="table-light">
 							<tr>
@@ -130,7 +130,7 @@
 				</div>
 
 				<div class="table-responsive mt-3">
-					<table id="table_qa" class="table table-hover align-middle mb-0">
+					<table id="table_qa" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Question Quality</caption>
 						<thead class="table-light">
 							<tr>
@@ -148,7 +148,7 @@
 									<td><?= $qa->get_id() ?></td>
 									<td><?= $qa->get_description() ?></td>
 									<td>
-										<table id="table_<?= $qa->get_id() ?>" class="table table-sm mb-0">
+										<table id="table_<?= $qa->get_id() ?>" class="table table-bordered table-sm mb-0">
 											<thead class="table-light">
 												<tr>
 													<th>Rule</th>

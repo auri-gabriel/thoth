@@ -23,7 +23,7 @@
 					</div>
 				</div>
 				<div class="table-responsive mt-3">
-					<table id="table_research_question" class="table table-hover align-middle mb-0">
+					<table id="table_research_question" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Research Questions</caption>
 						<thead class="table-light">
 							<tr>

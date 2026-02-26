@@ -16,7 +16,7 @@
 						</button>
 					</div>
 					<div class="table-responsive">
-						<table id="table_domains" class="table table-hover align-middle mb-0">
+						<table id="table_domains" class="table table-bordered table-hover align-middle mb-0">
 							<caption class="visually-hidden">List of Domains</caption>
 							<thead class="table-light">
 								<tr>
@@ -60,7 +60,7 @@
 						</button>
 					</div>
 					<div class="table-responsive">
-						<table id="table_languages" class="table table-hover align-middle mb-0">
+						<table id="table_languages" class="table table-bordered table-hover align-middle mb-0">
 							<caption class="visually-hidden">List of Languages</caption>
 							<thead class="table-light">
 								<tr>
@@ -103,7 +103,7 @@
 						</button>
 					</div>
 					<div class="table-responsive">
-						<table id="table_study_type" class="table table-hover align-middle mb-0">
+						<table id="table_study_type" class="table table-bordered table-hover align-middle mb-0">
 							<caption class="visually-hidden">List of Study Type</caption>
 							<thead class="table-light">
 								<tr>
@@ -142,7 +142,7 @@
 						</button>
 					</div>
 					<div class="table-responsive">
-						<table id="table_keywords" class="table table-hover align-middle mb-0">
+						<table id="table_keywords" class="table table-bordered table-hover align-middle mb-0">
 							<caption class="visually-hidden">List of Keywords</caption>
 							<thead class="table-light">
 								<tr>
