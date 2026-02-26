@@ -9,7 +9,7 @@
 		<div class="row justify-content-center">
 			<div class="card shadow-sm">
 				<div class="card-body p-0">
-					<table class="table table-hover mb-0">
+					<table class="table table-hover mb-0" id="table_search">
 						<thead class="table-light">
 							<tr>
 								<th>Title</th>

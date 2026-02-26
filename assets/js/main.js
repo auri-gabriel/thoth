@@ -147,7 +147,7 @@ $(document).ready(function () {
 		columnDefs: [{ orderable: false, targets: 2 }],
 	});
 
-	$("#tableSearch").DataTable({
+	$("#table_search").DataTable({
 		responsive: true,
 		order: [[0, "asc"]],
 		columnDefs: [{ orderable: false, targets: 2 }],
