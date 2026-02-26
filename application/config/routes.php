@@ -81,6 +81,17 @@ $route['projects/(:num)/study-selection-admin'] = 'Project_Controller/review_stu
 $route['projects/(:num)/quality-admin'] = 'Project_Controller/review_qa/$1';
 $route['projects/(:num)/export'] = 'Project_Controller/export/$1';
 
+
+// Project Export (explicit RESTful endpoints)
+$route['projects/(:num)/export/doc']    = 'Project_Export_Controller/export_doc';
+$route['projects/(:num)/export/latex']  = 'Project_Export_Controller/export_latex';
+$route['projects/(:num)/export/bib']    = 'Project_Export_Controller/export_bib';
+
+// Legacy direct access (for AJAX/JS)
+$route['project_export/export_doc']   = 'Project_Export_Controller/export_doc';
+$route['project_export/export_latex'] = 'Project_Export_Controller/export_latex';
+$route['project_export/export_bib']   = 'Project_Export_Controller/export_bib';
+
 // Project Conducting
 $route['projects/conducting/import'] = 'Project_Conducting_Controller/conducting_import';
 $route['projects/conducting/selection'] = 'Project_Conducting_Controller/conducting_selection';
