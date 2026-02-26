@@ -17,74 +17,40 @@
 							$done = $to_do = $rem = 0;
 						}
 					?>
-						<h6 class="mt-4">Progress Data Extraction</h6>
-						<div class="progress mb-3">
-							<div id="prog_done" class="progress-bar bg-success" role="progressbar"
-								style="width: <?= $done ?>%"
-								aria-valuenow="<?= $done ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $done ?>%
+						<!-- Generic Progress Indicator Bar and Labels for Data Extraction -->
+						<div class="progress-indicator-container mb-4">
+							<div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+								<h6 class="mb-0 fw-bold">Progress Data Extraction</h6>
+								<div class="d-flex gap-2 flex-wrap">
+									<span class="badge rounded-pill progress-indicator-badge-acc"><i class="fas fa-check me-1"></i>Done: <span id="count_done"><?= $count_papers[1] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-unc"><i class="fas fa-times me-1"></i>To Do: <span id="count_to_do"><?= $count_papers[2] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-rem"><i class="fas fa-trash-alt me-1"></i>Removed: <span id="count_rem_ex"><?= $count_papers[3] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-total"><i class="fas fa-bars me-1"></i>Total: <span id="count_total_ex"><?= $count_papers[4] ?></span></span>
+								</div>
 							</div>
-							<div id="prog_to_do" class="progress-bar bg-dark" role="progressbar"
-								style="width: <?= $to_do ?>%"
-								aria-valuenow="<?= $to_do ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $to_do ?>%
+							<div class="progress progress-indicator-bar" style="height: 1.5rem;">
+								<div id="prog_done" class="progress-bar progress-indicator-bar-acc" role="progressbar"
+									style="width: <?= $done ?>%"
+									aria-valuenow="<?= $done ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $done ?>%
+								</div>
+								<div id="prog_to_do" class="progress-bar progress-indicator-bar-unc" role="progressbar"
+									style="width: <?= $to_do ?>%"
+									aria-valuenow="<?= $to_do ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $to_do ?>%
+								</div>
+								<div id="prog_rem_ex" class="progress-bar progress-indicator-bar-rem" role="progressbar"
+									style="width: <?= $rem ?>%"
+									aria-valuenow="<?= $rem ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $rem ?>%
+								</div>
 							</div>
-							<div id="prog_rem_ex" class="progress-bar bg-info" role="progressbar"
-								style="width: <?= $rem ?>%"
-								aria-valuenow="<?= $rem ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $rem ?>%
-							</div>
-						</div>
-						<div class="row mb-4">
-							<?php
-							foreach ($count_papers as $key => $value) {
-								switch ($key) {
-									case 1:
-							?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-success text-white"><i class="fas fa-check fa-lg"></i></span>
-												<label class="form-label ms-2">Done: <span id="count_done"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 2:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-dark text-white"><i class="fas fa-times fa-lg"></i></span>
-												<label class="form-label ms-2">To Do: <span id="count_to_do"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 3:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-info text-white"><i class="fas fa-trash-alt fa-lg"></i></span>
-												<label class="form-label ms-2">Removed: <span id="count_rem_ex"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 4:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-secondary text-white"><i class="fas fa-bars fa-lg"></i></span>
-												<label class="form-label ms-2">Total: <span id="count_total_ex"><?= $value ?></span></label>
-											</div>
-										</div>
-							<?php
-										break;
-								}
-							}
-							?>
 						</div>
 						<div class="table-responsive mt-4">
 							<table class="table table-hover align-middle" id="table_papers_extraction">
