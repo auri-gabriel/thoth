@@ -187,7 +187,7 @@ class Project_Controller extends Pattern_Controller
 
 			$data['project'] = $this->Project_Model->get_project_export($id);
 
-			$this->load_views('pages/project/project_export', $data);
+			$this->load_views('pages/project/export', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
