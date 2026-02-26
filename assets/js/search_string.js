@@ -582,3 +582,15 @@ function edit_search_strategy() {
 		},
 	});
 }
+
+$(document).ready(function () {
+	table_search_string = $("#table_search_string").DataTable({
+		language: lang,
+		responsive: true,
+		order: [[0, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+		ordering: false,
+	});
+});

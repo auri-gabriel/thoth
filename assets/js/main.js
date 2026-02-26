@@ -112,8 +112,6 @@ $(document).ready(function () {
 		searching: false,
 	});
 
-	table_databases = $("#table_databases").DataTable(configDataTables);
-	table_search_string = $("#table_search_string").DataTable(configDataTables);
 	table_general_score = $("#table_general_score").DataTable(configDataTables);
 	table_criteria_inclusion = $("#table_criteria_inclusion").DataTable(
 		configDataTables,
