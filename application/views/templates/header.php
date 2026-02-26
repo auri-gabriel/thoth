@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,10 +25,10 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
 		integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
-	<!-- DataTables -->
-	<link rel="stylesheet" href="<?= base_url('assets/css/dataTables.bootstrap4.css'); ?>">
-	<link rel="stylesheet" href="<?= base_url('assets/css/select.bootstrap4.css'); ?>">
-	<link rel="stylesheet" href="<?= base_url('assets/css/buttons.bootstrap4.min.css'); ?>">
+	<!-- DataTables (Bootstrap 5) from npm/node_modules -->
+	<link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css'); ?>">
+	<link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-select-bs5/css/select.bootstrap5.min.css'); ?>">
+	<link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'); ?>">
 
 	<!-- SweetAlert -->
 	<link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css'); ?>">
@@ -46,18 +47,19 @@
 	<script src="<?= base_url('assets/node_modules/@popperjs/core/dist/umd/popper.min.js'); ?>"></script>
 	<script src="<?= base_url('assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
 
-	<!-- DataTables (keep, but ensure no legacy Bootstrap JS is loaded) -->
-	<script src="<?= base_url('assets/js/jquery.dataTables.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/dataTables.bootstrap4.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/dataTables.select.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/dataTables.buttons.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/buttons.bootstrap4.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/jszip.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/pdfmake.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/vfs_fonts.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/buttons.html5.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/buttons.print.min.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/buttons.colVis.min.js'); ?>"></script>
+	<!-- DataTables (Bootstrap 5) from npm/node_modules -->
+	<script src="<?= base_url('assets/node_modules/datatables.net/js/dataTables.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-select/js/dataTables.select.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-select-bs5/js/select.bootstrap5.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/jszip/dist/jszip.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/pdfmake/build/pdfmake.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/pdfmake/build/vfs_fonts.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-buttons/js/buttons.html5.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-buttons/js/buttons.print.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/datatables.net-buttons/js/buttons.colVis.min.js'); ?>"></script>
 
 
 	<!-- Highcharts (latest, from node_modules via symlink) -->

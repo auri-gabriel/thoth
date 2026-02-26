@@ -486,7 +486,7 @@ $(document).ready(function () {
 			let row = table_inclusion_criteria.row(indexes).node();
 			let selected = true;
 			let clas = $(row).attr("class");
-			if (clas.indexOf("import") < 0) {
+			if (clas && clas.indexOf("import") < 0) {
 				$(row).addClass("import");
 				evaluation_criteria(indexes, selected, true);
 			}
@@ -495,7 +495,7 @@ $(document).ready(function () {
 			let row = table_inclusion_criteria.row(indexes).node();
 			let selected = false;
 			let clas = $(row).attr("class");
-			if (clas.indexOf("import") >= 0) {
+			if (clas && clas.indexOf("import") >= 0) {
 				evaluation_criteria(indexes, selected, true);
 				$(row).removeClass("import");
 			}
@@ -506,7 +506,7 @@ $(document).ready(function () {
 			let row = table_exclusion_criteria.row(indexes).node();
 			let selected = true;
 			let clas = $(row).attr("class");
-			if (clas.indexOf("import") < 0) {
+			if (clas && clas.indexOf("import") < 0) {
 				$(row).addClass("import");
 				evaluation_criteria(indexes, selected, false);
 			}
@@ -515,7 +515,7 @@ $(document).ready(function () {
 			let row = table_exclusion_criteria.row(indexes).node();
 			let selected = false;
 			let clas = $(row).attr("class");
-			if (clas.indexOf("import") >= 0) {
+			if (clas && clas.indexOf("import") >= 0) {
 				evaluation_criteria(indexes, selected, false);
 				$(row).removeClass("import");
 			}
