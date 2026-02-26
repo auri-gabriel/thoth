@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -71,9 +71,9 @@ $route['add_research/(:num)'] = 'Project_Controller/add_research/$1';
 $route['study_selection_adm/(:num)'] = 'Project_Controller/review_study_selection/$1';
 $route['quality_adm/(:num)'] = 'Project_Controller/review_qa/$1';
 $route['export/(:num)'] = 'Project_Controller/export/$1';
-$route['project/conducting_import'] = 'Project_Controller/conducting_import';
-$route['project/conducting_selection'] = 'Project_Controller/conducting_selection';
-$route['project/conducting_quality'] = 'Project_Controller/conducting_quality';
-$route['project/conducting_extraction'] = 'Project_Controller/conducting_extraction';
+$route['project/conducting_import'] = 'Project_Conducting_Controller/conducting_import';
+$route['project/conducting_selection'] = 'Project_Conducting_Controller/conducting_selection';
+$route['project/conducting_quality'] = 'Project_Conducting_Controller/conducting_quality';
+$route['project/conducting_extraction'] = 'Project_Conducting_Controller/conducting_extraction';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
