@@ -1,126 +1,124 @@
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_extraction">
 	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-10 mb-4">
-			<div class="card shadow-sm h-100 bg-light">
-				<div class="card-body">
-					<div class="d-flex align-items-center mb-2">
-						<label class="mb-0"><strong>Data Extraction</strong></label>
-						<a onclick="modal_help('modal_help_data_extraction')" class="ms-auto opt" tabindex="0" aria-label="Help about data extraction" data-bs-toggle="tooltip" title="What is data extraction?"><i class="fas fa-question-circle"></i></a>
-					</div>
-					<?php
-					if ($project->get_planning() == 100 && $project->get_import() == 100 && $project->get_selection() > 0 && $project->get_quality() > 0) {
-						if (!empty($count_papers[4]) && $count_papers[4] != 0) {
-							$done = number_format((float)($count_papers[1] * 100) / $count_papers[4], 2);
-							$to_do = number_format((float)($count_papers[2] * 100) / $count_papers[4], 2);
-							$rem = number_format((float)($count_papers[3] * 100) / $count_papers[4], 2);
-						} else {
-							$done = $to_do = $rem = 0;
-						}
-					?>
-						<!-- Generic Progress Indicator Bar and Labels for Data Extraction -->
-						<div class="progress-indicator-container mb-4">
-							<div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
-								<h6 class="mb-0 fw-bold">Progress Data Extraction</h6>
-								<div class="d-flex gap-2 flex-wrap">
-									<span class="badge rounded-pill progress-indicator-badge-acc"><i class="fas fa-check me-1"></i>Done: <span id="count_done"><?= $count_papers[1] ?></span></span>
-									<span class="badge rounded-pill progress-indicator-badge-unc"><i class="fas fa-times me-1"></i>To Do: <span id="count_to_do"><?= $count_papers[2] ?></span></span>
-									<span class="badge rounded-pill progress-indicator-badge-rem"><i class="fas fa-trash-alt me-1"></i>Removed: <span id="count_rem_ex"><?= $count_papers[3] ?></span></span>
-									<span class="badge rounded-pill progress-indicator-badge-total"><i class="fas fa-bars me-1"></i>Total: <span id="count_total_ex"><?= $count_papers[4] ?></span></span>
-								</div>
-							</div>
-							<div class="progress progress-indicator-bar" style="height: 1.5rem;">
-								<div id="prog_done" class="progress-bar progress-indicator-bar-acc" role="progressbar"
-									style="width: <?= $done ?>%"
-									aria-valuenow="<?= $done ?>"
-									aria-valuemin="0"
-									aria-valuemax="100">
-									<?= $done ?>%
-								</div>
-								<div id="prog_to_do" class="progress-bar progress-indicator-bar-unc" role="progressbar"
-									style="width: <?= $to_do ?>%"
-									aria-valuenow="<?= $to_do ?>"
-									aria-valuemin="0"
-									aria-valuemax="100">
-									<?= $to_do ?>%
-								</div>
-								<div id="prog_rem_ex" class="progress-bar progress-indicator-bar-rem" role="progressbar"
-									style="width: <?= $rem ?>%"
-									aria-valuenow="<?= $rem ?>"
-									aria-valuemin="0"
-									aria-valuemax="100">
-									<?= $rem ?>%
-								</div>
-							</div>
-						</div>
-						<div class="table-responsive mt-4">
-							<table class="table table-hover align-middle" id="table_papers_extraction">
-								<caption class="visually-hidden">List of Papers for Data Extraction</caption>
-								<thead class="table-light">
-									<tr>
-										<th>ID</th>
-										<th>Title</th>
-										<th>Author</th>
-										<th>Year</th>
-										<th>Database</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($project->get_papers() as $paper) { ?>
-										<tr>
-											<td><?= $paper->get_id() ?></td>
-											<td><?= $paper->get_title() ?></td>
-											<td><?= $paper->get_author() ?></td>
-											<td><?= $paper->get_year() ?></td>
-											<td><?= $paper->get_database() ?></td>
-											<?php
-											$class = "text-dark";
-											$status = "To Do";
-											switch ($paper->get_status_extraction()) {
-												case 1:
-													$class = "text-success";
-													$status = "Done";
-													break;
-												case 3:
-													$class = "text-info";
-													$status = "Removed";
-													break;
-											} ?>
-											<td id="<?= $paper->get_id(); ?>" class="font-weight-bold <?= $class ?>"><?= $status ?></td>
-										</tr>
-									<?php } ?>
-								</tbody>
-								<tfoot class="table-light">
-									<tr>
-										<th>ID</th>
-										<th>Title</th>
-										<th>Author</th>
-										<th>Year</th>
-										<th>Database</th>
-										<th>Status</th>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
-					<?php
-					} else {
-					?>
-						<div class="alert alert-warning container-fluid alert-dismissible fade show mt-4" role="alert">
-							<h5>Complete these tasks to advance</h5>
-							<ul>
-								<?php
-								foreach ($project->get_errors() as $error) {
-								?>
-									<li><?= $error ?></li>
-								<?php
-								}
-								?>
-							</ul>
-						</div>
-					<?php
-					}
-					?>
+		<div class="card shadow-sm h-100 bg-light">
+			<div class="card-body">
+				<div class="d-flex align-items-center mb-2">
+					<label class="mb-0"><strong>Data Extraction</strong></label>
+					<a onclick="modal_help('modal_help_data_extraction')" class="ms-auto opt" tabindex="0" aria-label="Help about data extraction" data-bs-toggle="tooltip" title="What is data extraction?"><i class="fas fa-question-circle"></i></a>
 				</div>
+				<?php
+				if ($project->get_planning() == 100 && $project->get_import() == 100 && $project->get_selection() > 0 && $project->get_quality() > 0) {
+					if (!empty($count_papers[4]) && $count_papers[4] != 0) {
+						$done = number_format((float)($count_papers[1] * 100) / $count_papers[4], 2);
+						$to_do = number_format((float)($count_papers[2] * 100) / $count_papers[4], 2);
+						$rem = number_format((float)($count_papers[3] * 100) / $count_papers[4], 2);
+					} else {
+						$done = $to_do = $rem = 0;
+					}
+				?>
+					<!-- Generic Progress Indicator Bar and Labels for Data Extraction -->
+					<div class="progress-indicator-container mb-4">
+						<div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+							<h6 class="mb-0 fw-bold">Progress Data Extraction</h6>
+							<div class="d-flex gap-2 flex-wrap">
+								<span class="badge rounded-pill progress-indicator-badge-acc"><i class="fas fa-check me-1"></i>Done: <span id="count_done"><?= $count_papers[1] ?></span></span>
+								<span class="badge rounded-pill progress-indicator-badge-unc"><i class="fas fa-times me-1"></i>To Do: <span id="count_to_do"><?= $count_papers[2] ?></span></span>
+								<span class="badge rounded-pill progress-indicator-badge-rem"><i class="fas fa-trash-alt me-1"></i>Removed: <span id="count_rem_ex"><?= $count_papers[3] ?></span></span>
+								<span class="badge rounded-pill progress-indicator-badge-total"><i class="fas fa-bars me-1"></i>Total: <span id="count_total_ex"><?= $count_papers[4] ?></span></span>
+							</div>
+						</div>
+						<div class="progress progress-indicator-bar" style="height: 1.5rem;">
+							<div id="prog_done" class="progress-bar progress-indicator-bar-acc" role="progressbar"
+								style="width: <?= $done ?>%"
+								aria-valuenow="<?= $done ?>"
+								aria-valuemin="0"
+								aria-valuemax="100">
+								<?= $done ?>%
+							</div>
+							<div id="prog_to_do" class="progress-bar progress-indicator-bar-unc" role="progressbar"
+								style="width: <?= $to_do ?>%"
+								aria-valuenow="<?= $to_do ?>"
+								aria-valuemin="0"
+								aria-valuemax="100">
+								<?= $to_do ?>%
+							</div>
+							<div id="prog_rem_ex" class="progress-bar progress-indicator-bar-rem" role="progressbar"
+								style="width: <?= $rem ?>%"
+								aria-valuenow="<?= $rem ?>"
+								aria-valuemin="0"
+								aria-valuemax="100">
+								<?= $rem ?>%
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive mt-4">
+						<table class="table table-hover align-middle" id="table_papers_extraction">
+							<caption class="visually-hidden">List of Papers for Data Extraction</caption>
+							<thead class="table-light">
+								<tr>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Author</th>
+									<th>Year</th>
+									<th>Database</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($project->get_papers() as $paper) { ?>
+									<tr>
+										<td><?= $paper->get_id() ?></td>
+										<td><?= $paper->get_title() ?></td>
+										<td><?= $paper->get_author() ?></td>
+										<td><?= $paper->get_year() ?></td>
+										<td><?= $paper->get_database() ?></td>
+										<?php
+										$class = "text-dark";
+										$status = "To Do";
+										switch ($paper->get_status_extraction()) {
+											case 1:
+												$class = "text-success";
+												$status = "Done";
+												break;
+											case 3:
+												$class = "text-info";
+												$status = "Removed";
+												break;
+										} ?>
+										<td id="<?= $paper->get_id(); ?>" class="font-weight-bold <?= $class ?>"><?= $status ?></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+							<tfoot class="table-light">
+								<tr>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Author</th>
+									<th>Year</th>
+									<th>Database</th>
+									<th>Status</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				<?php
+				} else {
+				?>
+					<div class="alert alert-warning container-fluid alert-dismissible fade show mt-4" role="alert">
+						<h5>Complete these tasks to advance</h5>
+						<ul>
+							<?php
+							foreach ($project->get_errors() as $error) {
+							?>
+								<li><?= $error ?></li>
+							<?php
+							}
+							?>
+						</ul>
+					</div>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>
