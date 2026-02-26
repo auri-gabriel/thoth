@@ -96,3 +96,19 @@ $card-border-radius: 0;
 $card-box-shadow: none;
 
 $enable-dark-mode: true;
+
+// === TABLES ===
+$table-bg: $gray-100;
+$table-header-bg: $gray-200;
+$table-header-color: $gray-900;
+$table-border-color: $gray-400;
+$table-row-hover-bg: color.mix($primary, $gray-100, 10%);
+$table-row-active-bg: color.mix($primary, $gray-100, 20%);
+$table-striped-bg: $gray-50;
+$table-striped-color: $gray-900;
+$table-cell-padding-y: 0.75rem;
+$table-cell-padding-x: 1rem;
+$table-font-size: $font-size-base;
+$table-font-family: $font-family-sans-serif;
+$table-border-radius: 0;
+$table-caption-color: $gray-700;
