@@ -1,3 +1,4 @@
+<?php $readonly = (isset($readonly) && $readonly === true); ?>
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_criteria">
 	<div class="row justify-content-center">
 
@@ -8,6 +9,7 @@
 			</div>
 			<div class="card-body">
 
+				<?php if (!$readonly): ?>
 				<!-- Add Criteria -->
 				<div class="row g-3 mb-4">
 					<div class="col-md-2">
@@ -31,6 +33,7 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 
 				<!-- Inclusion Criteria -->
 				<div class="mb-4">
@@ -43,10 +46,10 @@
 							<caption class="visually-hidden">List of Inclusion Criteria</caption>
 							<thead class="table-light">
 								<tr>
-									<th scope="col" style="width:5%">Select</th>
+									<?php if (!$readonly): ?><th scope="col" style="width:5%">Select</th><?php endif; ?>
 									<th scope="col" style="width:10%">ID</th>
 									<th scope="col">Criteria</th>
-									<th scope="col" class="text-end">Actions</th>
+									<?php if (!$readonly): ?><th scope="col" class="text-end">Actions</th><?php endif; ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -54,6 +57,7 @@
 									$checked = $ic->get_pre_selected() ? 'checked' : '';
 								?>
 									<tr>
+										<?php if (!$readonly): ?>
 										<td>
 											<div class="form-check mb-0">
 												<input id="selected_<?= str_replace(' ', '', $ic->get_id()) ?>"
@@ -62,17 +66,21 @@
 													onchange="select_criteria_inclusion($(this).parents('tr'))">
 											</div>
 										</td>
+										<?php endif; ?>
 										<td><?= $ic->get_id() ?></td>
 										<td><?= $ic->get_description() ?></td>
+										<?php if (!$readonly): ?>
 										<td class="text-end">
 											<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_criteria_inclusion($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
 											<button class="btn btn-outline-danger btn-sm" onClick="delete_criteria_inclusion($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 										</td>
+										<?php endif; ?>
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
+					<?php if (!$readonly): ?>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="rule_inclusion" class="form-label fw-semibold">Inclusion Rule</label>
@@ -88,6 +96,9 @@
 							</div>
 						</div>
 					</div>
+					<?php else: ?>
+					<p class="text-muted small mb-0">Inclusion Rule: <strong><?= $project->get_inclusion_rule() ?></strong></p>
+					<?php endif; ?>
 				</div>
 
 				<!-- Exclusion Criteria -->
@@ -101,10 +112,10 @@
 							<caption class="visually-hidden">List of Exclusion Criteria</caption>
 							<thead class="table-light">
 								<tr>
-									<th scope="col" style="width:5%">Select</th>
+									<?php if (!$readonly): ?><th scope="col" style="width:5%">Select</th><?php endif; ?>
 									<th scope="col" style="width:10%">ID</th>
 									<th scope="col">Criteria</th>
-									<th scope="col" class="text-end">Actions</th>
+									<?php if (!$readonly): ?><th scope="col" class="text-end">Actions</th><?php endif; ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -112,6 +123,7 @@
 									$checked = $ec->get_pre_selected() ? 'checked' : '';
 								?>
 									<tr>
+										<?php if (!$readonly): ?>
 										<td>
 											<div class="form-check mb-0">
 												<input id="selected_<?= str_replace(' ', '', $ec->get_id()) ?>"
@@ -120,17 +132,21 @@
 													onchange="select_criteria_exclusion($(this).parents('tr'))">
 											</div>
 										</td>
+										<?php endif; ?>
 										<td><?= $ec->get_id() ?></td>
 										<td><?= $ec->get_description() ?></td>
+										<?php if (!$readonly): ?>
 										<td class="text-end">
 											<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_criteria_exclusion($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
 											<button class="btn btn-outline-danger btn-sm" onClick="delete_criteria_exclusion($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 										</td>
+										<?php endif; ?>
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
+					<?php if (!$readonly): ?>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="rule_exclusion" class="form-label fw-semibold">Exclusion Rule</label>
@@ -146,6 +162,9 @@
 							</div>
 						</div>
 					</div>
+					<?php else: ?>
+					<p class="text-muted small mb-0">Exclusion Rule: <strong><?= $project->get_exclusion_rule() ?></strong></p>
+					<?php endif; ?>
 				</div>
 
 			</div>

@@ -42,7 +42,7 @@
 												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/edit'); ?>" class="btn btn-warning btn-sm">
 													<span class="fas fa-edit"></span> Edit
 												</a>
-												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/add-research'); ?>" class="btn btn-info btn-sm">
+												<a href="<?= site_url('projects/' . $project['project']->get_id() . '/add-member'); ?>" class="btn btn-info btn-sm">
 													<span class="fas fa-users-cog"></span> Add
 												</a>
 												<button type="button"

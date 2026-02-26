@@ -16,7 +16,7 @@ class Project_Controller extends Pattern_Controller
 {
 	/**
 	 * Project overview page
-	 * URL: /project/open/{id}
+	 * URL: /projects/{id}
 	 */
 	public function open($id)
 	{
@@ -27,7 +27,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_overview($id);
 			$data['logs']    = $this->Project_Model->get_logs_project($id);
 
-			$this->load_views('pages/project/project', $data);
+			$this->load_views('pages/project/index', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -144,7 +144,7 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status();
 			$data['conflicts']     = $this->Selection_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/project_review_study_selection', $data);
+			$this->load_views('pages/project/reviewer/study_selection', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -168,7 +168,7 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status_qa();
 			$data['conflicts']     = $this->Quality_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/project_review_qa', $data);
+			$this->load_views('pages/project/reviewer/quality_assessment', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -187,7 +187,7 @@ class Project_Controller extends Pattern_Controller
 
 			$data['project'] = $this->Project_Model->get_project_export($id);
 
-			$this->load_views('pages/project/project_export', $data);
+			$this->load_views('pages/project/export', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -206,7 +206,7 @@ class Project_Controller extends Pattern_Controller
 
 			$data['projects'] = $this->User_Model->get_projects_new($this->session->email);
 
-			load_templates('pages/project/project_new', $data);
+			load_templates('pages/project/new', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -225,7 +225,7 @@ class Project_Controller extends Pattern_Controller
 
 			$data['project'] = $this->Project_Model->get_project_edit($id);
 
-			$this->load_views('pages/project/project_edit', $data);
+			$this->load_views('pages/project/edit', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -236,7 +236,7 @@ class Project_Controller extends Pattern_Controller
 	 * Add research members page
 	 * URL: /project/add_research/{id}
 	 */
-	public function add_research($id)
+	public function add_member($id)
 	{
 		try {
 			$this->validate_level($id, [1]);
@@ -246,7 +246,7 @@ class Project_Controller extends Pattern_Controller
 			$data['users']   = $this->Project_Model->get_users($id);
 			$data['levels']  = $this->Project_Model->get_levels();
 
-			$this->load_views('pages/project/project_add_research', $data);
+			$this->load_views('pages/project/add_member', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -286,7 +286,7 @@ class Project_Controller extends Pattern_Controller
 
 			$this->insert_log('Created the project ' . $title, 1, $id_project);
 
-			redirect('open/' . $id_project);
+			redirect('projects/' . $id_project);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());

@@ -53,9 +53,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'Home_Controller';
 
 // Authentication & User
-$route['login'] = 'Login_Controller/sign_in';
-$route['signup'] = 'Login_Controller/sign_up';
-$route['logout'] = 'Login_Controller/sign_out';
+$route['login'] = 'Login_Controller/login';
+$route['signup'] = 'Login_Controller/register';
+$route['logout'] = 'Login_Controller/logout';
 $route['profile'] = 'User_Controller/profile';
 $route['dashboard'] = 'User_Controller';
 
@@ -76,7 +76,7 @@ $route['projects/(:num)/reporting'] = 'Project_Controller/reporting/$1';
 $route['projects/(:num)/study-selection'] = 'Project_Controller/study_selection/$1';
 $route['projects/(:num)/quality-assessment'] = 'Project_Controller/quality_assessment/$1';
 $route['projects/(:num)/data-extraction'] = 'Project_Controller/data_extraction/$1';
-$route['projects/(:num)/add-research'] = 'Project_Controller/add_research/$1';
+$route['projects/(:num)/add-member'] = 'Project_Controller/add_member/$1';
 $route['projects/(:num)/study-selection-admin'] = 'Project_Controller/review_study_selection/$1';
 $route['projects/(:num)/quality-admin'] = 'Project_Controller/review_qa/$1';
 $route['projects/(:num)/export'] = 'Project_Controller/export/$1';

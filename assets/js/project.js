@@ -1,4 +1,4 @@
-function add_research() {
+function add_member() {
 	let id_project = $("#id_project").val();
 	let email = $("#add_email_user").val();
 	let level = $("#add_level_user").val();
@@ -10,7 +10,7 @@ function add_research() {
 
 	$.ajax({
 		type: "POST",
-		url: base_url + "Project_Controller/add_member/",
+		url: base_url + "Project_Member_Controller/add_member/",
 		data: {
 			id_project: id_project,
 			email: email,
@@ -231,7 +231,7 @@ function edit_level(element) {
 		if (result.value) {
 			$.ajax({
 				type: "POST",
-				url: base_url + "Project_Controller/edit_level/",
+				url: base_url + "Project_Member_Controller/edit_level/",
 				data: {
 					id_project: id_project,
 					level: level,
@@ -295,7 +295,7 @@ function delete_member(value) {
 		if (result.value) {
 			$.ajax({
 				type: "POST",
-				url: base_url + "Project_Controller/delete_member/",
+				url: base_url + "Project_Member_Controller/delete_member/",
 				data: {
 					id_project: id_project,
 					email: row.data()[1],

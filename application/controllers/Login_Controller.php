@@ -1,17 +1,21 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once APPPATH . 'controllers/Pattern_Controller.php';
 
+/**
+ * @property CI_Loader $load
+ * @property CI_Input $input
+ * @property CI_Session $session
+ * @property User_Model $User_Model
+ * @property Login_Model $Login_Model
+ */
 class Login_Controller extends Pattern_Controller
 {
 	/**
 	 *
 	 */
-	public function index()
-	{
-
-	}
+	public function index() {}
 
 	/**
 	 *
@@ -64,7 +68,7 @@ class Login_Controller extends Pattern_Controller
 
 			if (!$this->Login_Model->check_email_unique($email)) {
 				$this->session->set_flashdata('error', 'Email already used!');
-				redirect(base_url("sign_up"));
+				redirect(base_url("register"));
 			}
 
 			$password = md5($this->input->post('password'));
@@ -87,20 +91,20 @@ class Login_Controller extends Pattern_Controller
 			redirect(base_url("dashboard"));
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url("sign_up"));
+			redirect(base_url("register"));
 		}
 	}
 
 	/**
 	 *
 	 */
-	public function sign_in()
+	public function login()
 	{
 		try {
 			if ($this->session->logged_in) {
 				redirect(base_url("dashboard"));
 			}
-			load_templates('pages/login/sign_in', null);
+			load_templates('pages/login/login', null);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -110,7 +114,7 @@ class Login_Controller extends Pattern_Controller
 	/**
 	 *
 	 */
-	public function sign_out()
+	public function logout()
 	{
 		try {
 			$activity = "Logged out";
@@ -127,17 +131,16 @@ class Login_Controller extends Pattern_Controller
 	/**
 	 *
 	 */
-	public function sign_up()
+	public function register()
 	{
 		try {
 			if ($this->session->logged_in) {
 				redirect(base_url("dashboard"));
 			}
-			load_templates('pages/login/sign_up', null);
+			load_templates('pages/login/register', null);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
 		}
 	}
-
 }
