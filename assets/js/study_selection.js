@@ -70,7 +70,7 @@ $(document).ready(function () {
 			{
 				text: '<i class="far fa-clone fa-2x"></i>',
 				action: function () {
-					exibe_loading();
+					showLoading();
 					let id_project = $("#id_project").val();
 					let titles = [];
 					let papers = [];
@@ -197,7 +197,7 @@ $(document).ready(function () {
 							showCancelButton: false,
 							confirmButtonText: "Ok",
 						});
-						remove_loading();
+						hideLoading();
 					}
 				},
 			},

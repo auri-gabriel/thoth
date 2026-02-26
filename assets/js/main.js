@@ -1,14 +1,14 @@
 $(document)
 	.ajaxStart(function () {
-		exibe_loading();
+		showLoading();
 	})
 	.ajaxStop(function () {
-		remove_loading();
+		hideLoading();
 	});
 
 $(document).ready(function () {
 	base_url = $("#base_url").val();
-	remove_loading();
+	hideLoading();
 	let lang = {
 		sZeroRecords: "No options added",
 	};
@@ -181,7 +181,7 @@ $(document).ready(function () {
 	});
 
 	$(window).on("beforeunload", function () {
-		exibe_loading();
+		showLoading();
 	});
 	$(window).on("popstate", function () {
 		var anchor =

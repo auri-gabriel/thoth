@@ -1,12 +1,12 @@
 function readFileAsString() {
-	exibe_loading();
+	showLoading();
 	let files = document.getElementById("upload_bib").files;
 	let database = $("#database_import").val();
 	let id_project = $("#id_project").val();
 	let id = "table_" + database;
 
 	if (!validate_upload(files, database, id)) {
-		remove_loading();
+		hideLoading();
 		return false;
 	}
 

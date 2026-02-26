@@ -1,10 +1,14 @@
-const exibe_loading = (remover_automatico = null) => {
+let loadingShownAt = null;
+const MIN_LOADING_TIME = 400; // ms
+let hideLoadingTimeout = null;
+
+const showLoading = (autoRemove = null) => {
 	/*
-		Exibe loading GIF
-		@param remover_automatico = Intenger - número em milisegundos para remover o loading.
+		Displays a modern CSS throbber
+		@param autoRemove = Integer - number in milliseconds to automatically remove the loading.
 	*/
 
-	if (!Number.isInteger(remover_automatico) && remover_automatico) {
+	if (!Number.isInteger(autoRemove) && autoRemove) {
 		throw "argument should be an integer";
 		return;
 	}
@@ -13,36 +17,51 @@ const exibe_loading = (remover_automatico = null) => {
 		return;
 	}
 
-	const bg = document.createElement("div");
-	bg.id = "loading";
-	bg.style.zIndex = "9999";
-	bg.style.display = "flex";
-	bg.style.alignItems = "center";
-	bg.style.justifyContent = "center";
-	bg.style.backgroundColor = "rgba(0,0,0,0.5)";
-	bg.style.width = "100%";
-	bg.style.height = "100%";
-	bg.style.position = "absolute";
-	bg.style.top = 0;
-	bg.style.left = 0;
+	const overlay = document.createElement("div");
+	overlay.id = "loading";
+	overlay.style.zIndex = "9999";
+	overlay.style.display = "flex";
+	overlay.style.alignItems = "center";
+	overlay.style.justifyContent = "center";
+	overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+	overlay.style.width = "100%";
+	overlay.style.height = "100%";
+	overlay.style.position = "fixed";
+	overlay.style.top = 0;
+	overlay.style.left = 0;
 
-	const loading_gif = new Image();
-	loading_gif.src = base_url + "assets/img/loading.gif";
-	loading_gif.onload = () => {
-		bg.appendChild(loading_gif);
-	};
+	// Create the throbber
+	const throbber = document.createElement("div");
+	throbber.className = "throbber";
 
-	document.body.appendChild(bg);
+	// Add the throbber to the overlay
+	overlay.appendChild(throbber);
 
-	if (remover_automatico) {
-		setTimeout(remove_loading, remover_automatico);
+	document.body.appendChild(overlay);
+
+	loadingShownAt = Date.now();
+	hideLoadingTimeout = null;
+
+	if (autoRemove) {
+		setTimeout(hideLoading, autoRemove);
 	}
 };
 
-const remove_loading = () => {
+const hideLoading = () => {
 	/*
-		Remove loading GIF
+		Removes the loading throbber, ensuring a minimum display time
 	*/
-	const bg = document.getElementById("loading");
-	if (bg) bg.parentNode.removeChild(bg);
+	const overlay = document.getElementById("loading");
+	if (!overlay) return;
+
+	const elapsed = Date.now() - (loadingShownAt || 0);
+	if (elapsed < MIN_LOADING_TIME) {
+		if (hideLoadingTimeout) return; // Already scheduled
+		hideLoadingTimeout = setTimeout(hideLoading, MIN_LOADING_TIME - elapsed);
+		return;
+	}
+
+	overlay.parentNode.removeChild(overlay);
+	loadingShownAt = null;
+	hideLoadingTimeout = null;
 };
