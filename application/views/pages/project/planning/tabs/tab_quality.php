@@ -28,7 +28,7 @@
 						<label for="min_score_to_app" class="form-label">Minimum General Score to Approve</label>
 						<div class="input-group">
 							<span class="input-group-text bg-success text-white"><i class="fas fa-check-circle"></i></span>
-							<select class="form-control" id="min_score_to_app" onchange="edit_min_score(this);" aria-label="Minimum Score to Approve">
+							<select class="form-select" id="min_score_to_app" onchange="edit_min_score(this);" aria-label="Minimum Score to Approve">
 								<option value="null"></option>
 								<?php
 								$mini = $project->get_score_min();
@@ -98,7 +98,7 @@
 				<div class="row g-2 mb-3">
 					<div class="col-md-2">
 						<label for="list_qa" class="form-label">Question</label>
-						<select class="form-control" id="list_qa" aria-label="Select Question">
+						<select class="form-select" id="list_qa" aria-label="Select Question">
 							<?php foreach ($project->get_questions_quality() as $qa): ?>
 								<option value="<?= $qa->get_id() ?>"><?= $qa->get_id() ?></option>
 							<?php endforeach; ?>
@@ -110,7 +110,7 @@
 					</div>
 					<div class="col-md-2">
 						<label for="score" id="lbl_score" class="form-label">Score: 50%</label>
-						<input type="range" min="0" max="100" class="form-control-range w-100" id="score" step="5" aria-label="Score Percentage"
+						<input type="range" min="0" max="100" class="form-range w-100" id="score" step="5" aria-label="Score Percentage"
 							style="max-width: 150px;" oninput="update_text_score(this.value)" onchange="update_text_score(this.value)">
 					</div>
 					<div class="col-md-6">
@@ -168,7 +168,7 @@
 									</td>
 									<td><?= $qa->get_weight() ?></td>
 									<td>
-										<select class="form-control" id="min_to_<?= $qa->get_id() ?>" data-qa="<?= $qa->get_id() ?>" onchange="edit_min_score_qa(this)" aria-label="Minimum to Approve">
+										<select class="form-select" id="min_to_<?= $qa->get_id() ?>" data-qa="<?= $qa->get_id() ?>" onchange="edit_min_score_qa(this)" aria-label="Minimum to Approve">
 											<option value=""></option>
 											<?php
 											$min = $qa->get_min_to_approve();
