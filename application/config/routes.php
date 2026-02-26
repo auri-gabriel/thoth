@@ -53,9 +53,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'Home_Controller';
 
 // Authentication & User
-$route['login'] = 'Login_Controller/sign_in';
-$route['signup'] = 'Login_Controller/sign_up';
-$route['logout'] = 'Login_Controller/sign_out';
+$route['login'] = 'Login_Controller/login';
+$route['signup'] = 'Login_Controller/register';
+$route['logout'] = 'Login_Controller/logout';
 $route['profile'] = 'User_Controller/profile';
 $route['dashboard'] = 'User_Controller';
 
