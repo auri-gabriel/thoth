@@ -85,3 +85,4 @@
 		<a href="#tab_selection" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
 	</div>
 </div>
+<script src="<?= base_url('assets/js/import_studies.js'); ?>"></script>
