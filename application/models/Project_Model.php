@@ -380,7 +380,7 @@ class Project_Model extends Pattern_Model
         }
 
         if ($progress == 0) {
-            $errors[] = "Evaluate at least one paper in the selection step to move to the quality step";
+            $errors[] = "Approve at least one paper in the selection step to move to the quality step";
         }
 
         $this->db->where('id_project', $id_project);
