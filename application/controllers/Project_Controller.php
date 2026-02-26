@@ -12,6 +12,85 @@ require_once APPPATH . 'controllers/Pattern_Controller.php';
 class Project_Controller extends Pattern_Controller
 {
 	/**
+	 * AJAX endpoint for Import tab
+	 * URL: /project/conducting_import?id={id}
+	 */
+	public function conducting_import()
+	{
+		$id = $this->input->get('id');
+		try {
+			$this->validate_level($id, array(1, 2, 3, 4));
+			$this->load->model("Project_Model");
+			$data['project'] = $this->Project_Model->get_project_selection($id);
+			$data['bib'] = $this->Project_Model->get_name_bibs($id);
+			$data['num_papers'] = $this->Project_Model->get_num_papers($id);
+			$this->load->view('pages/project/conducting/tabs/tab_import', $data);
+		} catch (Exception $e) {
+			http_response_code(403);
+			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+		}
+	}
+
+	/**
+	 * AJAX endpoint for Study Selection tab
+	 * URL: /project/conducting_selection?id={id}
+	 */
+	public function conducting_selection()
+	{
+		$id = $this->input->get('id');
+		try {
+			$this->validate_level($id, array(1, 2, 3, 4));
+			$this->load->model("Project_Model");
+			$data['project'] = $this->Project_Model->get_project_selection($id);
+			$data['count_papers'] = $this->Project_Model->count_papers_sel_by_user($id);
+			$data['criterias'] = $this->Project_Model->get_evaluation_selection($id);
+			$this->load->view('pages/project/conducting/tabs/tab_selection', $data);
+		} catch (Exception $e) {
+			http_response_code(403);
+			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+		}
+	}
+
+	/**
+	 * AJAX endpoint for Quality Assessment tab
+	 * URL: /project/conducting_quality?id={id}
+	 */
+	public function conducting_quality()
+	{
+		$id = $this->input->get('id');
+		try {
+			$this->validate_level($id, array(1, 2, 3, 4));
+			$this->load->model("Project_Model");
+			$data['project_quality'] = $this->Project_Model->get_project_quality($id);
+			$data['count_papers_qa'] = $this->Project_Model->count_papers_qa_by_user($id);
+			$data['qas_score'] = $this->Project_Model->get_evaluation_qa($id);
+			$this->load->view('pages/project/conducting/tabs/tab_quality', $data);
+		} catch (Exception $e) {
+			http_response_code(403);
+			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+		}
+	}
+
+	/**
+	 * AJAX endpoint for Data Extraction tab
+	 * URL: /project/conducting_extraction?id={id}
+	 */
+	public function conducting_extraction()
+	{
+		$id = $this->input->get('id');
+		try {
+			$this->validate_level($id, array(1, 2, 3, 4));
+			$this->load->model("Project_Model");
+			$data['project'] = $this->Project_Model->get_project_extraction($id);
+			$data['count_papers'] = $this->Project_Model->count_papers_extraction($id);
+			$this->load->view('pages/project/conducting/tabs/tab_extraction', $data);
+		} catch (Exception $e) {
+			http_response_code(403);
+			echo '<div class="text-danger">'.$e->getMessage().'</div>';
+		}
+	}
+
+	/**
 	 * @param $id
 	 */
 	public function open($id)
