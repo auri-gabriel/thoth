@@ -203,7 +203,39 @@ $(document).ready(function () {
 			},
 		],
 	});
+	table_inclusion_criteria = $("#table_inclusion_criteria").DataTable({
+		columnDefs: [
+			{
+				orderable: false,
+				className: "select-checkbox",
+				targets: 0,
+			},
+		],
+		select: {
+			style: "multi",
+		},
+		order: [[1, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+	});
 
+	table_exclusion_criteria = $("#table_exclusion_criteria").DataTable({
+		columnDefs: [
+			{
+				orderable: false,
+				className: "select-checkbox",
+				targets: 0,
+			},
+		],
+		select: {
+			style: "multi",
+		},
+		order: [[1, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+	});
 	$("#edit_status_selection").on("change", function () {
 		let status = this.value;
 		let id_paper = $("#id_paper").val();

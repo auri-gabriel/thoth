@@ -153,40 +153,6 @@ $(document).ready(function () {
 		columnDefs: [{ orderable: false, targets: 2 }],
 	});
 
-	table_inclusion_criteria = $("#table_inclusion_criteria").DataTable({
-		columnDefs: [
-			{
-				orderable: false,
-				className: "select-checkbox",
-				targets: 0,
-			},
-		],
-		select: {
-			style: "multi",
-		},
-		order: [[1, "asc"]],
-		paginate: false,
-		info: false,
-		searching: false,
-	});
-
-	table_exclusion_criteria = $("#table_exclusion_criteria").DataTable({
-		columnDefs: [
-			{
-				orderable: false,
-				className: "select-checkbox",
-				targets: 0,
-			},
-		],
-		select: {
-			style: "multi",
-		},
-		order: [[1, "asc"]],
-		paginate: false,
-		info: false,
-		searching: false,
-	});
-
 	table_papers_quality_rep = $("#table_papers_quality_rep").DataTable({
 		initComplete: function () {
 			let size = this.api().columns().data().length;
