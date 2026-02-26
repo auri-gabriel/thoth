@@ -8,7 +8,8 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build-css": "sass --load-path=node_modules assets/scss/main.scss assets/css/theme.css --no-source-map --style=compressed"
+		"build-css": "sass --load-path=node_modules assets/scss/main.scss assets/css/theme.css --no-source-map --style=compressed",
+		"watch-scss": "sass --load-path=node_modules --watch assets/scss/main.scss:assets/css/theme.css --no-source-map --style=compressed"
 	},
 	"repository": {
 		"type": "git",
