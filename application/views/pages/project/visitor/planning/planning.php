@@ -4,17 +4,17 @@
 		<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
 		<br>
 		<a href="<?= base_url('open/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-outline-primary opt">Overview <i class="fas fa-binoculars"></i></a>
+			class="btn form-inline btn-outline-primary opt">Overview <i class="fas fa-binoculars"></i></a>
 		<a href="<?= base_url('planning/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-primary opt">Planning <i class="fas fa-list"></i></a>
+			class="btn form-inline btn-primary opt">Planning <i class="fas fa-list"></i></a>
 		<a href="<?= base_url('reporting/' . $project->get_id()) ?>"
-		   class="btn form-inline btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
+			class="btn form-inline btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
 		<?php
 		if ($project->get_planning() == 100) {
-			?>
+		?>
 			<a href="<?= base_url('export/' . $project->get_id()) ?>"
-			   class="btn form-inline btn-outline-primary opt">Export <i class="fas fa-file-download"></i></a>
-			<?php
+				class="btn form-inline btn-outline-primary opt">Export <i class="fas fa-file-download"></i></a>
+		<?php
 		}
 		?>
 	</div>
@@ -57,18 +57,18 @@
 					<table id="table_domains" class="table table-responsive-sm">
 						<caption>List of Domains</caption>
 						<thead>
-						<tr>
-							<th>Domain <a onclick="modal_help('modal_help_domain')" class="float-right opt"><i
-										class="fas fa-question-circle "></i></a></th>
-						</tr>
+							<tr>
+								<th>Domain <a onclick="modal_help('modal_help_domain')" class="float-right opt"><i
+											class="fas fa-question-circle "></i></a></th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php
-						foreach ($project->get_domains() as $domain) { ?>
-							<tr>
-								<td><?= $domain ?></td>
-							</tr>
-						<?php } ?>
+							<?php
+							foreach ($project->get_domains() as $domain) { ?>
+								<tr>
+									<td><?= $domain ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -78,17 +78,17 @@
 					<table id="table_languages" class="table table-responsive-sm">
 						<caption>List of Languages</caption>
 						<thead>
-						<tr>
-							<th>Language <a onclick="modal_help('modal_help_languages')" class="float-right opt"><i
-										class="fas fa-question-circle "></i></a></th>
-						</tr>
+							<tr>
+								<th>Language <a onclick="modal_help('modal_help_languages')" class="float-right opt"><i
+											class="fas fa-question-circle "></i></a></th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($project->get_languages() as $language) { ?>
-							<tr>
-								<td><?= $language ?></td>
-							</tr>
-						<?php } ?>
+							<?php foreach ($project->get_languages() as $language) { ?>
+								<tr>
+									<td><?= $language ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -98,17 +98,17 @@
 					<table id="table_study_type" class="table table-responsive-sm">
 						<caption>List of Study Type</caption>
 						<thead>
-						<tr>
-							<th>Study Type <a onclick="modal_help('modal_help_study_type')" class="float-right opt"><i
-										class="fas fa-question-circle "></i></a></th>
-						</tr>
+							<tr>
+								<th>Study Type <a onclick="modal_help('modal_help_study_type')" class="float-right opt"><i
+											class="fas fa-question-circle "></i></a></th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($project->get_study_types() as $types) { ?>
-							<tr>
-								<td><?= $types ?></td>
-							</tr>
-						<?php } ?>
+							<?php foreach ($project->get_study_types() as $types) { ?>
+								<tr>
+									<td><?= $types ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -117,17 +117,17 @@
 					<table id="table_keywords" class="table table-responsive-sm">
 						<caption>List of Keywords</caption>
 						<thead>
-						<tr>
-							<th>Keyword <a onclick="modal_help('modal_help_keyword')" class="float-right opt"><i
-										class="fas fa-question-circle "></i></a></th>
-						</tr>
+							<tr>
+								<th>Keyword <a onclick="modal_help('modal_help_keyword')" class="float-right opt"><i
+											class="fas fa-question-circle "></i></a></th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($project->get_keywords() as $keyword) { ?>
-							<tr>
-								<td><?= $keyword ?></td>
-							</tr>
-						<?php } ?>
+							<?php foreach ($project->get_keywords() as $keyword) { ?>
+								<tr>
+									<td><?= $keyword ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -158,19 +158,19 @@
 			<table id="table_research_question" class="table table-responsive-sm">
 				<caption>List of Research Questions</caption>
 				<thead>
-				<tr>
-					<th>ID</th>
-					<th>Research Question <span onclick="modal_help('modal_help_rq')" class="float-right opt"><i
-								class="fas fa-question-circle "></i></span></th>
-				</tr>
+					<tr>
+						<th>ID</th>
+						<th>Research Question <span onclick="modal_help('modal_help_rq')" class="float-right opt"><i
+									class="fas fa-question-circle "></i></span></th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_research_questions() as $rq) { ?>
-					<tr>
-						<td><?= $rq->get_id() ?></td>
-						<td><?= $rq->get_description() ?></td>
-					</tr>
-				<?php } ?>
+					<?php foreach ($project->get_research_questions() as $rq) { ?>
+						<tr>
+							<td><?= $rq->get_id() ?></td>
+							<td><?= $rq->get_description() ?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>
@@ -184,19 +184,19 @@
 			<table id="table_databases" class="table table-responsive-sm">
 				<caption>List of Databases</caption>
 				<thead>
-				<tr>
-					<th>Database <a onclick="modal_help('modal_help_database')" class="float-right opt"><i
-								class="fas fa-question-circle "></i></a></th>
-				</tr>
+					<tr>
+						<th>Database <a onclick="modal_help('modal_help_database')" class="float-right opt"><i
+									class="fas fa-question-circle "></i></a></th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_databases() as $database) { ?>
-					<tr>
-						<td>
-							<?= $database->get_name() ?>
-						</td>
-					</tr>
-				<?php } ?>
+					<?php foreach ($project->get_databases() as $database) { ?>
+						<tr>
+							<td>
+								<?= $database->get_name() ?>
+							</td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>
@@ -211,31 +211,31 @@
 			<table id="table_search_string" class="table table-responsive-sm">
 				<caption>List of Term</caption>
 				<thead>
-				<tr>
-					<th>Term</th>
-					<th>Synonyms <a onclick="modal_help('modal_help_ss')" class="float-right opt"><i
-								class="fas fa-question-circle "></i></a></th>
-				</tr>
+					<tr>
+						<th>Term</th>
+						<th>Synonyms <a onclick="modal_help('modal_help_ss')" class="float-right opt"><i
+									class="fas fa-question-circle "></i></a></th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_terms() as $term) { ?>
-					<tr>
-						<td><?= $term->get_description() ?></td>
-						<td>
-							<table id="table_<?= $term->get_description() ?>" class="table">
-								<th>Synonym</th>
+					<?php foreach ($project->get_terms() as $term) { ?>
+						<tr>
+							<td><?= $term->get_description() ?></td>
+							<td>
+								<table id="table_<?= $term->get_description() ?>" class="table">
+									<th>Synonym</th>
 
-								<tbody>
-								<?php foreach ($term->get_synonyms() as $synonym) { ?>
-									<tr>
-										<td><?= $synonym ?></td>
-									</tr>
-								<?php } ?>
-								</tbody>
-							</table>
-						</td>
-					</tr>
-				<?php } ?>
+									<tbody>
+										<?php foreach ($term->get_synonyms() as $synonym) { ?>
+											<tr>
+												<td><?= $synonym ?></td>
+											</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>
@@ -248,9 +248,9 @@
 				<?php foreach ($project->get_search_strings() as $search_string) { ?>
 					<div class="form-group" id="div_string_<?= $search_string->get_database()->get_name() ?>">
 						<a target="_blank"
-						   href="<?= $search_string->get_database()->get_link() ?>"><?= $search_string->get_database()->get_name() ?></a>
+							href="<?= $search_string->get_database()->get_link() ?>"><?= $search_string->get_database()->get_name() ?></a>
 						<textarea class="form-control" disabled="true"
-								  id="string_<?= $search_string->get_database()->get_name() ?>"><?= $search_string->get_description() ?></textarea>
+							id="string_<?= $search_string->get_database()->get_name() ?>"><?= $search_string->get_description() ?></textarea>
 					</div>
 				<?php } ?>
 			</div>
@@ -268,7 +268,7 @@
 						class="fas fa-question-circle "></i></a>
 			</div>
 			<textarea rows="8" class="form-control" disabled="true"
-					  id="search_strategy"><?= $project->get_search_strategy() ?></textarea>
+				id="search_strategy"><?= $project->get_search_strategy() ?></textarea>
 			</button>
 			<br>
 			<div class="form-inline container-fluid justify-content-between">
@@ -288,57 +288,57 @@
 			<table id="table_criteria_inclusion" class="table table-responsive-sm">
 				<caption>List of Inclusion Criteria</caption>
 				<thead>
-				<tr>
-					<th>Select</th>
-					<th>ID</th>
-					<th>Criteria</th>
-				</tr>
+					<tr>
+						<th>Select</th>
+						<th>ID</th>
+						<th>Criteria</th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_inclusion_criteria() as $ic) {
-					if ($ic->get_pre_selected()) {
-						$checked = 'Selected';
-					} else {
-						$checked = '';
-					}
+					<?php foreach ($project->get_inclusion_criteria() as $ic) {
+						if ($ic->get_pre_selected()) {
+							$checked = 'Selected';
+						} else {
+							$checked = '';
+						}
 					?>
-					<tr>
-						<td><?= $checked ?></td>
-						<td><?= $ic->get_id() ?></td>
-						<td><?= $ic->get_description() ?></td>
-					</tr>
-				<?php } ?>
+						<tr>
+							<td><?= $checked ?></td>
+							<td><?= $ic->get_id() ?></td>
+							<td><?= $ic->get_description() ?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<div class="form-inline">
 				<label><strong>Inclusion Rule: </strong></label>
 				<span><?= $project->get_inclusion_rule() ?></span>
 			</div>
-			<br/>
+			<br />
 			<label><strong>Exclusion Criteria</strong></label>
 			<table id="table_criteria_exclusion" class="table table-responsive-sm">
 				<caption>List of Exclusion Criteria</caption>
 				<thead>
-				<tr>
-					<th>Select</th>
-					<th>ID</th>
-					<th>Criteria</th>
-				</tr>
+					<tr>
+						<th>Select</th>
+						<th>ID</th>
+						<th>Criteria</th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_exclusion_criteria() as $ec) {
-					if ($ec->get_pre_selected()) {
-						$checked = 'Selected';
-					} else {
-						$checked = '';
-					}
+					<?php foreach ($project->get_exclusion_criteria() as $ec) {
+						if ($ec->get_pre_selected()) {
+							$checked = 'Selected';
+						} else {
+							$checked = '';
+						}
 					?>
-					<tr>
-						<td><?= $checked ?></td>
-						<td><?= $ec->get_id() ?></td>
-						<td><?= $ec->get_description() ?></td>
-					</tr>
-				<?php } ?>
+						<tr>
+							<td><?= $checked ?></td>
+							<td><?= $ec->get_id() ?></td>
+							<td><?= $ec->get_description() ?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<div class="form-inline">
@@ -364,28 +364,28 @@
 				<label><strong>Minimum General Score to Approve: </strong></label>
 				<?php $mini = $project->get_score_min();
 				if ($mini != null) {
-					?> <span><?= $mini->get_description() ?></span>
-					<?php
+				?> <span><?= $mini->get_description() ?></span>
+				<?php
 				}
 				?>
 			</div>
 			<table id="table_general_score" class="table table-responsive-sm">
 				<caption>List of General Score</caption>
 				<thead>
-				<tr>
-					<th>Start Score Interval</th>
-					<th>End Score Interval</th>
-					<th>Score Description</th>
-				</tr>
+					<tr>
+						<th>Start Score Interval</th>
+						<th>End Score Interval</th>
+						<th>Score Description</th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_quality_scores() as $score) { ?>
-					<tr>
-						<td><?= $score->get_start_interval() ?></td>
-						<td><?= $score->get_end_interval() ?></td>
-						<td><?= $score->get_description() ?></td>
-					</tr>
-				<?php } ?>
+					<?php foreach ($project->get_quality_scores() as $score) { ?>
+						<tr>
+							<td><?= $score->get_start_interval() ?></td>
+							<td><?= $score->get_end_interval() ?></td>
+							<td><?= $score->get_description() ?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>
@@ -398,47 +398,47 @@
 			<table id="table_qa" class="table table-responsive-sm">
 				<caption>List of Question Quality</caption>
 				<thead>
-				<tr>
-					<th>ID</th>
-					<th>Description</th>
-					<th>Scores Rules</th>
-					<th>Weight</th>
-					<th>Minimum to Approve</th>
-				</tr>
+					<tr>
+						<th>ID</th>
+						<th>Description</th>
+						<th>Scores Rules</th>
+						<th>Weight</th>
+						<th>Minimum to Approve</th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_questions_quality() as $qa) { ?>
-					<tr>
-						<td><?= $qa->get_id(); ?></td>
-						<td><?= $qa->get_description(); ?></td>
-						<td>
-							<table id="table_<?= $qa->get_id(); ?>" class="table">
-								<th>Score Rule</th>
-								<th>Score</th>
-								<th>Description</th>
-								<tbody>
-								<?php foreach ($qa->get_scores() as $sc) { ?>
-									<tr>
-										<td><?= $sc->get_score_rule(); ?></td>
-										<td><?= $sc->get_score(); ?>%</td>
-										<td><?= $sc->get_description(); ?></td>
-									</tr>
-								<?php } ?>
-								</tbody>
-							</table>
-						</td>
-						<td><?= $qa->get_weight() ?></td>
-						<td>
-							<?php
-							$min = $qa->get_min_to_approve();
-							if (!is_null($min)) {
-								echo  $min->get_score_rule();
-							}
-							?>
-						</td>
+					<?php foreach ($project->get_questions_quality() as $qa) { ?>
+						<tr>
+							<td><?= $qa->get_id(); ?></td>
+							<td><?= $qa->get_description(); ?></td>
+							<td>
+								<table id="table_<?= $qa->get_id(); ?>" class="table">
+									<th>Score Rule</th>
+									<th>Score</th>
+									<th>Description</th>
+									<tbody>
+										<?php foreach ($qa->get_scores() as $sc) { ?>
+											<tr>
+												<td><?= $sc->get_score_rule(); ?></td>
+												<td><?= $sc->get_score(); ?>%</td>
+												<td><?= $sc->get_description(); ?></td>
+											</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							</td>
+							<td><?= $qa->get_weight() ?></td>
+							<td>
+								<?php
+								$min = $qa->get_min_to_approve();
+								if (!is_null($min)) {
+									echo  $min->get_score_rule();
+								}
+								?>
+							</td>
 
-					</tr>
-				<?php } ?>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>
@@ -458,38 +458,38 @@
 			<table id="table_data_extraction" class="table table-responsive-sm">
 				<caption>List of Data Extraction</caption>
 				<thead>
-				<tr>
-					<th>ID</th>
-					<th>Description</th>
-					<th>Type</th>
-					<th>Options</th>
-				</tr>
+					<tr>
+						<th>ID</th>
+						<th>Description</th>
+						<th>Type</th>
+						<th>Options</th>
+					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($project->get_questions_extraction() as $qe) { ?>
-					<tr>
-						<td><?= $qe->get_id(); ?></td>
-						<td><?= $qe->get_description(); ?></td>
-						<td><?= $qe->get_type(); ?></td>
-						<td>
-							<?php if ($qe->get_type() == "Text") { ?>
-						</td>
+					<?php foreach ($project->get_questions_extraction() as $qe) { ?>
+						<tr>
+							<td><?= $qe->get_id(); ?></td>
+							<td><?= $qe->get_description(); ?></td>
+							<td><?= $qe->get_type(); ?></td>
+							<td>
+								<?php if ($qe->get_type() == "Text") { ?>
+							</td>
 						<?php } else { ?>
 							<table id="table_<?= $qe->get_id(); ?>" class="table">
 								<th>Option</th>
 								<tbody>
-								<?php foreach ($qe->get_options() as $op) { ?>
-									<tr>
-										<td><?= $op ?></td>
+									<?php foreach ($qe->get_options() as $op) { ?>
+										<tr>
+											<td><?= $op ?></td>
 
-									</tr>
-								<?php } ?>
+										</tr>
+									<?php } ?>
 								</tbody>
 							</table>
 							</td>
 						<?php } ?>
-					</tr>
-				<?php } ?>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<br>

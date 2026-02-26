@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pattern_Controller extends CI_Controller
 {
@@ -15,10 +15,7 @@ class Pattern_Controller extends CI_Controller
 	/**
 	 *
 	 */
-	public function index()
-	{
-
-	}
+	public function index() {}
 
 	/**
 	 * @param $activity
@@ -57,7 +54,9 @@ class Pattern_Controller extends CI_Controller
 						load_templates($view, $data);
 						break;
 					case 2:
-						load_templates($view . '_visitor', $data);
+						// For visitors, change view path to new structure
+						$visitor_view = preg_replace('/pages\/project\//', 'pages/project/visitor/', $view);
+						load_templates($visitor_view, $data);
 						break;
 				}
 			} else {
@@ -87,7 +86,5 @@ class Pattern_Controller extends CI_Controller
 
 
 		redirect(base_url());
-
 	}
-
 }

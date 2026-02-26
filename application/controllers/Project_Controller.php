@@ -16,7 +16,7 @@ class Project_Controller extends Pattern_Controller
 {
 	/**
 	 * Project overview page
-	 * URL: /project/open/{id}
+	 * URL: /projects/{id}
 	 */
 	public function open($id)
 	{
