@@ -1966,3 +1966,17 @@ function change_new_qa(status, index, size, score, gen, score_rule, colum) {
 			break;
 	}
 }
+let configDataTables = {
+	language: lang,
+	responsive: true,
+	order: [[0, "asc"]],
+	paginate: false,
+	info: false,
+	searching: false,
+	ordering: false,
+};
+
+$(document).ready(function () {
+	table_qa = $("#table_qa").DataTable(configDataTables);
+	table_general_score = $("#table_general_score").DataTable(configDataTables);
+});

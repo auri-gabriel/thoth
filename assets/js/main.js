@@ -112,14 +112,12 @@ $(document).ready(function () {
 		searching: false,
 	});
 
-	table_general_score = $("#table_general_score").DataTable(configDataTables);
 	table_criteria_inclusion = $("#table_criteria_inclusion").DataTable(
 		configDataTables,
 	);
 	table_criteria_exclusion = $("#table_criteria_exclusion").DataTable(
 		configDataTables,
 	);
-	table_qa = $("#table_qa").DataTable(configDataTables);
 	table_data_extraction = $("#table_data_extraction").DataTable(
 		configDataTables,
 	);
