@@ -14,90 +14,48 @@
 						$unc = number_format((float)($count_papers_qa[3] * 100) / $count_papers_qa[5], 2);
 						$rem = number_format((float)($count_papers_qa[4] * 100) / $count_papers_qa[5], 2);
 					?>
-						<h6 class="mt-4">Progress Quality Assessment</h6>
-						<div class="progress mb-3">
-							<div id="prog_acc_qa" class="progress-bar bg-success" role="progressbar"
-								style="width: <?= $acc ?>%"
-								aria-valuenow="<?= $acc ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $acc ?>%
+						<!-- Generic Progress Indicator Bar and Labels for Quality Assessment -->
+						<div class="progress-indicator-container mb-4">
+							<div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+								<h6 class="mb-0 fw-bold">Progress Quality Assessment</h6>
+								<div class="d-flex gap-2 flex-wrap">
+									<span class="badge rounded-pill progress-indicator-badge-acc"><i class="fas fa-check me-1"></i>Accepted: <span id="count_acc_qa"><?= $count_papers_qa[1] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-rej"><i class="fas fa-times me-1"></i>Rejected: <span id="count_rej_qa"><?= $count_papers_qa[2] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-unc"><i class="fas fa-question me-1"></i>Unclassified: <span id="count_unc_qa"><?= $count_papers_qa[3] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-rem"><i class="fas fa-trash-alt me-1"></i>Removed: <span id="count_rem_qa"><?= $count_papers_qa[4] ?></span></span>
+									<span class="badge rounded-pill progress-indicator-badge-total"><i class="fas fa-bars me-1"></i>Total: <span id="count_total_qa"><?= $count_papers_qa[5] ?></span></span>
+								</div>
 							</div>
-							<div id="prog_rej_qa" class="progress-bar bg-danger" role="progressbar"
-								style="width: <?= $rej ?>%"
-								aria-valuenow="<?= $rej ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $rej ?>%
+							<div class="progress progress-indicator-bar" style="height: 1.5rem;">
+								<div id="prog_acc_qa" class="progress-bar progress-indicator-bar-acc" role="progressbar"
+									style="width: <?= $acc ?>%"
+									aria-valuenow="<?= $acc ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $acc ?>%
+								</div>
+								<div id="prog_rej_qa" class="progress-bar progress-indicator-bar-rej" role="progressbar"
+									style="width: <?= $rej ?>%"
+									aria-valuenow="<?= $rej ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $rej ?>%
+								</div>
+								<div id="prog_unc_qa" class="progress-bar progress-indicator-bar-unc" role="progressbar"
+									style="width: <?= $unc ?>%"
+									aria-valuenow="<?= $unc ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $unc ?>%
+								</div>
+								<div id="prog_rem_qa" class="progress-bar progress-indicator-bar-rem" role="progressbar"
+									style="width: <?= $rem ?>%"
+									aria-valuenow="<?= $rem ?>"
+									aria-valuemin="0"
+									aria-valuemax="100">
+									<?= $rem ?>%
+								</div>
 							</div>
-							<div id="prog_unc_qa" class="progress-bar bg-dark" role="progressbar"
-								style="width: <?= $unc ?>%"
-								aria-valuenow="<?= $unc ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $unc ?>%
-							</div>
-							<div id="prog_rem_qa" class="progress-bar bg-info" role="progressbar"
-								style="width: <?= $rem ?>%"
-								aria-valuenow="<?= $rem ?>"
-								aria-valuemin="0"
-								aria-valuemax="100"><?= $rem ?>%
-							</div>
-						</div>
-						<div class="row mb-4">
-							<?php
-							foreach ($count_papers_qa as $key => $value) {
-								switch ($key) {
-									case 1:
-							?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-success text-white"><i class="fas fa-check fa-lg"></i></span>
-												<label class="form-label ms-2">Accepted: <span id="count_acc_qa"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 2:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-danger text-white"><i class="fas fa-times fa-lg"></i></span>
-												<label class="form-label ms-2">Rejected: <span id="count_rej_qa"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 3:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-dark text-white"><i class="fas fa-question fa-lg"></i></span>
-												<label class="form-label ms-2">Unclassified: <span id="count_unc_qa"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 4:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-info text-white"><i class="fas fa-trash-alt fa-lg"></i></span>
-												<label class="form-label ms-2">Removed: <span id="count_rem_qa"><?= $value ?></span></label>
-											</div>
-										</div>
-									<?php
-										break;
-									case 5:
-									?>
-										<div class="col-md-2">
-											<div class="input-group">
-												<span class="input-group-text bg-secondary text-white"><i class="fas fa-bars fa-lg"></i></span>
-												<label class="form-label ms-2">Total: <span id="count_total_qa"><?= $value ?></span></label>
-											</div>
-										</div>
-							<?php
-										break;
-								}
-							}
-							?>
 						</div>
 						<div class="table-responsive mt-4">
 							<table class="table table-hover align-middle" id="table_papers_quality">
