@@ -1,23 +1,5 @@
 <div class="card">
-	<div class="text-center card-header">
-		<h4><?= $project->get_title(); ?></h4>
-		<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
-		<a href="<?= site_url('projects/' . $project->get_id()) ?>"
-			class="btn form-inline btn-outline-primary opt">Overview <i class="fas fa-binoculars"></i></a>
-
-		<a href="<?= site_url('projects/' . $project->get_id() . '/planning') ?>"
-			class="btn form-inline btn-outline-primary opt">Planning <i class="fas fa-list"></i></a>
-		<a href="<?= site_url('projects/' . $project->get_id() . '/reporting') ?>"
-			class="btn form-inline btn-outline-primary opt">Reporting <i class="fas fa-chart-line"></i></a>
-		<?php
-		if ($project->get_planning() == 100) {
-		?>
-			<a href="<?= site_url('projects/' . $project->get_id() . '/export') ?>"
-				class="btn form-inline btn-primary opt">Export <i class="fas fa-file-download"></i></a>
-		<?php
-		}
-		?>
-	</div>
+	<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'export']); ?>
 	<div class="card-body">
 		<div class="row">
 			<div class="col-md-6">
