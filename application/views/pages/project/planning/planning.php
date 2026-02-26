@@ -43,18 +43,18 @@ $this->load->view('modal/modal_keyword');
 $this->load->view('modal/modal_domain');
 
 // Help modals
-$this->load->view('modal/modal_help_domain');
-$this->load->view('modal/modal_help_languages');
-$this->load->view('modal/modal_help_study_type');
-$this->load->view('modal/modal_help_keyword');
-$this->load->view('modal/modal_help_date');
-$this->load->view('modal/modal_help_research_question');
-$this->load->view('modal/modal_help_database');
-$this->load->view('modal/modal_help_ss');
-$this->load->view('modal/modal_help_strings');
-$this->load->view('modal/modal_help_criteria');
-$this->load->view('modal/modal_help_general_score');
-$this->load->view('modal/modal_help_qa');
-$this->load->view('modal/modal_help_data_extraction');
-$this->load->view('modal/modal_help_strategy');
+$this->load->view('modal/help/modal_help_domain');
+$this->load->view('modal/help/modal_help_languages');
+$this->load->view('modal/help/modal_help_study_type');
+$this->load->view('modal/help/modal_help_keyword');
+$this->load->view('modal/help/modal_help_date');
+$this->load->view('modal/help/modal_help_research_question');
+$this->load->view('modal/help/modal_help_database');
+$this->load->view('modal/help/modal_help_ss');
+$this->load->view('modal/help/modal_help_strings');
+$this->load->view('modal/help/modal_help_criteria');
+$this->load->view('modal/help/modal_help_general_score');
+$this->load->view('modal/help/modal_help_qa');
+$this->load->view('modal/help/modal_help_data_extraction');
+$this->load->view('modal/help/modal_help_strategy');
 ?>
