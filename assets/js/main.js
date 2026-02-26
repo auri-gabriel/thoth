@@ -153,66 +153,6 @@ $(document).ready(function () {
 		columnDefs: [{ orderable: false, targets: 2 }],
 	});
 
-	table_papers_extraction = $("#table_papers_extraction").DataTable({
-		initComplete: function () {
-			for (let i = 3; i < 5; i++) {
-				this.api()
-					.columns(i)
-					.every(function () {
-						let column = this;
-						let select = $(
-							'<select class="form-control" ><option value=""></option></select>',
-						)
-							.appendTo($(column.footer()).empty())
-							.on("change", function () {
-								let val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-								column.search(val ? "^" + val + "$" : "", true, false).draw();
-							});
-
-						column
-							.data()
-							.unique()
-							.sort()
-							.each(function (d, j) {
-								select.append('<option value="' + d + '">' + d + "</option>");
-							});
-					});
-			}
-			this.api()
-				.columns(5)
-				.every(function () {
-					let column = this;
-					let select = $(
-						'<select class="form-control" ><option value=""></option></select>',
-					)
-						.appendTo($(column.footer()).empty())
-						.on("change", function () {
-							let val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-							column.search(val ? "^" + val + "$" : "", true, false).draw();
-						});
-
-					select.append('<option value="Done">Done</option>');
-					select.append('<option value="To Do">To Do</option>');
-					select.append('<option value="Removed">Removed</option>');
-				});
-		},
-		responsive: true,
-		order: [[0, "asc"]],
-		select: {
-			style: "single",
-		},
-		dom: "Bfrtip",
-		buttons: [
-			{ extend: "copy", text: '<i class="fas fa-copy fa-2x"></i>' },
-			{ extend: "csv", text: '<i class="fas fa-file-csv fa-2x"></i>' },
-			{ extend: "excel", text: '<i class="fas fa-file-excel fa-2x"></i>' },
-			{ extend: "pdf", text: '<i class="fas fa-file-pdf fa-2x"></i>' },
-			{ extend: "print", text: '<i class="fas fa-print fa-2x"></i>' },
-		],
-	});
-
 	// Bootstrap 5 tab navigation with hash support
 	if (location.hash) {
 		var triggerEl = document.querySelector("a[href='" + location.hash + "']");
