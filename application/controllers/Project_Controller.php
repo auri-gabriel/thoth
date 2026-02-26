@@ -236,7 +236,7 @@ class Project_Controller extends Pattern_Controller
 	 * Add research members page
 	 * URL: /project/add_research/{id}
 	 */
-	public function add_research($id)
+	public function add_member($id)
 	{
 		try {
 			$this->validate_level($id, [1]);
@@ -246,7 +246,7 @@ class Project_Controller extends Pattern_Controller
 			$data['users']   = $this->Project_Model->get_users($id);
 			$data['levels']  = $this->Project_Model->get_levels();
 
-			$this->load_views('pages/project/project_add_research', $data);
+			$this->load_views('pages/project/project_add_member', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
