@@ -66,9 +66,9 @@
 	</div>
 </div>
 <script>
-	let questions = [];
-	let options = [];
-	let question = null;
+	var questions = [];
+	var options = [];
+	var question = null;
 	<?php foreach ($project->get_questions_extraction() as $qe) { ?>
 	options = [];
 	<?php foreach ($qe->get_options() as $op) { ?>

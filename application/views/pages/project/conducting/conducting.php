@@ -32,7 +32,7 @@
 
 <?php
 // Conducting modals
-$this->load->view('modal/modal_paper_selection');
-$this->load->view('modal/modal_paper_qa');
-$this->load->view('modal/modal_paper_extraction');
+// $this->load->view('modal/modal_paper_selection');
+// $this->load->view('modal/modal_paper_qa');
+// $this->load->view('modal/modal_paper_extraction');
 ?>
