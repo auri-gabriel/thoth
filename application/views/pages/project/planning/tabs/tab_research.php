@@ -60,3 +60,4 @@
 		<a href="#tab_databases" class="btn btn-primary" data-bs-toggle="tooltip" title="Go to next step">Next <i class="fas fa-forward ms-1"></i></a>
 	</div>
 </div>
+<script src="<?= base_url('assets/js/research_question.js'); ?>"></script>

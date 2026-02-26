@@ -112,9 +112,6 @@ $(document).ready(function () {
 		searching: false,
 	});
 
-	table_research_question = $("#table_research_question").DataTable(
-		configDataTables,
-	);
 	table_databases = $("#table_databases").DataTable(configDataTables);
 	table_search_string = $("#table_search_string").DataTable(configDataTables);
 	table_general_score = $("#table_general_score").DataTable(configDataTables);
