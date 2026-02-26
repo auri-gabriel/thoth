@@ -48,9 +48,9 @@ class Pattern_Controller extends CI_Controller
 		if ($this->session->logged_in) {
 			if (!is_null($level)) {
 				switch ($level) {
-					case 1:
-					case 3:
-					case 4:
+					case 1: // Admin
+					case 3: // Researcher
+					case 4: // Reviser
 						load_templates($view, $data);
 						break;
 					case 2:
