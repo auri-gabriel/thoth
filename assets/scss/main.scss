@@ -2,4 +2,6 @@
 @import "components/tabnav";
 @import "components/cardheader";
 // Add Thoth-specific customizations below as needed
+
 @import "../scss/_progress-indicator";
+@import "components/project-overview";
