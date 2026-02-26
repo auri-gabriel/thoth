@@ -2,28 +2,28 @@
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_research">
 	<div class="row justify-content-center">
 
-		<div class="card shadow-sm bg-light">
+		<div class="card shadow-sm">
 			<div class="card-header bg-transparent border-bottom d-flex align-items-center py-3">
 				<strong>Research Questions</strong>
 				<span onclick="modal_help('modal_help_rq')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about research questions" data-bs-toggle="tooltip" title="What are research questions?"><i class="fas fa-question-circle"></i></span>
 			</div>
 			<div class="card-body">
 				<?php if (!$readonly): ?>
-				<div class="row g-3 mb-2">
-					<div class="col-md-2">
-						<label for="id_research_question" class="form-label">ID</label>
-						<input type="text" id="id_research_question" placeholder="ID" class="form-control" aria-label="Research Question ID">
-					</div>
-					<div class="col-md-8">
-						<label for="description_research_question" class="form-label">Description</label>
-						<div class="input-group">
-							<input type="text" id="description_research_question" placeholder="Description" class="form-control" aria-label="Research Question Description">
-							<button class="btn btn-success" type="button" onclick="add_research_question();" data-bs-toggle="tooltip" title="Add research question">
-								<i class="fas fa-plus"></i>
-							</button>
+					<div class="row g-3 mb-2">
+						<div class="col-md-2">
+							<label for="id_research_question" class="form-label">ID</label>
+							<input type="text" id="id_research_question" placeholder="ID" class="form-control" aria-label="Research Question ID">
+						</div>
+						<div class="col-md-8">
+							<label for="description_research_question" class="form-label">Description</label>
+							<div class="input-group">
+								<input type="text" id="description_research_question" placeholder="Description" class="form-control" aria-label="Research Question Description">
+								<button class="btn btn-success" type="button" onclick="add_research_question();" data-bs-toggle="tooltip" title="Add research question">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
 				<?php endif; ?>
 				<div class="table-responsive mt-3">
 					<table id="table_research_question" class="table table-bordered table-hover align-middle mb-0">
@@ -41,10 +41,10 @@
 									<td><?= $rq->get_id() ?></td>
 									<td><?= $rq->get_description() ?></td>
 									<?php if (!$readonly): ?>
-									<td class="text-end">
-										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_research_question($(this).parents('tr'));"><i class="fas fa-edit"></i></button>
-										<button class="btn btn-outline-danger btn-sm opt" onClick="delete_research_question($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
-									</td>
+										<td class="text-end">
+											<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_research_question($(this).parents('tr'));"><i class="fas fa-edit"></i></button>
+											<button class="btn btn-outline-danger btn-sm opt" onClick="delete_research_question($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
+										</td>
 									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>

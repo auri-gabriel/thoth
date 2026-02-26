@@ -6,24 +6,25 @@
 		<div class="card-body bg-light">
 			<h4>Conducting</h4>
 			<?php $this->load->view('pages/project/conducting/partials/tab_nav'); ?>
-		</div>
-		<div class="tab-content p-3">
-			<?php if ($project->get_planning() == 100) { ?>
-				<div class="tab-pane fade show active" id="tab_import" role="tabpanel">
-					<?php $this->load->view('pages/project/conducting/tabs/tab_import'); ?>
-				</div>
-				<div class="tab-pane fade" id="tab_selection" role="tabpanel">
-					<?php $this->load->view('pages/project/conducting/tabs/tab_selection'); ?>
-				</div>
-				<div class="tab-pane fade" id="tab_quality" role="tabpanel">
-					<?php $this->load->view('pages/project/conducting/tabs/tab_quality'); ?>
-				</div>
-				<div class="tab-pane fade" id="tab_extraction" role="tabpanel">
-					<?php $this->load->view('pages/project/conducting/tabs/tab_data_extraction'); ?>
-				</div>
-			<?php } else { ?>
-				<?php $this->load->view('pages/project/conducting/partials/alert_incomplete'); ?>
-			<?php } ?>
+
+			<div class="tab-content p-3">
+				<?php if ($project->get_planning() == 100) { ?>
+					<div class="tab-pane fade show active" id="tab_import" role="tabpanel">
+						<?php $this->load->view('pages/project/conducting/tabs/tab_import'); ?>
+					</div>
+					<div class="tab-pane fade" id="tab_selection" role="tabpanel">
+						<?php $this->load->view('pages/project/conducting/tabs/tab_selection'); ?>
+					</div>
+					<div class="tab-pane fade" id="tab_quality" role="tabpanel">
+						<?php $this->load->view('pages/project/conducting/tabs/tab_quality'); ?>
+					</div>
+					<div class="tab-pane fade" id="tab_extraction" role="tabpanel">
+						<?php $this->load->view('pages/project/conducting/tabs/tab_data_extraction'); ?>
+					</div>
+				<?php } else { ?>
+					<?php $this->load->view('pages/project/conducting/partials/alert_incomplete'); ?>
+				<?php } ?>
+			</div>
 		</div>
 		<br>
 	</div>

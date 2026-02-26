@@ -2,7 +2,7 @@
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_search_string">
 	<div class="row justify-content-center">
 
-		<div class="card shadow-sm bg-light">
+		<div class="card shadow-sm">
 			<div class="card-header bg-transparent border-bottom d-flex align-items-center py-3">
 				<strong>Search String</strong>
 				<a onclick="modal_help('modal_help_ss')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about search string" data-bs-toggle="tooltip" title="What is a search string?"><i class="fas fa-question-circle"></i></a>
@@ -10,43 +10,43 @@
 			<div class="card-body">
 
 				<?php if (!$readonly): ?>
-				<!-- Terms -->
-				<label class="form-label fw-semibold mb-2">Term</label>
-				<div class="row g-3 mb-4">
-					<div class="col-md-4">
-						<div class="input-group">
-							<input type="text" class="form-control" id="term" placeholder="Add new term" aria-label="Term">
-							<button class="btn btn-success" type="button" onclick="add_term();" data-bs-toggle="tooltip" title="Add term">
-								<i class="fas fa-plus"></i>
-							</button>
+					<!-- Terms -->
+					<label class="form-label fw-semibold mb-2">Term</label>
+					<div class="row g-3 mb-4">
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" id="term" placeholder="Add new term" aria-label="Term">
+								<button class="btn btn-success" type="button" onclick="add_term();" data-bs-toggle="tooltip" title="Add term">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<!-- Synonyms -->
-				<label class="form-label fw-semibold mb-2">Synonym</label>
-				<div class="row g-3 mb-2">
-					<div class="col-md-4">
-						<label for="list_term" class="form-label text-muted small">Select Term</label>
-						<select class="form-select" id="list_term" onchange="related_terms(this.value);" aria-label="Select term">
-							<option value="" disabled selected>Select term</option>
-							<?php foreach ($project->get_terms() as $term): ?>
-								<option value="<?= $term->get_description() ?>"><?= $term->get_description() ?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label for="synonym" class="form-label text-muted small">Synonym</label>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Add synonym" id="synonym" aria-label="Synonym">
-							<button class="btn btn-success" type="button" onclick="add_synonym();" data-bs-toggle="tooltip" title="Add synonym">
-								<i class="fas fa-plus"></i>
-							</button>
+					<!-- Synonyms -->
+					<label class="form-label fw-semibold mb-2">Synonym</label>
+					<div class="row g-3 mb-2">
+						<div class="col-md-4">
+							<label for="list_term" class="form-label text-muted small">Select Term</label>
+							<select class="form-select" id="list_term" onchange="related_terms(this.value);" aria-label="Select term">
+								<option value="" disabled selected>Select term</option>
+								<?php foreach ($project->get_terms() as $term): ?>
+									<option value="<?= $term->get_description() ?>"><?= $term->get_description() ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for="synonym" class="form-label text-muted small">Synonym</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Add synonym" id="synonym" aria-label="Synonym">
+								<button class="btn btn-success" type="button" onclick="add_synonym();" data-bs-toggle="tooltip" title="Add synonym">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div id="related-terms" class="mb-3"></div>
+					<div id="related-terms" class="mb-3"></div>
 				<?php endif; ?>
 
 				<div class="table-responsive mt-4">
@@ -76,10 +76,10 @@
 													<tr>
 														<td><?= $synonym ?></td>
 														<?php if (!$readonly): ?>
-														<td class="text-end">
-															<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_synonym(this)"><i class="fas fa-edit"></i></button>
-															<button class="btn btn-outline-danger btn-sm" onClick="delete_synonym(this)"><i class="far fa-trash-alt"></i></button>
-														</td>
+															<td class="text-end">
+																<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_synonym(this)"><i class="fas fa-edit"></i></button>
+																<button class="btn btn-outline-danger btn-sm" onClick="delete_synonym(this)"><i class="far fa-trash-alt"></i></button>
+															</td>
 														<?php endif; ?>
 													</tr>
 												<?php endforeach; ?>
@@ -87,10 +87,10 @@
 										</table>
 									</td>
 									<?php if (!$readonly): ?>
-									<td class="text-end">
-										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_term($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
-										<button class="btn btn-outline-danger btn-sm" onClick="delete_term($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
-									</td>
+										<td class="text-end">
+											<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_term($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
+											<button class="btn btn-outline-danger btn-sm" onClick="delete_term($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
+										</td>
 									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
@@ -111,9 +111,9 @@
 							</a>
 							<textarea class="form-control mb-2" id="string_<?= $search_string->get_database()->get_name() ?>" rows="4" aria-label="String for <?= $search_string->get_database()->get_name() ?>" <?= $readonly ? 'readonly' : '' ?>><?= $search_string->get_description() ?></textarea>
 							<?php if (!$readonly): ?>
-							<button type="button" class="btn btn-primary btn-sm opt" onclick="generate_string('<?= $search_string->get_database()->get_name() ?>');" data-bs-toggle="tooltip" title="Generate string">
-								<i class="fas fa-magic me-1"></i> Generate
-							</button>
+								<button type="button" class="btn btn-primary btn-sm opt" onclick="generate_string('<?= $search_string->get_database()->get_name() ?>');" data-bs-toggle="tooltip" title="Generate string">
+									<i class="fas fa-magic me-1"></i> Generate
+								</button>
 							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>

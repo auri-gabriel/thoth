@@ -4,30 +4,31 @@
 		<div class="card-body bg-light">
 			<h4>Reporting</h4>
 			<?php $this->load->view('pages/project/reporting/partials/tab_nav'); ?>
-		</div>
-		<div class="tab-content p-3">
-			<div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
-				<?php $this->load->view('pages/project/reporting/tabs/tab_overview'); ?>
-			</div>
-			<div class="tab-pane fade container-fluid" id="tab_import" role="tabpanel" aria-labelledby="tab_import-tab">
-				<div class="card">
-					<div class="card-body">
-						<div id="import_tab_papers_per_database"></div>
+
+			<div class="tab-content p-3">
+				<div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
+					<?php $this->load->view('pages/project/reporting/tabs/tab_overview'); ?>
+				</div>
+				<div class="tab-pane fade container-fluid" id="tab_import" role="tabpanel" aria-labelledby="tab_import-tab">
+					<div class="card">
+						<div class="card-body">
+							<div id="import_tab_papers_per_database"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="tab-pane fade container-fluid" id="tab_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
-				<?php $this->load->view('pages/project/reporting/tabs/tab_selection'); ?>
-			</div>
-			<div class="tab-pane fade container-fluid" id="tab_quality" role="tabpanel" aria-labelledby="tab_quality-tab">
-				<?php $this->load->view('pages/project/reporting/tabs/tab_quality'); ?>
-			</div>
-			<?php if (isset($project) && $project->get_extraction() > 0): ?>
-				<div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
-					<div id="extraction_content"></div>
-					<?php $this->load->view('pages/project/reporting/tabs/tab_extraction'); ?>
+				<div class="tab-pane fade container-fluid" id="tab_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
+					<?php $this->load->view('pages/project/reporting/tabs/tab_selection'); ?>
 				</div>
-			<?php endif; ?>
+				<div class="tab-pane fade container-fluid" id="tab_quality" role="tabpanel" aria-labelledby="tab_quality-tab">
+					<?php $this->load->view('pages/project/reporting/tabs/tab_quality'); ?>
+				</div>
+				<?php if (isset($project) && $project->get_extraction() > 0): ?>
+					<div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
+						<div id="extraction_content"></div>
+						<?php $this->load->view('pages/project/reporting/tabs/tab_extraction'); ?>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
 	</div>
 </div>
