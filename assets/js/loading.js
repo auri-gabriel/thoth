@@ -11,7 +11,6 @@ const exibe_loading = (remover_automatico = null) => {
 	Swal.fire({
 		icon: "error",
 		title: "Loading Error",
-		text: message,
 	});
 
 	if (document.getElementById("loading")) {
