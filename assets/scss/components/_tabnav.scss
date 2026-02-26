@@ -6,6 +6,7 @@
 .modern-tabs {
 	gap: 0.5rem;
 	.modern-tab {
+		height: 100%;
 		border-radius: 0; // No rounded corners
 		transition:
 			background 0.2s,
