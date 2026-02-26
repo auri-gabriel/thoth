@@ -86,7 +86,7 @@
 	<script src="<?= base_url('assets/js/loading.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/main.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/title.js'); ?>"></script>
-	<script src="<?= base_url('assets/js/database.js'); ?>"></script>
+
 	<script src="<?= base_url('assets/js/search_string.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/criteria.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/project.js'); ?>"></script>
