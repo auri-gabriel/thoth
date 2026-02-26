@@ -82,10 +82,6 @@ Follow these steps to set up and run Thoth locally using Docker:
 
 ---
 
-For additional setup details, troubleshooting, and advanced configuration, see [DOCKER_SETUP.md](DOCKER_SETUP.md).
-
----
-
 ## Contributing
 
 Contributions are welcome! Please see [contributing.md](contributing.md) for guidelines.
