@@ -175,7 +175,7 @@ function edit_term() {
 
 function validate_term(term, index) {
 	if (!term) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The term can not be empty!",
@@ -188,7 +188,7 @@ function validate_term(term, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (term.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The term has already been registered!",
@@ -431,7 +431,7 @@ function edit_synonym() {
 
 function validate_synonym(term, syn, id) {
 	if (!term) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The term can not be empty!",
@@ -440,7 +440,7 @@ function validate_synonym(term, syn, id) {
 	}
 
 	if (!syn) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The synonymous can not be empty!",
@@ -455,7 +455,7 @@ function validate_synonym(term, syn, id) {
 			syn.toLowerCase().trim() ==
 			rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 		) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The synonym has already been registered!",
@@ -538,7 +538,7 @@ function generate_string(database) {
 
 function validate_search_strategy(search_strategy) {
 	if (!search_strategy) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The search string can not be empty!",

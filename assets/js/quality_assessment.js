@@ -106,7 +106,7 @@ function validate_general_quality_score(
 	index,
 ) {
 	if (!start_interval) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start interval can not be empty!",
@@ -115,7 +115,7 @@ function validate_general_quality_score(
 	}
 
 	if (parseFloat(start_interval) < 0) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start interval can not be less than 0!",
@@ -124,7 +124,7 @@ function validate_general_quality_score(
 	}
 
 	if (!end_interval) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end interval can not be empty!",
@@ -133,7 +133,7 @@ function validate_general_quality_score(
 	}
 
 	if (parseFloat(end_interval) < 0.1) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end interval can not be less than 0.1!",
@@ -142,7 +142,7 @@ function validate_general_quality_score(
 	}
 
 	if (!general_score_desc) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -151,7 +151,7 @@ function validate_general_quality_score(
 	}
 
 	if (start_interval >= end_interval) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "Beginning of the interval must be greater than the end of the same interval",
@@ -164,7 +164,7 @@ function validate_general_quality_score(
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (start_interval == data[i][0]) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The start interval has already been registered!",
@@ -173,7 +173,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval >= data[i][0] && end_interval <= data[i][1]) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The range can not be within another!",
@@ -181,7 +181,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval <= data[i][1] && end_interval >= data[i][1]) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The beginning of the interval can not be within another!",
@@ -189,7 +189,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval <= data[i][0] && end_interval >= data[i][0]) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "End of range can not be within another!",
@@ -205,7 +205,7 @@ function validate_general_quality_score(
 				general_score_desc.toLowerCase().trim() ==
 				data[i][2].toLowerCase().trim()
 			) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -302,7 +302,7 @@ function edit_min_score(element) {
 	let id_project = $("#id_project").val();
 
 	if (score == "null") {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Score Null",
 			html: "The <strong>score min</strong> can not be empty!",
@@ -472,7 +472,7 @@ function delete_qa(value) {
 
 function validate_qa(id, qa, weight, index) {
 	if (!id) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The ID can not be empty!",
@@ -481,7 +481,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!validate_text(id)) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",
@@ -490,7 +490,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!qa) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -499,7 +499,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!weight) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight can not be empty!",
@@ -508,7 +508,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (parseFloat(weight) < 1) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight can not be less than 1!",
@@ -525,7 +525,7 @@ function validate_qa(id, qa, weight, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The ID has already been registered!",
@@ -543,7 +543,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (s > max) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight must be less than the maximum overall score!",
@@ -554,7 +554,7 @@ function validate_qa(id, qa, weight, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (qa.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -790,7 +790,7 @@ function validate_score_quality(
 	index,
 ) {
 	if (!score_rule) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The score rule can not be empty!",
@@ -799,7 +799,7 @@ function validate_score_quality(
 	}
 
 	if (!score) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The score can not be empty!",
@@ -808,7 +808,7 @@ function validate_score_quality(
 	}
 
 	if (!description) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -824,7 +824,7 @@ function validate_score_quality(
 				score_rule.toLowerCase().trim() ==
 				rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 			) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The score rule has already been registered!",
@@ -840,7 +840,7 @@ function validate_score_quality(
 				description.toLowerCase().trim() ==
 				rows[i].cells.item(2).innerHTML.toLowerCase().trim()
 			) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -853,7 +853,7 @@ function validate_score_quality(
 	for (let i = 0; i < size; i++) {
 		if (i != index) {
 			if (score.trim() + "%" == rows[i].cells.item(1).innerHTML.trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The score has already been registered!",

@@ -84,7 +84,7 @@ function add_research() {
 
 function validate_add_research(email, level) {
 	if (!email) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The email can not be empty!",
@@ -92,7 +92,7 @@ function validate_add_research(email, level) {
 		return false;
 	}
 	if (!level) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The level can not be empty!",
@@ -149,7 +149,7 @@ function edit_project() {
 
 function validate_edit_project(objectives, description, title) {
 	if (!title) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The title can not be empty!",
@@ -157,7 +157,7 @@ function validate_edit_project(objectives, description, title) {
 		return false;
 	}
 	if (!description) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -165,7 +165,7 @@ function validate_edit_project(objectives, description, title) {
 		return false;
 	}
 	if (!objectives) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The objectives can not be empty!",

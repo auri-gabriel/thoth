@@ -149,7 +149,7 @@ function edit_domain() {
 
 function validate_domain(domain) {
 	if (!domain) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The domain can not be empty!",
@@ -161,7 +161,7 @@ function validate_domain(domain) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (domain.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The domain has already been registered!",
@@ -213,7 +213,7 @@ function add_language() {
 
 function validate_language(language) {
 	if (!language) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The language can not be empty!",
@@ -225,7 +225,7 @@ function validate_language(language) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (language.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The language has already been registered!",
@@ -318,7 +318,7 @@ function add_study_type() {
 
 function validate_study_type(study_type) {
 	if (!study_type) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The study type can not be empty!",
@@ -330,7 +330,7 @@ function validate_study_type(study_type) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (study_type.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The study type has already been registered!",
@@ -491,7 +491,7 @@ function edit_keyword() {
 
 function validate_keywords(keyword) {
 	if (!keyword) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The keyword can not be empty!",
@@ -503,7 +503,7 @@ function validate_keywords(keyword) {
 
 	for (let i = 0; i < data.length; i++) {
 		if (keyword.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The keyword has already been registered!",
@@ -595,7 +595,7 @@ function add_date() {
 
 function validate_date(start_date, end_date) {
 	if (!start_date) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start date can not be empty!",
@@ -604,7 +604,7 @@ function validate_date(start_date, end_date) {
 	}
 
 	if (!end_date) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end date can not be empty!",
@@ -613,7 +613,7 @@ function validate_date(start_date, end_date) {
 	}
 
 	if (!(start_date < end_date)) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end date can not be greater than start date!",

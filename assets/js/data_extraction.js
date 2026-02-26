@@ -90,7 +90,7 @@ function validate_question_extraction(id, desc, type, index) {
 	}
 
 	if (!validate_text(id)) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",

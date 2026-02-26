@@ -3,7 +3,7 @@ function add_database() {
 	let id_project = $("#id_project").val();
 
 	if (!databases) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The database can not be empty!",
@@ -15,7 +15,7 @@ function add_database() {
 
 	for (let i = 0; i < data.length; i++) {
 		if (databases.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The database has already been registered!",
@@ -120,7 +120,7 @@ function new_database() {
 	let link = $("#new_database_link").val();
 
 	if (!database) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The database can not be empty!",
@@ -129,7 +129,7 @@ function new_database() {
 	}
 
 	if (!link) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The link can not be empty!",
@@ -141,7 +141,7 @@ function new_database() {
 
 	for (let i = 0; i < data.length; i++) {
 		if (database.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			swal({
+			Swal.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The database has already been registered!",

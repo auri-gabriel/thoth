@@ -113,7 +113,7 @@ function edit_research() {
 
 function validate_research(id, description, index) {
 	if (!id) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The ID of research question can not be empty!",
@@ -122,7 +122,7 @@ function validate_research(id, description, index) {
 	}
 
 	if (!description) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description of research question can not be empty!",
@@ -131,7 +131,7 @@ function validate_research(id, description, index) {
 	}
 
 	if (!validate_text(id)) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",
@@ -144,7 +144,7 @@ function validate_research(id, description, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The ID of research question has already been registered!",
@@ -156,7 +156,7 @@ function validate_research(id, description, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (description.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				swal({
+				Swal.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description of research question has already been registered!",

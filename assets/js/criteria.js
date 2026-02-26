@@ -188,7 +188,7 @@ function validate_criteria(id, description, type, index) {
 		return false;
 	}
 	if (!type) {
-		Swal({
+		Swal.fire({
 			title: "Type Empty",
 			html: "<strong>Description</strong> field is empty",
 			type: "warning",
@@ -199,7 +199,7 @@ function validate_criteria(id, description, type, index) {
 	}
 
 	if (!validate_text(id)) {
-		swal({
+		Swal.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",
