@@ -8,12 +8,17 @@ const exibe_loading = (remover_automatico = null) => {
 		throw "argument should be an integer";
 		return;
 	}
+	Swal.fire({
+		icon: "error",
+		title: "Loading Error",
+		text: message,
+	});
 
-	if( document.getElementById("loading") ){
+	if (document.getElementById("loading")) {
 		return;
 	}
 
-	const bg = document.createElement('div');
+	const bg = document.createElement("div");
 	bg.id = "loading";
 	bg.style.zIndex = "9999";
 	bg.style.display = "flex";
@@ -30,23 +35,19 @@ const exibe_loading = (remover_automatico = null) => {
 	loading_gif.src = base_url + "assets/img/loading.gif";
 	loading_gif.onload = () => {
 		bg.appendChild(loading_gif);
-	}
+	};
 
 	document.body.appendChild(bg);
-
 
 	if (remover_automatico) {
 		setTimeout(remove_loading, remover_automatico);
 	}
-
 };
-
 
 const remove_loading = () => {
 	/*
 		Remove loading GIF
 	*/
 	const bg = document.getElementById("loading");
-	if( bg )
-		bg.parentNode.removeChild(bg);
+	if (bg) bg.parentNode.removeChild(bg);
 };

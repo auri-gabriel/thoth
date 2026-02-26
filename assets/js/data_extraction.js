@@ -18,7 +18,7 @@ function add_question_extraction() {
 			type: type,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -79,7 +79,7 @@ function add_question_extraction() {
 
 function validate_question_extraction(id, desc, type, index) {
 	if (!id) {
-		Swal({
+		Swal.fire({
 			title: "ID Empty",
 			html: "<strong>ID</strong> field is empty",
 			type: "warning",

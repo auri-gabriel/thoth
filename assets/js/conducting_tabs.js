@@ -17,7 +17,7 @@ $(document).ready(function () {
 	var tabEndpoints = {
 		"#tab_import": "/projects/conducting/import",
 		"#tab_selection": "/projects/conducting/selection",
-		"#tab_quality": "/projects/conducting/quality",
+					Swal.fire({
 		"#tab_extraction": "/projects/conducting/extraction",
 	};
 

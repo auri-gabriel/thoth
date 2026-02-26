@@ -145,7 +145,7 @@ $(document).ready(function () {
 								status: "4",
 							},
 							error: function () {
-								Swal({
+								Swal.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -174,7 +174,7 @@ $(document).ready(function () {
 									);
 									select.add(op);
 								}
-								Swal({
+								Swal.fire({
 									title: "Success",
 									html:
 										"The <strong>" +

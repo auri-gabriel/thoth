@@ -10,19 +10,19 @@ function add_research() {
 
 	$.ajax({
 		type: "POST",
-		url: base_url + 'Project_Controller/add_member/',
+		url: base_url + "Project_Controller/add_member/",
 		data: {
 			id_project: id_project,
 			email: email,
-			level: level
+			level: level,
 		},
 		error: function () {
-			Swal({
-				type: 'error',
-				title: 'Error',
+			Swal.fire({
+				type: "error",
+				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 				showCancelButton: false,
-				confirmButtonText: 'Ok'
+				confirmButtonText: "Ok",
 			});
 		},
 		success: function (name) {
@@ -49,46 +49,53 @@ function add_research() {
 					break;
 			}
 
+			table_members.row
+				.add([
+					name,
+					email,
+					'<select class="form-control" onchange="edit_level(this)">' +
+						'<option value="Viewer"  ' +
+						viw +
+						">Viewer</option>" +
+						'<option value="Researcher" ' +
+						res +
+						">Researcher</option>" +
+						'<option value="Reviser" ' +
+						rev +
+						">Reviser</option>" +
+						"</select>",
+					'<button class="btn btn-danger"' +
+						"onClick=\"delete_member($(this).parents('tr'))\">" +
+						'<span class="far fa-trash-alt"></span>' +
+						"</button>",
+				])
+				.draw();
 
-			table_members.row.add([
-				name,
-				email,
-				'<select class="form-control" onchange="edit_level(this)">' +
-				'<option value="Viewer"  ' + viw + '>Viewer</option>' +
-				'<option value="Researcher" ' + res + '>Researcher</option>' +
-				'<option value="Reviser" ' + rev + '>Reviser</option>' +
-				'</select>',
-				'<button class="btn btn-danger"' +
-				'onClick="delete_member($(this).parents(\'tr\'))">' +
-				'<span class="far fa-trash-alt"></span>' +
-				'</button>'
-			]).draw();
-
-			Swal({
-				title: 'Add member',
+			Swal.fire({
+				title: "Add member",
 				html: "The <strong>member</strong> was added",
-				type: 'success',
+				type: "success",
 				showCancelButton: false,
-				confirmButtonText: 'Ok'
+				confirmButtonText: "Ok",
 			});
-		}
+		},
 	});
 }
 
 function validate_add_research(email, level) {
 	if (!email) {
 		swal({
-			type: 'warning',
-			title: 'Warning',
-			text: 'The email can not be empty!'
+			type: "warning",
+			title: "Warning",
+			text: "The email can not be empty!",
 		});
 		return false;
 	}
 	if (!level) {
 		swal({
-			type: 'warning',
-			title: 'Warning',
-			text: 'The level can not be empty!'
+			type: "warning",
+			title: "Warning",
+			text: "The level can not be empty!",
 		});
 		return false;
 	}
@@ -111,57 +118,57 @@ function edit_project() {
 
 	$.ajax({
 		type: "POST",
-		url: base_url + 'Project_Controller/edited_project/',
+		url: base_url + "Project_Controller/edited_project/",
 		data: {
 			id_project: id_project,
 			objectives: objectives,
 			description: description,
-			title: title
+			title: title,
 		},
 		error: function () {
 			Swal({
-				type: 'error',
-				title: 'Error',
+				type: "error",
+				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 				showCancelButton: false,
-				confirmButtonText: 'Ok'
+				confirmButtonText: "Ok",
 			});
 		},
 		success: function () {
-			$("#title_project").text('Edit ' + title);
+			$("#title_project").text("Edit " + title);
 			Swal({
-				title: 'Success',
+				title: "Success",
 				text: "The project was edited",
-				type: 'success',
+				type: "success",
 				showCancelButton: false,
-				confirmButtonText: 'Ok'
+				confirmButtonText: "Ok",
 			});
-		}
+		},
 	});
 }
 
 function validate_edit_project(objectives, description, title) {
 	if (!title) {
 		swal({
-			type: 'warning',
-			title: 'Warning',
-			text: 'The title can not be empty!'
+			type: "warning",
+			title: "Warning",
+			text: "The title can not be empty!",
 		});
 		return false;
 	}
 	if (!description) {
 		swal({
-			type: 'warning',
-			title: 'Warning',
-			text: 'The description can not be empty!'
+			type: "warning",
+			title: "Warning",
+			text: "The description can not be empty!",
 		});
 		return false;
 	}
 	if (!objectives) {
 		swal({
-			type: 'warning',
-			title: 'Warning',
-			text: 'The objectives can not be empty!'
+			type: "warning",
+			title: "Warning",
+			text: "The objectives can not be empty!",
 		});
 		return false;
 	}
@@ -171,40 +178,37 @@ function validate_edit_project(objectives, description, title) {
 function delete_project(id, value) {
 	let row = table_my_projects.row(value);
 	Swal.fire({
-		title: 'Are you sure?',
-		text: "You will not be able to reverse this," +
+		title: "Are you sure?",
+		text:
+			"You will not be able to reverse this," +
 			" this can impact other areas of your project!",
-		type: 'warning',
+		type: "warning",
 		showCancelButton: true,
-		confirmButtonColor: '#28a745',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, delete it!'
+		confirmButtonColor: "#28a745",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, delete it!",
 	}).then((result) => {
 		if (result.value) {
 			$.ajax({
 				type: "POST",
-				url: base_url + 'Project_Controller/deleted_project/',
+				url: base_url + "Project_Controller/deleted_project/",
 				data: {
-					id_project: id
+					id_project: id,
 				},
 				error: function () {
 					Swal({
-						type: 'error',
-						title: 'Error',
+						type: "error",
+						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 						showCancelButton: false,
-						confirmButtonText: 'Ok'
+						confirmButtonText: "Ok",
 					});
 				},
 				success: function () {
 					row.remove();
 					table_my_projects.draw();
-					Swal.fire(
-						'Deleted!',
-						'Your project has been deleted.',
-						'success'
-					)
-				}
+					Swal.fire("Deleted!", "Your project has been deleted.", "success");
+				},
 			});
 		}
 	});
@@ -213,54 +217,52 @@ function delete_project(id, value) {
 function edit_level(element) {
 	let level = element.value;
 	let id_project = $("#id_project").val();
-	let row = table_members.row($(element).parents('tr'));
+	let row = table_members.row($(element).parents("tr"));
 
 	Swal.fire({
-		title: 'Are you sure?',
+		title: "Are you sure?",
 		text: "Changing the role of this member will result in the loss of all actions performed by him in his old role.",
-		type: 'warning',
+		type: "warning",
 		showCancelButton: true,
-		confirmButtonColor: '#28a745',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, change it!'
+		confirmButtonColor: "#28a745",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, change it!",
 	}).then((result) => {
 		if (result.value) {
 			$.ajax({
 				type: "POST",
-				url: base_url + 'Project_Controller/edit_level/',
+				url: base_url + "Project_Controller/edit_level/",
 				data: {
 					id_project: id_project,
 					level: level,
-					email: row.data()[1]
+					email: row.data()[1],
 				},
 				error: function (msg) {
 					Swal({
-						type: 'error',
-						title: 'Error',
-						html: msg
+						type: "error",
+						title: "Error",
+						html: msg,
 					});
 				},
 				success: function (msg) {
 					if (msg) {
 						Swal({
-							title: 'Warning',
+							title: "Warning",
 							text: msg,
-							type: 'warning',
+							type: "warning",
 							showCancelButton: false,
-							confirmButtonText: 'Ok'
+							confirmButtonText: "Ok",
 						});
 					} else {
 						Swal({
-							title: 'Success',
-							text: 'The level was edited',
-							type: 'success',
+							title: "Success",
+							text: "The level was edited",
+							type: "success",
 							showCancelButton: false,
-							confirmButtonText: 'Ok'
+							confirmButtonText: "Ok",
 						});
 					}
-
-
-				}
+				},
 			});
 		}
 	});
@@ -272,61 +274,61 @@ function delete_member(value) {
 
 	if (table_members.rows().data().length == 1) {
 		Swal({
-			type: 'warning',
-			title: 'A Member',
-			html: 'There must be at least <strong>one member!</strong>'
+			type: "warning",
+			title: "A Member",
+			html: "There must be at least <strong>one member!</strong>",
 		});
 		return false;
 	}
 
 	Swal.fire({
-		title: 'Are you sure?',
-		text: "You will not be able to reverse this," +
+		title: "Are you sure?",
+		text:
+			"You will not be able to reverse this," +
 			" this can impact other areas of your project!",
-		type: 'warning',
+		type: "warning",
 		showCancelButton: true,
-		confirmButtonColor: '#28a745',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, delete it!'
+		confirmButtonColor: "#28a745",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, delete it!",
 	}).then((result) => {
 		if (result.value) {
 			$.ajax({
 				type: "POST",
-				url: base_url + 'Project_Controller/delete_member/',
+				url: base_url + "Project_Controller/delete_member/",
 				data: {
 					id_project: id_project,
-					email: row.data()[1]
+					email: row.data()[1],
 				},
 				error: function (msg) {
 					Swal({
-						type: 'error',
-						title: 'Error',
-						html: msg
+						type: "error",
+						title: "Error",
+						html: msg,
 					});
 				},
 				success: function (msg) {
 					if (msg) {
 						Swal({
-							title: 'Warning',
+							title: "Warning",
 							text: msg,
-							type: 'warning',
+							type: "warning",
 							showCancelButton: false,
-							confirmButtonText: 'Ok'
+							confirmButtonText: "Ok",
 						});
 					} else {
 						row.remove();
 						table_members.draw();
 						Swal({
-							title: 'Success',
-							text: 'The member was deleted',
-							type: 'success',
+							title: "Success",
+							text: "The member was deleted",
+							type: "success",
 							showCancelButton: false,
-							confirmButtonText: 'Ok'
+							confirmButtonText: "Ok",
 						});
 					}
-				}
+				},
 			});
 		}
 	});
 }
-

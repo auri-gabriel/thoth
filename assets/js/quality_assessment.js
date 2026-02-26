@@ -24,7 +24,7 @@ function add_general_quality_score() {
 			id_project: id_project,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
