@@ -898,3 +898,14 @@ function change_new_status_ex(id_paper, status, index) {
 			break;
 	}
 }
+$(document).ready(function () {
+	table_data_extraction = $("#table_data_extraction").DataTable({
+		language: lang,
+		responsive: true,
+		order: [[0, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+		ordering: false,
+	});
+});
