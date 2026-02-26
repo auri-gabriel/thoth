@@ -1,4 +1,3 @@
-
 <script src="<?= base_url('assets/js/bibupload.js'); ?>"></script>
 <script src="<?= base_url('assets/js/conducting_tabs.js'); ?>"></script>
 <div class="container py-4" id="conducting-tabs" data-project-id="<?= htmlspecialchars($project->get_id(), ENT_QUOTES, 'UTF-8'); ?>">
@@ -20,7 +19,7 @@
 					<?php $this->load->view('pages/project/conducting/tabs/tab_quality'); ?>
 				</div>
 				<div class="tab-pane fade" id="tab_extraction" role="tabpanel">
-					<?php $this->load->view('pages/project/conducting/tabs/tab_extraction'); ?>
+					<?php $this->load->view('pages/project/conducting/tabs/tab_data_extraction'); ?>
 				</div>
 			<?php } else { ?>
 				<?php $this->load->view('pages/project/conducting/partials/alert_incomplete'); ?>

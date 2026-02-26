@@ -13,7 +13,7 @@
 			<?php $this->load->view('pages/project/planning/tabs/tab_search_strategy'); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_criteria'); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_quality'); ?>
-			<?php $this->load->view('pages/project/planning/tabs/tab_data'); ?>
+			<?php $this->load->view('pages/project/planning/tabs/tab_data_extraction'); ?>
 		</div>
 		<br>
 	</div>
