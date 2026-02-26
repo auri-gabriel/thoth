@@ -17,7 +17,7 @@ $(document).ready(function () {
 	var tabEndpoints = {
 		"#tab_import": "/projects/conducting/import",
 		"#tab_selection": "/projects/conducting/selection",
-		"#tab_extraction": "/projects/conducting/extraction",
+		"#tab_data_extraction": "/projects/conducting/extraction",
 	};
 
 	// Initial load for active tab
