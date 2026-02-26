@@ -5,35 +5,34 @@ $(document).ready(function () {
 		let id_project = $("#id_project").val();
 		$.ajax({
 			type: "POST",
-			url: base_url + 'Project_Controller/export_bib/',
+			url: base_url + "project_export/export_bib",
 			data: {
 				id_project: id_project,
 				step: step,
 			},
 			error: function () {
-				Swal({
-					type: 'error',
-					title: 'Error',
+				Swal.fire({
+					type: "error",
+					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 					showCancelButton: false,
-					confirmButtonText: 'Ok'
+					confirmButtonText: "Ok",
 				});
 			},
 			success: function (bib) {
-				$('#bib_tex').val(bib);
-				Swal({
-					title: 'Generate Bib',
-					html: '<strong>BibTex file generated</strong>',
-					type: 'success',
+				$("#bib_tex").val(bib);
+				Swal.fire({
+					title: "Generate Bib",
+					html: "<strong>BibTex file generated</strong>",
+					type: "success",
 					showCancelButton: false,
-					confirmButtonText: 'Ok'
-				})
-			}
+					confirmButtonText: "Ok",
+				});
+			},
 		});
-
 	});
 
-	$("input:checkbox[name=step]").on('change', function () {
+	$("input:checkbox[name=step]").on("change", function () {
 		let steps = [];
 		$("input:checkbox[name=step]:checked").each(function () {
 			steps.push($(this).val());
@@ -43,46 +42,43 @@ $(document).ready(function () {
 		if (steps.length > 0) {
 			$.ajax({
 				type: "POST",
-				url: base_url + 'Project_Controller/export_latex/',
+				url: base_url + "project_export/export_latex",
 				data: {
 					id_project: id_project,
 					steps: steps,
 				},
 				error: function () {
-					Swal({
-						type: 'error',
-						title: 'Error',
+					Swal.fire({
+						type: "error",
+						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
 						showCancelButton: false,
-						confirmButtonText: 'Ok'
+						confirmButtonText: "Ok",
 					});
 				},
 				success: function (latex) {
-					$('#latex').val(latex);
-					Swal({
-						title: 'Generate Latex',
-						html: '<strong>LaTex file generated</strong>',
-						type: 'success',
+					$("#latex").val(latex);
+					Swal.fire({
+						title: "Generate Latex",
+						html: "<strong>LaTex file generated</strong>",
+						type: "success",
 						showCancelButton: false,
-						confirmButtonText: 'Ok'
-					})
-				}
+						confirmButtonText: "Ok",
+					});
+				},
 			});
 		} else {
-			$('#latex').val("");
+			$("#latex").val("");
 		}
-
 	});
 });
 
 function export_bib() {
+	let element = $("#bib_tex");
 
-	let element = $('#bib_tex');
-
-	let data = new Blob([element.val()], {type: 'text/plain'});
+	let data = new Blob([element.val()], { type: "text/plain" });
 
 	let url = window.URL.createObjectURL(data);
 
-	document.getElementById('export_bib').href = url;
-
+	document.getElementById("export_bib").href = url;
 }
