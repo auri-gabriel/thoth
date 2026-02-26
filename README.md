@@ -1,44 +1,77 @@
-# Thoth: Systematic Review Tool [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ProjetoESE/Thoth)
+
+
+# Thoth: Systematic Literature Review Platform [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ProjetoESE/Thoth)
+
+## Screenshot
+
+<p align="center">
+   <img src="docs/readme/thoth-screenshot.png" alt="Thoth Systematic Review Platform Screenshot" width="800" />
+</p>
+
+<p align="center"><em>Example of the Thoth project dashboard and progress tracking interface.</em></p>
+
+**Legacy Version 1.5**
+
+> **Notice:** This repository contains the legacy version of Thoth, intended primarily for educational, experimental, and archival purposes. For production use and the latest features, please visit [Thoth 2.0](https://thoth-slr.com/).
+
+This project is a refactored version of the original Thoth software, maintained for historical interest and community contributions. It is **not recommended for use in real-world or mission-critical projects**.
+
+
+---
 
 ## License
 
-> This project is licensed under the MIT License - see the [LICENSE.txt](license.txt) file for details.
+This project is licensed under the MIT License. See [LICENSE.txt](license.txt) for details.
 
-## Running Locally with Docker
 
-1. **Clone the repository:**
+## Getting Started (Docker)
+
+Follow these steps to set up and run Thoth locally using Docker:
+
+1. **Clone the repository**
    ```sh
    git clone https://github.com/unipampa-lesse/thoth-legacy.git
    cd thoth-legacy
    ```
 
-2. **Copy and configure application settings:**
+2. **Configure application settings**
    ```sh
    cp application/config/database_sample.php application/config/database.php
    cp application/config/config_sample.php application/config/config.php
    # (Optional) Edit these files to adjust database credentials or other settings
    ```
 
-3. **Build and start the containers:**
+3. **Build and start the containers**
    ```sh
    docker compose up --build
    ```
-   - The app will be available at [http://localhost:8080](http://localhost:8080)
+   The application will be available at [http://localhost:8080](http://localhost:8080).
 
-4. **Initialize the database:**
+4. **Initialize the database**
    ```sh
    docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
    ```
-   Replace `<mysql_container_name>` with the actual name (e.g., `thoth-db-1`).
+   Replace `<mysql_container_name>` with the actual container name (e.g., `thoth-db-1`).
 
-5. **Default credentials:**
-   - Check your database seed or ask your admin for the default login.
+5. **Default credentials**
+   - Refer to your database seed or contact your administrator for the default login credentials.
 
-6. **Stopping the app:**
+6. **Stopping the application**
    ```sh
    docker compose down -v
    ```
 
 ---
 
-For more details, see [DOCKER_SETUP.md](DOCKER_SETUP.md).
+For additional setup details, troubleshooting, and advanced configuration, see [DOCKER_SETUP.md](DOCKER_SETUP.md).
+
+---
+
+## Contributing
+
+Contributions are welcome! Please see [contributing.md](contributing.md) for guidelines.
+
+## Contact
+
+For questions or support, please open an issue on the [GitHub repository](https://github.com/unipampa-lesse/thoth-legacy).
+
