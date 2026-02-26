@@ -8,10 +8,6 @@ const exibe_loading = (remover_automatico = null) => {
 		throw "argument should be an integer";
 		return;
 	}
-	Swal.fire({
-		icon: "error",
-		title: "Loading Error",
-	});
 
 	if (document.getElementById("loading")) {
 		return;
