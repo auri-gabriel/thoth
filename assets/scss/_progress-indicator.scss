@@ -1,0 +1,64 @@
+@import "base/variables";
+
+$progress-indicator-acc: $success;
+$progress-indicator-rej: $danger;
+$progress-indicator-unc: $dark;
+$progress-indicator-dup: $warning;
+$progress-indicator-rem: $info;
+$progress-indicator-total: $secondary;
+
+.progress-indicator-container {
+	.progress-indicator-badge-acc {
+		background-color: $progress-indicator-acc !important;
+		color: #fff !important;
+	}
+	.progress-indicator-badge-rej {
+		background-color: $progress-indicator-rej !important;
+		color: #fff !important;
+	}
+	.progress-indicator-badge-unc {
+		background-color: $progress-indicator-unc !important;
+		color: #fff !important;
+	}
+	.progress-indicator-badge-dup {
+		background-color: $progress-indicator-dup !important;
+		color: #212529 !important;
+	}
+	.progress-indicator-badge-rem {
+		background-color: $progress-indicator-rem !important;
+		color: #fff !important;
+	}
+	.progress-indicator-badge-total {
+		background-color: $progress-indicator-total !important;
+		color: #fff !important;
+	}
+	.progress-indicator-bar {
+		background: #e9ecef;
+		border-radius: 0.5rem;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+		.progress-bar {
+			font-weight: 600;
+			font-size: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		.progress-indicator-bar-acc {
+			background-color: $progress-indicator-acc !important;
+		}
+		.progress-indicator-bar-rej {
+			background-color: $progress-indicator-rej !important;
+		}
+		.progress-indicator-bar-unc {
+			background-color: $progress-indicator-unc !important;
+		}
+		.progress-indicator-bar-dup {
+			background-color: $progress-indicator-dup !important;
+			color: #212529 !important;
+		}
+		.progress-indicator-bar-rem {
+			background-color: $progress-indicator-rem !important;
+		}
+	}
+}
