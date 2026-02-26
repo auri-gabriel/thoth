@@ -196,3 +196,4 @@
 		<a href="#tab_data" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
 	</div>
 </div>
+<script src="<?= base_url('assets/js/quality_assessment.js'); ?>"></script>
