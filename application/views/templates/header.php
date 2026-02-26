@@ -30,11 +30,11 @@
 	<link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-select-bs5/css/select.bootstrap5.min.css'); ?>">
 	<link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'); ?>">
 
-	<!-- SweetAlert -->
-	<link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css'); ?>">
+	<!-- SweetAlert2 (from node_modules) -->
+	<link rel="stylesheet" href="<?= base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'); ?>">
 
-	<!-- Select -->
-	<link rel="stylesheet" href="<?= base_url('assets/css/select2.min.css'); ?>">
+	<!-- Select2 (from node_modules) -->
+	<link rel="stylesheet" href="<?= base_url('assets/node_modules/select2/dist/css/select2.min.css'); ?>">
 
 	<!-- My CSS Files (legacy, can be removed after migration) -->
 	<!-- <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>"> -->
@@ -73,11 +73,11 @@
 	<script src="<?= base_url('assets/node_modules/highcharts/modules/pattern-fill.js'); ?>"></script>
 
 
-	<!-- SweetAlert -->
-	<script src="<?= base_url('assets/js/sweetalert2.all.min.js'); ?>"></script>
+	<!-- SweetAlert2 (from node_modules) -->
+	<script src="<?= base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'); ?>"></script>
 
-	<!-- Select -->
-	<script src="<?= base_url('assets/js/select2.full.min.js'); ?>"></script>
+	<!-- Select2 (from node_modules) -->
+	<script src="<?= base_url('assets/node_modules/select2/dist/js/select2.full.min.js'); ?>"></script>
 
 	<!-- Bib2Json -->
 	<script src="<?= base_url('assets/js/bib2json.js'); ?>"></script>
