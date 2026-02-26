@@ -41,7 +41,7 @@
 	<link rel="preload" href="<?= base_url('assets/img/loading.gif'); ?>" as="image">
 
 	<!-- JQuery-->
-	<script src="<?= base_url('assets/js/jquery-3.3.1.min.js'); ?>"></script>
+	<script src="<?= base_url('assets/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
 
 	<!-- Bootstrap 5 (from node_modules via symlink) -->
 	<script src="<?= base_url('assets/node_modules/@popperjs/core/dist/umd/popper.min.js'); ?>"></script>
