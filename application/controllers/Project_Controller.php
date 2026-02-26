@@ -286,7 +286,7 @@ class Project_Controller extends Pattern_Controller
 
 			$this->insert_log('Created the project ' . $title, 1, $id_project);
 
-			redirect('open/' . $id_project);
+			redirect('projects/' . $id_project);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
