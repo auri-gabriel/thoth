@@ -27,7 +27,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_overview($id);
 			$data['logs']    = $this->Project_Model->get_logs_project($id);
 
-			$this->load_views('pages/project/project', $data);
+			$this->load_views('pages/project/index', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
