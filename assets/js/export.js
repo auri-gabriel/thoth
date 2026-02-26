@@ -11,7 +11,7 @@ $(document).ready(function () {
 				step: step,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -21,7 +21,7 @@ $(document).ready(function () {
 			},
 			success: function (bib) {
 				$("#bib_tex").val(bib);
-				Swal.fire({
+				SwalAdapter.fire({
 					title: "Generate Bib",
 					html: "<strong>BibTex file generated</strong>",
 					type: "success",
@@ -48,7 +48,7 @@ $(document).ready(function () {
 					steps: steps,
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -60,7 +60,7 @@ $(document).ready(function () {
 					console.log(latex);
 
 					$("#text_area-latex").val(latex);
-					Swal.fire({
+					SwalAdapter.fire({
 						title: "Generate Latex",
 						html: "<strong>LaTex file generated</strong>",
 						type: "success",

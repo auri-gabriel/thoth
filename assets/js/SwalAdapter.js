@@ -7,9 +7,14 @@ const SwalAdapter = {
 		// Decide if this should be a toast or a modal
 		// Show toast for info/success/warning, modal for error/confirm
 		const type = options.icon || options.type || "info";
+		const hasConfirm =
+			options.showConfirmButton ||
+			options.showCancelButton ||
+			options.confirmButtonText ||
+			options.cancelButtonText;
 		const isToast =
 			["info", "success", "warning"].includes(type) &&
-			!options.showConfirmButton &&
+			!hasConfirm &&
 			!options.input;
 		if (isToast) {
 			showBootstrapToast(options);
@@ -23,6 +28,21 @@ const SwalAdapter = {
 };
 
 function showBootstrapToast(options) {
+	// Ensure toast container exists
+	let container = document.getElementById("swal-toast-container");
+	if (!container) {
+		container = document.createElement("div");
+		container.id = "swal-toast-container";
+		container.style.position = "fixed";
+		container.style.bottom = "1rem";
+		container.style.right = "1rem";
+		container.style.zIndex = 1060;
+		container.style.display = "flex";
+		container.style.flexDirection = "column";
+		container.style.gap = "0.5rem";
+		document.body.appendChild(container);
+	}
+
 	// Create toast element
 	const toast = document.createElement("div");
 	toast.className =
@@ -32,28 +52,28 @@ function showBootstrapToast(options) {
 	toast.setAttribute("role", "alert");
 	toast.setAttribute("aria-live", "assertive");
 	toast.setAttribute("aria-atomic", "true");
-	toast.style.position = "fixed";
-	toast.style.top = "1rem";
-	toast.style.right = "1rem";
-	toast.style.zIndex = 1060;
 
 	toast.innerHTML = `
-    <div class="d-flex">
-      <div class="toast-body">
-        ${options.title ? `<strong>${options.title}</strong><br>` : ""}
-        ${options.text || ""}
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  `;
+		<div class="d-flex">
+			<div class="toast-body">
+				${options.title ? `<strong>${options.title}</strong><br>` : ""}
+				${options.text || ""}
+			</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	`;
 
-	document.body.appendChild(toast);
+	container.appendChild(toast);
 	// Initialize Bootstrap Toast
 	const bsToast = new bootstrap.Toast(toast, { delay: options.timer || 3000 });
 	bsToast.show();
 	// Remove toast after hidden
 	toast.addEventListener("hidden.bs.toast", () => {
 		toast.remove();
+		// Remove container if empty
+		if (container.childElementCount === 0) {
+			container.remove();
+		}
 	});
 }
 

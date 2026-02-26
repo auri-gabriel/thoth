@@ -3,7 +3,7 @@ function add_database() {
 	let id_project = $("#id_project").val();
 
 	if (!databases) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The database can not be empty!",
@@ -15,7 +15,7 @@ function add_database() {
 
 	for (let i = 0; i < data.length; i++) {
 		if (databases.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The database has already been registered!",
@@ -32,7 +32,7 @@ function add_database() {
 			database: databases,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -76,7 +76,7 @@ function delete_database(value) {
 	let row = table_databases.row(value);
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -96,7 +96,7 @@ function delete_database(value) {
 					database: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -109,7 +109,7 @@ function delete_database(value) {
 					table_databases.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Database has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Database has been deleted.", "success");
 		}
 	});
 }
@@ -120,7 +120,7 @@ function new_database() {
 	let link = $("#new_database_link").val();
 
 	if (!database) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The database can not be empty!",
@@ -129,7 +129,7 @@ function new_database() {
 	}
 
 	if (!link) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The link can not be empty!",
@@ -141,7 +141,7 @@ function new_database() {
 
 	for (let i = 0; i < data.length; i++) {
 		if (database.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The database has already been registered!",
@@ -159,7 +159,7 @@ function new_database() {
 			link: link,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',

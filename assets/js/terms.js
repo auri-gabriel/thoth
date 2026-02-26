@@ -57,7 +57,7 @@ async function getRelatedTerms(term) {
 
 	terms = data.parse.links.map((i) => i["*"].replace(/.*\:/, ""));
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Terms Retrieved",
 		text: "Related terms have been successfully fetched.",
 		icon: "success",

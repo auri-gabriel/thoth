@@ -24,7 +24,7 @@ function add_general_quality_score() {
 			id_project: id_project,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -61,7 +61,7 @@ function delete_general_quality_score(value) {
 	let index = row.index();
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -81,7 +81,7 @@ function delete_general_quality_score(value) {
 					description: row.data()[2],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -94,7 +94,11 @@ function delete_general_quality_score(value) {
 					table_general_score.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Your general score has been deleted.", "success");
+			SwalAdapter.fire(
+				"Deleted!",
+				"Your general score has been deleted.",
+				"success",
+			);
 		}
 	});
 }
@@ -106,7 +110,7 @@ function validate_general_quality_score(
 	index,
 ) {
 	if (!start_interval) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start interval can not be empty!",
@@ -115,7 +119,7 @@ function validate_general_quality_score(
 	}
 
 	if (parseFloat(start_interval) < 0) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The start interval can not be less than 0!",
@@ -124,7 +128,7 @@ function validate_general_quality_score(
 	}
 
 	if (!end_interval) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end interval can not be empty!",
@@ -133,7 +137,7 @@ function validate_general_quality_score(
 	}
 
 	if (parseFloat(end_interval) < 0.1) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The end interval can not be less than 0.1!",
@@ -142,7 +146,7 @@ function validate_general_quality_score(
 	}
 
 	if (!general_score_desc) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -151,7 +155,7 @@ function validate_general_quality_score(
 	}
 
 	if (start_interval >= end_interval) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "Beginning of the interval must be greater than the end of the same interval",
@@ -164,7 +168,7 @@ function validate_general_quality_score(
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (start_interval == data[i][0]) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The start interval has already been registered!",
@@ -173,7 +177,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval >= data[i][0] && end_interval <= data[i][1]) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The range can not be within another!",
@@ -181,7 +185,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval <= data[i][1] && end_interval >= data[i][1]) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The beginning of the interval can not be within another!",
@@ -189,7 +193,7 @@ function validate_general_quality_score(
 				return false;
 			}
 			if (start_interval <= data[i][0] && end_interval >= data[i][0]) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "End of range can not be within another!",
@@ -205,7 +209,7 @@ function validate_general_quality_score(
 				general_score_desc.toLowerCase().trim() ==
 				data[i][2].toLowerCase().trim()
 			) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -252,7 +256,7 @@ function edit_general_score() {
 			end: end,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -282,7 +286,7 @@ function edit_general_score() {
 			option.value = desc;
 			x.add(option);
 
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The general score was edited",
 				type: "success",
@@ -302,7 +306,7 @@ function edit_min_score(element) {
 	let id_project = $("#id_project").val();
 
 	if (score == "null") {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Score Null",
 			html: "The <strong>score min</strong> can not be empty!",
@@ -318,14 +322,14 @@ function edit_min_score(element) {
 			score: score,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
 			});
 		},
 		success: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The min score to approved was edited",
 				type: "success",
@@ -361,7 +365,7 @@ function add_qa() {
 			weight: weight,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -426,7 +430,7 @@ function delete_qa(value) {
 	let index = row.index();
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -446,7 +450,7 @@ function delete_qa(value) {
 					id: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -461,7 +465,7 @@ function delete_qa(value) {
 					table_qa.draw();
 				},
 			});
-			Swal.fire(
+			SwalAdapter.fire(
 				"Deleted!",
 				"Your question quality has been deleted.",
 				"success",
@@ -472,7 +476,7 @@ function delete_qa(value) {
 
 function validate_qa(id, qa, weight, index) {
 	if (!id) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The ID can not be empty!",
@@ -481,7 +485,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!validate_text(id)) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",
@@ -490,7 +494,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!qa) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -499,7 +503,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (!weight) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight can not be empty!",
@@ -508,7 +512,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (parseFloat(weight) < 1) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight can not be less than 1!",
@@ -525,7 +529,7 @@ function validate_qa(id, qa, weight, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The ID has already been registered!",
@@ -543,7 +547,7 @@ function validate_qa(id, qa, weight, index) {
 	}
 
 	if (s > max) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The weight must be less than the maximum overall score!",
@@ -554,7 +558,7 @@ function validate_qa(id, qa, weight, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (qa.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -600,7 +604,7 @@ function edit_qa() {
 			old_id: old_id,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -633,7 +637,7 @@ function edit_qa() {
 			option.value = id;
 			x.add(option);
 
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The question quality was edited",
 				type: "success",
@@ -673,7 +677,7 @@ function add_score_quality() {
 			id_qa: id_qa,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -742,7 +746,7 @@ function delete_score_quality(value) {
 	let index = row.rowIndex;
 	let id2 = "min_to_" + id_qa;
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -763,7 +767,7 @@ function delete_score_quality(value) {
 					score: score,
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -777,7 +781,7 @@ function delete_score_quality(value) {
 					x.remove(index);
 				},
 			});
-			Swal.fire("Deleted!", "Your score has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Your score has been deleted.", "success");
 		}
 	});
 }
@@ -790,7 +794,7 @@ function validate_score_quality(
 	index,
 ) {
 	if (!score_rule) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The score rule can not be empty!",
@@ -799,7 +803,7 @@ function validate_score_quality(
 	}
 
 	if (!score) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The score can not be empty!",
@@ -808,7 +812,7 @@ function validate_score_quality(
 	}
 
 	if (!description) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -824,7 +828,7 @@ function validate_score_quality(
 				score_rule.toLowerCase().trim() ==
 				rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 			) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The score rule has already been registered!",
@@ -840,7 +844,7 @@ function validate_score_quality(
 				description.toLowerCase().trim() ==
 				rows[i].cells.item(2).innerHTML.toLowerCase().trim()
 			) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description has already been registered!",
@@ -853,7 +857,7 @@ function validate_score_quality(
 	for (let i = 0; i < size; i++) {
 		if (i != index) {
 			if (score.trim() + "%" == rows[i].cells.item(1).innerHTML.trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The score has already been registered!",
@@ -895,7 +899,7 @@ function edit_score_quality() {
 			id_qa: id_qa,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -930,7 +934,7 @@ function edit_score_quality() {
 				'<button class="btn btn-danger" onClick="delete_score_quality(this)">' +
 				'<span class="far fa-trash-alt"></span>' +
 				"</button>";
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The score quality was edited",
 				type: "success",
@@ -959,7 +963,7 @@ function edit_min_score_qa(element) {
 			qa: qa,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -968,7 +972,7 @@ function edit_min_score_qa(element) {
 			});
 		},
 		success: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The minimum to approve was edited",
 				type: "success",
@@ -1069,7 +1073,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1186,7 +1190,7 @@ $(document).ready(function () {
 								score: score,
 							},
 							error: function () {
-								Swal.fire({
+								SwalAdapter.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1268,7 +1272,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1339,7 +1343,7 @@ $(document).ready(function () {
 				id_paper: id_paper,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1368,7 +1372,7 @@ $(document).ready(function () {
 				note: note,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1377,7 +1381,7 @@ $(document).ready(function () {
 				});
 			},
 			success: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "success",
 					title: "Added Note",
 					html: 'Added <label class="font-weight-bold text-dark">Note</label> as paper!',
@@ -1398,7 +1402,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1598,7 +1602,7 @@ $(document).ready(function () {
 								score: score,
 							},
 							error: function () {
-								Swal.fire({
+								SwalAdapter.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1726,28 +1730,28 @@ function change_old_status_qa(old_status) {
 function status_paper_qa(status) {
 	switch (status) {
 		case "1":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "success",
 				title: "Accepted",
 				html: 'This paper as <label class="font-weight-bold text-success">Accepted</label>',
 			});
 			break;
 		case "2":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Rejected",
 				html: 'This paper as <label class="font-weight-bold text-danger">Rejected</label>',
 			});
 			break;
 		case "3":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "question",
 				title: "Unclassified",
 				html: 'This paper as <label class="font-weight-bold text-dark">Unclassified</label>',
 			});
 			break;
 		case "4":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "info",
 				title: "Removed",
 				html: 'This paper as <label class="font-weight-bold text-info">Removed</label>',

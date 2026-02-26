@@ -15,7 +15,7 @@ function add_research_question() {
 			description: description,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -73,7 +73,7 @@ function edit_research() {
 			old_id: old_id,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -96,7 +96,7 @@ function edit_research() {
 				])
 				.draw();
 
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The research question was edited",
 				type: "success",
@@ -113,7 +113,7 @@ function edit_research() {
 
 function validate_research(id, description, index) {
 	if (!id) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The ID of research question can not be empty!",
@@ -122,7 +122,7 @@ function validate_research(id, description, index) {
 	}
 
 	if (!description) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description of research question can not be empty!",
@@ -131,7 +131,7 @@ function validate_research(id, description, index) {
 	}
 
 	if (!validate_text(id)) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "This field can not contain special characters or space!",
@@ -144,7 +144,7 @@ function validate_research(id, description, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The ID of research question has already been registered!",
@@ -156,7 +156,7 @@ function validate_research(id, description, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (description.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The description of research question has already been registered!",
@@ -173,7 +173,7 @@ function delete_research_question(value) {
 	let row = table_research_question.row(value);
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -193,7 +193,7 @@ function delete_research_question(value) {
 					id_rq: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -206,7 +206,11 @@ function delete_research_question(value) {
 					table_research_question.draw();
 				},
 			});
-			Swal.fire("Deleted!", "Research question has been deleted.", "success");
+			SwalAdapter.fire(
+				"Deleted!",
+				"Research question has been deleted.",
+				"success",
+			);
 		}
 	});
 }

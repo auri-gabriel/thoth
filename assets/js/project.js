@@ -17,7 +17,7 @@ function add_member() {
 			level: level,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -71,7 +71,7 @@ function add_member() {
 				])
 				.draw();
 
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Add member",
 				html: "The <strong>member</strong> was added",
 				type: "success",
@@ -84,7 +84,7 @@ function add_member() {
 
 function validate_add_research(email, level) {
 	if (!email) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The email can not be empty!",
@@ -92,7 +92,7 @@ function validate_add_research(email, level) {
 		return false;
 	}
 	if (!level) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The level can not be empty!",
@@ -126,7 +126,7 @@ function edit_project() {
 			title: title,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -136,7 +136,7 @@ function edit_project() {
 		},
 		success: function () {
 			$("#title_project").text("Edit " + title);
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The project was edited",
 				type: "success",
@@ -149,7 +149,7 @@ function edit_project() {
 
 function validate_edit_project(objectives, description, title) {
 	if (!title) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The title can not be empty!",
@@ -157,7 +157,7 @@ function validate_edit_project(objectives, description, title) {
 		return false;
 	}
 	if (!description) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The description can not be empty!",
@@ -165,7 +165,7 @@ function validate_edit_project(objectives, description, title) {
 		return false;
 	}
 	if (!objectives) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The objectives can not be empty!",
@@ -177,7 +177,7 @@ function validate_edit_project(objectives, description, title) {
 
 function delete_project(id, value) {
 	let row = table_my_projects.row(value);
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -196,7 +196,7 @@ function delete_project(id, value) {
 					id_project: id,
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -207,7 +207,11 @@ function delete_project(id, value) {
 				success: function () {
 					row.remove();
 					table_my_projects.draw();
-					Swal.fire("Deleted!", "Your project has been deleted.", "success");
+					SwalAdapter.fire(
+						"Deleted!",
+						"Your project has been deleted.",
+						"success",
+					);
 				},
 			});
 		}
@@ -219,7 +223,7 @@ function edit_level(element) {
 	let id_project = $("#id_project").val();
 	let row = table_members.row($(element).parents("tr"));
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text: "Changing the role of this member will result in the loss of all actions performed by him in his old role.",
 		type: "warning",
@@ -238,7 +242,7 @@ function edit_level(element) {
 					email: row.data()[1],
 				},
 				error: function (msg) {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: msg,
@@ -246,7 +250,7 @@ function edit_level(element) {
 				},
 				success: function (msg) {
 					if (msg) {
-						Swal.fire({
+						SwalAdapter.fire({
 							title: "Warning",
 							text: msg,
 							type: "warning",
@@ -254,7 +258,7 @@ function edit_level(element) {
 							confirmButtonText: "Ok",
 						});
 					} else {
-						Swal.fire({
+						SwalAdapter.fire({
 							title: "Success",
 							text: "The level was edited",
 							type: "success",
@@ -273,7 +277,7 @@ function delete_member(value) {
 	let id_project = $("#id_project").val();
 
 	if (table_members.rows().data().length == 1) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "A Member",
 			html: "There must be at least <strong>one member!</strong>",
@@ -281,7 +285,7 @@ function delete_member(value) {
 		return false;
 	}
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -301,7 +305,7 @@ function delete_member(value) {
 					email: row.data()[1],
 				},
 				error: function (msg) {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: msg,
@@ -309,7 +313,7 @@ function delete_member(value) {
 				},
 				success: function (msg) {
 					if (msg) {
-						Swal.fire({
+						SwalAdapter.fire({
 							title: "Warning",
 							text: msg,
 							type: "warning",
@@ -319,7 +323,7 @@ function delete_member(value) {
 					} else {
 						row.remove();
 						table_members.draw();
-						Swal.fire({
+						SwalAdapter.fire({
 							title: "Success",
 							text: "The member was deleted",
 							type: "success",

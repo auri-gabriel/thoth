@@ -14,7 +14,7 @@ function add_term() {
 			term: term,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -52,7 +52,7 @@ function add_term() {
 			$("#term")[0].value = "";
 
 			let timerInterval;
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The term was Added",
 				type: "success",
@@ -129,7 +129,7 @@ function edit_term() {
 			old: old,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -158,7 +158,7 @@ function edit_term() {
 				])
 				.draw();
 
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The term was edited",
 				type: "success",
@@ -175,7 +175,7 @@ function edit_term() {
 
 function validate_term(term, index) {
 	if (!term) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The term can not be empty!",
@@ -188,7 +188,7 @@ function validate_term(term, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (term.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "warning",
 					title: "Warning",
 					text: "The term has already been registered!",
@@ -205,7 +205,7 @@ function delete_term(value) {
 	let index = row.index();
 	let id_project = $("#id_project").val();
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -225,7 +225,7 @@ function delete_term(value) {
 					term: row.data()[0],
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -241,7 +241,7 @@ function delete_term(value) {
 					x.remove(index + 1);
 				},
 			});
-			Swal.fire("Deleted!", "Your term has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Your term has been deleted.", "success");
 		}
 	});
 }
@@ -265,7 +265,7 @@ function add_synonym(syn = null) {
 			syn: syn,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -289,7 +289,7 @@ function add_synonym(syn = null) {
 			$("#synonym")[0].value = "";
 
 			let timerInterval;
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The synonym was Added",
 				type: "success",
@@ -392,7 +392,7 @@ function edit_synonym() {
 			now: now,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -414,7 +414,7 @@ function edit_synonym() {
 				'<button class="btn btn-danger" onClick="delete_synonym(this)">' +
 				'<span class="far fa-trash-alt"></span>' +
 				"</button>";
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The synonym was edited",
 				type: "success",
@@ -431,7 +431,7 @@ function edit_synonym() {
 
 function validate_synonym(term, syn, id) {
 	if (!term) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The term can not be empty!",
@@ -440,7 +440,7 @@ function validate_synonym(term, syn, id) {
 	}
 
 	if (!syn) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The synonymous can not be empty!",
@@ -455,7 +455,7 @@ function validate_synonym(term, syn, id) {
 			syn.toLowerCase().trim() ==
 			rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 		) {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Warning",
 				text: "The synonym has already been registered!",
@@ -473,7 +473,7 @@ function delete_synonym(btn) {
 	let term =
 		row.parentNode.parentNode.parentNode.parentNode.cells.item(0).innerHTML;
 
-	Swal.fire({
+	SwalAdapter.fire({
 		title: "Are you sure?",
 		text:
 			"You will not be able to reverse this," +
@@ -494,7 +494,7 @@ function delete_synonym(btn) {
 					syn: syn,
 				},
 				error: function () {
-					Swal.fire({
+					SwalAdapter.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -506,7 +506,7 @@ function delete_synonym(btn) {
 					row.parentNode.removeChild(row);
 				},
 			});
-			Swal.fire("Deleted!", "Your synonym has been deleted.", "success");
+			SwalAdapter.fire("Deleted!", "Your synonym has been deleted.", "success");
 		}
 	});
 }
@@ -521,7 +521,7 @@ function generate_string(database) {
 			database: database,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -538,7 +538,7 @@ function generate_string(database) {
 
 function validate_search_strategy(search_strategy) {
 	if (!search_strategy) {
-		Swal.fire({
+		SwalAdapter.fire({
 			type: "warning",
 			title: "Warning",
 			text: "The search string can not be empty!",
@@ -563,7 +563,7 @@ function edit_search_strategy() {
 			search_strategy: search_strategy,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -572,7 +572,7 @@ function edit_search_strategy() {
 			});
 		},
 		success: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				title: "Success",
 				text: "The search strategy was edited",
 				type: "success",

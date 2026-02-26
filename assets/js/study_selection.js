@@ -145,7 +145,7 @@ $(document).ready(function () {
 								status: "4",
 							},
 							error: function () {
-								Swal.fire({
+								SwalAdapter.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -174,7 +174,7 @@ $(document).ready(function () {
 									);
 									select.add(op);
 								}
-								Swal.fire({
+								SwalAdapter.fire({
 									title: "Success",
 									html:
 										"The <strong>" +
@@ -187,7 +187,7 @@ $(document).ready(function () {
 							},
 						});
 					} else {
-						Swal.fire({
+						SwalAdapter.fire({
 							title: "Success",
 							html:
 								"The <strong>" +
@@ -251,7 +251,7 @@ $(document).ready(function () {
 				status: status,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -280,7 +280,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -463,7 +463,7 @@ $(document).ready(function () {
 				note: note,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -472,7 +472,7 @@ $(document).ready(function () {
 				});
 			},
 			success: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "success",
 					title: "Added Note",
 					html: 'Added <label class="font-weight-bold text-dark">Note</label> as paper!',
@@ -533,7 +533,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -671,7 +671,7 @@ $(document).ready(function () {
 				status: status,
 			},
 			error: function () {
-				Swal.fire({
+				SwalAdapter.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -803,35 +803,35 @@ function change_old_status(old_status) {
 function status_paper(status) {
 	switch (status) {
 		case "1":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "success",
 				title: "Accepted",
 				html: 'This paper as <label class="font-weight-bold text-success">Accepted</label>',
 			});
 			break;
 		case "2":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Rejected",
 				html: 'This paper as <label class="font-weight-bold text-danger">Rejected</label>',
 			});
 			break;
 		case "3":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "question",
 				title: "Unclassified",
 				html: 'This paper as <label class="font-weight-bold text-dark">Unclassified</label>',
 			});
 			break;
 		case "4":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "warning",
 				title: "Duplicate",
 				html: 'This paper as <label class="font-weight-bold text-warning">Duplicate</label>',
 			});
 			break;
 		case "5":
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "info",
 				title: "Removed",
 				html: 'This paper as <label class="font-weight-bold text-info">Removed</label>',
@@ -1017,7 +1017,7 @@ function evaluation_criteria(indexes, selected, inclusion) {
 			old_status: old_status,
 		},
 		error: function () {
-			Swal.fire({
+			SwalAdapter.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
