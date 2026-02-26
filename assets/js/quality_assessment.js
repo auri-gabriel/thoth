@@ -81,7 +81,7 @@ function delete_general_quality_score(value) {
 					description: row.data()[2],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -252,7 +252,7 @@ function edit_general_score() {
 			end: end,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
@@ -282,7 +282,7 @@ function edit_general_score() {
 			option.value = desc;
 			x.add(option);
 
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The general score was edited",
 				type: "success",
@@ -318,14 +318,14 @@ function edit_min_score(element) {
 			score: score,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',
 			});
 		},
 		success: function () {
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The min score to approved was edited",
 				type: "success",
@@ -361,7 +361,7 @@ function add_qa() {
 			weight: weight,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -446,7 +446,7 @@ function delete_qa(value) {
 					id: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -600,7 +600,7 @@ function edit_qa() {
 			old_id: old_id,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -633,7 +633,7 @@ function edit_qa() {
 			option.value = id;
 			x.add(option);
 
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The question quality was edited",
 				type: "success",
@@ -673,7 +673,7 @@ function add_score_quality() {
 			id_qa: id_qa,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -763,7 +763,7 @@ function delete_score_quality(value) {
 					score: score,
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -895,7 +895,7 @@ function edit_score_quality() {
 			id_qa: id_qa,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -930,7 +930,7 @@ function edit_score_quality() {
 				'<button class="btn btn-danger" onClick="delete_score_quality(this)">' +
 				'<span class="far fa-trash-alt"></span>' +
 				"</button>";
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The score quality was edited",
 				type: "success",
@@ -959,7 +959,7 @@ function edit_min_score_qa(element) {
 			qa: qa,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -968,7 +968,7 @@ function edit_min_score_qa(element) {
 			});
 		},
 		success: function () {
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The minimum to approve was edited",
 				type: "success",
@@ -1069,7 +1069,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1186,7 +1186,7 @@ $(document).ready(function () {
 								score: score,
 							},
 							error: function () {
-								Swal({
+								Swal.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1268,7 +1268,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1339,7 +1339,7 @@ $(document).ready(function () {
 				id_paper: id_paper,
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1368,7 +1368,7 @@ $(document).ready(function () {
 				note: note,
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1377,7 +1377,7 @@ $(document).ready(function () {
 				});
 			},
 			success: function () {
-				Swal({
+				Swal.fire({
 					type: "success",
 					title: "Added Note",
 					html: 'Added <label class="font-weight-bold text-dark">Note</label> as paper!',
@@ -1398,7 +1398,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1598,7 +1598,7 @@ $(document).ready(function () {
 								score: score,
 							},
 							error: function () {
-								Swal({
+								Swal.fire({
 									type: "error",
 									title: "Error",
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -1726,28 +1726,28 @@ function change_old_status_qa(old_status) {
 function status_paper_qa(status) {
 	switch (status) {
 		case "1":
-			Swal({
+			Swal.fire({
 				type: "success",
 				title: "Accepted",
 				html: 'This paper as <label class="font-weight-bold text-success">Accepted</label>',
 			});
 			break;
 		case "2":
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Rejected",
 				html: 'This paper as <label class="font-weight-bold text-danger">Rejected</label>',
 			});
 			break;
 		case "3":
-			Swal({
+			Swal.fire({
 				type: "question",
 				title: "Unclassified",
 				html: 'This paper as <label class="font-weight-bold text-dark">Unclassified</label>',
 			});
 			break;
 		case "4":
-			Swal({
+			Swal.fire({
 				type: "info",
 				title: "Removed",
 				html: 'This paper as <label class="font-weight-bold text-info">Removed</label>',

@@ -72,7 +72,7 @@ function readFileAsString() {
 								confirmButtonText: "Ok",
 							});
 						} else {
-							Swal({
+							Swal.fire({
 								title: "Imported file",
 								html:
 									"The <strong>" +
@@ -86,7 +86,7 @@ function readFileAsString() {
 					},
 				});
 			} else {
-				Swal({
+				Swal.fire({
 					title: "File not imported",
 					html: "<strong>No jobs</strong> were uploaded",
 					type: "error",
@@ -95,7 +95,7 @@ function readFileAsString() {
 				});
 			}
 		} else {
-			Swal({
+			Swal.fire({
 				title: "File not imported",
 				html: "<strong>File has problem</strong>, try another file",
 				type: "error",
@@ -124,7 +124,7 @@ function change_name() {
 
 function validate_upload(files, database, id) {
 	if (!files) {
-		Swal({
+		Swal.fire({
 			type: "warning",
 			title: "File empty ",
 			html: "File field is empty, <strong>Select a file</strong>",
@@ -135,7 +135,7 @@ function validate_upload(files, database, id) {
 	}
 
 	if (files.length === 0) {
-		Swal({
+		Swal.fire({
 			type: "warning",
 			title: "File empty ",
 			html: "File field is empty, <strong>Select a file</strong>",
@@ -146,7 +146,7 @@ function validate_upload(files, database, id) {
 	}
 
 	if (!database) {
-		Swal({
+		Swal.fire({
 			type: "warning",
 			title: "Database empty ",
 			html: "Database field is empty, <strong>Select a database</strong>",
@@ -163,7 +163,7 @@ function validate_upload(files, database, id) {
 			files[0].name.toLowerCase().trim() ==
 			rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 		) {
-			Swal({
+			Swal.fire({
 				type: "warning",
 				title: "Repeat file",
 				html: "This file has already been uploaded, <strong>select another file</strong>",
@@ -205,7 +205,7 @@ function delete_bib(value) {
 					name: bib,
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: '<label class="font-weight-bold text-danger">Error</label>',

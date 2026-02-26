@@ -49,7 +49,7 @@ class Extraction_Answer {
 							id_paper: id_paper,
 							old: old_status
 						}, error: function () {
-							Swal({
+							Swal.fire({
 								type: 'error',
 								title: 'Error',
 								html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -105,7 +105,7 @@ class Extraction_Answer {
 								id_paper: id_paper,
 								old: old_status
 							}, error: function () {
-								Swal({
+								Swal.fire({
 									type: 'error',
 									title: 'Error',
 									html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -175,7 +175,7 @@ class Extraction_Answer {
 							id_paper: id_paper,
 							old: old_status
 						}, error: function () {
-							Swal({
+							Swal.fire({
 								type: 'error',
 								title: 'Error',
 								html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',

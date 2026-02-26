@@ -52,7 +52,7 @@ function add_term() {
 			$("#term")[0].value = "";
 
 			let timerInterval;
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The term was Added",
 				type: "success",
@@ -129,7 +129,7 @@ function edit_term() {
 			old: old,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -158,7 +158,7 @@ function edit_term() {
 				])
 				.draw();
 
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The term was edited",
 				type: "success",
@@ -225,7 +225,7 @@ function delete_term(value) {
 					term: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -265,7 +265,7 @@ function add_synonym(syn = null) {
 			syn: syn,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -289,7 +289,7 @@ function add_synonym(syn = null) {
 			$("#synonym")[0].value = "";
 
 			let timerInterval;
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The synonym was Added",
 				type: "success",
@@ -392,7 +392,7 @@ function edit_synonym() {
 			now: now,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -414,7 +414,7 @@ function edit_synonym() {
 				'<button class="btn btn-danger" onClick="delete_synonym(this)">' +
 				'<span class="far fa-trash-alt"></span>' +
 				"</button>";
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The synonym was edited",
 				type: "success",
@@ -494,7 +494,7 @@ function delete_synonym(btn) {
 					syn: syn,
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -521,7 +521,7 @@ function generate_string(database) {
 			database: database,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -563,7 +563,7 @@ function edit_search_strategy() {
 			search_strategy: search_strategy,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -572,7 +572,7 @@ function edit_search_strategy() {
 			});
 		},
 		success: function () {
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The search strategy was edited",
 				type: "success",

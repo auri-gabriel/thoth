@@ -73,7 +73,7 @@ function edit_research() {
 			old_id: old_id,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -96,7 +96,7 @@ function edit_research() {
 				])
 				.draw();
 
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The research question was edited",
 				type: "success",
@@ -193,7 +193,7 @@ function delete_research_question(value) {
 					id_rq: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',

@@ -98,7 +98,7 @@ function select_criteria_inclusion(value, msg = null) {
 		success: function () {
 			if (msg == null) {
 				if (pre_selected) {
-					Swal({
+					Swal.fire({
 						title: "Criteria Selected",
 						html: "Inclusion Criteria <strong>selected</strong>",
 						type: "success",
@@ -106,7 +106,7 @@ function select_criteria_inclusion(value, msg = null) {
 						confirmButtonText: "Ok",
 					});
 				} else {
-					Swal({
+					Swal.fire({
 						title: "Criteria Deselected",
 						html: "Inclusion Criteria <strong>deselected</strong>",
 						type: "success",
@@ -134,7 +134,7 @@ function select_criteria_exclusion(value, msg = null) {
 			pre_selected: pre_selected,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -145,7 +145,7 @@ function select_criteria_exclusion(value, msg = null) {
 		success: function () {
 			if (msg == null) {
 				if (pre_selected) {
-					Swal({
+					Swal.fire({
 						title: "Criteria Selected",
 						html: "Exclusion Criteria <strong>deselected</strong>",
 						type: "success",
@@ -153,7 +153,7 @@ function select_criteria_exclusion(value, msg = null) {
 						confirmButtonText: "Ok",
 					});
 				} else {
-					Swal({
+					Swal.fire({
 						title: "Criteria Deselected",
 						html: "Exclusion Criteria <strong>deselected</strong>",
 						type: "success",
@@ -168,7 +168,7 @@ function select_criteria_exclusion(value, msg = null) {
 
 function validate_criteria(id, description, type, index) {
 	if (!id) {
-		Swal({
+		Swal.fire({
 			title: "ID Empty",
 			html: "<strong>ID</strong> field is empty",
 			type: "warning",
@@ -178,7 +178,7 @@ function validate_criteria(id, description, type, index) {
 		return false;
 	}
 	if (!description) {
-		Swal({
+		Swal.fire({
 			title: "Description Empty",
 			html: "<strong>Description</strong> field is empty",
 			type: "warning",
@@ -212,7 +212,7 @@ function validate_criteria(id, description, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat ID",
 					html: "This <strong>ID</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -227,7 +227,7 @@ function validate_criteria(id, description, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (description.toLowerCase().trim() == data[i][2].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat Description",
 					html: "This <strong>Description</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -244,7 +244,7 @@ function validate_criteria(id, description, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat ID",
 					html: "This <strong>ID</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -259,7 +259,7 @@ function validate_criteria(id, description, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (description.toLowerCase().trim() == data[i][2].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat Description",
 					html: "This <strong>Description</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -298,7 +298,7 @@ function delete_criteria_inclusion(value) {
 					id: row.data()[1],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -344,7 +344,7 @@ function delete_criteria_exclusion(value) {
 					id: row.data()[1],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -418,7 +418,7 @@ function edit_criteria_inclusion() {
 			pre_selected: pre_selected,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -467,7 +467,7 @@ function edit_criteria_inclusion() {
 					])
 					.draw();
 			}
-			Swal({
+			Swal.fire({
 				title: "Edited criteria",
 				html: "<strong>Edited criteria</strong>",
 				type: "success",
@@ -512,7 +512,7 @@ function edit_criteria_exclusion() {
 			pre_selected: pre_selected,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -561,7 +561,7 @@ function edit_criteria_exclusion() {
 					])
 					.draw();
 			}
-			Swal({
+			Swal.fire({
 				title: "Edited criteria",
 				html: "<strong>Edited criteria</strong>",
 				type: "success",
@@ -588,7 +588,7 @@ function edit_inclusion_rule() {
 			rule: rule,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -631,7 +631,7 @@ function edit_inclusion_rule() {
 					}
 					break;
 			}
-			Swal({
+			Swal.fire({
 				title: "Edited Inclusion Rule",
 				html: "<strong>Edited Inclusion Rule</strong>",
 				type: "success",
@@ -654,7 +654,7 @@ function edit_exclusion_rule() {
 			rule: rule,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -697,7 +697,7 @@ function edit_exclusion_rule() {
 					}
 					break;
 			}
-			Swal({
+			Swal.fire({
 				title: "Edited Exclusion Rule",
 				html: "<strong>Edited Exclusion Rule</strong>",
 				type: "success",

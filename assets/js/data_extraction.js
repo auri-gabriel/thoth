@@ -99,7 +99,7 @@ function validate_question_extraction(id, desc, type, index) {
 	}
 
 	if (!desc) {
-		Swal({
+		Swal.fire({
 			title: "Description Empty",
 			html: "<strong>Description</strong> field is empty",
 			type: "warning",
@@ -110,7 +110,7 @@ function validate_question_extraction(id, desc, type, index) {
 	}
 
 	if (!type) {
-		Swal({
+		Swal.fire({
 			title: "Type Empty",
 			html: "<strong>Type</strong> field is empty",
 			type: "warning",
@@ -125,7 +125,7 @@ function validate_question_extraction(id, desc, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (id.toLowerCase().trim() == data[i][0].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat ID",
 					html: "This <strong>ID</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -140,7 +140,7 @@ function validate_question_extraction(id, desc, type, index) {
 	for (let i = 0; i < data.length; i++) {
 		if (i != index) {
 			if (desc.toLowerCase().trim() == data[i][1].toLowerCase().trim()) {
-				Swal({
+				Swal.fire({
 					title: "Repeat Description",
 					html: "This <strong>Description</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -179,7 +179,7 @@ function delete_extraction(value) {
 					id: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -232,7 +232,7 @@ function add_option() {
 			desc: desc,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -260,7 +260,7 @@ function add_option() {
 
 function validate_option(desc, id, index) {
 	if (!desc) {
-		Swal({
+		Swal.fire({
 			title: "Description Empty",
 			html: "<strong>Description</strong> field is empty",
 			type: "warning",
@@ -278,7 +278,7 @@ function validate_option(desc, id, index) {
 				desc.toLowerCase().trim() ==
 				rows[i].cells.item(0).innerHTML.toLowerCase().trim()
 			) {
-				Swal({
+				Swal.fire({
 					title: "Repeat Description",
 					html: "This <strong>Description</strong> has already been registered,<strong> select another</strong>",
 					type: "warning",
@@ -332,7 +332,7 @@ function delete_option(value) {
 					id_qe: id_qe,
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -399,7 +399,7 @@ function edit_de() {
 			old_type: row.data()[2],
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -449,7 +449,7 @@ function edit_de() {
 				x.add(option);
 			}
 
-			Swal({
+			Swal.fire({
 				title: "Edited Question Extraction",
 				html: "<strong>Edited question extraction</strong>",
 				type: "success",
@@ -486,7 +486,7 @@ function edit_option() {
 			now: now,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -508,7 +508,7 @@ function edit_option() {
 				'<button class="btn btn-danger" onClick="delete_option(this)">' +
 				'<span class="far fa-trash-alt"></span>' +
 				"</button>";
-			Swal({
+			Swal.fire({
 				title: "Edited Option",
 				html: "<strong>Edited option</strong>",
 				type: "success",
@@ -596,7 +596,7 @@ $(document).ready(function () {
 				id: rowData[0][0],
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -730,7 +730,7 @@ $(document).ready(function () {
 				id_paper: id_paper,
 			},
 			error: function () {
-				Swal({
+				Swal.fire({
 					type: "error",
 					title: "Error",
 					html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -774,21 +774,21 @@ function change_old_status_ex(old_status) {
 function status_paper_ex(status) {
 	switch (status) {
 		case "1":
-			Swal({
+			Swal.fire({
 				type: "success",
 				title: "Done",
 				html: 'This paper as <label class="font-weight-bold text-success">Done</label>',
 			});
 			break;
 		case "2":
-			Swal({
+			Swal.fire({
 				type: "question",
 				title: "To Do",
 				html: 'This paper as <label class="font-weight-bold text-dark">To Do</label>',
 			});
 			break;
 		case "3":
-			Swal({
+			Swal.fire({
 				type: "info",
 				title: "Removed",
 				html: 'This paper as <label class="font-weight-bold text-info">Removed</label>',

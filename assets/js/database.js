@@ -159,7 +159,7 @@ function new_database() {
 			link: link,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: '<label class="font-weight-bold text-danger">Error</label>',

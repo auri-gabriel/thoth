@@ -64,7 +64,7 @@ function delete_domain(value) {
 					domain: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -108,7 +108,7 @@ function edit_domain() {
 			now: now,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -134,7 +134,7 @@ function edit_domain() {
 		},
 	});
 
-	Swal({
+	Swal.fire({
 		title: "Success",
 		text: "The domain was edited",
 		type: "success",
@@ -188,7 +188,7 @@ function add_language() {
 			language: language,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -259,7 +259,7 @@ function delete_language(value) {
 					language: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -293,7 +293,7 @@ function add_study_type() {
 			study_type: study_type,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -366,7 +366,7 @@ function delete_study_type(value) {
 					study_type: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -400,7 +400,7 @@ function add_keywords() {
 			keywords: keywords,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -452,7 +452,7 @@ function edit_keyword() {
 			old: old,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -476,7 +476,7 @@ function edit_keyword() {
 		},
 	});
 
-	Swal({
+	Swal.fire({
 		title: "Success",
 		text: "The keyword was edited",
 		type: "success",
@@ -538,7 +538,7 @@ function delete_keywords(value) {
 					keywords: row.data()[0],
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -573,7 +573,7 @@ function add_date() {
 			end_date: end_date,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -582,7 +582,7 @@ function add_date() {
 			});
 		},
 		success: function () {
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The dates was edited",
 				type: "success",

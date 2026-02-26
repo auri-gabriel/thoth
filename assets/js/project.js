@@ -126,7 +126,7 @@ function edit_project() {
 			title: title,
 		},
 		error: function () {
-			Swal({
+			Swal.fire({
 				type: "error",
 				title: "Error",
 				html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -136,7 +136,7 @@ function edit_project() {
 		},
 		success: function () {
 			$("#title_project").text("Edit " + title);
-			Swal({
+			Swal.fire({
 				title: "Success",
 				text: "The project was edited",
 				type: "success",
@@ -196,7 +196,7 @@ function delete_project(id, value) {
 					id_project: id,
 				},
 				error: function () {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
@@ -238,7 +238,7 @@ function edit_level(element) {
 					email: row.data()[1],
 				},
 				error: function (msg) {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: msg,
@@ -246,7 +246,7 @@ function edit_level(element) {
 				},
 				success: function (msg) {
 					if (msg) {
-						Swal({
+						Swal.fire({
 							title: "Warning",
 							text: msg,
 							type: "warning",
@@ -254,7 +254,7 @@ function edit_level(element) {
 							confirmButtonText: "Ok",
 						});
 					} else {
-						Swal({
+						Swal.fire({
 							title: "Success",
 							text: "The level was edited",
 							type: "success",
@@ -273,7 +273,7 @@ function delete_member(value) {
 	let id_project = $("#id_project").val();
 
 	if (table_members.rows().data().length == 1) {
-		Swal({
+		Swal.fire({
 			type: "warning",
 			title: "A Member",
 			html: "There must be at least <strong>one member!</strong>",
@@ -301,7 +301,7 @@ function delete_member(value) {
 					email: row.data()[1],
 				},
 				error: function (msg) {
-					Swal({
+					Swal.fire({
 						type: "error",
 						title: "Error",
 						html: msg,
@@ -309,7 +309,7 @@ function delete_member(value) {
 				},
 				success: function (msg) {
 					if (msg) {
-						Swal({
+						Swal.fire({
 							title: "Warning",
 							text: msg,
 							type: "warning",
@@ -319,7 +319,7 @@ function delete_member(value) {
 					} else {
 						row.remove();
 						table_members.draw();
-						Swal({
+						Swal.fire({
 							title: "Success",
 							text: "The member was deleted",
 							type: "success",
