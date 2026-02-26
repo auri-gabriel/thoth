@@ -1,3 +1,4 @@
+<?php $readonly = (isset($readonly) && $readonly === true); ?>
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_databases">
 	<div class="row justify-content-center">
 
@@ -7,6 +8,7 @@
 				<a onclick="modal_help('modal_help_database')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about databases" data-bs-toggle="tooltip" title="What are databases?"><i class="fas fa-question-circle"></i></a>
 			</div>
 			<div class="card-body">
+				<?php if (!$readonly): ?>
 				<div class="row g-3 mb-2">
 					<div class="col-md-3">
 						<label for="databases" class="form-label">Select Database</label>
@@ -35,22 +37,25 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 				<div class="table-responsive mt-3">
 					<table id="table_databases" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of Databases</caption>
 						<thead class="table-light">
 							<tr>
 								<th scope="col">Database</th>
-								<th scope="col" class="text-end">Delete</th>
+								<?php if (!$readonly): ?><th scope="col" class="text-end">Delete</th><?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($project->get_databases() as $database): ?>
 								<tr>
 									<td><?= $database->get_name() ?></td>
+									<?php if (!$readonly): ?>
 									<td class="text-end">
 										<button class="btn btn-outline-danger btn-sm" onClick="delete_database($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 									</td>
+									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>

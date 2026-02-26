@@ -1,3 +1,4 @@
+<?php $readonly = (isset($readonly) && $readonly === true); ?>
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_quality">
 	<div class="row justify-content-center">
 		<div class="card shadow-sm bg-light">
@@ -8,6 +9,7 @@
 					<strong>General Score</strong>
 					<a onclick="modal_help('modal_help_general_score')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about general score" data-bs-toggle="tooltip" title="What is general score?"><i class="fas fa-question-circle"></i></a>
 				</div>
+				<?php if (!$readonly): ?>
 				<div class="row g-3 mb-2">
 					<div class="col-md-3">
 						<label class="form-label">Score Interval</label>
@@ -43,6 +45,15 @@
 						</div>
 					</div>
 				</div>
+				<?php else: ?>
+				<div class="mb-2">
+					<?php
+					$mini = $project->get_score_min();
+					if (!is_null($mini)): ?>
+						<p class="text-muted small mb-0">Minimum Score to Approve: <strong><?= $mini->get_description() ?></strong></p>
+					<?php endif; ?>
+				</div>
+				<?php endif; ?>
 				<div class="table-responsive mt-3 mb-4">
 					<table id="table_general_score" class="table table-bordered table-hover align-middle mb-0">
 						<caption class="visually-hidden">List of General Score</caption>
@@ -51,7 +62,7 @@
 								<th scope="col">Start</th>
 								<th scope="col">End</th>
 								<th scope="col">Description</th>
-								<th scope="col" class="text-end">Actions</th>
+								<?php if (!$readonly): ?><th scope="col" class="text-end">Actions</th><?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -60,10 +71,12 @@
 									<td><?= $score->get_start_interval() ?></td>
 									<td><?= $score->get_end_interval() ?></td>
 									<td><?= $score->get_description() ?></td>
+									<?php if (!$readonly): ?>
 									<td class="text-end">
 										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_general_score($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
 										<button class="btn btn-outline-danger btn-sm" onClick="delete_general_quality_score($(this).parents('tr'))"><i class="far fa-trash-alt"></i></button>
 									</td>
+									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
@@ -75,6 +88,7 @@
 					<strong>Question Quality</strong>
 					<a onclick="modal_help('modal_help_qa')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about question quality" data-bs-toggle="tooltip" title="What is question quality?"><i class="fas fa-question-circle"></i></a>
 				</div>
+				<?php if (!$readonly): ?>
 				<div class="row g-3 mb-2">
 					<div class="col-md-2">
 						<label for="id_qa" class="form-label">ID</label>
@@ -128,6 +142,7 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 
 				<div class="table-responsive mt-3">
 					<table id="table_qa" class="table table-bordered table-hover align-middle mb-0">
@@ -139,7 +154,7 @@
 								<th scope="col">Score Rules</th>
 								<th scope="col" style="width:8%">Weight</th>
 								<th scope="col" style="width:18%">Min. to Approve</th>
-								<th scope="col" class="text-end" style="width:10%">Actions</th>
+								<?php if (!$readonly): ?><th scope="col" class="text-end" style="width:10%">Actions</th><?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -154,7 +169,7 @@
 													<th>Rule</th>
 													<th>Score</th>
 													<th>Description</th>
-													<th class="text-end">Actions</th>
+													<?php if (!$readonly): ?><th class="text-end">Actions</th><?php endif; ?>
 												</tr>
 											</thead>
 											<tbody>
@@ -163,10 +178,12 @@
 														<td><?= $sc->get_score_rule() ?></td>
 														<td><?= $sc->get_score() ?>%</td>
 														<td><?= $sc->get_description() ?></td>
+														<?php if (!$readonly): ?>
 														<td class="text-end">
 															<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_score_quality(this)"><i class="fas fa-edit"></i></button>
 															<button class="btn btn-outline-danger btn-sm" onClick="delete_score_quality(this)"><i class="far fa-trash-alt"></i></button>
 														</td>
+														<?php endif; ?>
 													</tr>
 												<?php endforeach; ?>
 											</tbody>
@@ -174,6 +191,7 @@
 									</td>
 									<td><?= $qa->get_weight() ?></td>
 									<td>
+										<?php if (!$readonly): ?>
 										<select class="form-select form-select-sm" id="min_to_<?= $qa->get_id() ?>" data-qa="<?= $qa->get_id() ?>" onchange="edit_min_score_qa(this)" aria-label="Minimum to Approve">
 											<option value=""></option>
 											<?php
@@ -184,11 +202,18 @@
 												<option <?= $selected ?> value="<?= $sc->get_score_rule() ?>"><?= $sc->get_score_rule() ?></option>
 											<?php endforeach; ?>
 										</select>
+										<?php else:
+											$min = $qa->get_min_to_approve();
+											echo $min ? htmlspecialchars($min->get_score_rule()) : '—';
+										?>
+										<?php endif; ?>
 									</td>
+									<?php if (!$readonly): ?>
 									<td class="text-end">
 										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_qa($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
 										<button class="btn btn-outline-danger btn-sm" onClick="delete_qa($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 									</td>
+									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>

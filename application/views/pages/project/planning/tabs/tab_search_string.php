@@ -1,3 +1,4 @@
+<?php $readonly = (isset($readonly) && $readonly === true); ?>
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_search_string">
 	<div class="row justify-content-center">
 
@@ -8,6 +9,7 @@
 			</div>
 			<div class="card-body">
 
+				<?php if (!$readonly): ?>
 				<!-- Terms -->
 				<label class="form-label fw-semibold mb-2">Term</label>
 				<div class="row g-3 mb-4">
@@ -45,6 +47,7 @@
 				</div>
 
 				<div id="related-terms" class="mb-3"></div>
+				<?php endif; ?>
 
 				<div class="table-responsive mt-4">
 					<table id="table_search_string" class="table table-bordered table-hover align-middle mb-0">
@@ -53,7 +56,7 @@
 							<tr>
 								<th scope="col" style="width:20%">Term</th>
 								<th scope="col">Synonyms</th>
-								<th scope="col" class="text-end">Actions</th>
+								<?php if (!$readonly): ?><th scope="col" class="text-end">Actions</th><?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,26 +68,30 @@
 											<thead class="table-light">
 												<tr>
 													<th>Synonym</th>
-													<th class="text-end">Actions</th>
+													<?php if (!$readonly): ?><th class="text-end">Actions</th><?php endif; ?>
 												</tr>
 											</thead>
 											<tbody>
 												<?php foreach ($term->get_synonyms() as $synonym): ?>
 													<tr>
 														<td><?= $synonym ?></td>
+														<?php if (!$readonly): ?>
 														<td class="text-end">
 															<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_synonym(this)"><i class="fas fa-edit"></i></button>
 															<button class="btn btn-outline-danger btn-sm" onClick="delete_synonym(this)"><i class="far fa-trash-alt"></i></button>
 														</td>
+														<?php endif; ?>
 													</tr>
 												<?php endforeach; ?>
 											</tbody>
 										</table>
 									</td>
+									<?php if (!$readonly): ?>
 									<td class="text-end">
 										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_term($(this).parents('tr'))"><i class="fas fa-edit"></i></button>
 										<button class="btn btn-outline-danger btn-sm" onClick="delete_term($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 									</td>
+									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
@@ -102,10 +109,12 @@
 							<a target="_blank" href="<?= $search_string->get_database()->get_link() ?>" class="fw-semibold d-inline-block mb-2">
 								<i class="fas fa-external-link-alt me-1 small"></i><?= $search_string->get_database()->get_name() ?>
 							</a>
-							<textarea class="form-control mb-2" id="string_<?= $search_string->get_database()->get_name() ?>" rows="4" aria-label="String for <?= $search_string->get_database()->get_name() ?>"><?= $search_string->get_description() ?></textarea>
+							<textarea class="form-control mb-2" id="string_<?= $search_string->get_database()->get_name() ?>" rows="4" aria-label="String for <?= $search_string->get_database()->get_name() ?>" <?= $readonly ? 'readonly' : '' ?>><?= $search_string->get_description() ?></textarea>
+							<?php if (!$readonly): ?>
 							<button type="button" class="btn btn-primary btn-sm opt" onclick="generate_string('<?= $search_string->get_database()->get_name() ?>');" data-bs-toggle="tooltip" title="Generate string">
 								<i class="fas fa-magic me-1"></i> Generate
 							</button>
+							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
 				</div>

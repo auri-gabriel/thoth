@@ -1,3 +1,4 @@
+<?php $readonly = (isset($readonly) && $readonly === true); ?>
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_data">
 	<div class="row justify-content-center">
 
@@ -9,6 +10,7 @@
 					<strong>Data Extraction</strong>
 					<a onclick="modal_help('modal_help_data_extraction')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about data extraction" data-bs-toggle="tooltip" title="What is data extraction?"><i class="fas fa-question-circle"></i></a>
 				</div>
+				<?php if (!$readonly): ?>
 				<div class="row g-3 mb-2">
 					<div class="col-md-2">
 						<label for="id_data_extraction" class="form-label">ID</label>
@@ -58,6 +60,7 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 
 				<div class="table-responsive mt-4">
 					<table id="table_data_extraction" class="table table-bordered table-hover align-middle mb-0">
@@ -68,7 +71,7 @@
 								<th scope="col" style="width:30%">Description</th>
 								<th scope="col" style="width:10%">Type</th>
 								<th scope="col">Options</th>
-								<th scope="col" class="text-end" style="width:10%">Actions</th>
+								<?php if (!$readonly): ?><th scope="col" class="text-end" style="width:10%">Actions</th><?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,27 +86,31 @@
 												<thead class="table-light">
 													<tr>
 														<th>Option</th>
-														<th class="text-end">Actions</th>
+														<?php if (!$readonly): ?><th class="text-end">Actions</th><?php endif; ?>
 													</tr>
 												</thead>
 												<tbody>
 													<?php foreach ($qe->get_options() as $op): ?>
 														<tr>
 															<td><?= $op ?></td>
+															<?php if (!$readonly): ?>
 															<td class="text-end">
 																<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_option(this)"><i class="fas fa-edit"></i></button>
 																<button class="btn btn-outline-danger btn-sm" onClick="delete_option(this)"><i class="far fa-trash-alt"></i></button>
 															</td>
+															<?php endif; ?>
 														</tr>
 													<?php endforeach; ?>
 												</tbody>
 											</table>
 										<?php endif; ?>
 									</td>
+									<?php if (!$readonly): ?>
 									<td class="text-end">
 										<button class="btn btn-outline-warning btn-sm opt me-1" onClick="modal_extraction($(this).parents('tr'));"><i class="fas fa-edit"></i></button>
 										<button class="btn btn-outline-danger btn-sm" onClick="delete_extraction($(this).parents('tr'));"><i class="far fa-trash-alt"></i></button>
 									</td>
+									<?php endif; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
