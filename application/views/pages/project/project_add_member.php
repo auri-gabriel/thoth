@@ -36,7 +36,7 @@
 								</select>
 							</div>
 							<div class="d-grid gap-2">
-								<button class="btn btn-success btn-lg" type="button" onclick="add_research()">
+								<button class="btn btn-success btn-lg" type="button" onclick="add_member()">
 									<span class="fas fa-plus"></span> Add
 								</button>
 							</div>
