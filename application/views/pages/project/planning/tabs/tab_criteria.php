@@ -38,8 +38,12 @@
 				<!-- Inclusion Criteria -->
 				<div class="mb-4">
 					<div class="d-flex align-items-center mb-2">
-						<span class="badge bg-success me-2"><i class="fas fa-check"></i></span>
-						<strong>Inclusion Criteria</strong>
+						<span class="me-2">
+							<span class="rounded-circle d-inline-flex align-items-center justify-content-center bg-success bg-opacity-75" style="width:2.2rem;height:2.2rem;">
+								<i class="fas fa-check text-white fs-5"></i>
+							</span>
+						</span>
+						<strong class="fs-5 text-success">Inclusion Criteria</strong>
 					</div>
 					<div class="table-responsive">
 						<table id="table_criteria_inclusion" class="table table-bordered table-hover align-middle mb-2">
@@ -104,8 +108,12 @@
 				<!-- Exclusion Criteria -->
 				<div class="mb-2">
 					<div class="d-flex align-items-center mb-2">
-						<span class="badge bg-danger me-2"><i class="fas fa-times"></i></span>
-						<strong>Exclusion Criteria</strong>
+						<span class="me-2">
+							<span class="rounded-circle d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-75" style="width:2.2rem;height:2.2rem;">
+								<i class="fas fa-times text-white fs-5"></i>
+							</span>
+						</span>
+						<strong class="fs-5 text-danger">Exclusion Criteria</strong>
 					</div>
 					<div class="table-responsive">
 						<table id="table_criteria_exclusion" class="table table-bordered table-hover align-middle mb-2">
