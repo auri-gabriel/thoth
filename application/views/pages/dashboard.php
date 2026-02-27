@@ -89,19 +89,30 @@
 								<h5 class="fw-bold mb-0">Recent Activity</h5>
 							</div>
 							<div class="card-body">
-								<ul class="list-group list-group-flush" id="activity-list">
-									<?php if (!empty($recent_activity)) { ?>
-										<?php foreach ($recent_activity as $activity) { ?>
-											<li class="list-group-item">
-												<span class="fw-semibold"><?= htmlspecialchars($activity['activity']); ?></span>
-												<br>
-												<small class="text-muted">Project #<?= htmlspecialchars($activity['id_project']); ?> | <?= htmlspecialchars($activity['time']); ?></small>
-											</li>
+								<div class="activity-scroll" style="max-height: 320px; overflow-y: auto;">
+									<ul class="list-group list-group-flush" id="activity-list">
+										<?php if (!empty($recent_activity)) { ?>
+											<?php foreach ($recent_activity as $activity) { ?>
+												<li class="list-group-item d-flex align-items-start gap-3">
+													<span class="activity-icon text-primary mt-1">
+														<i class="fas fa-history"></i>
+													</span>
+													<div class="activity-details flex-grow-1">
+														<div class="fw-semibold mb-1">
+															<?= htmlspecialchars($activity['activity']); ?>
+														</div>
+														<div class="activity-meta small text-muted">
+															<span class="me-2"><i class="fas fa-project-diagram"></i> Project #<?= htmlspecialchars($activity['id_project']); ?></span>
+															<span><i class="far fa-clock"></i> <?= htmlspecialchars($activity['time']); ?></span>
+														</div>
+													</div>
+												</li>
+											<?php } ?>
+										<?php } else { ?>
+											<li class="list-group-item text-muted">No recent activity.</li>
 										<?php } ?>
-									<?php } else { ?>
-										<li class="list-group-item text-muted">No recent activity.</li>
-									<?php } ?>
-								</ul>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
