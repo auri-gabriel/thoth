@@ -100,9 +100,8 @@ class Project_Controller extends Pattern_Controller
 				'pages/project/conducting/conducting.twig',
 				$data
 			);
-		} catch (Exception $e) {
-			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url());
+		} catch (Throwable $e) {
+			show_error($e->getMessage());
 		}
 	}
 
