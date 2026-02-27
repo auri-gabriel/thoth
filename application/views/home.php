@@ -16,7 +16,7 @@
 	<section class="benefits container py-5">
 		<div class="row align-items-center">
 			<div class="col-md-6 mb-4 mb-md-0">
-				<img src="https://placehold.co/600x360" alt="Prompt: Researcher working, modern academic workspace, Unsplash style" class="img-fluid rounded shadow">
+				<img src="<?= base_url('assets/img/research-working.png'); ?>" alt="Researcher working in a modern academic workspace" class="img-fluid rounded shadow">
 			</div>
 			<div class="col-md-6">
 				<h2 class="fw-bold mb-3">Why Thoth?</h2>
