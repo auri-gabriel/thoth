@@ -1,30 +1,33 @@
-<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
-<div class="row justify-content-md-center">
-	<div class="col-md-6">
-		<div class="card">
-			<div class="card-header">
-				<h4 id="title_project">Edit <?= $project->get_title() ?></h4>
-			</div>
-			<div class="card-body">
-				<div class="form-group">
-					<label for="edit_title">Title</label>
-					<input type="text" name="edit_title" class="form-control" id="edit_title" placeholder="Enter title"
-						   value="<?= $project->get_title() ?>">
+<section class="py-4">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 col-lg-6">
+				<div class="card shadow-sm border-0">
+					<div class="card-header bg-white text-center">
+						<h2 class="fw-bold mb-0"><i class="fas fa-edit me-2"></i>Edit Project</h2>
+					</div>
+					<div class="card-body p-4">
+						<form class="form-edit-project" onsubmit="event.preventDefault(); edit_project();">
+							<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
+							<div class="mb-3">
+								<label for="edit_title" class="form-label">Title</label>
+								<input type="text" name="edit_title" class="form-control form-control-lg" id="edit_title" placeholder="Enter title" value="<?= $project->get_title() ?>" required>
+							</div>
+							<div class="mb-3">
+								<label for="edit_description" class="form-label">Description</label>
+								<textarea name="edit_description" class="form-control form-control-lg min-height" id="edit_description" placeholder="Description" required><?= $project->get_description() ?></textarea>
+							</div>
+							<div class="mb-3">
+								<label for="edit_objectives" class="form-label">Objectives</label>
+								<textarea name="edit_objectives" class="form-control form-control-lg min-height" id="edit_objectives" placeholder="Objectives" required><?= $project->get_objectives() ?></textarea>
+							</div>
+							<div class="d-grid gap-2 mt-4">
+								<button type="submit" class="btn btn-success btn-lg">Save Changes</button>
+							</div>
+						</form>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="description">Description</label>
-					<textarea name="edit_description" class="form-control min-height" id="edit_description"
-							  placeholder="Description"
-					><?= $project->get_description() ?></textarea>
-				</div>
-				<div class="form-group">
-					<label for="edit_objectives">Objectives</label>
-					<textarea name="edit_objectives" class="form-control min-height" id="edit_objectives" placeholder="Objectives"
-					><?= $project->get_objectives() ?></textarea>
-				</div>
-				<button type="submit" class="btn btn-success" onclick="edit_project();">Edited Project</button>
 			</div>
 		</div>
 	</div>
-</div>
-
+</section>
