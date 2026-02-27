@@ -25,7 +25,7 @@
 				<?php if (isset($project) && $project->get_extraction() > 0): ?>
 					<div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
 						<div id="extraction_content"></div>
-						<?php $this->load->view('pages/project/reporting/tabs/tab_extraction'); ?>
+						<?php $this->load->view('pages/project/reporting/tabs/tab_data_extraction'); ?>
 					</div>
 				<?php endif; ?>
 			</div>

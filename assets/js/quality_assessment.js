@@ -1966,21 +1966,28 @@ function change_new_qa(status, index, size, score, gen, score_rule, colum) {
 			break;
 	}
 }
-let configDataTablesQualityAssessment = {
-	language: {
-		sZeroRecords: "No options added",
-	},
-	responsive: true,
-	order: [[0, "asc"]],
-	paginate: false,
-	info: false,
-	searching: false,
-	ordering: false,
-};
 
 $(document).ready(function () {
-	table_qa = $("#table_qa").DataTable(configDataTablesQualityAssessment);
-	table_general_score = $("#table_general_score").DataTable(
-		configDataTablesQualityAssessment,
-	);
+	table_qa = $("#table_qa").DataTable({
+		language: {
+			sZeroRecords: "No options added",
+		},
+		responsive: true,
+		order: [[0, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+		ordering: false,
+	});
+	table_general_score = $("#table_general_score").DataTable({
+		language: {
+			sZeroRecords: "No options added",
+		},
+		responsive: true,
+		order: [[0, "asc"]],
+		paginate: false,
+		info: false,
+		searching: false,
+		ordering: false,
+	});
 });
