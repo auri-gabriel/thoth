@@ -159,8 +159,8 @@
 		</div>
 	</div>
 	<div class="d-flex justify-content-between align-items-center mt-4 mb-5">
-		<a href="#tab_import" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Go to previous step"><span class="fas fa-backward"></span> Previous</a>
-		<a href="#tab_quality" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
+		<a href="#tab_import_studies" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Go to previous step"><span class="fas fa-backward"></span> Previous</a>
+		<a href="#tab_quality_assessment" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
 	</div>
 </div>
 <?php $this->load->view('modal/modal_paper_selection'); ?>
