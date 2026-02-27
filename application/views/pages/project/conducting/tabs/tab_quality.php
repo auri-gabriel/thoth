@@ -8,10 +8,15 @@
 				</div>
 				<?php
 				if ($project_quality->get_planning() == 100 && $project_quality->get_import() == 100 && $project_quality->get_selection() > 0) {
-					$acc = number_format((float)($count_papers_qa[1] * 100) / $count_papers_qa[5], 2);
-					$rej = number_format((float)($count_papers_qa[2] * 100) / $count_papers_qa[5], 2);
-					$unc = number_format((float)($count_papers_qa[3] * 100) / $count_papers_qa[5], 2);
-					$rem = number_format((float)($count_papers_qa[4] * 100) / $count_papers_qa[5], 2);
+					$total = $count_papers_qa[5];
+					if ($total > 0) {
+						$acc = number_format((float)($count_papers_qa[1] * 100) / $total, 2);
+						$rej = number_format((float)($count_papers_qa[2] * 100) / $total, 2);
+						$unc = number_format((float)($count_papers_qa[3] * 100) / $total, 2);
+						$rem = number_format((float)($count_papers_qa[4] * 100) / $total, 2);
+					} else {
+						$acc = $rej = $unc = $rem = number_format(0, 2);
+					}
 				?>
 					<!-- Generic Progress Indicator Bar and Labels for Quality Assessment -->
 					<div class="progress-indicator-container mb-4">
