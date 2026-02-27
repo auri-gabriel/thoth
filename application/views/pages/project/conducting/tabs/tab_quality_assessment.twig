@@ -135,6 +135,6 @@
 		<a href="#tab_study_selection" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Go to previous step"><span class="fas fa-backward"></span> Previous</a>
 		<a href="#tab_data_extraction" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
 	</div>
-	{% include 'modal/modal_paper_qa.php' %}
+	{% include 'modal/modal_paper_qa.twig' with {'data': data} %}
 </div>
 <script src="{{ base_url('assets/js/quality_assessment.js') }}"></script>
