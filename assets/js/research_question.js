@@ -217,7 +217,9 @@ function delete_research_question(value) {
 
 $(document).ready(function () {
 	table_research_question = $("#table_research_question").DataTable({
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,

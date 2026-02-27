@@ -625,7 +625,9 @@ function validate_date(start_date, end_date) {
 }
 
 let configDataTablesOverall = {
-	language: lang,
+	language: {
+		sZeroRecords: "No options added",
+	},
 	responsive: true,
 	order: [[0, "asc"]],
 	paginate: false,

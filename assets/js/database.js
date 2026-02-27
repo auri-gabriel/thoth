@@ -207,7 +207,9 @@ function new_database() {
 
 $(document).ready(function () {
 	table_databases = $("#table_databases").DataTable({
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,

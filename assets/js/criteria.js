@@ -709,7 +709,9 @@ function edit_exclusion_rule() {
 }
 
 let configDataTablesCriteria = {
-	language: lang,
+	language: {
+		sZeroRecords: "No options added",
+	},
 	responsive: true,
 	order: [[0, "asc"]],
 	paginate: false,

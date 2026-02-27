@@ -6,6 +6,10 @@ $(document)
 		hideLoading();
 	});
 
+$(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+	console.error("AJAX error:", settings.url, thrownError);
+});
+
 $(document).ready(function () {
 	base_url = $("#base_url").val();
 	hideLoading();
@@ -14,7 +18,9 @@ $(document).ready(function () {
 	};
 
 	let configDataTables = {
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,
@@ -26,7 +32,9 @@ $(document).ready(function () {
 	table_members = $("#table_members").DataTable(configDataTables);
 
 	table_conf_paper_selection = $("#table_conf_paper_selection").DataTable({
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: true,
@@ -39,7 +47,9 @@ $(document).ready(function () {
 	});
 
 	table_conf_paper_qa = $("#table_conf_paper_qa").DataTable({
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: true,
@@ -64,7 +74,9 @@ $(document).ready(function () {
 			},
 		],
 		autoWidth: false,
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,
@@ -84,7 +96,9 @@ $(document).ready(function () {
 			},
 		],
 		autoWidth: false,
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,
@@ -104,7 +118,9 @@ $(document).ready(function () {
 			},
 		],
 		autoWidth: false,
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,
