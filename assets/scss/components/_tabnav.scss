@@ -4,7 +4,7 @@
 @import "../base/variables";
 
 nav:has(.modern-tabs) {
-	border-radius: $border-radius;
+	border-radius: $border-radius + ($table-cell-padding-x * 0.5);
 }
 
 .modern-tabs {
