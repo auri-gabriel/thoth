@@ -1,8 +1,9 @@
 {% extends "layout.twig" %}
 {% block title%} Thoth - Planning {% endblock %}
-{% block body %}
+{% block content %}
 <div class="container py-4" id="conducting-tabs" data-project-id="{{ project.id }}">
 	<div class="card">
+	{% include 'pages/project/partials/card_header.php' %}
 		<div class="card-body bg-light">
 			<h4>Conducting</h4>
 			{% include 'pages/project/conducting/partials/tab_nav.twig' %}
@@ -22,7 +23,6 @@
 						{% include 'pages/project/conducting/tabs/tab_data_extraction.twig' %}
 					</div>
 				{% else %}
-				project planning wasnt completed
 				<pre> 
 				 {{ dump(project) }}
 				 </pre>
