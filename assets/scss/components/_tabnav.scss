@@ -3,6 +3,10 @@
 
 @import "../base/variables";
 
+nav:has(.modern-tabs) {
+	border-radius: $border-radius;
+}
+
 .modern-tabs {
 	gap: $table-cell-padding-x * 0.5;
 	.modern-tab {
