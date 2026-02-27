@@ -7,11 +7,10 @@
 		<div class="card-body bg-light">
 			<h4>Conducting</h4>
 			{% include 'pages/project/conducting/partials/tab_nav.twig' %}
-
 			<div class="tab-content p-md-3">
-				{% if project.planning == "100" %}
+				{% if data.project.get_planning == "100" %}
 					<div class="tab-pane fade show active" id="tab_import_studies" role="tabpanel">
-						{% include 'pages/project/conducting/tabs/tab_import_studies.twig' %}
+						{% include 'pages/project/conducting/tabs/tab_import_studies.twig' with { 'data': data } %}
 					</div>
 					<div class="tab-pane fade" id="tab_study_selection" role="tabpanel">
 						{% include 'pages/project/conducting/tabs/tab_study_selection.twig' %}
@@ -23,9 +22,7 @@
 						{% include 'pages/project/conducting/tabs/tab_data_extraction.twig' %}
 					</div>
 				{% else %}
-				<pre> 
-				 {{ dump(project) }}
-				 </pre>
+
 				{% endif %}
 			</div>
 		</div>

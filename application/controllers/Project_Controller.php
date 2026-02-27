@@ -98,7 +98,7 @@ class Project_Controller extends Pattern_Controller
 
 			echo $this->twig->render(
 				'pages/project/conducting/conducting.twig',
-				$data
+				['data' => $data]
 			);
 		} catch (Throwable $e) {
 			show_error($e->getMessage());
