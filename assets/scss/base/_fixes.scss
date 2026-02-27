@@ -1,6 +1,7 @@
 .form-control,
 .form-select {
 	background-color: $form-control-bg !important;
+	border-color: $form-control-border-color !important;
 }
 
 // Fix input/button height mismatch in input groups
