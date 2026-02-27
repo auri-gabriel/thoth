@@ -9,7 +9,7 @@
 
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_import">
 	<div class="row justify-content-center">
-		<div class="card shadow-sm h-100 bg-light">
+		<div class="card shadow-sm h-100">
 			<div class="card-body">
 				<div class="d-flex align-items-center mb-2">
 					<label for="database_import" class="mb-0"><strong>Import Studies</strong></label>
