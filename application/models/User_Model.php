@@ -201,4 +201,14 @@ class User_Model extends CI_Model
 
 		return $query->result_array();
 	}
+
+	/**
+	 * Get total number of users
+	 * @return int
+	 */
+	public function get_total_users()
+	{
+		$this->db->from('user');
+		return $this->db->count_all_results();
+	}
 }

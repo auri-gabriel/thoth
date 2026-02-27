@@ -8,8 +8,12 @@
 			<a href="<?= base_url('login'); ?>" class="btn btn-outline-primary btn-lg px-4 py-2">Login</a>
 		</div>
 		<div class="d-flex justify-content-center align-items-center gap-4 mt-3 flex-wrap">
-			<span class="text-muted small">40+ projects</span>
-			<span class="text-muted small">Used by 60+ users</span>
+			<span class="text-muted small">
+				<?= isset($project_count) ? htmlspecialchars($project_count) . ' projects' : '40+ projects'; ?>
+			</span>
+			<span class="text-muted small">
+				<?= isset($user_count) ? 'Used by ' . htmlspecialchars($user_count) . ' users' : 'Used by 60+ users'; ?>
+			</span>
 		</div>
 	</section>
 
