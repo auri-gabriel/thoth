@@ -44,7 +44,6 @@ function readFileAsString() {
 						});
 					},
 					success: function () {
-						$("#name_bib_upload")[0].innerHTML = "";
 						let table_bib = document.getElementById(id);
 						let p = table_bib.parentNode.parentNode.cells.item(1).innerHTML;
 						table_bib.parentNode.parentNode.cells.item(1).innerHTML =
@@ -107,19 +106,6 @@ function readFileAsString() {
 
 	reader.readAsText(files[0]);
 	$("#upload_bib").val("");
-}
-
-function change_name() {
-	let files = document.getElementById("upload_bib").files;
-	if (files) {
-		if (files.length > 0) {
-			$("#name_bib_upload")[0].innerHTML = files[0].name;
-		} else {
-			$("#name_bib_upload")[0].innerHTML = "";
-		}
-	} else {
-		$("#name_bib_upload")[0].innerHTML = "";
-	}
 }
 
 function validate_upload(files, database, id) {
@@ -217,8 +203,7 @@ function delete_bib(value) {
 					table_bib.parentNode.parentNode.cells.item(1).innerHTML =
 						parseInt(p) - papers;
 					row.parentNode.removeChild(row);
-					$("#name_bib_upload")[0].innerHTML = "";
-					$("#name_bib_upload")[0].value = "";
+					// No need to update file name label
 				},
 			});
 			SwalAdapter.fire(
