@@ -166,5 +166,5 @@
 		<a href="#tab_quality_assessment" class="btn btn-primary opt" data-bs-toggle="tooltip" title="Go to next step">Next <span class="fas fa-forward"></span></a>
 	</div>
 </div>
-{% include 'modal/modal_paper_selection.php' %}
+{% include 'modal/modal_paper_selection.twig' with { 'data': data} %}
 <script src="{{ base_url('assets/js/study_selection.js') }}"></script>
