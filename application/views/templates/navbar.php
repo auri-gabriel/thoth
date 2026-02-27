@@ -34,14 +34,22 @@
 				</li>
 				<?php if (isset($_SESSION['logged_in'])): ?>
 					<li class="nav-item d-flex align-items-center ms-3">
-						<a class="nav-link" href="<?= site_url('profile') ?>">
-							<span class="fas fa-address-card fa-lg"></span> <?= $this->session->name; ?>
-						</a>
-					</li>
-					<li class="nav-item d-flex align-items-center">
-						<a class="nav-link" href="<?= site_url('logout'); ?>">
-							<span class="fas fa-sign-out-alt fa-lg"></span> Sign out
-						</a>
+						<div class="dropdown text-end">
+							<a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center me-2" style="width:32px;height:32px;font-size:1.1rem;font-weight:bold;">
+									<?= strtoupper(substr($this->session->name, 0, 1)); ?>
+								</span>
+								<span class="fw-semibold"><?= $this->session->name; ?></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end text-small shadow">
+								<li><a class="dropdown-item" href="<?= site_url('project/new'); ?>">New project...</a></li>
+								<li><a class="dropdown-item" href="<?= site_url('profile'); ?>">Profile</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="<?= site_url('logout'); ?>">Sign out</a></li>
+							</ul>
+						</div>
 					</li>
 				<?php else: ?>
 					<li class="nav-item d-flex align-items-center ms-2">
