@@ -1,7 +1,7 @@
 {% extends "layout.twig" %}
 {% block title%} Thoth - Planning {% endblock %}
 {% block content %}
-<div class="container py-4" id="conducting-tabs" data-project-id="{{ data.project.id }}">
+<div class="container py-4" id="conducting-tabs" data-project-id="{{ data.project.get_id }}">
 	<div class="card">
 	{% include 'pages/project/partials/card_header.twig' with { 'project': data.project , 'active_tab': 'conducting', 'is_owner': true } %}
 		<div class="card-body bg-light">
@@ -29,7 +29,6 @@
 		<br>
 	</div>
 </div>
+<script src="{{ base_url('assets/js/conducting_tabs.js') }}"></script>
 {% endblock %}
-{# <script src="{{ base_url('assets/js/bibupload.js') }}"></script>
-<script src="{{ base_url('assets/js/conducting_tabs.js') }}"></script> #}
 
