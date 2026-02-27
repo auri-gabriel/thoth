@@ -36,7 +36,7 @@
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-question fa-2x text-primary mb-2"></i>
 				<h4 class="fw-semibold">Define Questions</h4>
-				<img src="https://placehold.co/320x180" alt="Prompt: Generate a photograph representing academic research, group discussion, modern, Unsplash style" class="img-fluid rounded mb-2">
+				<img src="<?= base_url('assets/img/first-image.png'); ?>" alt="" class="img-fluid rounded mb-2">
 				<p>Set clear research questions and objectives for your review.</p>
 			</div>
 			<div class="col-md-3 mb-4">
