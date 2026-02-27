@@ -62,7 +62,7 @@
 													<tr>
 														<td class="file-name">{{ b }}</td>
 														<td style="width: 1%;">
-															<button class="btn btn-outline-danger btn-sm" onClick="delete_bib(this);" data-bs-toggle="tooltip" title="Delete file">
+															<button class="btn btn-outline-danger btn-sm" onClick="delete_bib(this)" data-database="{{ database.get_name }}" data-filename="{{ b }}" data-bs-toggle="tooltip" title="Delete file">
 																<span class="far fa-trash-alt"></span>
 															</button>
 														</td>

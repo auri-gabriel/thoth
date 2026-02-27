@@ -164,10 +164,9 @@ function validate_upload(files, database, id) {
 
 function delete_bib(value) {
 	let row = value.parentNode.parentNode;
-	let bib = row.cells.item(0).innerHTML;
+	let bib = value.getAttribute("data-filename");
 	let id_project = $("#id_project").val();
-	let database =
-		row.parentNode.parentNode.parentNode.parentNode.cells.item(0).innerHTML;
+	let database = value.getAttribute("data-database");
 	let id = "table_" + database;
 
 	SwalAdapter.fire({
