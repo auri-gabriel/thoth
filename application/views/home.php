@@ -4,12 +4,12 @@
 		<h1 class="display-3 fw-bold mb-3">Accelerate Your Systematic Review</h1>
 		<p class="lead mb-4">Thoth empowers researchers to collaborate, analyze, and publish evidence faster.<br><span class="text-primary fw-semibold">Trusted by academics and professionals worldwide.</span></p>
 		<div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-			<a href="#register" class="btn btn-success btn-lg px-4 py-2 shadow">Start Free</a>
-			<a href="#login" class="btn btn-outline-primary btn-lg px-4 py-2">Login</a>
+			<a href="<?= base_url('register'); ?>" class="btn btn-success btn-lg px-4 py-2 shadow">Start Free</a>
+			<a href="<?= base_url('login'); ?>" class="btn btn-outline-primary btn-lg px-4 py-2">Login</a>
 		</div>
 		<div class="d-flex justify-content-center align-items-center gap-4 mt-3 flex-wrap">
-			<span class="text-muted small">4,000+ reviews completed</span>
-			<span class="text-muted small">Used by 120+ institutions</span>
+			<span class="text-muted small">40+ projects</span>
+			<span class="text-muted small">Used by 60+ users</span>
 		</div>
 	</section>
 
@@ -24,7 +24,7 @@
 					<li class="mb-2"><i class="fas fa-shield-alt text-info me-2"></i> Secure & reliable data</li>
 					<li class="mb-2"><i class="fas fa-trophy text-warning me-2"></i> Publish with confidence</li>
 				</ul>
-				<a href="#register" class="btn btn-primary btn-lg px-4">Get Started</a>
+				<a href="<?= base_url('register'); ?>" class="btn btn-primary btn-lg px-4">Get Started</a>
 			</div>
 		</div>
 	</section>
@@ -57,7 +57,7 @@
 	<section class="cta text-center py-5 bg-light">
 		<h2 class="fw-bold mb-3">Ready to transform your research?</h2>
 		<p class="mb-4">Join Thoth and streamline your systematic review process with powerful features and collaboration tools.</p>
-		<a href="#register" class="btn btn-success btn-lg px-4 py-2 shadow">Create Account</a>
-		<a href="#login" class="btn btn-outline-secondary btn-lg px-4 py-2 ms-2">Login</a>
+		<a href="<?= base_url('register'); ?>" class="btn btn-success btn-lg px-4 py-2 shadow">Create Account</a>
+		<a href="<?= base_url('login'); ?>" class="btn btn-outline-secondary btn-lg px-4 py-2 ms-2">Login</a>
 	</section>
 </div>
