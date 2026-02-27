@@ -1,6 +1,8 @@
 let loadingShownAt = null;
 const MIN_LOADING_TIME = 400; // ms
 let hideLoadingTimeout = null;
+let loadingFailsafeTimeout = null;
+const MAX_LOADING_TIME = 10000; // ms (failsafe)
 
 const showLoading = (autoRemove = null) => {
 	/*
@@ -41,6 +43,8 @@ const showLoading = (autoRemove = null) => {
 
 	loadingShownAt = Date.now();
 	hideLoadingTimeout = null;
+	// Failsafe: always remove after MAX_LOADING_TIME
+	loadingFailsafeTimeout = setTimeout(hideLoading, MAX_LOADING_TIME);
 
 	if (autoRemove) {
 		setTimeout(hideLoading, autoRemove);
@@ -61,7 +65,16 @@ const hideLoading = () => {
 		return;
 	}
 
+	// Remove overlay
 	overlay.parentNode.removeChild(overlay);
 	loadingShownAt = null;
-	hideLoadingTimeout = null;
+	// Clear any pending timeouts
+	if (hideLoadingTimeout) {
+		clearTimeout(hideLoadingTimeout);
+		hideLoadingTimeout = null;
+	}
+	if (loadingFailsafeTimeout) {
+		clearTimeout(loadingFailsafeTimeout);
+		loadingFailsafeTimeout = null;
+	}
 };
