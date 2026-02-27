@@ -136,13 +136,7 @@ function edit_project() {
 		},
 		success: function () {
 			$("#title_project").text("Edit " + title);
-			SwalAdapter.fire({
-				title: "Success",
-				text: "The project was edited",
-				type: "success",
-				showCancelButton: false,
-				confirmButtonText: "Ok",
-			});
+			window.location.href = base_url;
 		},
 	});
 }
