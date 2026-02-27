@@ -93,10 +93,10 @@ $route['project_export/export_latex'] = 'Project_Export_Controller/export_latex'
 $route['project_export/export_bib']   = 'Project_Export_Controller/export_bib';
 
 // Project Conducting
-$route['projects/conducting/import'] = 'Project_Conducting_Controller/conducting_import';
-$route['projects/conducting/selection'] = 'Project_Conducting_Controller/conducting_selection';
-$route['projects/conducting/quality'] = 'Project_Conducting_Controller/conducting_quality';
-$route['projects/conducting/extraction'] = 'Project_Conducting_Controller/conducting_extraction';
+$route['projects/conducting/import-studies'] = 'Project_Conducting_Controller/conducting_import_studies';
+$route['projects/conducting/study-selection'] = 'Project_Conducting_Controller/conducting_study_selection';
+$route['projects/conducting/quality-assessment'] = 'Project_Conducting_Controller/conducting_quality_assessment';
+$route['projects/conducting/data-extraction'] = 'Project_Conducting_Controller/conducting_data_extraction';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

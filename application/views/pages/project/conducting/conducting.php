@@ -1,5 +1,3 @@
-<script src="<?= base_url('assets/js/bibupload.js'); ?>"></script>
-<script src="<?= base_url('assets/js/conducting_tabs.js'); ?>"></script>
 <div class="container py-4" id="conducting-tabs" data-project-id="<?= htmlspecialchars($project->get_id(), ENT_QUOTES, 'UTF-8'); ?>">
 	<div class="card">
 		<?php $this->load->view('pages/project/partials/card_header', ['active_tab' => 'conducting', 'is_owner' => true]); ?>
@@ -29,6 +27,8 @@
 		<br>
 	</div>
 </div>
+<script src="<?= base_url('assets/js/bibupload.js'); ?>"></script>
+<script src="<?= base_url('assets/js/conducting_tabs.js'); ?>"></script>
 
 <?php
 // Conducting modals

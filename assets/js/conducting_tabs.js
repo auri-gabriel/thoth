@@ -15,10 +15,10 @@ $(document).ready(function () {
 	// Map tab IDs to controller endpoints
 	var projectId = $("#conducting-tabs").data("project-id");
 	var tabEndpoints = {
-		"#tab_import_studies": "/projects/conducting/import",
-		"#tab_study_selection": "/projects/conducting/selection",
-		"#tab_quality_assessment": "/projects/conducting/quality",
-		"#tab_data_extraction": "/projects/conducting/extraction",
+		"#tab_import_studies": "/projects/conducting/import-studies",
+		"#tab_study_selection": "/projects/conducting/study-selection",
+		"#tab_quality_assessment": "/projects/conducting/quality-assessment",
+		"#tab_data_extraction": "/projects/conducting/data-extraction'",
 	};
 
 	// Initial load for active tab

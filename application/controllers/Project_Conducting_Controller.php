@@ -31,7 +31,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 	 * AJAX endpoint — Import tab
 	 * URL: /project_conducting/conducting_import?id={id}
 	 */
-	public function conducting_import()
+	public function conducting_import_studies()
 	{
 		$id = $this->input->get('id');
 		try {
@@ -51,7 +51,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 	 * AJAX endpoint — Study Selection tab
 	 * URL: /project_conducting/conducting_selection?id={id}
 	 */
-	public function conducting_selection()
+	public function conducting_study_selection()
 	{
 		$id = $this->input->get('id');
 		try {
@@ -71,7 +71,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 	 * AJAX endpoint — Quality Assessment tab
 	 * URL: /project_conducting/conducting_quality?id={id}
 	 */
-	public function conducting_quality()
+	public function conducting_quality_assessment()
 	{
 		$id = $this->input->get('id');
 		try {
@@ -91,7 +91,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 	 * AJAX endpoint — Data Extraction tab
 	 * URL: /project_conducting/conducting_extraction?id={id}
 	 */
-	public function conducting_extraction()
+	public function conducting_data_extraction()
 	{
 		$id = $this->input->get('id');
 		try {
