@@ -10,7 +10,7 @@
 
 <p align="center"><em>Example of the Thoth project dashboard and progress tracking interface.</em></p>
 
-**Legacy Version 1.5**
+**Legacy Version**
 
 > **Notice:** This repository contains the legacy version of Thoth, intended primarily for educational, experimental, and archival purposes. For production use and the latest features, please visit [Thoth 2.0](https://thoth-slr.com/).
 
