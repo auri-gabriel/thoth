@@ -42,7 +42,7 @@
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-database fa-2x text-success mb-2"></i>
 				<h4 class="fw-semibold">Find Relevant Data</h4>
-				<img src="https://placehold.co/320x180" alt="Prompt: Generate a photograph of a researcher searching data, scholarly, Unsplash style" class="img-fluid rounded mb-2">
+				<img src="<?= base_url('assets/img/second-image.png'); ?>" alt="" class="img-fluid rounded mb-2">
 				<p>Search and filter high-quality research matching your criteria.</p>
 			</div>
 			<div class="col-md-3 mb-4">
