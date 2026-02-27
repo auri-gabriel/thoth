@@ -112,13 +112,6 @@ $(document).ready(function () {
 		searching: false,
 	});
 
-	table_criteria_inclusion = $("#table_criteria_inclusion").DataTable(
-		configDataTables,
-	);
-	table_criteria_exclusion = $("#table_criteria_exclusion").DataTable(
-		configDataTables,
-	);
-
 	table_my_projects = $("#table_my_projects").DataTable({
 		responsive: true,
 		order: [[0, "asc"]],
