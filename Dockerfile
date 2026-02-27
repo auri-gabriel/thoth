@@ -1,5 +1,5 @@
 # Use an official PHP image with Apache
-FROM php:7.4-apache
+FROM php:8.1-apache
 
 # Install PHP extensions required by CodeIgniter
 RUN docker-php-ext-install mysqli pdo pdo_mysql
