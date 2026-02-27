@@ -14,6 +14,13 @@ require_once APPPATH . 'controllers/Pattern_Controller.php';
  */
 class Project_Controller extends Pattern_Controller
 {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('twig');
+	}
+
 	/**
 	 * Project overview page
 	 * URL: /projects/{id}
@@ -70,6 +77,8 @@ class Project_Controller extends Pattern_Controller
 			$this->validate_level($id, [1, 2, 3, 4]);
 			$this->load->model('Project_Model');
 
+			$data = [];
+
 			// Shared / Import tab
 			$data['project']     = $this->Project_Model->get_project_selection($id);
 			$data['bib']         = $this->Project_Model->get_name_bibs($id);
@@ -87,7 +96,10 @@ class Project_Controller extends Pattern_Controller
 			// Data Extraction tab
 			$data['count_papers_extraction'] = $this->Project_Model->count_papers_extraction($id);
 
-			$this->load_views('pages/project/conducting/conducting', $data);
+			echo $this->twig->render(
+				'pages/project/conducting/conducting.twig',
+				$data
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
