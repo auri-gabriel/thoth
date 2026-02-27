@@ -23,7 +23,7 @@
 		</li>
 		<li class="nav-item" style="min-width:140px;">
 			<a class="nav-link modern-tab d-flex flex-column align-items-center justify-content-center py-2 px-3 fw-semibold"
-				id="tab_extraction-tab" data-bs-toggle="pill" href="#tab_data_xtraction" role="tab" aria-controls="tab_extraction" aria-selected="false">
+				id="tab_extraction-tab" data-bs-toggle="pill" href="#tab_data_extraction" role="tab" aria-controls="tab_extraction" aria-selected="false">
 				<span class="icon-circle mb-1"><i class="fas fa-table fa-lg"></i></span>
 				<span class="tab-label">Data Extraction</span>
 			</a>
