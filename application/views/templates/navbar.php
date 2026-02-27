@@ -16,19 +16,21 @@
 		</button>
 		<div class="collapse navbar-collapse" id="menu">
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center flex-row gap-2">
-				<li class="nav-item d-flex align-items-center">
-					<a class="nav-link" href="<?= site_url('about') ?>">About</a>
-				</li>
-				<li class="nav-item d-flex align-items-center">
-					<a class="nav-link" href="<?= site_url('help') ?>">Help</a>
-				</li>
-				<li class="nav-item align-self-center" style="min-width: 260px;">
+				<li class="nav-item align-self-center mx-auto" style="min-width: 260px;">
 					<form class="d-flex w-100 align-items-center" action="<?= site_url('search') ?>" style="margin-bottom: 0;">
 						<input class="form-control me-2 opt flex-grow-1 align-self-center" name="search" type="search" placeholder="Search in Thoth" aria-label="Search" style="height: 38px;">
 						<button class="btn btn-outline-primary opt d-flex align-items-center gap-1 align-self-center" type="submit" style="height: 38px;">
 							<span class="fas fa-search"></span> <span class="d-none d-md-inline">Search</span>
 						</button>
 					</form>
+				</li>
+			</ul>
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center flex-row gap-2">
+				<li class="nav-item d-flex align-items-center">
+					<a class="nav-link" href="<?= site_url('about') ?>">About</a>
+				</li>
+				<li class="nav-item d-flex align-items-center">
+					<a class="nav-link" href="<?= site_url('help') ?>">Help</a>
 				</li>
 				<?php if (isset($_SESSION['logged_in'])): ?>
 					<li class="nav-item d-flex align-items-center ms-3">
@@ -42,15 +44,11 @@
 						</a>
 					</li>
 				<?php else: ?>
-					<li class="nav-item d-flex align-items-center ms-3">
-						<a class="nav-link aut" href="<?= site_url('login'); ?>">
-							<span class="fas fa-sign-in-alt fa-lg"></span> Sign in
-						</a>
+					<li class="nav-item d-flex align-items-center ms-2">
+						<a class="nav-link aut px-2" href="<?= site_url('login'); ?>">Login</a>
 					</li>
-					<li class="nav-item d-flex align-items-center">
-						<a class="nav-link" href="<?= site_url('signup'); ?>">
-							<span class="fas fa-user-plus fa-lg"></span> Sign up
-						</a>
+					<li class="nav-item d-flex align-items-center ms-1">
+						<a class="nav-link px-2" href="<?= site_url('signup'); ?>">Register</a>
 					</li>
 				<?php endif; ?>
 			</ul>
