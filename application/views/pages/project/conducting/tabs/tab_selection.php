@@ -66,7 +66,7 @@
 						</div>
 					</div>
 					<div class="table-responsive mt-4">
-						<table class="table table-hover align-middle" id="table_papers">
+						<table class="table table-bordered table-hover align-middle" id="table_papers">
 							<caption class="visually-hidden">List of Papers Imported</caption>
 							<thead class="table-light">
 								<tr>

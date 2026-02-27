@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="table-responsive mt-4">
-					<table id="table_imported_studies" class="table table-hover align-middle">
+					<table id="table_imported_studies" class="table table-bordered table-hover align-middle">
 						<caption class="visually-hidden">List of Imports of Data Tables</caption>
 						<thead class="table-light">
 							<tr>
@@ -51,7 +51,7 @@
 									<td><?= $database->get_name() ?></td>
 									<td><?= $num_papers[$database->get_name()] ?></td>
 									<td>
-										<table id="table_<?= $database->get_name() ?>" class="table table-sm mb-0">
+										<table id="table_<?= $database->get_name() ?>" class="table table-bordered table-sm mb-0">
 											<thead class="table-light">
 												<tr>
 													<th>File</th>

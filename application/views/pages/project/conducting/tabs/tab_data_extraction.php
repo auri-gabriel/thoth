@@ -52,7 +52,7 @@
 						</div>
 					</div>
 					<div class="table-responsive mt-4">
-						<table class="table table-hover align-middle" id="table_papers_extraction">
+						<table class="table table-bordered table-hover align-middle" id="table_papers_extraction">
 							<caption class="visually-hidden">List of Papers for Data Extraction</caption>
 							<thead class="table-light">
 								<tr>
