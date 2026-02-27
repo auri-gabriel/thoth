@@ -900,7 +900,9 @@ function change_new_status_ex(id_paper, status, index) {
 }
 $(document).ready(function () {
 	table_data_extraction = $("#table_data_extraction").DataTable({
-		language: lang,
+		language: {
+			sZeroRecords: "No options added",
+		},
 		responsive: true,
 		order: [[0, "asc"]],
 		paginate: false,

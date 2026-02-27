@@ -1967,7 +1967,9 @@ function change_new_qa(status, index, size, score, gen, score_rule, colum) {
 	}
 }
 let configDataTables = {
-	language: lang,
+	language: {
+		sZeroRecords: "No options added",
+	},
 	responsive: true,
 	order: [[0, "asc"]],
 	paginate: false,
