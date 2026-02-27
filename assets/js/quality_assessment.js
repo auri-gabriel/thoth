@@ -1966,7 +1966,7 @@ function change_new_qa(status, index, size, score, gen, score_rule, colum) {
 			break;
 	}
 }
-let configDataTables = {
+let configDataTablesQualityAssessment = {
 	language: {
 		sZeroRecords: "No options added",
 	},
@@ -1979,6 +1979,8 @@ let configDataTables = {
 };
 
 $(document).ready(function () {
-	table_qa = $("#table_qa").DataTable(configDataTables);
-	table_general_score = $("#table_general_score").DataTable(configDataTables);
+	table_qa = $("#table_qa").DataTable(configDataTablesQualityAssessment);
+	table_general_score = $("#table_general_score").DataTable(
+		configDataTablesQualityAssessment,
+	);
 });

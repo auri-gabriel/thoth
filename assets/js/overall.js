@@ -624,7 +624,7 @@ function validate_date(start_date, end_date) {
 	return true;
 }
 
-let configDataTables = {
+let configDataTablesOverall = {
 	language: lang,
 	responsive: true,
 	order: [[0, "asc"]],
@@ -635,8 +635,8 @@ let configDataTables = {
 };
 
 $(document).ready(function () {
-	table_domains = $("#table_domains").DataTable(configDataTables);
-	table_languages = $("#table_languages").DataTable(configDataTables);
-	table_study_type = $("#table_study_type").DataTable(configDataTables);
-	table_keywords = $("#table_keywords").DataTable(configDataTables);
+	table_domains = $("#table_domains").DataTable(configDataTablesOverall);
+	table_languages = $("#table_languages").DataTable(configDataTablesOverall);
+	table_study_type = $("#table_study_type").DataTable(configDataTablesOverall);
+	table_keywords = $("#table_keywords").DataTable(configDataTablesOverall);
 });

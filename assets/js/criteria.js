@@ -708,7 +708,7 @@ function edit_exclusion_rule() {
 	});
 }
 
-let configDataTables = {
+let configDataTablesCriteria = {
 	language: lang,
 	responsive: true,
 	order: [[0, "asc"]],
@@ -720,9 +720,9 @@ let configDataTables = {
 
 $(document).ready(function () {
 	table_criteria_inclusion = $("#table_criteria_inclusion").DataTable(
-		configDataTables,
+		configDataTablesCriteria,
 	);
 	table_criteria_exclusion = $("#table_criteria_exclusion").DataTable(
-		configDataTables,
+		configDataTablesCriteria,
 	);
 });
