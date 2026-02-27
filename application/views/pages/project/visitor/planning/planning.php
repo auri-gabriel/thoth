@@ -12,7 +12,7 @@
 			<?php $this->load->view('pages/project/planning/tabs/tab_search_string', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_search_strategy', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_criteria', ['readonly' => true]); ?>
-			<?php $this->load->view('pages/project/planning/tabs/tab_quality', ['readonly' => true]); ?>
+			<?php $this->load->view('pages/project/planning/tabs/tab_quality_assessment', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_data_extraction', ['readonly' => true]); ?>
 		</div>
 		<br>

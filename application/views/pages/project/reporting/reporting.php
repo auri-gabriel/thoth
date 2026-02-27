@@ -17,10 +17,10 @@
 					</div>
 				</div>
 				<div class="tab-pane fade container-fluid" id="tab_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
-					<?php $this->load->view('pages/project/reporting/tabs/tab_selection'); ?>
+					<?php $this->load->view('pages/project/reporting/tabs/tab_study_selection'); ?>
 				</div>
 				<div class="tab-pane fade container-fluid" id="tab_quality" role="tabpanel" aria-labelledby="tab_quality-tab">
-					<?php $this->load->view('pages/project/reporting/tabs/tab_quality'); ?>
+					<?php $this->load->view('pages/project/reporting/tabs/tab_quality_assessment'); ?>
 				</div>
 				<?php if (isset($project) && $project->get_extraction() > 0): ?>
 					<div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
