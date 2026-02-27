@@ -4,20 +4,20 @@
 @import "../base/variables";
 
 .modern-tabs {
-	gap: 0.5rem;
+	gap: $table-cell-padding-x * 0.5;
 	.modern-tab {
 		height: 100%;
-		border-radius: 0; // No rounded corners
+		border-radius: $border-radius;
 		transition:
 			background 0.2s,
 			color 0.2s,
 			box-shadow 0.2s;
 		background: $gray-100;
 		color: $dark;
-		margin-bottom: 2px;
+		margin-bottom: $table-cell-padding-y * 0.1;
 		border: 2px solid transparent;
-		font-weight: 500;
-		min-height: 100px;
+		font-weight: $font-weight-medium;
+		min-height: $table-cell-padding-y * 4;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -29,17 +29,16 @@
 		background: $primary;
 		color: $light;
 		border-color: $primary;
-		box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
 	}
 	.icon-circle {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.2rem;
-		height: 2.2rem;
+		width: $table-cell-padding-x * 2.2;
+		height: $table-cell-padding-x * 2.2;
 		border-radius: 50%;
 		background: $gray-200;
-		margin-bottom: 0.25rem;
+		margin-bottom: $table-cell-padding-y * 0.25;
 		transition: background 0.2s;
 	}
 	.modern-tab.active .icon-circle,
@@ -49,8 +48,9 @@
 		color: $light;
 	}
 	.tab-label {
-		font-size: 1rem;
-		font-weight: 500;
+		font-size: $font-size-base;
+		font-family: $font-family-sans-serif;
+		font-weight: $font-weight-medium;
 		letter-spacing: 0.01em;
 		display: block;
 		text-align: center;
@@ -61,28 +61,28 @@
 		display: flex;
 		flex-direction: row;
 		overflow-x: auto;
-		gap: 0.25rem;
-		padding-bottom: 0.5rem;
+		gap: $table-cell-padding-x * 0.25;
+		padding-bottom: $table-cell-padding-y * 0.5;
 		scrollbar-width: thin;
 		-webkit-overflow-scrolling: touch;
 		.modern-tab {
-			min-width: 120px;
-			min-height: 60px;
-			font-size: 0.95rem;
+			min-width: $table-cell-padding-x * 6;
+			min-height: $table-cell-padding-y * 2;
+			font-size: $font-size-sm;
 			flex: 0 0 auto;
 			margin-bottom: 0;
-			padding: 0.5rem 0.25rem;
+			padding: $table-cell-padding-y * 0.5 $table-cell-padding-x * 0.25;
 			align-items: center;
 			justify-content: center;
 		}
 		.tab-label {
-			font-size: 0.95rem;
-			padding: 0 0.25rem;
+			font-size: $font-size-sm;
+			padding: 0 $table-cell-padding-x * 0.25;
 		}
 		.icon-circle {
-			width: 1.8rem;
-			height: 1.8rem;
-			margin-bottom: 0.15rem;
+			width: $table-cell-padding-x * 1.8;
+			height: $table-cell-padding-x * 1.8;
+			margin-bottom: $table-cell-padding-y * 0.15;
 		}
 	}
 }
