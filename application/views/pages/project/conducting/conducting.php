@@ -7,16 +7,16 @@
 
 			<div class="tab-content p-3">
 				<?php if ($project->get_planning() == 100) { ?>
-					<div class="tab-pane fade show active" id="tab_import" role="tabpanel">
+					<div class="tab-pane fade show active" id="tab_import_studies" role="tabpanel">
 						<?php $this->load->view('pages/project/conducting/tabs/tab_import_studies'); ?>
 					</div>
-					<div class="tab-pane fade" id="tab_selection" role="tabpanel">
+					<div class="tab-pane fade" id="tab_study_selection" role="tabpanel">
 						<?php $this->load->view('pages/project/conducting/tabs/tab_study_selection'); ?>
 					</div>
-					<div class="tab-pane fade" id="tab_quality" role="tabpanel">
+					<div class="tab-pane fade" id="tab_quality_assessment" role="tabpanel">
 						<?php $this->load->view('pages/project/conducting/tabs/tab_quality_assessment'); ?>
 					</div>
-					<div class="tab-pane fade" id="tab_extraction" role="tabpanel">
+					<div class="tab-pane fade" id="tab_data_extraction" role="tabpanel">
 						<?php $this->load->view('pages/project/conducting/tabs/tab_data_extraction'); ?>
 					</div>
 				<?php } else { ?>
