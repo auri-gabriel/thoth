@@ -1,5 +1,5 @@
 <?php $readonly = (isset($readonly) && $readonly === true); ?>
-<div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_research">
+<div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_research_questions">
 	<div class="row justify-content-center">
 
 		<div class="card shadow-sm">

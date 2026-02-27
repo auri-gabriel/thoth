@@ -66,7 +66,7 @@
 
 	</div>
 	<div class="d-flex justify-content-between align-items-center mt-4 mb-5">
-		<a href="#tab_research" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Go to previous step"><i class="fas fa-backward me-1"></i> Previous</a>
+		<a href="#tab_research_questions" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Go to previous step"><i class="fas fa-backward me-1"></i> Previous</a>
 		<a href="#tab_search_string" class="btn btn-primary" data-bs-toggle="tooltip" title="Go to next step">Next <i class="fas fa-forward ms-1"></i></a>
 	</div>
 </div>

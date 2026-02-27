@@ -7,7 +7,7 @@
 			</a>
 		</li>
 		<li class="nav-item" style="min-width:140px; min-height:140px;">
-			<a data-bs-toggle="pill" class="nav-link modern-tab d-flex flex-column align-items-center justify-content-center py-2 px-3 fw-semibold" href="#tab_research" aria-label="Research Questions">
+			<a data-bs-toggle="pill" class="nav-link modern-tab d-flex flex-column align-items-center justify-content-center py-2 px-3 fw-semibold" href="#tab_research_questions" aria-label="Research Questions">
 				<span class="icon-circle mb-1"><i class="fas fa-graduation-cap fa-lg"></i></span>
 				<span class="tab-label">Research<br>Questions</span>
 			</a>

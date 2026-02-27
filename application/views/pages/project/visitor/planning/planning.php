@@ -7,7 +7,7 @@
 		</div>
 		<div class="tab-content p-3">
 			<?php $this->load->view('pages/project/planning/tabs/tab_overall', ['readonly' => true]); ?>
-			<?php $this->load->view('pages/project/planning/tabs/tab_research', ['readonly' => true]); ?>
+			<?php $this->load->view('pages/project/planning/tabs/tab_research_questions', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_databases', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_search_string', ['readonly' => true]); ?>
 			<?php $this->load->view('pages/project/planning/tabs/tab_search_strategy', ['readonly' => true]); ?>

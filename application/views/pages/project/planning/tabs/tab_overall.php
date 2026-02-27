@@ -215,7 +215,7 @@
 
 	<div class="d-flex justify-content-between align-items-center mt-4 mb-5">
 		<a href="#" class="btn btn-outline-secondary disabled" tabindex="-1" aria-disabled="true"><i class="fas fa-backward me-1"></i> Previous</a>
-		<a class="btn btn-primary" href="#tab_research" data-bs-toggle="tooltip" title="Go to next step">Next <i class="fas fa-forward ms-1"></i></a>
+		<a class="btn btn-primary" href="#tab_research_questions" data-bs-toggle="tooltip" title="Go to next step">Next <i class="fas fa-forward ms-1"></i></a>
 	</div>
 </div>
 
