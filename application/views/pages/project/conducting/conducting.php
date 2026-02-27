@@ -5,7 +5,7 @@
 			<h4>Conducting</h4>
 			<?php $this->load->view('pages/project/conducting/partials/tab_nav'); ?>
 
-			<div class="tab-content p-3">
+			<div class="tab-content p-md-3">
 				<?php if ($project->get_planning() == 100) { ?>
 					<div class="tab-pane fade show active" id="tab_import_studies" role="tabpanel">
 						<?php $this->load->view('pages/project/conducting/tabs/tab_import_studies'); ?>

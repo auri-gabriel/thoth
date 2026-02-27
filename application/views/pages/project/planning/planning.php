@@ -5,7 +5,7 @@
 			<h4>Planning</h4>
 			<?php $this->load->view('pages/project/planning/partials/tab_nav'); ?>
 
-			<div class="tab-content p-3">
+			<div class="tab-content p-md-3">
 				<?php $this->load->view('pages/project/planning/tabs/tab_overall'); ?>
 				<?php $this->load->view('pages/project/planning/tabs/tab_research_questions'); ?>
 				<?php $this->load->view('pages/project/planning/tabs/tab_databases'); ?>
