@@ -32,8 +32,8 @@
 									<tbody>
 										<?php foreach ($projects as $project) { ?>
 											<tr>
-												<td>
-													<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="fw-semibold text-primary">
+												<td style="max-width: 320px; min-width: 0; word-break: break-word; white-space: normal; overflow-wrap: anywhere;">
+													<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="fw-semibold text-primary project-title-link">
 														<?= htmlspecialchars($project['project']->get_title()); ?>
 													</a>
 												</td>

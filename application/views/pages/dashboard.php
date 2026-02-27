@@ -35,8 +35,8 @@
 									<tbody>
 										<?php foreach ($projects as $project) { ?>
 											<tr>
-												<td>
-													<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="fw-semibold text-primary">
+												<td style="max-width: 320px; min-width: 0; word-break: break-word; white-space: normal; overflow-wrap: anywhere;">
+													<a href="<?= site_url('projects/' . $project['project']->get_id()); ?>" class="fw-semibold text-primary project-title-link">
 														<?= htmlspecialchars($project['project']->get_title()); ?>
 													</a>
 												</td>
@@ -98,7 +98,7 @@
 														<i class="fas fa-history"></i>
 													</span>
 													<div class="activity-details flex-grow-1">
-														<div class="fw-semibold mb-1">
+														<div class="fw-semibold mb-1" style="word-break: break-word; white-space: normal; overflow-wrap: anywhere; max-width: 320px; min-width: 0;">
 															<?= htmlspecialchars($activity['activity']); ?>
 														</div>
 														<div class="activity-meta small text-muted">
