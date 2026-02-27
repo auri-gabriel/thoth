@@ -14,11 +14,9 @@
 	</section>
 
 	<section class="benefits container py-5">
-		<div class="row align-items-center">
-			<div class="col-md-6 mb-4 mb-md-0">
-				<img src="<?= base_url('assets/img/research-working.png'); ?>" alt="Researcher working in a modern academic workspace" class="img-fluid rounded shadow">
-			</div>
-			<div class="col-md-6">
+		<div class="benefits-bg position-relative rounded shadow overflow-hidden" style="background: url('<?= base_url('assets/img/research-working.png'); ?>') center/cover no-repeat; min-height: 340px;">
+			<div class="benefits-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255,255,255,0.85); backdrop-filter: blur(2px);"></div>
+			<div class="benefits-content position-relative z-2 d-flex flex-column justify-content-center align-items-start h-100 p-4">
 				<h2 class="fw-bold mb-3">Why Thoth?</h2>
 				<ul class="list-unstyled fs-5 mb-4">
 					<li class="mb-2"><i class="fas fa-users text-primary me-2"></i> Seamless team collaboration</li>
