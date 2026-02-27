@@ -3,7 +3,7 @@
 		<a class="navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white" href="<?= (isset($_SESSION['logged_in']) ? site_url('dashboard') : site_url()) ?>" title="Thoth - Evidence Synthesis Platform">
 			<h1 class="mb-0">
 				<span class="me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0" style="height: 32px; font-size: 1rem; font-weight: bold;">
-					<img id="logo" src="<?= base_url('assets/img/icone.svg'); ?>" width="24" height="24" class="d-inline-block align-top me-2" alt="">
+					<img id="logo" src="<?= base_url('assets/img/icone-navbar.svg'); ?>" width="24" height="24" class="d-inline-block align-top" alt="">
 					Thoth
 				</span>
 			</h1>
