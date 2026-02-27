@@ -1,10 +1,10 @@
-$(document)
-	.ajaxStart(function () {
-		showLoading();
-	})
-	.ajaxStop(function () {
-		hideLoading();
-	});
+// $(document)
+// 	.ajaxStart(function () {
+// 		showLoading();
+// 	})
+// 	.ajaxStop(function () {
+// 		hideLoading();
+// 	});
 
 $(document).ajaxError(function (event, jqxhr, settings, thrownError) {
 	console.error("AJAX error:", settings.url, thrownError);
