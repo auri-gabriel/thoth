@@ -28,7 +28,6 @@
 						<label for="upload_bib" class="form-label">Choose file</label>
 						<div class="input-group">
 							<input type="file" class="form-control" id="upload_bib" accept=".bib,.csv" onchange="change_name()">
-							<label class="form-label" id="name_bib_upload" for="upload_bib"></label>
 							<button class="btn btn-success" type="button" onclick="readFileAsString();" data-bs-toggle="tooltip" title="Add file">
 								<span class="fas fa-plus"></span>
 							</button>
