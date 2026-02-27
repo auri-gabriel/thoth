@@ -1,6 +1,8 @@
 <div class="project-card-header">
-	<div>
-		<h4 class="project-title" aria-label="Project Title"><?= htmlspecialchars($project->get_title()); ?></h4>
+	<div class="project-header-title-wrap">
+		<h4 class="project-title" aria-label="Project Title">
+			<?= htmlspecialchars($project->get_title()); ?>
+		</h4>
 		<input type="hidden" id="id_project" value="<?= $project->get_id(); ?>">
 	</div>
 	<?php
