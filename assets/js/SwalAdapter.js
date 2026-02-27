@@ -21,8 +21,13 @@ const SwalAdapter = {
 			// Return a resolved promise to mimic Swal.fire
 			return Promise.resolve();
 		} else {
-			// Fallback to SweetAlert
-			return Swal.fire(options);
+			// Convert deprecated 'type' to 'icon' for SweetAlert2
+			const swalOptions = { ...options };
+			if (swalOptions.type && !swalOptions.icon) {
+				swalOptions.icon = swalOptions.type;
+				delete swalOptions.type;
+			}
+			return Swal.fire(swalOptions);
 		}
 	},
 };
