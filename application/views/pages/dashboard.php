@@ -1,7 +1,7 @@
 <section class="dashboard-section py-5">
 	<div class="container">
 		<div class="card shadow-sm mb-4">
-			<div class="card-header bg-white d-flex justify-content-between align-items-center">
+			<div class="card-header d-flex justify-content-between align-items-center">
 				<div>
 					<h1 class="fw-bold mb-0">Project Management Dashboard</h1>
 					<small class="text-muted">Manage, track, and collaborate on your projects efficiently</small>
@@ -10,11 +10,11 @@
 					<span class="fas fa-plus-circle me-2"></span> New Project
 				</a>
 			</div>
-			<div class="card-body">
+			<div class="card-body bg-light">
 				<div class="row">
 					<div class="col-12 col-lg-12 mb-4">
 						<div class="card shadow-sm mb-4">
-							<div class="card-header bg-white d-flex justify-content-between align-items-center">
+							<div class="card-header d-flex justify-content-between align-items-center">
 								<h4 class="fw-bold mb-0">Projects Overview</h4>
 								<div class="input-group w-auto">
 									<input type="text" class="form-control" placeholder="Search projects..." id="project-search">
@@ -85,7 +85,7 @@
 				<div class="row">
 					<div class="col-12 col-lg-6">
 						<div class="card shadow-sm mb-4">
-							<div class="card-header bg-white">
+							<div class="card-header">
 								<h5 class="fw-bold mb-0">Recent Activity</h5>
 							</div>
 							<div class="card-body">
