@@ -36,25 +36,21 @@
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-question fa-2x text-primary mb-2"></i>
 				<h4 class="fw-semibold">Define Questions</h4>
-				<img src="<?= base_url('assets/img/first-image.png'); ?>" alt="" class="img-fluid rounded mb-2">
 				<p>Set clear research questions and objectives for your review.</p>
 			</div>
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-database fa-2x text-success mb-2"></i>
 				<h4 class="fw-semibold">Find Relevant Data</h4>
-				<img src="<?= base_url('assets/img/second-image.png'); ?>" alt="" class="img-fluid rounded mb-2">
 				<p>Search and filter high-quality research matching your criteria.</p>
 			</div>
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-thumbs-up fa-2x text-warning mb-2"></i>
 				<h4 class="fw-semibold">Assess Quality</h4>
-				<img src="https://placehold.co/320x180" alt="Prompt: Generate a photograph of quality assessment, checklist, academic, Unsplash style" class="img-fluid rounded mb-2">
 				<p>Evaluate data quality using objective, transparent standards.</p>
 			</div>
 			<div class="col-md-3 mb-4">
 				<i class="fas fa-chart-bar fa-2x text-info mb-2"></i>
 				<h4 class="fw-semibold">Analyze & Synthesize</h4>
-				<img src="https://placehold.co/320x180" alt="Prompt: Generate a photograph of data analysis, charts, teamwork, modern, Unsplash style" class="img-fluid rounded mb-2">
 				<p>Combine and analyze data to generate actionable insights.</p>
 			</div>
 		</div>
