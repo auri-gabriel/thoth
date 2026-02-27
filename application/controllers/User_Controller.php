@@ -1,8 +1,13 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once APPPATH . 'controllers/Pattern_Controller.php';
 
+/**
+ * @property User_Model $User_Model
+ * @property Session $session
+ * @property Load $load
+ */
 class User_Controller extends Pattern_Controller
 {
 	/**
@@ -17,12 +22,12 @@ class User_Controller extends Pattern_Controller
 			$this->load->model("User_Model");
 			$data['projects'] = $this->User_Model->get_projects($this->session->email);
 
+			$data['recent_activity'] = $this->User_Model->get_recent_activities($this->session->email);
 			load_templates('pages/dashboard', $data);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			load_templates('pages/dashboard', $data);
 		}
-
 	}
 
 	/**
@@ -33,5 +38,4 @@ class User_Controller extends Pattern_Controller
 		$this->logged_in();
 		load_templates('pages/user/profile', null);
 	}
-
 }

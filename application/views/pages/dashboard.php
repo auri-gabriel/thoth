@@ -90,8 +90,17 @@
 							</div>
 							<div class="card-body">
 								<ul class="list-group list-group-flush" id="activity-list">
-									<!-- Populate with recent activity -->
-									<li class="list-group-item text-muted">No recent activity.</li>
+									<?php if (!empty($recent_activity)) { ?>
+										<?php foreach ($recent_activity as $activity) { ?>
+											<li class="list-group-item">
+												<span class="fw-semibold"><?= htmlspecialchars($activity['activity']); ?></span>
+												<br>
+												<small class="text-muted">Project #<?= htmlspecialchars($activity['id_project']); ?> | <?= htmlspecialchars($activity['time']); ?></small>
+											</li>
+										<?php } ?>
+									<?php } else { ?>
+										<li class="list-group-item text-muted">No recent activity.</li>
+									<?php } ?>
 								</ul>
 							</div>
 						</div>
