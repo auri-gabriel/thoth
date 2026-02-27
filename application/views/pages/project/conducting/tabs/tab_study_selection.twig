@@ -7,11 +7,19 @@
 					<a onclick="modal_help('modal_help_selection')" class="ms-auto opt" tabindex="0" aria-label="Help about study selection" data-bs-toggle="tooltip" title="How to select studies?"><i class="fas fa-question-circle"></i></a>
 				</div>
 				{% if data.project.get_planning == 100 and data.project.get_import == 100 %}
-					{% set acc = ((data.count_papers[1] * 100) / data.count_papers[6])|number_format(2) %}
-					{% set rej = ((data.count_papers[2] * 100) / data.count_papers[6])|number_format(2) %}
-					{% set unc = ((data.count_papers[3] * 100) / data.count_papers[6])|number_format(2) %}
-					{% set dup = ((data.count_papers[4] * 100) / data.count_papers[6])|number_format(2) %}
-					{% set rem = ((data.count_papers[5] * 100) / data.count_papers[6])|number_format(2) %}
+					   {% if data.count_papers[6] > 0 %}
+						   {% set acc = ((data.count_papers[1] * 100) / data.count_papers[6])|number_format(2) %}
+						   {% set rej = ((data.count_papers[2] * 100) / data.count_papers[6])|number_format(2) %}
+						   {% set unc = ((data.count_papers[3] * 100) / data.count_papers[6])|number_format(2) %}
+						   {% set dup = ((data.count_papers[4] * 100) / data.count_papers[6])|number_format(2) %}
+						   {% set rem = ((data.count_papers[5] * 100) / data.count_papers[6])|number_format(2) %}
+					   {% else %}
+						   {% set acc = 0 %}
+						   {% set rej = 0 %}
+						   {% set unc = 0 %}
+						   {% set dup = 0 %}
+						   {% set rem = 0 %}
+					   {% endif %}
 					<!-- Generic Progress Indicator Bar and Labels -->
 					<div class="progress-indicator-container mb-4">
 						<div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
