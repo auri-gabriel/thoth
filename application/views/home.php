@@ -1,6 +1,6 @@
 <div class="landing-page">
 	<section class="hero text-center py-5 bg-gradient" style="background: linear-gradient(135deg, #f8fafc 0%, #e3e9f7 100%);">
-		<img src="<?= base_url('assets/img/icone.svg'); ?>" alt="Thoth logo" width="120" height="120" class="mb-3">
+		<img src="<?= base_url('assets/img/icone.svg'); ?>" alt="Thoth logo" width="256" height="256" class="mb-3">
 		<h1 class="display-3 fw-bold mb-3">Accelerate Your Systematic Review</h1>
 		<p class="lead mb-4">Thoth empowers researchers to collaborate, analyze, and publish evidence faster.<br><span class="text-primary fw-semibold">Trusted by academics and professionals worldwide.</span></p>
 		<div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
