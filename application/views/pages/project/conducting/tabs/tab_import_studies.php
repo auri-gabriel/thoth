@@ -7,7 +7,7 @@
 	}
 </style>
 
-<div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_import_studies">
+<div class="container-fluid py-4">
 	<div class="row justify-content-center">
 		<div class="card shadow-sm h-100">
 			<div class="card-body">
