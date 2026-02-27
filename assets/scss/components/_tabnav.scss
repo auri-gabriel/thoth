@@ -3,8 +3,14 @@
 
 @import "../base/variables";
 
-nav:has(.modern-tabs) {
-	border-radius: $border-radius + ($table-cell-padding-x * 0.5);
+@if $border-radius == 0rem {
+	nav:has(.modern-tabs) {
+		border-radius: 0rem;
+	}
+} @else {
+	nav:has(.modern-tabs) {
+		border-radius: $border-radius + ($table-cell-padding-x * 0.5);
+	}
 }
 
 .modern-tabs {
