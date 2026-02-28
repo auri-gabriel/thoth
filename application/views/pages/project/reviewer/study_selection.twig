@@ -5,51 +5,26 @@
 {% block content %}
 	<div class="container">
 		<div class="card">
-			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'conducting'} %}
+			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'conducting', project: data.project} %}
 			<div class="card-body">
 				<h4>Conducting</h4>
 				<ul class="nav nav-pills nav-justified flex-column flex-sm-row">
-					{% if session.level != '4' %}
+					{% if session.level == '4' %}
 						<li class="nav-item">
-							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/conducting') }}">Import Studies
-								<i class="fas fa-upload"></i>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/study-selection') }}">Study Selection
-								<i class="fas fa-clipboard-check"></i>
+							<a class="nav-link flex-sm-fill text-sm-center active" href="{{ site_url('projects/' ~ data.project.get_id ~ '/study-selection-admin') }}">Review Study Selection
+								<i class="fas fa-book-reader"></i>
 							</a>
 						</li>
 					{% endif %}
 					{% if session.level == '4' %}
 						<li class="nav-item">
-							<a class="nav-link active flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/study-selection-admin') }}">Review Study Selection
+							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ data.project.get_id ~ '/quality-admin') }}">Review Quality Assessment
 								<i class="fas fa-book-reader"></i>
-							</a>
-						</li>
-					{% endif %}
-					{% if session.level != '4' %}
-						<li class="nav-item">
-							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/quality-assessment') }}">Quality Assessment
-								<i class="fas fa-star-half-alt"></i>
-							</a>
-						</li>
-					{% endif %}
-					{% if session.level == '4' %}
-						<li class="nav-item">
-							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/quality-admin') }}">Review Quality Assessment
-								<i class="fas fa-book-reader"></i>
-							</a>
-						</li>
-					{% endif %}
-					{% if session.level != '4' %}
-						<li class="nav-item ">
-							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/data-extraction') }}">Data Extraction
-								<i class="fas fa-table"></i>
 							</a>
 						</li>
 					{% endif %}
 				</ul>
+
 				<br>
 				<div class="form-inline">
 					<label for="id_qa">
