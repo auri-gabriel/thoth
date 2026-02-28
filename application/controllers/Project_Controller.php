@@ -232,7 +232,10 @@ class Project_Controller extends Pattern_Controller
 
 			$data['projects'] = $this->User_Model->get_projects_new($this->session->email);
 
-			load_templates('pages/project/new', $data);
+			$this->render(
+				'pages/project/new.twig',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
