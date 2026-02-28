@@ -1,0 +1,10 @@
+{% block modal %}
+<div class="modal fade bd-example-modal-lg" id="{{ modal_id }}" tabindex="-1" role="dialog" aria-labelledby="{{ modal_label_id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            {% block modal_header %}{% endblock %}
+            {% block modal_body %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
