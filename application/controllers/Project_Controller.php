@@ -278,7 +278,10 @@ class Project_Controller extends Pattern_Controller
 			$data['users']   = $this->Project_Model->get_users($id);
 			$data['levels']  = $this->Project_Model->get_levels();
 
-			$this->load_views('pages/project/add_member', $data);
+			$this->render(
+				'pages/project/add_member.twig',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
