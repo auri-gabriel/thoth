@@ -394,7 +394,7 @@ trait Project_Model_Papers
 			QAStatus::Rejected->value     => 0,
 			QAStatus::Unclassified->value => 0,
 			QAStatus::Duplicate->value    => 0,
-			QAStatus::Removed->value      => 0
+			QAStatus::Total->value      => 0
 		];
 		$total = 0;
 
@@ -411,7 +411,7 @@ trait Project_Model_Papers
 				$total += $row->count;
 			}
 		}
-		$cont[QAStatus::Removed->value] = $total;
+		$cont[QAStatus::Total->value] = $total;
 		return $cont;
 	}
 

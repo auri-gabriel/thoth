@@ -7,10 +7,10 @@
 					<a onclick="modal_help('modal_help_data_extraction')" class="ms-auto opt" tabindex="0" aria-label="Help about data extraction" data-bs-toggle="tooltip" title="What is data extraction?"><i class="fas fa-question-circle"></i></a>
 				</div>
 				<pre>
-				{{dump(data.project.get_planning)}}
-				{{dump(data.project.get_import)}}
-				{{dump(data.project.get_selection)}}
-				{{dump(data.project.get_quality)}}
+				project.get_planning: {{dump(data.project.get_planning)}}
+				project.get_import: {{dump(data.project.get_import)}}
+				project.get_selection: {{dump(data.project.get_selection)}}
+				project.get_quality: {{dump(data.project.get_quality)}}
 				</pre>
 				{% if data.project.get_planning|number_format(0) == 100 and data.project.get_import|number_format(0) == 100 and data.project.get_selection|number_format(0) > 0 and data.project.get_quality|number_format(0) > 0 %}
 					{% if data.count_papers[4] is defined and data.count_papers[4] != 0 %}
