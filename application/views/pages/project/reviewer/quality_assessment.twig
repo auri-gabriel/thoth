@@ -60,13 +60,15 @@
 					</a>
 				</div>
 				<br>
-				{% if project.get_planning == 100 and project.get_import == 100 and project.get_selection > 0 %}
-					{% for member in project.get_members %}
+				{% if data.project.get_planning == 100 and data.project.get_import == 100 and data.project.get_selection > 0 %}
+
+
+					{% for member in data.project.get_members %}
 						{% if member.get_level == 'Administrator' or member.get_level == 'Researcher' %}
-							{% set acc = ((count_papers[member.get_email][1] * 100) / count_papers[member.get_email][5])|number_format(2) %}
-							{% set rej = ((count_papers[member.get_email][2] * 100) / count_papers[member.get_email][5])|number_format(2) %}
-							{% set unc = ((count_papers[member.get_email][3] * 100) / count_papers[member.get_email][5])|number_format(2) %}
-							{% set rem = ((count_papers[member.get_email][4] * 100) / count_papers[member.get_email][5])|number_format(2) %}
+							{% set acc = ((data.count_papers[member.get_email][1] * 100) / data.count_papers[member.get_email][5])|number_format(2) %}
+							{% set rej = ((data.count_papers[member.get_email][2] * 100) / data.count_papers[member.get_email][5])|number_format(2) %}
+							{% set unc = ((data.count_papers[member.get_email][3] * 100) / data.count_papers[member.get_email][5])|number_format(2) %}
+							{% set rem = ((data.count_papers[member.get_email][4] * 100) / data.count_papers[member.get_email][5])|number_format(2) %}
 							<h5 class="text-center">{{ member.get_name }}</h5>
 							<div class="progress">
 								<div class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
@@ -76,7 +78,8 @@
 							</div>
 							<br>
 							<div class="form-inline">
-								{% for key, value in count_papers[member.get_email] %}
+								{% for key, value in data.count_papers[member.get_email] %}
+
 									{% if key == 1 %}
 										<div class="input-group col-md-2">
 											<label class="text-success">
@@ -239,7 +242,7 @@
 					<div class="alert alert-warning container-fluid alert-dismissible fade show" role="alert">
 						<h5>Complete these tasks to advance</h5>
 						<ul>
-							{% for error in project.get_errors %}
+							{% for error in data.project.get_errors %}
 								<li>{{ error }}</li>
 							{% endfor %}
 						</ul>
