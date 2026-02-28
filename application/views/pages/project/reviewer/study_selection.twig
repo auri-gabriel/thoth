@@ -10,20 +10,16 @@
 			<div class="card-body">
 				<h4>Conducting</h4>
 				<ul class="nav nav-pills nav-justified flex-column flex-sm-row">
-					{% if session.level == '4' %}
 						<li class="nav-item">
 							<a class="nav-link flex-sm-fill text-sm-center active" href="{{ site_url('projects/' ~ data.project.get_id ~ '/study-selection-admin') }}">Review Study Selection
 								<i class="fas fa-book-reader"></i>
 							</a>
 						</li>
-					{% endif %}
-					{% if session.level == '4' %}
 						<li class="nav-item">
 							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ data.project.get_id ~ '/quality-admin') }}">Review Quality Assessment
 								<i class="fas fa-book-reader"></i>
 							</a>
 						</li>
-					{% endif %}
 				</ul>
 
 				<br>
@@ -36,14 +32,15 @@
 					</a>
 				</div>
 				<br>
-				{% if project.get_planning == 100 and project.get_import == 100 %}
-					{% for member in project.get_members %}
+				{% if data.project.get_planning == 100 and data.project.get_import == 100 %}
+					{% for member in data.project.get_members %}
 						{% if member.get_level == 'Administrator' or member.get_level == 'Researcher' %}
-							{% set acc = ((count_papers[member.get_email][1] * 100) / count_papers[member.get_email][6])|number_format(2) %}
-							{% set rej = ((count_papers[member.get_email][2] * 100) / count_papers[member.get_email][6])|number_format(2) %}
-							{% set unc = ((count_papers[member.get_email][3] * 100) / count_papers[member.get_email][6])|number_format(2) %}
-							{% set dup = ((count_papers[member.get_email][4] * 100) / count_papers[member.get_email][6])|number_format(2) %}
-							{% set rem = ((count_papers[member.get_email][5] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							{% set total = data.count_papers[member.get_email][6] %}
+							{% set acc = total > 0 ? ((data.count_papers[member.get_email][1] * 100) / total)|number_format(2) : 0 %}
+							{% set rej = total > 0 ? ((data.count_papers[member.get_email][2] * 100) / total)|number_format(2) : 0 %}
+							{% set unc = total > 0 ? ((data.count_papers[member.get_email][3] * 100) / total)|number_format(2) : 0 %}
+							{% set dup = total > 0 ? ((data.count_papers[member.get_email][4] * 100) / total)|number_format(2) : 0 %}
+							{% set rem = total > 0 ? ((data.count_papers[member.get_email][5] * 100) / total)|number_format(2) : 0 %}
 							<h5 class="text-center">{{ member.get_name }}</h5>
 							<div class="progress">
 								<div class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
@@ -54,7 +51,7 @@
 							</div>
 							<br>
 							<div class="form-inline">
-								{% for key, value in count_papers[member.get_email] %}
+								{% for key, value in data.count_papers[member.get_email] %}
 									{% if key == 1 %}
 										<div class="input-group col-md-2">
 											<label class="text-success">
@@ -123,16 +120,16 @@
 						<caption>List of Papers Conflicts</caption>
 						<thead>
 							<th>ID</th>
-							{% set size = conflicts.head|length %}
-							{% for mem in conflicts.head %}
+							{% set size = data.conflicts.head|length %}
+							{% for mem in data.conflicts.head %}
 								<th>{{ mem[1] }}</th>
 							{% endfor %}
 						</thead>
 						<tbody>
-							{% for paper in conflicts.papers %}
+							{% for paper in data.conflicts.papers %}
 								<tr>
 									<td>{{ paper.id }}</td>
-									{% for mem in conflicts.head %}
+									{% for mem in data.conflicts.head %}
 										{% set class = 'text-dark' %}
 										{% set status = 'Unclassified' %}
 										{% if paper[mem[0]] == 1 %}
@@ -155,7 +152,7 @@
 						</tbody>
 						<tfoot>
 							<th>ID</th>
-							{% for mem in conflicts.head %}
+							{% for mem in data.conflicts.head %}
 								<th>{{ mem[1] }}</th>
 							{% endfor %}
 						</tfoot>
@@ -169,11 +166,11 @@
 							<i class="fas fa-question-circle "></i>
 						</a>
 					</div>
-					{% set acc = ((count_project[1] * 100) / count_project[6])|number_format(2) %}
-					{% set rej = ((count_project[2] * 100) / count_project[6])|number_format(2) %}
-					{% set unc = ((count_project[3] * 100) / count_project[6])|number_format(2) %}
-					{% set dup = ((count_project[4] * 100) / count_project[6])|number_format(2) %}
-					{% set rem = ((count_project[5] * 100) / count_project[6])|number_format(2) %}
+					{% set acc = data.count_project[6] > 0 ? ((data.count_project[1] * 100) / data.count_project[6])|number_format(2) : 0 %}
+					{% set rej = data.count_project[6] > 0 ? ((data.count_project[2] * 100) / data.count_project[6])|number_format(2) : 0 %}
+					{% set unc = data.count_project[6] > 0 ? ((data.count_project[3] * 100) / data.count_project[6])|number_format(2) : 0 %}
+					{% set dup = data.count_project[6] > 0 ? ((data.count_project[4] * 100) / data.count_project[6])|number_format(2) : 0 %}
+					{% set rem = data.count_project[6] > 0 ? ((data.count_project[5] * 100) / data.count_project[6])|number_format(2) : 0 %}
 					<h5 class="text-center">{{ project.get_title }}</h5>
 					<div class="progress">
 						<div id="prog_acc" class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
@@ -184,57 +181,6 @@
 					</div>
 					<br>
 					<div class="form-inline">
-						{% for key, value in count_project %}
-							{% if key == 1 %}
-								<div class="input-group col-md-2">
-									<label class="text-success">
-										<span class="fas fa-check fa-lg"></span>
-										Accepted:
-										<span id="count_acc">{{ value }}</span>
-									</label>
-								</div>
-							{% elseif key == 2 %}
-								<div class="input-group col-md-2">
-									<label class="text-danger">
-										<span class="fas fa-times fa-lg"></span>
-										Rejected:
-										<span id="count_rej">{{ value }}</span>
-									</label>
-								</div>
-							{% elseif key == 3 %}
-								<div class="input-group col-md-2">
-									<label class="text-dark">
-										<span class="fas fa-question fa-lg"></span>
-										Unclassified:
-										<span id="count_unc">{{ value }}</span>
-									</label>
-								</div>
-							{% elseif key == 4 %}
-								<div class="input-group col-md-2">
-									<label class="text-warning">
-										<span class="fas fa-copy fa-lg"></span>
-										Duplicate:
-										<span id="count_dup">{{ value }}</span>
-									</label>
-								</div>
-							{% elseif key == 5 %}
-								<div class="input-group col-md-2">
-									<label class="text-info">
-										<span class="fas fa-trash-alt fa-lg"></span>
-										Removed:
-										<span id="count_rem">{{ value }}</span>
-									</label>
-								</div>
-							{% elseif key == 6 %}
-								<div class="input-group col-md-2">
-									<label class="text-secondary">
-										<span class="fas fa-bars fa-lg"></span>
-										Total:
-										<span id="count_total">{{ value }}</span>
-									</label>
-								</div>
-							{% endif %}
-						{% endfor %}
 					</div>
 					<br>
 				{% else %}
