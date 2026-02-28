@@ -1,0 +1,8 @@
+<div class="alert alert-warning container-fluid alert-dismissible fade show" role="alert">
+	<h5>Complete these tasks to advance</h5>
+	<ul>
+		{% for error in project.get_errors() %}
+		<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+</div>

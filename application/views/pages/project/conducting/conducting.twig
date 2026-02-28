@@ -18,7 +18,7 @@
 					<div class="tab-pane fade" id="tab_data_extraction" role="tabpanel">
 					</div>
 				{% else %}
-
+					{% include 'pages/project/conducting/partials/alert_incomplete.twig' with { 'project': data.project} %}
 				{% endif %}
 			</div>
 		</div>
