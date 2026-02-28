@@ -127,18 +127,18 @@ class Project_Controller extends Pattern_Controller
 			$data['status_selection']  = json_encode($this->Project_Model->get_papers_status_selection($id));
 			$data['status_qa']         = json_encode($this->Project_Model->get_papers_status_quality($id));
 			$data['funnel']            = json_encode($this->Project_Model->get_papers_step($id));
-			$activity                  = $this->Project_Model->get_act_project($id);
+			$activity                  = json_encode($this->Project_Model->get_act_project($id));
 			$data['activity_categories'] = json_encode(isset($activity['categories']) ? $activity['categories'] : []);
 			$data['activity_series']     = json_encode(isset($activity['series']) ? $activity['series'] : []);
 			$data['gen_score']         = json_encode($this->Project_Model->get_papers_score_quality($id));
-			$data['extraction']        = $this->Project_Model->get_data_qes_select($id);
-			$data['multiple']          = $this->Project_Model->get_data_qes_multiple($id);
-			$data['count_project']     = $this->Project_Model->count_papers_by_status_qa($id);
-			$data['papers']            = $this->Project_Model->get_papers_qa_visitor($id);
-			$data['qas_score']         = $this->Project_Model->get_evaluation_qa_latex($id);
-			$data['count_papers']      = $this->Project_Model->count_papers_reviewer_qa($id);
-			$data['count_project_sel'] = $this->Project_Model->count_papers_by_status_sel($id);
-			$data['count_papers_sel']  = $this->Project_Model->count_papers_reviewer($id);
+			$data['extraction']        = json_encode($this->Project_Model->get_data_qes_select($id));
+			$data['multiple']          = json_encode($this->Project_Model->get_data_qes_multiple($id));
+			$data['count_project']     = json_encode($this->Project_Model->count_papers_by_status_qa($id));
+			$data['papers']            = json_encode($this->Project_Model->get_papers_qa_visitor($id));
+			$data['qas_score']         = json_encode($this->Project_Model->get_evaluation_qa_latex($id));
+			$data['count_papers']      = json_encode($this->Project_Model->count_papers_reviewer_qa($id));
+			$data['count_project_sel'] = json_encode($this->Project_Model->count_papers_by_status_sel($id));
+			$data['count_papers_sel']  = json_encode($this->Project_Model->count_papers_reviewer($id));
 
 			$this->render(
 				'pages/project/reporting/index.twig',
