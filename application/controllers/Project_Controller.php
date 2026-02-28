@@ -131,7 +131,7 @@ class Project_Controller extends Pattern_Controller
 			$data['activity_categories'] = json_encode(isset($activity['categories']) ? $activity['categories'] : []);
 			$data['activity_series']     = json_encode(isset($activity['series']) ? $activity['series'] : []);
 			$data['gen_score']         = json_encode($this->Project_Model->get_papers_score_quality($id));
-			$data['extraction']        = json_encode($this->Project_Model->get_data_qes_select($id));
+			$data['extraction']        = $this->Project_Model->get_data_qes_select($id);
 			$data['multiple']          = json_encode($this->Project_Model->get_data_qes_multiple($id));
 			$data['count_project']     = json_encode($this->Project_Model->count_papers_by_status_qa($id));
 			$data['papers']            = json_encode($this->Project_Model->get_papers_qa_visitor($id));
