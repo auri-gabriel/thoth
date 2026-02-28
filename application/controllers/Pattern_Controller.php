@@ -90,6 +90,7 @@ class Pattern_Controller extends CI_Controller
 
 	protected function render($template, $data = [])
 	{
+		$data['session'] = $this->session;
 		echo $this->twig->render($template, $data);
 	}
 }
