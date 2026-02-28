@@ -32,5 +32,10 @@
 	"require-dev": {
 		"mikey179/vfsstream": "1.6.*",
 		"phpunit/phpunit": "4.* || 5.* || 9.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Models\\": "application/models/"
+		}
 	}
 }
