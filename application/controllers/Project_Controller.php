@@ -121,13 +121,16 @@ class Project_Controller extends Pattern_Controller
 			$this->validate_level($id, [1, 2, 3, 4]);
 			$this->load->model('Project_Model');
 
+
 			$data['project']           = $this->Project_Model->get_project_report($id);
-			$data['databases']         = $this->Project_Model->get_papers_database($id);
-			$data['status_selection']  = $this->Project_Model->get_papers_status_selection($id);
-			$data['status_qa']         = $this->Project_Model->get_papers_status_quality($id);
-			$data['funnel']            = $this->Project_Model->get_papers_step($id);
-			$data['activity']          = $this->Project_Model->get_act_project($id);
-			$data['gen_score']         = $this->Project_Model->get_papers_score_quality($id);
+			$data['databases']         = json_encode($this->Project_Model->get_papers_database($id));
+			$data['status_selection']  = json_encode($this->Project_Model->get_papers_status_selection($id));
+			$data['status_qa']         = json_encode($this->Project_Model->get_papers_status_quality($id));
+			$data['funnel']            = json_encode($this->Project_Model->get_papers_step($id));
+			$activity                  = $this->Project_Model->get_act_project($id);
+			$data['activity_categories'] = json_encode(isset($activity['categories']) ? $activity['categories'] : []);
+			$data['activity_series']     = json_encode(isset($activity['series']) ? $activity['series'] : []);
+			$data['gen_score']         = json_encode($this->Project_Model->get_papers_score_quality($id));
 			$data['extraction']        = $this->Project_Model->get_data_qes_select($id);
 			$data['multiple']          = $this->Project_Model->get_data_qes_multiple($id);
 			$data['count_project']     = $this->Project_Model->count_papers_by_status_qa($id);
