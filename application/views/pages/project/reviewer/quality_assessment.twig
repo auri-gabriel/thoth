@@ -9,20 +9,16 @@
 			<div class="card-body">
 				<h4>Conducting</h4>
 				<ul class="nav nav-pills nav-justified flex-column flex-sm-row">
-					{% if session.level == '4' %}
 						<li class="nav-item">
 							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ data.project.get_id ~ '/study-selection-admin') }}">Review Study Selection
 								<i class="fas fa-book-reader"></i>
 							</a>
 						</li>
-					{% endif %}
-					{% if session.level == '4' %}
 						<li class="nav-item">
 							<a class="nav-link active flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ data.project.get_id ~ '/quality-admin') }}">Review Quality Assessment
 								<i class="fas fa-book-reader"></i>
 							</a>
 						</li>
-					{% endif %}
 				</ul>
 				<br>
 				<div class="form-inline">
@@ -114,16 +110,16 @@
 						<caption>List of Papers Conflicts</caption>
 						<thead>
 							<th>ID</th>
-							{% set size = conflicts.head|length %}
-							{% for mem in conflicts.head %}
+							{% set size = data.conflicts.head|length %}
+							{% for mem in data.conflicts.head %}
 								<th>{{ mem[1] }}</th>
 							{% endfor %}
 						</thead>
 						<tbody>
-							{% for paper in conflicts.papers %}
+							{% for paper in data.conflicts.papers %}
 								<tr>
 									<td>{{ paper.id }}</td>
-									{% for mem in conflicts.head %}
+									{% for mem in data.conflicts.head %}
 										{% set class = 'text-dark' %}
 										{% set score = paper[mem[0]][1] %}
 										{% if paper[mem[0]][0] == 1 %}
@@ -140,7 +136,7 @@
 						</tbody>
 						<tfoot>
 							<th>ID</th>
-							{% for mem in conflicts.head %}
+							{% for mem in data.conflicts.head %}
 								<th>{{ mem[1] }}</th>
 							{% endfor %}
 						</tfoot>
@@ -154,11 +150,11 @@
 							<i class="fas fa-question-circle "></i>
 						</a>
 					</div>
-					{% set acc = ((count_project[1] * 100) / count_project[5])|number_format(2) %}
-					{% set rej = ((count_project[2] * 100) / count_project[5])|number_format(2) %}
-					{% set unc = ((count_project[3] * 100) / count_project[5])|number_format(2) %}
-					{% set rem = ((count_project[4] * 100) / count_project[5])|number_format(2) %}
-					<h5 class="text-center">{{ project.get_title }}</h5>
+					{% set acc = data.count_project[5] > 0 ? ((data.count_project[1] * 100) / data.count_project[5])|number_format(2) : '0.00' %}
+					{% set rej = data.count_project[5] > 0 ? ((data.count_project[2] * 100) / data.count_project[5])|number_format(2) : '0.00' %}
+					{% set unc = data.count_project[5] > 0 ? ((data.count_project[3] * 100) / data.count_project[5])|number_format(2) : '0.00' %}
+					{% set rem = data.count_project[5] > 0 ? ((data.count_project[4] * 100) / data.count_project[5])|number_format(2) : '0.00' %}
+					<h5 class="text-center">{{ data.project.get_title }}</h5>
 					<div class="progress">
 						<div id="prog_acc_qa" class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
 						<div id="prog_rej_qa" class="progress-bar bg-danger" role="progressbar" style="width: {{ rej }}%" aria-valuenow="{{ rej }}" aria-valuemin="0" aria-valuemax="100">{{ rej }}%</div>
@@ -167,7 +163,7 @@
 					</div>
 					<br>
 					<div class="form-inline">
-						{% for key, value in count_project %}
+						{% for key, value in data.count_project %}
 							{% if key == 1 %}
 								<div class="input-group col-md-2">
 									<label class="text-success">
