@@ -1,0 +1,261 @@
+{% extends "layout.twig" %}
+{% block title %}
+	Thoth - Help
+{% endblock %}
+{% block content %}
+	<div class="container my-4">
+		<h2 class="mb-4 text-primary fw-bold">Help</h2>
+		<div class="accordion accordion-flush" id="helpAccordion">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingSignin">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#signin" aria-expanded="false" aria-controls="signin">
+						<span class="me-2">
+							<i class="fas fa-sign-in-alt"></i>
+						</span>
+						Sign In
+					</button>
+				</h2>
+				<div id="signin" class="accordion-collapse collapse" aria-labelledby="headingSignin" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<h6>Coming soon</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingSignup">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#signup" aria-expanded="false" aria-controls="signup">
+						<span class="me-2">
+							<i class="fas fa-user-plus"></i>
+						</span>
+						Sign Up
+					</button>
+				</h2>
+				<div id="signup" class="accordion-collapse collapse" aria-labelledby="headingSignup" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<h6>Coming soon</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingProfile">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#profile" aria-expanded="false" aria-controls="profile">
+						<span class="me-2">
+							<i class="fas fa-address-card"></i>
+						</span>
+						Profile
+					</button>
+				</h2>
+				<div id="profile" class="accordion-collapse collapse" aria-labelledby="headingProfile" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<h6>Coming soon</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingSearch">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#search" aria-expanded="false" aria-controls="search">
+						<span class="me-2">
+							<i class="fas fa-search"></i>
+						</span>
+						Search
+					</button>
+				</h2>
+				<div id="search" class="accordion-collapse collapse" aria-labelledby="headingSearch" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>The menu search refers to all projects at Thoth, so your search is done by the title and creator of the project.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingProject">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#project" aria-expanded="false" aria-controls="project">
+						<span class="me-2">
+							<i class="fas fa-project-diagram"></i>
+						</span>
+						Project
+					</button>
+				</h2>
+				<div id="project" class="accordion-collapse collapse" aria-labelledby="headingProject" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<h6>Create New Project
+							<i class="fas fa-folder-plus"></i>
+						</h6>
+						<p>For the creation of a new project the creator enter the project title, its description and its objectives. It is recommended that the user be a researcher and not a reviewer or other role, because once created, your administrator role cannot be changed.</p>
+						<h6>Open
+							<i class="fas fa-folder-open"></i>
+						</h6>
+						<p>The open button has the function of taking the user to the project overview.</p>
+						<h6>Edit
+							<i class="fas fa-edit"></i>
+						</h6>
+						<p>The edit button has the function of editing project information such as title, description and objectives.</p>
+						<h6>Add
+							<i class="fas fa-users-cog"></i>
+						</h6>
+						<p>The add button has the function of managing project members, where the user is sent to a page, where they can view the members, add new and change the role. Adding a member, editing its role and deleting it after starting the project can lead to problems.</p>
+						<h6>Delete
+							<i class="fas fa-trash-alt"></i>
+						</h6>
+						<p>The delete button has a way to delete the project.</p>
+						<h6>Search</h6>
+						<p>Research on my projects is based on title and creator.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOverview">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#overview" aria-expanded="false" aria-controls="overview">
+						<span class="me-2">
+							<i class="fas fa-binoculars"></i>
+						</span>
+						Overview
+					</button>
+				</h2>
+				<div id="overview" class="accordion-collapse collapse" aria-labelledby="headingOverview" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>This section of Thoth aims to give an overview of the project.</p>
+						<h6>Description
+							<i class="fas fa-align-justify"></i>
+						</h6>
+						<p>This field is responsible for displaying the project description.</p>
+						<h6>Members
+							<i class="fas fa-users"></i>
+						</h6>
+						<p>All project members are displayed here.</p>
+						<h6>Progress of Systematic Review
+							<i class="fas fa-tasks"></i>
+						</h6>
+						<p>Here the project progress is displayed for each step from 0% to 100%.</p>
+						<h6>Activity Record
+							<i class="fas fa-history"></i>
+						</h6>
+						<p>Here is a log of project member activities. With the date, time and activity performed by the member.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingPlanning">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#planning" aria-expanded="false" aria-controls="planning">
+						<span class="me-2">
+							<i class="fas fa-list"></i>
+						</span>
+						Planning
+					</button>
+				</h2>
+				<div id="planning" class="accordion-collapse collapse" aria-labelledby="headingPlanning" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>This section of Thoth aims to develop project planning.</p>
+						<h6>Overall information
+							<i class="fas fa-info-circle"></i>
+						</h6>
+						<h6>Research Questions
+							<i class="fas fa-graduation-cap"></i>
+						</h6>
+						<h6>Data Bases
+							<i class="fas fa-database"></i>
+						</h6>
+						<h6>Search String
+							<i class="fas fa-search-plus"></i>
+						</h6>
+						<h6>Search Strategy
+							<i class="fas fa-chess"></i>
+						</h6>
+						<h6>Criteria
+							<i class="fas fa-check-double"></i>
+						</h6>
+						<h6>Quality Assessment
+							<i class="far fa-star"></i>
+						</h6>
+						<h6>Data Extraction
+							<i class="fas fa-table"></i>
+						</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingConducting">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#conducting" aria-expanded="false" aria-controls="conducting">
+						<span class="me-2">
+							<i class="fas fa-play-circle"></i>
+						</span>
+						Conducting
+					</button>
+				</h2>
+				<div id="conducting" class="accordion-collapse collapse" aria-labelledby="headingConducting" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>This section of Thoth is where the project is conducted.</p>
+						<h6>Import Studies
+							<i class="fas fa-upload"></i>
+						</h6>
+						<h6>Study Selection
+							<i class="fas fa-clipboard-check"></i>
+						</h6>
+						<h6>Review Study Selection
+							<i class="fas fa-book-reader"></i>
+						</h6>
+						<h6>Quality Assessment
+							<i class="fas fa-star-half-alt"></i>
+						</h6>
+						<h6>Review Quality Assessment
+							<i class="fas fa-book-reader"></i>
+						</h6>
+						<h6>Data Extraction
+							<i class="fas fa-table"></i>
+						</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingReporting">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reporting" aria-expanded="false" aria-controls="reporting">
+						<span class="me-2">
+							<i class="fas fa-chart-line"></i>
+						</span>
+						Reporting
+					</button>
+				</h2>
+				<div id="reporting" class="accordion-collapse collapse" aria-labelledby="headingReporting" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>This section of Thoth presents the graphs that were generated from the data in the conduction of the project.</p>
+						<h6>Overall information
+							<i class="fas fa-info-circle"></i>
+						</h6>
+						<h6>Import Studies
+							<i class="fas fa-upload"></i>
+						</h6>
+						<h6>Study Selection
+							<i class="fas fa-clipboard-check"></i>
+						</h6>
+						<h6>Quality Assessment
+							<i class="fas fa-star-half-alt"></i>
+						</h6>
+						<h6>Data Extraction
+							<i class="fas fa-table"></i>
+						</h6>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingExport">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#export" aria-expanded="false" aria-controls="export">
+						<span class="me-2">
+							<i class="fas fa-file-download"></i>
+						</span>
+						Export
+					</button>
+				</h2>
+				<div id="export" class="accordion-collapse collapse" aria-labelledby="headingExport" data-bs-parent="#helpAccordion">
+					<div class="accordion-body">
+						<p>This section of Thoth is responsible for exporting the project.</p>
+						<h6>Latex
+							<i class="fab fa-markdown"></i>
+						</h6>
+						<h6>BibTex
+							<i class="fas fa-book"></i>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
