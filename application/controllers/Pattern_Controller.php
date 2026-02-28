@@ -87,4 +87,9 @@ class Pattern_Controller extends CI_Controller
 
 		redirect(base_url());
 	}
+
+	protected function render($template, $data = [])
+	{
+		echo $this->twig->render($template, $data);
+	}
 }

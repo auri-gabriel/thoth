@@ -18,7 +18,6 @@ class Project_Controller extends Pattern_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('twig');
 	}
 
 	/**
@@ -97,7 +96,7 @@ class Project_Controller extends Pattern_Controller
 			$data['count_papers_extraction'] = $this->Project_Model->count_papers_extraction($id);
 			$data['project_extraction']     = $this->Project_Model->get_project_extraction($id);
 
-			echo $this->twig->render(
+			$this->render(
 				'pages/project/conducting/conducting.twig',
 				['data' => $data]
 			);
