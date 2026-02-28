@@ -41,7 +41,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											{% for project in projects %}
+											{% for project in data.projects %}
 												<tr>
 													<td style="max-width: 320px; min-width: 0; word-break: break-word; white-space: normal; overflow-wrap: anywhere;">
 														<a href="{{ site_url('projects/' ~ project.project.get_id) }}" class="fw-semibold text-primary project-title-link">
@@ -97,8 +97,8 @@
 								<div class="card-body">
 									<div class="activity-scroll" style="max-height: 320px; overflow-y: auto;">
 										<ul class="list-group list-group-flush" id="activity-list">
-											{% if recent_activity is not empty %}
-												{% for activity in recent_activity %}
+											{% if data.recent_activity is not empty %}
+												{% for activity in data.recent_activity %}
 													<li class="list-group-item d-flex align-items-start gap-3">
 														<span class="activity-icon text-primary mt-1">
 															<i class="fas fa-history"></i>
