@@ -17,7 +17,7 @@
         <div class="input-group col-md-6">
             <label for="edit_type_data_extraction" class="col-sm-12">Type of Data</label>
             <select class="form-control" id="edit_type_data_extraction">
-                {% for type in question_types %}
+                {% for type in data.question_types %}
                     <option value="{{ type }}">{{ type }}</option>
                 {% endfor %}
             </select>

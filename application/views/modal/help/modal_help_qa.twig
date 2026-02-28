@@ -1,0 +1,24 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_help_qa" %}
+{% set modal_label_id = "modal_help_qa_label" %}
+
+{% block modal_header %}
+    <h2 class="modal-title fs-5" id="modal_help_qa_label">Help: Question Quality</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <section>
+        <p>Assessing the quality of primary studies is critical, in addition to general inclusion/exclusion criteria.</p>
+    </section>
+    <section>
+        <h3 class="h6 mt-3">Why Assess Quality?</h3>
+        <ul>
+            <li>Provide more detailed inclusion/exclusion criteria.</li>
+            <li>Explain differences in study results based on quality.</li>
+            <li>Weight the importance of studies when synthesizing results.</li>
+            <li>Guide interpretation and determine the strength of inferences.</li>
+            <li>Inform recommendations for further research.</li>
+        </ul>
+    </section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_help_ss" %}
+{% set modal_label_id = "modal_help_ss_label" %}
+
+{% block modal_header %}
+    <h2 class="modal-title fs-5" id="modal_help_ss_label">Help: Search String</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <section>
+        <p>Search terms help focus your search, targeting items indexed with specific terms.</p>
+    </section>
+    <section>
+        <p>Combine all relevant terms and their synonyms to broaden your search string.</p>
+    </section>
+{% endblock %}

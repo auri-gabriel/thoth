@@ -1,0 +1,40 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_help_data_extraction" %}
+{% set modal_label_id = "modal_help_data_extraction_label" %}
+
+{% block modal_header %}
+    <h2 class="modal-title fs-5" id="modal_help_data_extraction_label">Help: Data Extraction</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <section>
+        <h3 class="h6">Purpose</h3>
+        <ul>
+            <li>Data extraction forms collect all information needed to answer review questions and assess study quality.</li>
+            <li>If quality criteria are used for inclusion/exclusion, use separate forms; if for analysis, combine with review data.</li>
+        </ul>
+    </section>
+    <section>
+        <h3 class="h6 mt-3">Data Types</h3>
+        <ul>
+            <li><strong>Text:</strong> Free-form text entry for flexible data capture.</li>
+            <li><strong>Pick One List:</strong> Select a single option from a predefined list.</li>
+            <li><strong>Multiple Choice List:</strong> Select multiple options from a predefined list.</li>
+        </ul>
+    </section>
+    <section>
+        <h3 class="h6 mt-3">Numerical Data</h3>
+        <ul>
+            <li>Extract values such as number of subjects, treatment effect, confidence intervals, etc.</li>
+            <li>Numerical data is essential for summarizing results and meta-analysis.</li>
+        </ul>
+    </section>
+    <section>
+        <h3 class="h6 mt-3">Examples</h3>
+        <ul>
+            <li><strong>Description:</strong> Abstract &mdash; <strong>Type:</strong> Text</li>
+            <li><strong>Description:</strong> Database &mdash; <strong>Type:</strong> Pick One List (ACM, IEEE, Scopus)</li>
+        </ul>
+    </section>
+{% endblock %}
