@@ -59,6 +59,12 @@ $route['logout'] = 'Login_Controller/logout';
 $route['profile'] = 'User_Controller/profile';
 $route['dashboard'] = 'User_Controller';
 
+// Password Reset
+$route['login/forgot_password'] = 'Login_Controller/forgot_password';
+$route['login/send_reset_link'] = 'Login_Controller/send_reset_link';
+$route['login/reset_password/(:any)'] = 'Login_Controller/reset_password/$1';
+$route['login/update_password'] = 'Login_Controller/update_password';
+
 // Static pages
 $route['about'] = 'About_Controller';
 $route['help'] = 'Help_Controller';

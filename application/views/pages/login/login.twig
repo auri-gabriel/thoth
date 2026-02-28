@@ -25,6 +25,9 @@
 								{{ form_password({'name': 'password', 'id': 'InputPassword', 'class': 'form-control form-control-lg', 'placeholder': 'Password', 'required': 'required'})|raw }}
 								{{ form_error('password', '<div class="text-danger">', '</div>')|raw }}
 							</div>
+							<div class="forgot-password">
+								<a href="{{ base_url('login/forgot_password') }}">Forgot Password?</a>
+							</div>
 							<div class="d-grid gap-2 mt-4">
 								{{ form_submit({'class': 'btn btn-success btn-lg'}, 'Sign In')|raw }}
 							</div>
