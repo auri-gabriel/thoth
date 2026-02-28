@@ -386,6 +386,25 @@ trait Project_Model_Papers
         return $this->count_papers_reviewer_generic($id_project, 'papers_qa', 'get_ids_papers_qa', 5);
     }
 
+	/**
+	 * Counts the number of papers selected by the current user for a given project,
+	 * grouped by their selection status.
+	 *
+	 * The method returns an associative array where the keys (1-5) represent different
+	 * selection statuses and the values are the counts of papers for each status.
+	 * The key 6 contains the total count of papers selected by the user.
+	 *
+	 * @param int $id_project The ID of the project for which to count selected papers.
+	 * @return array An array with counts of papers per selection status and the total count.
+	 *
+	 * Status keys:
+	 *   1 => Count of papers with status 1
+	 *   2 => Count of papers with status 2
+	 *   3 => Count of papers with status 3
+	 *   4 => Count of papers with status 4
+	 *   5 => Count of papers with status 5
+	 *   6 => Total count of papers selected by the user
+	 */
     public function count_papers_sel_by_user($id_project)
     {
         $cont  = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0];
