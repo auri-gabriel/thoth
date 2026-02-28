@@ -23,7 +23,7 @@
 					<div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality_assessment">
 						{% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' %}
 					</div>
-					{% if project is defined and project.get_extraction > 0 %}
+					{% if data.project is defined and data.project.get_extraction > 0 %}
 						<div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_data_extraction">
 							{% include 'pages/project/reporting/tabs/tab_data_extraction.twig' %}
 						</div>
