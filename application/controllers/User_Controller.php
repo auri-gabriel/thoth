@@ -42,6 +42,8 @@ class User_Controller extends Pattern_Controller
 	public function profile()
 	{
 		$this->logged_in();
-		load_templates('pages/user/profile', null);
+		$this->render(
+			'pages/user/profile.twig'
+		);
 	}
 }
