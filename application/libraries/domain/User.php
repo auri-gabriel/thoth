@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 * Class to represent the User;
@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User
 {
 
+	private $id;
 	private $name;
 	private $email;
 	private $password;
@@ -16,11 +17,18 @@ class User
 	private $lattes_link;
 
 	/**
+	 * Method to retrieve the user id.
+	 * @return int id
+	 */
+	public function get_id()
+	{
+		return $this->id;
+	}
+
+	/**
 	 * User constructor.
 	 */
-	public function __construct()
-	{
-	}
+	public function __construct() {}
 
 	/**
 	 * Method to retrieve the term name.
@@ -154,4 +162,8 @@ class User
 		$this->lattes_link = $lattes_link;
 	}
 
+	public function set_id($id)
+	{
+		$this->id = $id;
+	}
 }

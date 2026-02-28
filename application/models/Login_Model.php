@@ -50,8 +50,9 @@ class Login_Model extends CI_Model
 		$query = $this->db->get();
 
 		foreach ($query->result() as $row) {
+			$user->set_id($row['id_user']);
+			$user->set_email($row['email']);
 			$user->set_name($row->name);
-			$user->set_email($row->email);
 			return $user;
 		}
 
@@ -69,7 +70,7 @@ class Login_Model extends CI_Model
 			$user = new User();
 			$user->set_name($row->name);
 			$user->set_email($row->email);
-			$user->set_id($row->id); // Assumes User class has set_id()
+			$user->set_id($row->id_user);
 			return $user;
 		}
 		return null;
