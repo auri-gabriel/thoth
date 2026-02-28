@@ -1,0 +1,27 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_research" %}
+{% set modal_label_id = "ModalLabel" %}
+
+{% block modal_header %}
+    <h5 class="modal-title" id="modalTitle">Edit Research Question</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="index_research">
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <div class="input-group col-md-3">
+            <label for="edit_research_id" class="col-sm-12">ID</label>
+            <input type="text" id="edit_research_id" class="form-control">
+        </div>
+        <div class="input-group col-md-9">
+            <label for="edit_research_question" class="col-sm-12">Description</label>
+            <input type="text" id="edit_research_question" class="form-control">
+        </div>
+    </div>
+{% endblock %}
+
+{% block modal_footer %}
+    <a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
+    <a class="btn btn-success" onclick="edit_research()">Save</a>
+{% endblock %}

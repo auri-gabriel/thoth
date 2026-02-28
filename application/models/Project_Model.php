@@ -1,4 +1,9 @@
 <?php
+
+use Models\SelectionStatus;
+use Models\QAStatus;
+use Models\ExtractionStatus;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once APPPATH . 'models/Pattern_Model.php';
@@ -389,15 +394,37 @@ class Project_Model extends Pattern_Model
 		return $errors;
 	}
 
+
+	/**
+	 * Updates the quality progress of a project based on the status of its papers.
+	 *
+	 * This function calculates the progress of the quality step for a given project.
+	 * It retrieves the count of papers by their QA status using the `count_papers_by_status_qa` method.
+	 *
+	 * Calculation details:
+	 * - `$count_papers[QAStatus::Total->value]`: Represents the total number of papers in the quality step.
+	 * - `$count_papers[QAStatus::Accepted->value]`: Represents the number of papers that have been evaluated.
+	 * - `$count_papers[QAStatus::Unclassified->value]`: Represents the number of papers that are still uncertain.
+	 * - If there are papers both in the quality step and evaluated (`$count_papers[QAStatus::Total->value] > 0 && $count_papers[1QAStatus::Accepted->value] > 0`),
+	 *   the percentage of uncertain papers (`$unc`) is calculated as:
+	 *   `$unc = ($count_papers[QAStatus::Unclassified->value] * 100) / $count_papers[QAStatus::Total->value]`
+	 *   The progress is then set to `100 - $unc`, meaning the more uncertain papers, the lower the progress.
+	 * - If no progress is made (`$progress == 0`), an error message is added to prompt evaluation of at least one paper.
+	 *
+	 * Finally, the project's quality progress field is updated in the database with the calculated progress value.
+	 *
+	 * @param int $id_project The ID of the project to update.
+	 * @return array An array of error messages, if any.
+	 */
 	private function update_progress_quality($id_project)
 	{
 		$errors       = [];
 		$progress     = 0;
 		$count_papers = $this->count_papers_by_status_qa($id_project);
 
-		if ($count_papers[5] > 0 && $count_papers[1] > 0) {
-			$unc      = ($count_papers[3] * 100) / $count_papers[5];
-			$progress = 100 - $unc;
+		if ($count_papers[QAStatus::Total->value] > 0 && $count_papers[QAStatus::Accepted->value] > 0) {
+			$uncertain      = ($count_papers[QAStatus::Unclassified->value] * 100) / $count_papers[QAStatus::Total->value];
+			$progress = 100 - $uncertain;
 		}
 
 		if ($progress == 0) {

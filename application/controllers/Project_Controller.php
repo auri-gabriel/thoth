@@ -14,6 +14,12 @@ require_once APPPATH . 'controllers/Pattern_Controller.php';
  */
 class Project_Controller extends Pattern_Controller
 {
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	/**
 	 * Project overview page
 	 * URL: /projects/{id}
@@ -27,7 +33,10 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_overview($id);
 			$data['logs']    = $this->Project_Model->get_logs_project($id);
 
-			$this->load_views('pages/project/index', $data);
+			$this->render(
+				'pages/project/index',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -51,7 +60,10 @@ class Project_Controller extends Pattern_Controller
 			$data['rules']          = $this->Project_Model->get_all_rules();
 			$data['question_types'] = $this->Project_Model->get_all_types();
 
-			$this->load_views('pages/project/planning/planning', $data);
+			$this->render(
+				'pages/project/planning/index',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -70,6 +82,8 @@ class Project_Controller extends Pattern_Controller
 			$this->validate_level($id, [1, 2, 3, 4]);
 			$this->load->model('Project_Model');
 
+			$data = [];
+
 			// Shared / Import tab
 			$data['project']     = $this->Project_Model->get_project_selection($id);
 			$data['bib']         = $this->Project_Model->get_name_bibs($id);
@@ -86,11 +100,14 @@ class Project_Controller extends Pattern_Controller
 
 			// Data Extraction tab
 			$data['count_papers_extraction'] = $this->Project_Model->count_papers_extraction($id);
+			$data['project_extraction']     = $this->Project_Model->get_project_extraction($id);
 
-			$this->load_views('pages/project/conducting/conducting', $data);
-		} catch (Exception $e) {
-			$this->session->set_flashdata('error', $e->getMessage());
-			redirect(base_url());
+			$this->render(
+				'pages/project/conducting/index',
+				['data' => $data]
+			);
+		} catch (Throwable $e) {
+			show_error($e->getMessage());
 		}
 	}
 
@@ -104,23 +121,29 @@ class Project_Controller extends Pattern_Controller
 			$this->validate_level($id, [1, 2, 3, 4]);
 			$this->load->model('Project_Model');
 
-			$data['project']           = $this->Project_Model->get_project_report($id);
-			$data['databases']         = $this->Project_Model->get_papers_database($id);
-			$data['status_selection']  = $this->Project_Model->get_papers_status_selection($id);
-			$data['status_qa']         = $this->Project_Model->get_papers_status_quality($id);
-			$data['funnel']            = $this->Project_Model->get_papers_step($id);
-			$data['activity']          = $this->Project_Model->get_act_project($id);
-			$data['gen_score']         = $this->Project_Model->get_papers_score_quality($id);
-			$data['extraction']        = $this->Project_Model->get_data_qes_select($id);
-			$data['multiple']          = $this->Project_Model->get_data_qes_multiple($id);
-			$data['count_project']     = $this->Project_Model->count_papers_by_status_qa($id);
-			$data['papers']            = $this->Project_Model->get_papers_qa_visitor($id);
-			$data['qas_score']         = $this->Project_Model->get_evaluation_qa_latex($id);
-			$data['count_papers']      = $this->Project_Model->count_papers_reviewer_qa($id);
-			$data['count_project_sel'] = $this->Project_Model->count_papers_by_status_sel($id);
-			$data['count_papers_sel']  = $this->Project_Model->count_papers_reviewer($id);
 
-			$this->load_views('pages/project/reporting/reporting', $data);
+			$data['project']           = $this->Project_Model->get_project_report($id);
+			$data['databases']         = json_encode($this->Project_Model->get_papers_database($id));
+			$data['status_selection']  = json_encode($this->Project_Model->get_papers_status_selection($id));
+			$data['status_qa']         = json_encode($this->Project_Model->get_papers_status_quality($id));
+			$data['funnel']            = json_encode($this->Project_Model->get_papers_step($id));
+			$activity                  = json_encode($this->Project_Model->get_act_project($id));
+			$data['activity_categories'] = json_encode(isset($activity['categories']) ? $activity['categories'] : []);
+			$data['activity_series']     = json_encode(isset($activity['series']) ? $activity['series'] : []);
+			$data['gen_score']         = json_encode($this->Project_Model->get_papers_score_quality($id));
+			$data['extraction']        = $this->Project_Model->get_data_qes_select($id);
+			$data['multiple']          = json_encode($this->Project_Model->get_data_qes_multiple($id));
+			$data['count_project']     = json_encode($this->Project_Model->count_papers_by_status_qa($id));
+			$data['papers']            = json_encode($this->Project_Model->get_papers_qa_visitor($id));
+			$data['qas_score']         = json_encode($this->Project_Model->get_evaluation_qa_latex($id));
+			$data['count_papers']      = json_encode($this->Project_Model->count_papers_reviewer_qa($id));
+			$data['count_project_sel'] = json_encode($this->Project_Model->count_papers_by_status_sel($id));
+			$data['count_papers_sel']  = json_encode($this->Project_Model->count_papers_reviewer($id));
+
+			$this->render(
+				'pages/project/reporting/index',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -144,7 +167,10 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status();
 			$data['conflicts']     = $this->Selection_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/reviewer/study_selection', $data);
+			$this->render(
+				'pages/project/reviewer/study_selection',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -168,7 +194,10 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status_qa();
 			$data['conflicts']     = $this->Quality_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/reviewer/quality_assessment', $data);
+			$this->render(
+				'pages/project/reviewer/quality_assessment',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -187,7 +216,10 @@ class Project_Controller extends Pattern_Controller
 
 			$data['project'] = $this->Project_Model->get_project_export($id);
 
-			$this->load_views('pages/project/export', $data);
+			$this->render(
+				'pages/project/export',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -206,7 +238,10 @@ class Project_Controller extends Pattern_Controller
 
 			$data['projects'] = $this->User_Model->get_projects_new($this->session->email);
 
-			load_templates('pages/project/new', $data);
+			$this->render(
+				'pages/project/new',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -225,7 +260,10 @@ class Project_Controller extends Pattern_Controller
 
 			$data['project'] = $this->Project_Model->get_project_edit($id);
 
-			$this->load_views('pages/project/edit', $data);
+			$this->render(
+				'pages/project/edit',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -246,7 +284,10 @@ class Project_Controller extends Pattern_Controller
 			$data['users']   = $this->Project_Model->get_users($id);
 			$data['levels']  = $this->Project_Model->get_levels();
 
-			$this->load_views('pages/project/add_member', $data);
+			$this->render(
+				'pages/project/add_member',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());

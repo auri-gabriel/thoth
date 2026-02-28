@@ -1,0 +1,19 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_domain" %}
+{% set modal_label_id = "ModalLabel" %}
+
+{% block modal_header %}
+    <h5 class="modal-title" id="modalTitle">Edit Domain</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="index_domain">
+    <label for="edit_domain">Domain</label>
+    <input type="text" class="form-control" id="edit_domain">
+{% endblock %}
+
+{% block modal_footer %}
+    <a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
+    <a class="btn btn-success" onclick="edit_domain()">Save</a>
+{% endblock %}

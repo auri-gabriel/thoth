@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+{% block title%} Thoth - Planning {% endblock %}
+{% block content %}
+<div class="container py-4" id="conducting-tabs" data-project-id="{{ data.project.get_id }}">
+	<div class="card">
+	{% include 'pages/project/partials/card_header.twig' with { 'project': data.project , active_tab: 'conducting', is_owner: true } %}
+		<div class="card-body bg-light">
+			<h4>Conducting</h4>
+			{% include 'pages/project/conducting/partials/tab_nav.twig' %}
+			<div class="tab-content p-md-3">
+				{% if data.project.get_planning == "100" %}
+				{# This part is empty because we update the tabs via ajax, that way we can request the lastest template from the controller #}
+					<div class="tab-pane fade show active" id="tab_import_studies" role="tabpanel">
+					</div>
+					<div class="tab-pane fade" id="tab_study_selection" role="tabpanel">
+					</div>
+					<div class="tab-pane fade" id="tab_quality_assessment" role="tabpanel">
+					</div>
+					<div class="tab-pane fade" id="tab_data_extraction" role="tabpanel">
+					</div>
+				{% else %}
+					{% include 'pages/project/conducting/partials/alert_incomplete.twig' with { 'project': data.project} %}
+				{% endif %}
+			</div>
+		</div>
+		<br>
+	</div>
+</div>
+<script src="{{ base_url('assets/js/conducting_tabs.js') }}"></script>
+{% endblock %}
+

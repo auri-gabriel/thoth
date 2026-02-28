@@ -104,7 +104,9 @@ class Login_Controller extends Pattern_Controller
 			if ($this->session->logged_in) {
 				redirect(base_url("dashboard"));
 			}
-			load_templates('pages/login/login', null);
+			$this->render(
+				'pages/login/login'
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -137,7 +139,9 @@ class Login_Controller extends Pattern_Controller
 			if ($this->session->logged_in) {
 				redirect(base_url("dashboard"));
 			}
-			load_templates('pages/login/register', null);
+			$this->render(
+				'pages/login/register'
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());

@@ -1,0 +1,22 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_help_research_question" %}
+{% set modal_label_id = "modal_help_rq_label" %}
+
+{% block modal_header %}
+    <h2 class="modal-title fs-5" id="modal_help_rq_label">Help: Research Question</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <section>
+        <p>Defining research questions is the most important step in a systematic review. The questions guide the entire methodology:</p>
+    </section>
+    <section>
+        <h3 class="h6 mt-3">Impact of Research Questions</h3>
+        <ul>
+            <li>Search process: Identify primary studies that address the questions.</li>
+            <li>Data extraction: Collect data needed to answer the questions.</li>
+            <li>Data analysis: Synthesize data to provide answers.</li>
+        </ul>
+    </section>
+{% endblock %}

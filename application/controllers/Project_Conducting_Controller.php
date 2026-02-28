@@ -41,7 +41,10 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['bib']        = $this->Project_Model->get_name_bibs($id);
 			$data['num_papers'] = $this->Project_Model->get_num_papers($id);
 
-			$this->load->view('pages/project/conducting/tabs/tab_import_studies', $data);
+			$this->render(
+				'pages/project/conducting/tabs/tab_import_studies',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->render_ajax_error($e);
 		}
@@ -61,7 +64,10 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['count_papers'] = $this->Project_Model->count_papers_sel_by_user($id);
 			$data['criterias']    = $this->Project_Model->get_evaluation_selection($id);
 
-			$this->load->view('pages/project/conducting/tabs/tab_study_selection', $data);
+			$this->render(
+				'pages/project/conducting/tabs/tab_study_selection',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->render_ajax_error($e);
 		}
@@ -81,7 +87,10 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['count_papers_qa']  = $this->Project_Model->count_papers_qa_by_user($id);
 			$data['qas_score']        = $this->Project_Model->get_evaluation_qa($id);
 
-			$this->load->view('pages/project/conducting/tabs/tab_quality_assessment', $data);
+			$this->render(
+				'pages/project/conducting/tabs/tab_quality_assessment',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->render_ajax_error($e);
 		}
@@ -100,7 +109,10 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['project']      = $this->Project_Model->get_project_extraction($id);
 			$data['count_papers'] = $this->Project_Model->count_papers_extraction($id);
 
-			$this->load->view('pages/project/conducting/tabs/tab_data_extraction', $data);
+			$this->render(
+				'pages/project/conducting/tabs/tab_data_extraction',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->render_ajax_error($e);
 		}

@@ -1,0 +1,63 @@
+{% extends "layout.twig" %}
+{% block title %} Thoth - Planning {% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="card">
+        {% include 'pages/project/partials/card_header.twig' with {active_tab: 'planning', is_owner: true, project: data.project} %}
+        <div class="card-body bg-light">
+            <h4>Planning</h4>
+            {% include 'pages/project/planning/partials/tab_nav.twig' %}
+
+            <div class="tab-content p-md-3" id="planningTabContent">
+                {% include 'pages/project/planning/tabs/tab_overall.twig' %}
+                {% include 'pages/project/planning/tabs/tab_research_questions.twig' %}
+                {% include 'pages/project/planning/tabs/tab_databases.twig' %}
+                {% include 'pages/project/planning/tabs/tab_search_string.twig' %}
+                {% include 'pages/project/planning/tabs/tab_search_strategy.twig' %}
+                {% include 'pages/project/planning/tabs/tab_criteria.twig' %}
+                {% include 'pages/project/planning/tabs/tab_quality_assessment.twig' %}
+                {% include 'pages/project/planning/tabs/tab_data_extraction.twig' %}
+            </div>
+        </div>
+        <br>
+    </div>
+
+    {# Criteria modals #}
+    {% include 'modal/modal_inclusion_criteria.twig' %}
+    {% include 'modal/modal_exclusion_criteria.twig' %}
+
+    {# Search string modals #}
+    {% include 'modal/modal_synonym.twig' %}
+    {% include 'modal/modal_term.twig' %}
+
+    {# Quality modals #}
+    {% include 'modal/modal_general_score.twig' %}
+    {% include 'modal/modal_question_quality.twig' %}
+    {% include 'modal/modal_score_quality.twig' %}
+
+    {# Data extraction modals #}
+    {% include 'modal/modal_question_extraction.twig' %}
+    {% include 'modal/modal_option.twig' %}
+
+    {# Overall modals #}
+    {% include 'modal/modal_research.twig' %}
+    {% include 'modal/modal_keyword.twig' %}
+    {% include 'modal/modal_domain.twig' %}
+
+    {# Help modals #}
+    {% include 'modal/help/modal_help_domain.twig' %}
+    {% include 'modal/help/modal_help_languages.twig' %}
+    {% include 'modal/help/modal_help_study_type.twig' %}
+    {% include 'modal/help/modal_help_keyword.twig' %}
+    {% include 'modal/help/modal_help_date.twig' %}
+    {% include 'modal/help/modal_help_research_question.twig' %}
+    {% include 'modal/help/modal_help_database.twig' %}
+    {% include 'modal/help/modal_help_ss.twig' %}
+    {% include 'modal/help/modal_help_strings.twig' %}
+    {% include 'modal/help/modal_help_criteria.twig' %}
+    {% include 'modal/help/modal_help_general_score.twig' %}
+    {% include 'modal/help/modal_help_qa.twig' %}
+    {% include 'modal/help/modal_help_data_extraction.twig' %}
+    {% include 'modal/help/modal_help_strategy.twig' %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_synonym" %}
+{% set modal_label_id = "ModalLabel" %}
+
+{% block modal_header %}
+    <h5 class="modal-title" id="modalTitle">Edit Synonym</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="term_synonym">
+    <input type="hidden" id="index_synonym">
+    <input type="hidden" id="old_synonym">
+    <label for="now_synonym" class="col-sm-12 col-md-2">Synonym</label>
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <input type="text" id="now_synonym" class="form-control col-sm-12 col-md-12">
+    </div>
+{% endblock %}
+
+{% block modal_footer %}
+    <a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
+    <a class="btn btn-success" onclick="edit_synonym()">Save</a>
+{% endblock %}

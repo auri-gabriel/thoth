@@ -1,0 +1,22 @@
+{% block modal %}
+<div class="modal fade" id="{{ modal_id }}" tabindex="-1" aria-labelledby="{{ modal_label_id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+            <div class="modal-header bg-primary text-white rounded-top-4">
+            {% block modal_header %}
+            {% endblock %}
+            </div>
+            <div class="modal-body py-4 px-4">
+            {% block modal_body %}
+                {# Modal body content goes here #}
+            {% endblock %}
+            </div>
+            <div class="modal-footer bg-light rounded-bottom-4">
+            {% block modal_footer %}
+                {# Optional footer content #}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
