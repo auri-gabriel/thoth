@@ -34,6 +34,9 @@ class Home_Controller extends Pattern_Controller
 			'project_count' => $project_count,
 			'user_count' => $user_count
 		];
-		load_templates('home', $data);
+		$this->render(
+			'home.twig',
+			['data' => $data]
+		);
 	}
 }
