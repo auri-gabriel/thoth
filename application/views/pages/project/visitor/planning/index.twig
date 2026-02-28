@@ -5,7 +5,8 @@
 {% block content %}
 	<div class="container py-4">
 		<div class="card">
-			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'planning', is_owner: true, project: data.project} %}
+			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'planning', is_owner: true, project: data.project, is_owner: false} %}
+
 			<div class="card-body bg-light">
 				<h4>Planning</h4>
 				{% include 'pages/project/planning/partials/tab_nav.twig' %}
