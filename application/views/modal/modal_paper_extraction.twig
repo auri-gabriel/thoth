@@ -51,18 +51,26 @@
 				<hr>
 				<div class="col-md-12" id="ex_analiese">
 					<h6>Extraction Questions</h6>
-					<div class="d-flex flex-wrap align-items-end gap-2" id="extraction_questions">
-						{% for qe in data.project.get_questions_extraction %}
-							<script>
-								var options = [];
-								{% for op in qe.get_options %}
-									options.push("{{ op }}");
-								{% endfor %}
-								var question = new Extraction_Answer("{{ qe.get_id }}", "{{ qe.get_description }}", "{{ qe.get_type }}", options);
-								questions.push(question);
-							</script>
-						{% endfor %}
-					</div>
+					       <div class="d-flex flex-wrap align-items-end gap-2" id="extraction_questions">
+						       <script>
+							       var questions = [];
+						       </script>
+						       {% for qe in data.project.get_questions_extraction %}
+							       <script>
+								       var options = [];
+								       {% for op in qe.get_options %}
+									       options.push("{{ op }}");
+								       {% endfor %}
+								       var question = new Extraction_Answer("{{ qe.get_id }}", "{{ qe.get_description }}", "{{ qe.get_type }}", options);
+								       questions.push(question);
+							       </script>
+						       {% endfor %}
+						       <script>
+							       for (const qe of questions) {
+								       qe.show();
+							       }
+						       </script>
+					       </div>
 					<br>
 					<hr>
 				</div>
