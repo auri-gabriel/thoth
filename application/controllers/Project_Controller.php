@@ -137,7 +137,10 @@ class Project_Controller extends Pattern_Controller
 			$data['count_project_sel'] = $this->Project_Model->count_papers_by_status_sel($id);
 			$data['count_papers_sel']  = $this->Project_Model->count_papers_reviewer($id);
 
-			$this->load_views('pages/project/reporting/reporting', $data);
+			$this->render(
+				'pages/project/reporting/index.twig',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());

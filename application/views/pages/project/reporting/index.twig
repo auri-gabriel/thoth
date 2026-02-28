@@ -1,0 +1,33 @@
+{% extends "layout.twig" %}
+{% block title %} Thoth - Reporting {% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="card">
+        {% include 'pages/project/partials/card_header.twig' with {active_tab: 'reporting', is_owner: true} %}
+        <div class="card-body bg-light">
+            <h4>Reporting</h4>
+            {% include 'pages/project/reporting/partials/tab_nav.twig' %}
+            <div class="tab-content p-3" id="reportingTabContent">
+                <div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
+                    {% include 'pages/project/reporting/tabs/tab_overview.twig' %}
+                </div>
+                <div class="tab-pane fade container-fluid" id="tab_import" role="tabpanel" aria-labelledby="tab_import-tab">
+                    {% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
+                </div>
+                <div class="tab-pane fade container-fluid" id="tab_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
+                    {% include 'pages/project/reporting/tabs/tab_study_selection.twig' %}
+                </div>
+                <div class="tab-pane fade container-fluid" id="tab_quality" role="tabpanel" aria-labelledby="tab_quality-tab">
+                    {% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' %}
+                </div>
+                {% if project is defined and project.get_extraction > 0 %}
+                <div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
+                    {% include 'pages/project/reporting/tabs/tab_data_extraction.twig' %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock %}
