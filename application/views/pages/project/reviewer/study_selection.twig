@@ -1,0 +1,278 @@
+{% extends "layout.twig" %}
+{% block title %}
+	Thoth - Study Selection
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="card">
+			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'conducting'} %}
+			<div class="card-body">
+				<h4>Conducting</h4>
+				<ul class="nav nav-pills nav-justified flex-column flex-sm-row">
+					{% if session.level != '4' %}
+						<li class="nav-item">
+							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/conducting') }}">Import Studies
+								<i class="fas fa-upload"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/study-selection') }}">Study Selection
+								<i class="fas fa-clipboard-check"></i>
+							</a>
+						</li>
+					{% endif %}
+					{% if session.level == '4' %}
+						<li class="nav-item">
+							<a class="nav-link active flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/study-selection-admin') }}">Review Study Selection
+								<i class="fas fa-book-reader"></i>
+							</a>
+						</li>
+					{% endif %}
+					{% if session.level != '4' %}
+						<li class="nav-item">
+							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/quality-assessment') }}">Quality Assessment
+								<i class="fas fa-star-half-alt"></i>
+							</a>
+						</li>
+					{% endif %}
+					{% if session.level == '4' %}
+						<li class="nav-item">
+							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/quality-admin') }}">Review Quality Assessment
+								<i class="fas fa-book-reader"></i>
+							</a>
+						</li>
+					{% endif %}
+					{% if session.level != '4' %}
+						<li class="nav-item ">
+							<a class="nav-link flex-sm-fill text-sm-center" href="{{ site_url('projects/' ~ project.get_id ~ '/data-extraction') }}">Data Extraction
+								<i class="fas fa-table"></i>
+							</a>
+						</li>
+					{% endif %}
+				</ul>
+				<br>
+				<div class="form-inline">
+					<label for="id_qa">
+						<strong>Review Study Selection</strong>
+					</label>
+					<a class="float-right opt">
+						<i class="fas fa-question-circle "></i>
+					</a>
+				</div>
+				<br>
+				{% if project.get_planning == 100 and project.get_import == 100 %}
+					{% for member in project.get_members %}
+						{% if member.get_level == 'Administrator' or member.get_level == 'Researcher' %}
+							{% set acc = ((count_papers[member.get_email][1] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							{% set rej = ((count_papers[member.get_email][2] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							{% set unc = ((count_papers[member.get_email][3] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							{% set dup = ((count_papers[member.get_email][4] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							{% set rem = ((count_papers[member.get_email][5] * 100) / count_papers[member.get_email][6])|number_format(2) %}
+							<h5 class="text-center">{{ member.get_name }}</h5>
+							<div class="progress">
+								<div class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
+								<div class="progress-bar bg-danger" role="progressbar" style="width: {{ rej }}%" aria-valuenow="{{ rej }}" aria-valuemin="0" aria-valuemax="100">{{ rej }}%</div>
+								<div class="progress-bar bg-dark" role="progressbar" style="width: {{ unc }}%" aria-valuenow="{{ unc }}" aria-valuemin="0" aria-valuemax="100">{{ unc }}%</div>
+								<div class="progress-bar bg-warning" role="progressbar" style="width: {{ dup }}%" aria-valuenow="{{ dup }}" aria-valuemin="0" aria-valuemax="100">{{ dup }}%</div>
+								<div class="progress-bar bg-info" role="progressbar" style="width: {{ rem }}%" aria-valuenow="{{ rem }}" aria-valuemin="0" aria-valuemax="100">{{ rem }}%</div>
+							</div>
+							<br>
+							<div class="form-inline">
+								{% for key, value in count_papers[member.get_email] %}
+									{% if key == 1 %}
+										<div class="input-group col-md-2">
+											<label class="text-success">
+												<span class="fas fa-check fa-lg"></span>
+												Accepted:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% elseif key == 2 %}
+										<div class="input-group col-md-2">
+											<label class="text-danger">
+												<span class="fas fa-times fa-lg"></span>
+												Rejected:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% elseif key == 3 %}
+										<div class="input-group col-md-2">
+											<label class="text-dark">
+												<span class="fas fa-question fa-lg"></span>
+												Unclassified:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% elseif key == 4 %}
+										<div class="input-group col-md-2">
+											<label class="text-warning">
+												<span class="fas fa-copy fa-lg"></span>
+												Duplicate:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% elseif key == 5 %}
+										<div class="input-group col-md-2">
+											<label class="text-info">
+												<span class="fas fa-trash-alt fa-lg"></span>
+												Removed:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% elseif key == 6 %}
+										<div class="input-group col-md-2">
+											<label class="text-secondary">
+												<span class="fas fa-bars fa-lg"></span>
+												Total:
+												<span>{{ value }}</span>
+											</label>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<br>
+							<hr>
+						{% endif %}
+					{% endfor %}
+					<div class="form-inline">
+						<label>
+							<strong>Conflicts</strong>
+						</label>
+						<a class="float-right opt">
+							<i class="fas fa-question-circle "></i>
+						</a>
+					</div>
+					<br>
+					<table id="table_conf_paper_selection" class="table table-responsive-sm">
+						<caption>List of Papers Conflicts</caption>
+						<thead>
+							<th>ID</th>
+							{% set size = conflicts.head|length %}
+							{% for mem in conflicts.head %}
+								<th>{{ mem[1] }}</th>
+							{% endfor %}
+						</thead>
+						<tbody>
+							{% for paper in conflicts.papers %}
+								<tr>
+									<td>{{ paper.id }}</td>
+									{% for mem in conflicts.head %}
+										{% set class = 'text-dark' %}
+										{% set status = 'Unclassified' %}
+										{% if paper[mem[0]] == 1 %}
+											{% set class = 'text-success' %}
+											{% set status = 'Accepted' %}
+										{% elseif paper[mem[0]] == 2 %}
+											{% set class = 'text-danger' %}
+											{% set status = 'Rejected' %}
+										{% elseif paper[mem[0]] == 4 %}
+											{% set class = 'text-warning' %}
+											{% set status = 'Duplicate' %}
+										{% elseif paper[mem[0]] == 5 %}
+											{% set class = 'text-info' %}
+											{% set status = 'Removed' %}
+										{% endif %}
+										<td id="{{ paper.id }}" class="font-weight-bold {{ class }}">{{ status }}</td>
+									{% endfor %}
+								</tr>
+							{% endfor %}
+						</tbody>
+						<tfoot>
+							<th>ID</th>
+							{% for mem in conflicts.head %}
+								<th>{{ mem[1] }}</th>
+							{% endfor %}
+						</tfoot>
+					</table>
+					<br>
+					<div class="form-inline">
+						<label>
+							<strong>Papers Project</strong>
+						</label>
+						<a class="float-right opt">
+							<i class="fas fa-question-circle "></i>
+						</a>
+					</div>
+					{% set acc = ((count_project[1] * 100) / count_project[6])|number_format(2) %}
+					{% set rej = ((count_project[2] * 100) / count_project[6])|number_format(2) %}
+					{% set unc = ((count_project[3] * 100) / count_project[6])|number_format(2) %}
+					{% set dup = ((count_project[4] * 100) / count_project[6])|number_format(2) %}
+					{% set rem = ((count_project[5] * 100) / count_project[6])|number_format(2) %}
+					<h5 class="text-center">{{ project.get_title }}</h5>
+					<div class="progress">
+						<div id="prog_acc" class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
+						<div id="prog_rej" class="progress-bar bg-danger" role="progressbar" style="width: {{ rej }}%" aria-valuenow="{{ rej }}" aria-valuemin="0" aria-valuemax="100">{{ rej }}%</div>
+						<div id="prog_unc" class="progress-bar bg-dark" role="progressbar" style="width: {{ unc }}%" aria-valuenow="{{ unc }}" aria-valuemin="0" aria-valuemax="100">{{ unc }}%</div>
+						<div id="prog_dup" class="progress-bar bg-warning" role="progressbar" style="width: {{ dup }}%" aria-valuenow="{{ dup }}" aria-valuemin="0" aria-valuemax="100">{{ dup }}%</div>
+						<div id="prog_rem" class="progress-bar bg-info" role="progressbar" style="width: {{ rem }}%" aria-valuenow="{{ rem }}" aria-valuemin="0" aria-valuemax="100">{{ rem }}%</div>
+					</div>
+					<br>
+					<div class="form-inline">
+						{% for key, value in count_project %}
+							{% if key == 1 %}
+								<div class="input-group col-md-2">
+									<label class="text-success">
+										<span class="fas fa-check fa-lg"></span>
+										Accepted:
+										<span id="count_acc">{{ value }}</span>
+									</label>
+								</div>
+							{% elseif key == 2 %}
+								<div class="input-group col-md-2">
+									<label class="text-danger">
+										<span class="fas fa-times fa-lg"></span>
+										Rejected:
+										<span id="count_rej">{{ value }}</span>
+									</label>
+								</div>
+							{% elseif key == 3 %}
+								<div class="input-group col-md-2">
+									<label class="text-dark">
+										<span class="fas fa-question fa-lg"></span>
+										Unclassified:
+										<span id="count_unc">{{ value }}</span>
+									</label>
+								</div>
+							{% elseif key == 4 %}
+								<div class="input-group col-md-2">
+									<label class="text-warning">
+										<span class="fas fa-copy fa-lg"></span>
+										Duplicate:
+										<span id="count_dup">{{ value }}</span>
+									</label>
+								</div>
+							{% elseif key == 5 %}
+								<div class="input-group col-md-2">
+									<label class="text-info">
+										<span class="fas fa-trash-alt fa-lg"></span>
+										Removed:
+										<span id="count_rem">{{ value }}</span>
+									</label>
+								</div>
+							{% elseif key == 6 %}
+								<div class="input-group col-md-2">
+									<label class="text-secondary">
+										<span class="fas fa-bars fa-lg"></span>
+										Total:
+										<span id="count_total">{{ value }}</span>
+									</label>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					<br>
+				{% else %}
+					<div class="alert alert-warning container-fluid alert-dismissible fade show" role="alert">
+						<h5>Complete these tasks to advance</h5>
+						<ul>
+							{% for error in project.get_errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% include 'modal/modal_paper_conflict.twig' %}
+{% endblock %}

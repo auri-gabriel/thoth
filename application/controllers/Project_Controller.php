@@ -167,7 +167,10 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status();
 			$data['conflicts']     = $this->Selection_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/reviewer/study_selection', $data);
+			$this->render(
+				'pages/project/reviewer/study_selection',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -191,7 +194,10 @@ class Project_Controller extends Pattern_Controller
 			$data['status']        = $this->Project_Model->get_status_qa();
 			$data['conflicts']     = $this->Quality_Model->get_conflicts($id);
 
-			$this->load_views('pages/project/reviewer/quality_assessment', $data);
+			$this->render(
+				'pages/project/reviewer/quality_assessment',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
