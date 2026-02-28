@@ -57,7 +57,10 @@ class Project_Controller extends Pattern_Controller
 			$data['rules']          = $this->Project_Model->get_all_rules();
 			$data['question_types'] = $this->Project_Model->get_all_types();
 
-			$this->load_views('pages/project/planning/planning', $data);
+			$this->render(
+				'pages/project/planning/index.twig',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			redirect(base_url());
@@ -97,7 +100,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project_extraction']     = $this->Project_Model->get_project_extraction($id);
 
 			$this->render(
-				'pages/project/conducting/conducting.twig',
+				'pages/project/conducting/index.twig',
 				['data' => $data]
 			);
 		} catch (Throwable $e) {

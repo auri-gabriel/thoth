@@ -1,0 +1,15 @@
+{% extends "layout.twig" %}
+{% block title%} Thoth - Planning {% endblock %}
+{% block content %}
+{% include 'pages/project/planning/partials/tab_nav.twig' %}
+<div class="tab-content" id="planningTabContent">
+    {% include 'pages/project/planning/tabs/tab_criteria.twig' %}
+    {% include 'pages/project/planning/tabs/tab_data_extraction.twig' %}
+    {% include 'pages/project/planning/tabs/tab_databases.twig' %}
+    {% include 'pages/project/planning/tabs/tab_overall.twig' %}
+    {% include 'pages/project/planning/tabs/tab_quality_assessment.twig' %}
+    {% include 'pages/project/planning/tabs/tab_research_questions.twig' %}
+    {% include 'pages/project/planning/tabs/tab_search_strategy.twig' %}
+    {% include 'pages/project/planning/tabs/tab_search_string.twig' %}
+</div>
+{% endblock %}
