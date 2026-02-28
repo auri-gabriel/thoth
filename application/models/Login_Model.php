@@ -50,8 +50,8 @@ class Login_Model extends CI_Model
 		$query = $this->db->get();
 
 		foreach ($query->result() as $row) {
-			$user->set_id($row['id_user']);
-			$user->set_email($row['email']);
+			$user->set_id($row->id_user);
+			$user->set_email($row->email);
 			$user->set_name($row->name);
 			return $user;
 		}
@@ -117,7 +117,7 @@ class Login_Model extends CI_Model
 	public function update_password($user_id, $new_password)
 	{
 		$password = md5($new_password);
-		$this->db->where('id', $user_id);
+		$this->db->where('id_user', $user_id);
 		$this->db->update('user', array('password' => $password));
 	}
 

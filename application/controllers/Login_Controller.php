@@ -178,7 +178,7 @@ class Login_Controller extends Pattern_Controller
 		$this->Login_Model->store_reset_token($user->get_id(), $token);
 		$reset_link = base_url('login/reset_password/' . $token);
 		$this->load->library('email');
-		$this->email->from('no-reply@yourdomain.com', 'Thoth');
+		$this->email->from('no-reply@thoth.com', 'Thoth');
 		$this->email->to($email);
 		$this->email->subject('Password Reset Request');
 		$this->email->message("Click the following link to reset your password: $reset_link");

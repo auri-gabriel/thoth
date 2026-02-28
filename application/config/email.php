@@ -6,3 +6,4 @@ $config['smtp_user'] = '';
 $config['smtp_pass'] = '';
 $config['mailtype'] = 'text';
 $config['charset']  = 'utf-8';
+$config['newline']  = "\r\n";
