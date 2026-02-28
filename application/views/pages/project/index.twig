@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container py-4 project-overview">
     <div class="card shadow-sm mb-4">
-        {% include 'pages/project/partials/card_header.twig' with {active_tab: 'overview', is_owner: true} %}
+        {% include 'pages/project/partials/card_header.twig' with {active_tab: 'overview', is_owner: true, project: data.project} %}
         <div class="card-body bg-light">
             <div class="project-summary">
                 <div class="summary-card">
