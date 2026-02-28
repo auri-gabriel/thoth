@@ -92,11 +92,7 @@ class Pattern_Controller extends CI_Controller
 		}
 
 		// Inject global template data
-		$data['current_user'] = [
-			'logged_in' => $this->session->logged_in,
-			'level'     => $this->session->level,
-			'name'      => $this->session->name ?? null,
-		];
+		$data['session'] = $this->session;
 
 		echo $this->twig->render($final_view . '.twig', $data);
 	}
