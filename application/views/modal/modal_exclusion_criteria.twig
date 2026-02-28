@@ -1,0 +1,34 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_exclusion_criteria" %}
+{% set modal_label_id = "ModalLabel" %}
+
+{% block modal_header %}
+    <h5 class="modal-title" id="modalTitle">Edit Exclusion Criteria</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="index_term">
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <div class="input-group col-md-3">
+            <label for="edit_id_criteria_ex" class="col-sm-12">ID</label>
+            <input type="text" id="edit_id_criteria_ex" placeholder="ID" class="form-control">
+        </div>
+        <div class="input-group col-md-9">
+            <label for="edit_description_criteria_ex" class="col-sm-12">Description</label>
+            <input type="text" id="edit_description_criteria_ex" placeholder="Description" class="form-control">
+        </div>
+        <div class="input-group col-md-4">
+            <label for="edit_select_type" class="col-sm-12">Type</label>
+            <select class="form-control" id="edit_select_type_exclusion">
+                <option value="Inclusion">Inclusion</option>
+                <option value="Exclusion">Exclusion</option>
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block modal_footer %}
+    <a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
+    <a class="btn btn-success" onclick="edit_criteria_exclusion()">Save</a>
+{% endblock %}

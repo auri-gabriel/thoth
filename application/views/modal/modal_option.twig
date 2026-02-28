@@ -1,0 +1,25 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_option" %}
+{% set modal_label_id = "ModalLabel" %}
+
+{% block modal_header %}
+    <h5 class="modal-title" id="modalTitle">Edit Option</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="index_op">
+    <input type="hidden" id="old_op">
+    <input type="hidden" id="qe_op">
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <div class="input-group col-md-12">
+            <label for="now_op" class="col-sm-12">Option</label>
+            <input type="text" class="form-control" id="now_op">
+        </div>
+    </div>
+{% endblock %}
+
+{% block modal_footer %}
+    <a class="btn btn-danger" data-bs-dismiss="modal">Cancel</a>
+    <a class="btn btn-success" onclick="edit_option();">Save</a>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "layouts/modal.twig" %}
+{% set modal_id = "modal_paper_conflict_qa" %}
+{% set modal_label_id = "exampleModalLabel" %}
+
+{% block modal_header %}
+    <input type="hidden" id="id_paper_conf_qa">
+    <h5 class="modal-title" id="paper_title_conf_qa">Title Paper</h5>
+    <small id="paper_id_conf_qa"></small>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% endblock %}
+
+{% block modal_body %}
+    <input type="hidden" id="index_paper_conf_qa">
+    <input type="hidden" id="old_status_conf_qa">
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <div class="col-md-6">
+            <h6>Doi</h6><a class="float-end opt"><i class="fas fa-question-circle"></i></a>
+            <a target="_blank" id="paper_doi_conf_qa"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <div class="col-md-6">
+            <h6>URL</h6>
+            <a target="_blank" id="paper_url_conf_qa"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <div class="col-md-6">
+            <h6>Author</h6>
+            <p id="paper_author_conf_qa"></p>
+        </div>
+        <div class="col-md-2">
+            <h6>Year</h6>
+            <p id="paper_year_conf_qa"></p>
+        </div>
+        <div class="col-md-4">
+            <h6>Database</h6>
+            <p id="paper_database_conf_qa"></p>
+        </div>
+        <div class="col-md-12">
+            <h6>Abstract</h6>
+            <p id="paper_abstract_conf_qa"></p>
+        </div>
+        <div class="col-md-12">
+            <h6>Keywords</h6>
+            <p id="paper_keywords_conf_qa"></p>
+        </div>
+    </div>
+    <hr>
+    <div id="notes_qa"></div>
+    <h6>Quality Questions Answer</h6>
+    <table class="table table-responsive-sm" id="table_qa_answer">
+        <thead>
+        <tr>
+            <th>Research</th>
+            {% for qa in data.project.get_questions_quality %}
+                <th>{{ qa.get_id }}</th>
+            {% endfor %}
+            <th>Score</th>
+            <th>General Score</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+    </table>
+    <hr>
+    <h5>Quality Questions</h5>
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <h6>Score: </h6> <h6 class="fw-bold" id="score_paper_qa_conf">0</h6>
+    </div>
+    <div class="d-flex flex-wrap align-items-end gap-2">
+        <h6>General Score: </h6> <h6 class="fw-bold" id="gen_score_qa_conf"></h6>
+    </div>
+    <table class="table table-responsive-sm" id="table_qa_eva_conf">
+        <caption>List of Quality Questions</caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Minimum to Approve</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for qa in data.project.get_questions_quality %}
+            <tr>
+                <td>{{ qa.get_id }}</td>
+                <td>{{ qa.get_description }}</td>
+                <td>{% if qa.get_min_to_approve is not null %}{{ qa.get_min_to_approve.get_score_rule }}{% endif %}</td>
+                <td>
+                    <select class="form-control" data-qa="{{ qa.get_id }}" id="conf_{{ qa.get_id|replace({' ': ''}) }}">
+                        <option value=""></option>
+                        {% for score in qa.get_scores %}
+                            <option data-bs-toggle="tooltip" data-bs-placement="top" title="{{ score.get_description }}" value="{{ score.get_score_rule }}">{{ score.get_score_rule }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
