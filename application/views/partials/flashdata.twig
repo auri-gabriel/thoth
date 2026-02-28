@@ -1,0 +1,8 @@
+	{% if session.flashdata('error') %}
+		<div class="container mt-3">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				{{ session.flashdata('error') }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			</div>
+		</div>
+	{% endif %}
