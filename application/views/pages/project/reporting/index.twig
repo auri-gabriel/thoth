@@ -11,17 +11,17 @@
                 <div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
                     {% include 'pages/project/reporting/tabs/tab_overview.twig' %}
                 </div>
-                <div class="tab-pane fade container-fluid" id="tab_import" role="tabpanel" aria-labelledby="tab_import-tab">
+                <div class="tab-pane fade container-fluid" id="tab_import_studies" role="tabpanel" aria-labelledby="tab_import-tab">
                     {% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
                 </div>
-                <div class="tab-pane fade container-fluid" id="tab_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
+                <div class="tab-pane fade container-fluid" id="tab_study_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
                     {% include 'pages/project/reporting/tabs/tab_study_selection.twig' %}
                 </div>
-                <div class="tab-pane fade container-fluid" id="tab_quality" role="tabpanel" aria-labelledby="tab_quality-tab">
+                <div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality-tab">
                     {% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' %}
                 </div>
                 {% if project is defined and project.get_extraction > 0 %}
-                <div class="tab-pane fade container-fluid" id="tab_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
+                <div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
                     {% include 'pages/project/reporting/tabs/tab_data_extraction.twig' %}
                 </div>
                 {% endif %}
