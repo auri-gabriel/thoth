@@ -95,6 +95,7 @@ class Project_Controller extends Pattern_Controller
 
 			// Data Extraction tab
 			$data['count_papers_extraction'] = $this->Project_Model->count_papers_extraction($id);
+			$data['project_extraction']     = $this->Project_Model->get_project_extraction($id);
 
 			echo $this->twig->render(
 				'pages/project/conducting/conducting.twig',
