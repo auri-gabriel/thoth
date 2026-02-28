@@ -8,14 +8,14 @@
 	{% set is_owner = is_owner is defined ? is_owner : (session.level == '4') %}
 	<nav class="project-stages-nav" aria-label="Project stages navigation">
 		<!-- Overview -->
-		<a href="{{ site_url('projects', {id: project.get_id}) }}"
+		<a href="{{ site_url('projects/' ~ project.get_id) }}"
 			class="btn btn-sm opt {{ active_tab is defined and active_tab == 'overview' ? 'btn-primary' : 'btn-outline-primary' }}"
 			aria-current="{{ active_tab is defined and active_tab == 'overview' ? 'page' : false }}">
 			<i class="fas fa-binoculars me-1"></i> Overview
 		</a>
 		<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
 		<!-- Planning -->
-		<a href="{{ site_url('projects_planning', {id: project.get_id}) }}"
+		<a href="{{ site_url('projects/' ~ project.get_id ~ '/planning') }}"
 			class="btn btn-sm opt {{ active_tab is defined and active_tab == 'planning' ? 'btn-primary' : 'btn-outline-primary' }}"
 			aria-current="{{ active_tab is defined and active_tab == 'planning' ? 'page' : false }}">
 			<i class="fas fa-list me-1"></i> Planning
@@ -23,34 +23,34 @@
 		<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
 		<!-- Conducting (only for owner) -->
 		{% if is_owner %}
-		{% if session.level == '4' %}
-		<a href="{{ site_url('projects_study_selection_admin', {id: project.get_id}) }}"
-			class="btn btn-sm opt {{ active_tab is defined and active_tab == 'conducting' ? 'btn-primary' : 'btn-outline-primary' }}"
-			aria-current="{{ active_tab is defined and active_tab == 'conducting' ? 'page' : false }}">
-			<i class="fas fa-play-circle me-1"></i> Conducting
-		</a>
-		{% else %}
-		<a href="{{ site_url('projects_conducting', {id: project.get_id}) }}"
-			class="btn btn-sm opt {{ active_tab is defined and active_tab == 'conducting' ? 'btn-primary' : 'btn-outline-primary' }}"
-			aria-current="{{ active_tab is defined and active_tab == 'conducting' ? 'page' : false }}">
-			<i class="fas fa-play-circle me-1"></i> Conducting
-		</a>
-		{% endif %}
-		<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
+			{% if session.level == '4' %}
+				<a href="{{ site_url('projects/' ~ project.get_id ~ '/study-selection-admin') }}"
+					class="btn btn-sm opt {{ active_tab is defined and active_tab == 'conducting' ? 'btn-primary' : 'btn-outline-primary' }}"
+					aria-current="{{ active_tab is defined and active_tab == 'conducting' ? 'page' : false }}">
+					<i class="fas fa-play-circle me-1"></i> Conducting
+				</a>
+			{% else %}
+				<a href="{{ site_url('projects/' ~ project.get_id ~ '/conducting') }}"
+					class="btn btn-sm opt {{ active_tab is defined and active_tab == 'conducting' ? 'btn-primary' : 'btn-outline-primary' }}"
+					aria-current="{{ active_tab is defined and active_tab == 'conducting' ? 'page' : false }}">
+					<i class="fas fa-play-circle me-1"></i> Conducting
+				</a>
+			{% endif %}
+			<span class="stage-arrow d-none d-md-inline" aria-hidden="true">&#8594;</span>
 		{% endif %}
 		<!-- Reporting -->
-		<a href="{{ site_url('projects_reporting', {id: project.get_id}) }}"
+		<a href="{{ site_url('projects/' ~ project.get_id ~ '/reporting') }}"
 			class="btn btn-sm opt {{ active_tab is defined and active_tab == 'reporting' ? 'btn-primary' : 'btn-outline-primary' }}"
 			aria-current="{{ active_tab is defined and active_tab == 'reporting' ? 'page' : false }}">
 			<i class="fas fa-chart-line me-1"></i> Reporting
 		</a>
-		{% if project.planning == 100 %}
-		<span class="d-none d-md-inline">&nbsp;</span>
-		<a href="{{ site_url('projects_export', {id: project.get_id}) }}"
-			class="btn btn-sm opt btn-export {{ active_tab is defined and active_tab == 'export' ? 'btn-primary' : 'btn-outline-primary' }}"
-			aria-current="{{ active_tab is defined and active_tab == 'export' ? 'page' : false }}">
-			<i class="fas fa-file-download me-1"></i> Export
-		</a>
+		{% if project.get_planning is defined and project.get_planning() == 100 %}
+			<span class="d-none d-md-inline">&nbsp;</span>
+			<a href="{{ site_url('projects/' ~ project.get_id ~ '/export') }}"
+				class="btn btn-sm opt btn-export {{ active_tab is defined and active_tab == 'export' ? 'btn-primary' : 'btn-outline-primary' }}"
+				aria-current="{{ active_tab is defined and active_tab == 'export' ? 'page' : false }}">
+				<i class="fas fa-file-download me-1"></i> Export
+			</a>
 		{% endif %}
 	</nav>
 </div>
