@@ -23,10 +23,16 @@ class User_Controller extends Pattern_Controller
 			$data['projects'] = $this->User_Model->get_projects($this->session->email);
 
 			$data['recent_activity'] = $this->User_Model->get_recent_activities($this->session->email);
-			load_templates('pages/dashboard', $data);
+			$this->render(
+				'pages/dashboard.twig',
+				['data' => $data]
+			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
-			load_templates('pages/dashboard', $data);
+			$this->render(
+				'pages/dashboard.twig',
+				['data' => $data]
+			);
 		}
 	}
 
