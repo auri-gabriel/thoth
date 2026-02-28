@@ -1,0 +1,39 @@
+{% extends "layout.twig" %}
+{% block title %} Thoth - Sign In {% endblock %}
+{% block content %}
+<section class="py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white text-center">
+                        <h2 class="fw-bold mb-0"><i class="fas fa-sign-in-alt me-2"></i>Sign In</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        {{ form_open('Login_Controller/log_into', {'class': 'form-signin'})|raw }}
+                            <div class="mb-3">
+                                {{ form_label('Email address', 'InputEmail1', {'class': 'form-label'})|raw }}
+                                {{ form_input({'name': 'email', 'id': 'InputEmail1', 'class': 'form-control form-control-lg', 'type': 'email', 'placeholder': 'Enter email', 'required': 'required', 'autofocus': 'autofocus'}, set_value('email'))|raw }}
+                                <small id="emailHelp" class="form-text text-muted">Enter your login information.</small>
+                                {{ form_error('email', '<div class="text-danger">', '</div>')|raw }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_label('Password', 'InputPassword', {'class': 'form-label'})|raw }}
+                                {{ form_password({'name': 'password', 'id': 'InputPassword', 'class': 'form-control form-control-lg', 'placeholder': 'Password', 'required': 'required'})|raw }}
+                                {{ form_error('password', '<div class="text-danger">', '</div>')|raw }}
+                            </div>
+                            <div class="d-grid gap-2 mt-4">
+                                {{ form_submit({'class': 'btn btn-success btn-lg'}, 'Sign In')|raw }}
+                            </div>
+                            <div class="text-center mt-3">
+                                <span>Don't have an account?</span>
+                                <a href="/signup" class="btn btn-link">Create one</a>
+                            </div>
+                        {{ form_close()|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
