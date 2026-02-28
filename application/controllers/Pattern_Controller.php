@@ -61,18 +61,10 @@ class Pattern_Controller extends CI_Controller
 
 	protected function render($view, $data = [])
 	{
-		// Must be logged in
-		if (!$this->session->logged_in) {
-			redirect(base_url());
-		}
-
-		$level = $this->session->level;
-
-		if (is_null($level)) {
-			redirect(base_url());
-		}
+		$level = $this->session->level ?? null;
 
 		switch ($level) {
+
 			case 1: // Admin
 			case 3: // Researcher
 			case 4: // Reviser
@@ -88,10 +80,10 @@ class Pattern_Controller extends CI_Controller
 				break;
 
 			default:
-				redirect(base_url());
+				$final_view = $view;
+				break;
 		}
 
-		// Inject global template data
 		$data['session'] = $this->session;
 
 		echo $this->twig->render($final_view . '.twig', $data);
