@@ -18,7 +18,7 @@ class Search_Controller extends Pattern_Controller
 			$data['projects'] = $this->User_Model->search_project_logged($data['search'], $this->session->email);
 		}
 		$this->render(
-			'pages/search.twig',
+			'pages/search',
 			['data' => $data]
 		);
 	}

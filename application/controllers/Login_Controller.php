@@ -105,7 +105,7 @@ class Login_Controller extends Pattern_Controller
 				redirect(base_url("dashboard"));
 			}
 			$this->render(
-				'pages/login/login.twig'
+				'pages/login/login'
 			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
@@ -140,7 +140,7 @@ class Login_Controller extends Pattern_Controller
 				redirect(base_url("dashboard"));
 			}
 			$this->render(
-				'pages/login/register.twig'
+				'pages/login/register'
 			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());

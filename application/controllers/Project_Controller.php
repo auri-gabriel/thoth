@@ -34,7 +34,7 @@ class Project_Controller extends Pattern_Controller
 			$data['logs']    = $this->Project_Model->get_logs_project($id);
 
 			$this->render(
-				'pages/project/index.twig',
+				'pages/project/index',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -61,7 +61,7 @@ class Project_Controller extends Pattern_Controller
 			$data['question_types'] = $this->Project_Model->get_all_types();
 
 			$this->render(
-				'pages/project/planning/index.twig',
+				'pages/project/planning/index',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -103,7 +103,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project_extraction']     = $this->Project_Model->get_project_extraction($id);
 
 			$this->render(
-				'pages/project/conducting/index.twig',
+				'pages/project/conducting/index',
 				['data' => $data]
 			);
 		} catch (Throwable $e) {
@@ -141,7 +141,7 @@ class Project_Controller extends Pattern_Controller
 			$data['count_papers_sel']  = json_encode($this->Project_Model->count_papers_reviewer($id));
 
 			$this->render(
-				'pages/project/reporting/index.twig',
+				'pages/project/reporting/index',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -211,7 +211,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_export($id);
 
 			$this->render(
-				'pages/project/export.twig',
+				'pages/project/export',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -233,7 +233,7 @@ class Project_Controller extends Pattern_Controller
 			$data['projects'] = $this->User_Model->get_projects_new($this->session->email);
 
 			$this->render(
-				'pages/project/new.twig',
+				'pages/project/new',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -255,7 +255,7 @@ class Project_Controller extends Pattern_Controller
 			$data['project'] = $this->Project_Model->get_project_edit($id);
 
 			$this->render(
-				'pages/project/edit.twig',
+				'pages/project/edit',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -279,7 +279,7 @@ class Project_Controller extends Pattern_Controller
 			$data['levels']  = $this->Project_Model->get_levels();
 
 			$this->render(
-				'pages/project/add_member.twig',
+				'pages/project/add_member',
 				['data' => $data]
 			);
 		} catch (Exception $e) {

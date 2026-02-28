@@ -35,7 +35,7 @@ class Home_Controller extends Pattern_Controller
 			'user_count' => $user_count
 		];
 		$this->render(
-			'home.twig',
+			'home',
 			['data' => $data]
 		);
 	}

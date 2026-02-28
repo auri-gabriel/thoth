@@ -11,7 +11,7 @@ class Help_Controller extends Pattern_Controller
 	public function index()
 	{
 		$this->render(
-			'pages/help.twig'
+			'pages/help'
 		);
 	}
 }

@@ -42,7 +42,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['num_papers'] = $this->Project_Model->get_num_papers($id);
 
 			$this->render(
-				'pages/project/conducting/tabs/tab_import_studies.twig',
+				'pages/project/conducting/tabs/tab_import_studies',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -65,7 +65,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['criterias']    = $this->Project_Model->get_evaluation_selection($id);
 
 			$this->render(
-				'pages/project/conducting/tabs/tab_study_selection.twig',
+				'pages/project/conducting/tabs/tab_study_selection',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -88,7 +88,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['qas_score']        = $this->Project_Model->get_evaluation_qa($id);
 
 			$this->render(
-				'pages/project/conducting/tabs/tab_quality_assessment.twig',
+				'pages/project/conducting/tabs/tab_quality_assessment',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
@@ -110,7 +110,7 @@ class Project_Conducting_Controller extends Pattern_Controller
 			$data['count_papers'] = $this->Project_Model->count_papers_extraction($id);
 
 			$this->render(
-				'pages/project/conducting/tabs/tab_data_extraction.twig',
+				'pages/project/conducting/tabs/tab_data_extraction',
 				['data' => $data]
 			);
 		} catch (Exception $e) {

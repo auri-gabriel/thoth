@@ -24,13 +24,13 @@ class User_Controller extends Pattern_Controller
 
 			$data['recent_activity'] = $this->User_Model->get_recent_activities($this->session->email);
 			$this->render(
-				'pages/dashboard.twig',
+				'pages/dashboard',
 				['data' => $data]
 			);
 		} catch (Exception $e) {
 			$this->session->set_flashdata('error', $e->getMessage());
 			$this->render(
-				'pages/dashboard.twig',
+				'pages/dashboard',
 				['data' => $data]
 			);
 		}
@@ -43,7 +43,7 @@ class User_Controller extends Pattern_Controller
 	{
 		$this->logged_in();
 		$this->render(
-			'pages/user/profile.twig'
+			'pages/user/profile'
 		);
 	}
 }

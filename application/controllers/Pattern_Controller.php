@@ -39,35 +39,6 @@ class Pattern_Controller extends CI_Controller
 	}
 
 	/**
-	 * @param $view
-	 * @param $data
-	 */
-	public function load_views($view, $data)
-	{
-		$level = $this->session->level;
-		if ($this->session->logged_in) {
-			if (!is_null($level)) {
-				switch ($level) {
-					case 1: // Admin
-					case 3: // Researcher
-					case 4: // Reviser
-						load_templates($view, $data);
-						break;
-					case 2:
-						// For visitors, change view path to new structure
-						$visitor_view = preg_replace('/pages\/project\//', 'pages/project/visitor/', $view);
-						load_templates($visitor_view, $data);
-						break;
-				}
-			} else {
-				redirect(base_url());
-			}
-		} else {
-			redirect(base_url());
-		}
-	}
-
-	/**
 	 * @param $id_project
 	 * @param $levels
 	 */
@@ -88,9 +59,45 @@ class Pattern_Controller extends CI_Controller
 		redirect(base_url());
 	}
 
-	protected function render($template, $data = [])
+	protected function render($view, $data = [])
 	{
-		$data['session'] = $this->session;
-		echo $this->twig->render($template, $data);
+		// Must be logged in
+		if (!$this->session->logged_in) {
+			redirect(base_url());
+		}
+
+		$level = $this->session->level;
+
+		if (is_null($level)) {
+			redirect(base_url());
+		}
+
+		switch ($level) {
+			case 1: // Admin
+			case 3: // Researcher
+			case 4: // Reviser
+				$final_view = $view;
+				break;
+
+			case 2: // Visitor
+				$final_view = preg_replace(
+					'/pages\/project\//',
+					'pages/project/visitor/',
+					$view
+				);
+				break;
+
+			default:
+				redirect(base_url());
+		}
+
+		// Inject global template data
+		$data['current_user'] = [
+			'logged_in' => $this->session->logged_in,
+			'level'     => $this->session->level,
+			'name'      => $this->session->name ?? null,
+		];
+
+		echo $this->twig->render($final_view . '.twig', $data);
 	}
 }

@@ -11,7 +11,7 @@ class About_Controller extends Pattern_Controller
 	public function index()
 	{
 		$this->render(
-			'pages/about.twig'
+			'pages/about'
 		);
 	}
 }
