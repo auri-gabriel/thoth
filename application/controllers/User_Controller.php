@@ -76,6 +76,7 @@ class User_Controller extends Pattern_Controller
 			$success = $this->User_Model->update_user($email, $update_data);
 			if ($success) {
 				$this->session->set_flashdata('basic_info_success', 'Basic info updated successfully.');
+				$this->session->set_userdata('name', $update_data['name']);
 				if ($email !== $new_email) {
 					$this->session->set_userdata('email', $new_email);
 				}
