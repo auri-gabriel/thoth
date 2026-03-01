@@ -1,0 +1,84 @@
+@use "sass:color";
+@import "../base/variables";
+
+.swal-toast-container {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	z-index: 1060;
+	max-width: min(92vw, 420px);
+}
+
+.thoth-toast {
+	width: min(100%, 420px);
+	background: $light;
+	color: $gray-900;
+	border-inline-start: 4px solid transparent;
+	box-shadow: 0 6px 18px rgba($secondary, 0.18);
+	border-radius: $border-radius;
+	overflow: hidden;
+
+	.thoth-toast-body {
+		padding: 0.875rem 0.75rem 0.875rem 0.875rem;
+	}
+
+	.thoth-toast-title {
+		font-weight: $font-weight-semibold;
+		font-size: $font-size-base;
+		line-height: 1.2;
+		margin-bottom: 0.15rem;
+		color: $gray-900;
+	}
+
+	.thoth-toast-text {
+		font-size: $font-size-sm;
+		line-height: 1.45;
+		color: $gray-700;
+	}
+
+	.btn-close {
+		opacity: 0.65;
+		filter: none;
+	}
+
+	.btn-close:hover,
+	.btn-close:focus {
+		opacity: 1;
+	}
+}
+
+.thoth-toast--success {
+	border-inline-start-color: $success;
+	background: color.mix($light, $success, 94%);
+}
+
+.thoth-toast--info {
+	border-inline-start-color: $info;
+	background: color.mix($light, $info, 94%);
+}
+
+.thoth-toast--warning {
+	border-inline-start-color: $warning;
+	background: color.mix($light, $warning, 92%);
+}
+
+.thoth-toast--danger {
+	border-inline-start-color: $danger;
+	background: color.mix($light, $danger, 93%);
+}
+
+@media (max-width: 600px) {
+	.swal-toast-container {
+		left: 0.75rem;
+		right: 0.75rem;
+		bottom: 0.75rem;
+		max-width: none;
+	}
+
+	.thoth-toast {
+		width: 100%;
+	}
+}

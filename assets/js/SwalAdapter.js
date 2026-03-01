@@ -38,35 +38,53 @@ function showBootstrapToast(options) {
 	if (!container) {
 		container = document.createElement("div");
 		container.id = "swal-toast-container";
-		container.style.position = "fixed";
-		container.style.bottom = "1rem";
-		container.style.right = "1rem";
-		container.style.zIndex = 1060;
-		container.style.display = "flex";
-		container.style.flexDirection = "column";
-		container.style.gap = "0.5rem";
+		container.className = "swal-toast-container";
 		document.body.appendChild(container);
 	}
 
+	const variant = normalizeToastVariant(options.icon || options.type || "info");
+
 	// Create toast element
 	const toast = document.createElement("div");
-	toast.className =
-		"toast align-items-center text-bg-" +
-		(options.icon || "info") +
-		" border-0";
+	toast.className = `toast thoth-toast thoth-toast--${variant} border-0`;
 	toast.setAttribute("role", "alert");
 	toast.setAttribute("aria-live", "assertive");
 	toast.setAttribute("aria-atomic", "true");
+	toast.setAttribute("data-bs-autohide", "true");
 
-	toast.innerHTML = `
-		<div class="d-flex">
-			<div class="toast-body">
-				${options.title ? `<strong>${options.title}</strong><br>` : ""}
-				${options.text || ""}
-			</div>
-			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
-	`;
+	const toastInner = document.createElement("div");
+	toastInner.className = "d-flex align-items-start";
+
+	const toastBody = document.createElement("div");
+	toastBody.className = "toast-body thoth-toast-body";
+
+	if (options.title) {
+		const toastTitle = document.createElement("div");
+		toastTitle.className = "thoth-toast-title";
+		toastTitle.textContent = options.title;
+		toastBody.appendChild(toastTitle);
+	}
+
+	if (options.text) {
+		const toastText = document.createElement("div");
+		toastText.className = "thoth-toast-text";
+		toastText.textContent = options.text;
+		toastBody.appendChild(toastText);
+	}
+
+	const closeButton = document.createElement("button");
+	closeButton.type = "button";
+	closeButton.className = "btn-close ms-2 me-2 mt-2";
+	closeButton.setAttribute("data-bs-dismiss", "toast");
+	closeButton.setAttribute("aria-label", "Close");
+
+	toastInner.appendChild(toastBody);
+	toastInner.appendChild(closeButton);
+	toast.appendChild(toastInner);
+
+	if (!options.title && !options.text) {
+		toastBody.textContent = "Notification";
+	}
 
 	container.appendChild(toast);
 	// Initialize Bootstrap Toast
@@ -80,6 +98,17 @@ function showBootstrapToast(options) {
 			container.remove();
 		}
 	});
+}
+
+function normalizeToastVariant(type) {
+	const allowed = ["info", "success", "warning", "danger", "error"];
+	const normalized = String(type || "info").toLowerCase();
+
+	if (!allowed.includes(normalized)) {
+		return "info";
+	}
+
+	return normalized === "error" ? "danger" : normalized;
 }
 
 // Export for use in other scripts

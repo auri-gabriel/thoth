@@ -23,10 +23,10 @@ $(document).ready(function () {
 				$("#bib_tex").val(bib);
 				SwalAdapter.fire({
 					title: "Generate Bib",
-					html: "<strong>BibTex file generated</strong>",
-					type: "success",
-					showCancelButton: false,
-					confirmButtonText: "Ok",
+					text: "BibTex file generated",
+					icon: "success",
+					timer: 2500,
+					showConfirmButton: false,
 				});
 			},
 		});
@@ -62,10 +62,10 @@ $(document).ready(function () {
 					$("#text_area-latex").val(latex);
 					SwalAdapter.fire({
 						title: "Generate Latex",
-						html: "<strong>LaTex file generated</strong>",
-						type: "success",
-						showCancelButton: false,
-						confirmButtonText: "Ok",
+						text: "LaTex file generated",
+						icon: "success",
+						timer: 2500,
+						showConfirmButton: false,
 					});
 				},
 			});
