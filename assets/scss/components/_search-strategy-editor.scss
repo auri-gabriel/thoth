@@ -1,0 +1,26 @@
+#tab_search_strategy {
+	#search_strategy_editor {
+		width: 100%;
+	}
+
+	.ql-toolbar.ql-snow,
+	.ql-container.ql-snow {
+		background-color: $light;
+		border-color: var(--bs-border-color);
+	}
+
+	.ql-container {
+		height: auto;
+	}
+
+	.ql-editor {
+		height: auto;
+		min-height: 6rem;
+		max-height: 10rem;
+		overflow-y: auto;
+	}
+
+	.card-body > .d-flex.justify-content-end {
+		margin-top: 0.75rem;
+	}
+}

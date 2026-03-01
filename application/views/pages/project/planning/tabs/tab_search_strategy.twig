@@ -2,13 +2,18 @@
 {% set readonly = (readonly is defined and readonly == true) %}
 <div class="tab-pane container-fluid py-4" role="tabpanel" id="tab_search_strategy">
 	<div class="row justify-content-center">
-		<div class="card shadow-sm">
+		<div class="card shadow-sm w-100">
 			<div class="card-header bg-transparent border-bottom d-flex align-items-center py-3">
 				<strong>Search Strategy</strong>
 				<a onclick="modal_help('modal_help_strategy')" class="ms-auto text-secondary opt" tabindex="0" aria-label="Help about search strategy" data-bs-toggle="tooltip" title="What is a search strategy?"><i class="fas fa-question-circle"></i></a>
 			</div>
 			<div class="card-body">
-				<textarea rows="8" class="form-control mb-3" id="search_strategy" aria-label="Search Strategy" {% if readonly %}readonly{% endif %}>{{ data.project.get_search_strategy }}</textarea>
+				{% if readonly %}
+					<div class="border rounded bg-white p-3 mb-3" id="search_strategy_readonly">{{ data.project.get_search_strategy|raw }}</div>
+				{% else %}
+					<textarea class="d-none" id="search_strategy" aria-label="Search Strategy">{{ data.project.get_search_strategy }}</textarea>
+					<div id="search_strategy_editor" class="mb-3"></div>
+				{% endif %}
 				{% if not readonly %}
 					<div class="d-flex justify-content-end">
 						<button class="btn btn-success opt" type="button" onclick="edit_search_strategy()" data-bs-toggle="tooltip" title="Save search strategy">

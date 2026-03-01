@@ -2,6 +2,10 @@
 {% block title %}
 	Thoth - Planning
 {% endblock %}
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ base_url('assets/node_modules/quill/dist/quill.snow.css') }}">
+{% endblock %}
 {% block content %}
 	<div class="container py-4">
 		<div class="card">
@@ -64,4 +68,8 @@
 		{% include 'modal/help/modal_help_data_extraction.twig' %}
 		{% include 'modal/help/modal_help_strategy.twig' %}
 	</div>
+{% endblock %}
+{% block scripts %}
+	{{ parent() }}
+	<script src="{{ base_url('assets/node_modules/quill/dist/quill.js') }}"></script>
 {% endblock %}

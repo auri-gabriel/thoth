@@ -548,8 +548,46 @@ function validate_search_strategy(search_strategy) {
 	return true;
 }
 
+let search_strategy_quill = null;
+
+function init_search_strategy_editor() {
+	const editor = document.getElementById("search_strategy_editor");
+	if (!editor || typeof Quill === "undefined" || search_strategy_quill) {
+		return;
+	}
+
+	search_strategy_quill = new Quill("#search_strategy_editor", {
+		theme: "snow",
+		modules: {
+			toolbar: [
+				[{ header: [1, 2, 3, false] }],
+				["bold", "italic", "underline", "strike"],
+				[{ list: "ordered" }, { list: "bullet" }],
+				[{ align: [] }],
+				["link", "blockquote", "code-block"],
+				["clean"],
+			],
+		},
+		placeholder: "Describe your search strategy",
+	});
+
+	const initialValue = $("#search_strategy").val();
+	if (initialValue) {
+		search_strategy_quill.clipboard.dangerouslyPasteHTML(initialValue);
+	}
+}
+
+function get_search_strategy_value() {
+	if (search_strategy_quill) {
+		const html = search_strategy_quill.root.innerHTML.trim();
+		return html === "<p><br></p>" ? "" : html;
+	}
+
+	return $("#search_strategy").val();
+}
+
 function edit_search_strategy() {
-	let search_strategy = $("#search_strategy").val();
+	let search_strategy = get_search_strategy_value();
 	let id_project = $("#id_project").val();
 
 	if (!validate_search_strategy(search_strategy)) {
@@ -584,6 +622,8 @@ function edit_search_strategy() {
 }
 
 $(document).ready(function () {
+	init_search_strategy_editor();
+
 	table_search_string = $("#table_search_string").DataTable({
 		language: {
 			sZeroRecords: "No options added",
