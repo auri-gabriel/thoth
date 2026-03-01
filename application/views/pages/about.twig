@@ -3,57 +3,162 @@
 	Thoth - About
 {% endblock %}
 {% block content %}
-	<div class="container my-5">
-		<h2 class="mb-4 text-primary fw-bold">About Thoth</h2>
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<p class="lead">Thoth is an open source platform designed to support the entire lifecycle of Systematic Literature Reviews (SLR) and related research projects. Our mission is to make evidence-based research more accessible, transparent, and collaborative for everyone.</p>
-				<hr>
-				<h4 class="mt-4 mb-2 text-secondary fw-semibold">Key Features</h4>
-				<ul class="mb-4">
-					<li>
-						<strong>Project Management:</strong>
-						Organize, create, and manage multiple SLR projects with ease.</li>
-					<li>
-						<strong>Collaborative Workflow:</strong>
-						Invite team members, assign roles, and track contributions throughout the review process.</li>
-					<li>
-						<strong>Planning & Protocol:</strong>
-						Define research questions, criteria, databases, and search strategies in a structured way.</li>
-					<li>
-						<strong>Study Selection & Quality Assessment:</strong>
-						Import studies, perform selection, and assess quality with built-in tools.</li>
-					<li>
-						<strong>Data Extraction & Reporting:</strong>
-						Extract relevant data and generate visual reports to support your findings.</li>
-					<li>
-						<strong>Export & Reproducibility:</strong>
-						Export your project data in multiple formats for publication or further analysis.</li>
-				</ul>
-				<h4 class="mt-4 mb-2 text-secondary fw-semibold">Why Thoth?</h4>
-				<ul class="mb-4">
-					<li>
-						<strong>Open Source:</strong>
-						Thoth is free to use, modify, and contribute to. We believe in open science and community-driven development.</li>
-					<li>
-						<strong>User-Centered Design:</strong>
-						Built with researchers in mind, Thoth aims for a clean, intuitive, and modern user experience.</li>
-					<li>
-						<strong>Transparency:</strong>
-						All project actions are logged, ensuring traceability and reproducibility of your research.</li>
-					<li>
-						<strong>Community Support:</strong>
-						Join our community on
-						<a href="https://github.com/ProjetoESE/Thoth" target="_blank">GitHub</a>
-						to report issues, request features, or contribute code.</li>
-				</ul>
-				<h4 class="mt-4 mb-2 text-secondary fw-semibold">Acknowledgements</h4>
-				<p>Thoth is developed and maintained by the LESSE research group at Unipampa, with contributions from researchers and developers worldwide. We thank all contributors and users for their feedback and support.</p>
-				<h4 class="mt-4 mb-2 text-secondary fw-semibold">Get Involved</h4>
-				<p>We welcome contributions of all kinds—whether it's code, documentation, bug reports, or suggestions. Visit our
-					<a href="https://github.com/ProjetoESE/Thoth" target="_blank">GitHub repository</a>
-					to get started.</p>
+	<section class="py-5">
+		<div class="container">
+			<div class="card shadow-sm mb-4">
+				<div class="card-body p-4 p-lg-5">
+					<div class="row align-items-center g-4">
+						<div class="col-lg-8">
+							<span class="badge bg-primary-subtle text-primary mb-3">
+								<i class="fas fa-book-open me-2"></i>About Thoth
+							</span>
+							<h2 class="fw-bold mb-3">A collaborative platform for rigorous evidence synthesis</h2>
+							<p class="lead mb-0">Thoth is an open source platform designed to support the entire lifecycle of Systematic Literature Reviews (SLR) and related research projects. Our mission is to make evidence-based research more accessible, transparent, and collaborative for everyone.</p>
+						</div>
+						<div class="col-lg-4">
+							<div class="list-group">
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-folder-tree text-primary"></i>
+									<span>Project Lifecycle Support</span>
+								</div>
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-users text-primary"></i>
+									<span>Team Collaboration</span>
+								</div>
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-shield-alt text-primary"></i>
+									<span>Traceability & Reproducibility</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-4 mb-4">
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-project-diagram text-primary"></i>
+								Project Management
+							</h5>
+							<p class="card-text mb-0">Organize, create, and manage multiple SLR projects with ease.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-users text-primary"></i>
+								Collaborative Workflow
+							</h5>
+							<p class="card-text mb-0">Invite team members, assign roles, and track contributions throughout the review process.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-list-check text-primary"></i>
+								Planning & Protocol
+							</h5>
+							<p class="card-text mb-0">Define research questions, criteria, databases, and search strategies in a structured way.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-clipboard-check text-primary"></i>
+								Selection & Quality
+							</h5>
+							<p class="card-text mb-0">Import studies, perform selection, and assess quality with built-in tools.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-table text-primary"></i>
+								Extraction & Reporting
+							</h5>
+							<p class="card-text mb-0">Extract relevant data and generate visual reports to support your findings.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
+								<i class="fas fa-file-export text-primary"></i>
+								Export & Reproducibility
+							</h5>
+							<p class="card-text mb-0">Export your project data in multiple formats for publication or further analysis.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-4 mb-4">
+				<div class="col-lg-7">
+					<div class="card shadow-sm h-100">
+						<div class="card-header">
+							<h4 class="mb-0 fw-semibold">Why Thoth?</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item px-0">
+									<strong>Open Source:</strong>
+									Thoth is free to use, modify, and contribute to. We believe in open science and community-driven development.
+								</li>
+								<li class="list-group-item px-0">
+									<strong>User-Centered Design:</strong>
+									Built with researchers in mind, Thoth aims for a clean, intuitive, and modern user experience.
+								</li>
+								<li class="list-group-item px-0">
+									<strong>Transparency:</strong>
+									All project actions are logged, ensuring traceability and reproducibility of your research.
+								</li>
+								<li class="list-group-item px-0 border-bottom-0">
+									<strong>Community Support:</strong>
+									Join our community on
+									<a href="https://github.com/ProjetoESE/Thoth" target="_blank" rel="noopener noreferrer">GitHub</a>
+									to report issues, request features, or contribute code.
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h5 class="fw-semibold d-flex align-items-center gap-2 mb-2">
+								<i class="fas fa-award text-primary"></i>
+								Acknowledgements
+							</h5>
+							<p class="mb-0">Thoth is developed and maintained by the LESSE research group at Unipampa, with contributions from researchers and developers worldwide. We thank all contributors and users for their feedback and support.</p>
+						</div>
+					</div>
+					<div class="card shadow-sm">
+						<div class="card-body">
+							<h5 class="fw-semibold d-flex align-items-center gap-2 mb-2">
+								<i class="fas fa-code-branch text-primary"></i>
+								Get Involved
+							</h5>
+							<p class="mb-3">We welcome contributions of all kinds—whether it's code, documentation, bug reports, or suggestions.</p>
+							<a href="https://github.com/ProjetoESE/Thoth" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+								<i class="fab fa-github me-2"></i>
+								Visit Repository
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 {% endblock %}

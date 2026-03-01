@@ -3,9 +3,91 @@
 	Thoth - Help
 {% endblock %}
 {% block content %}
-	<div class="container my-4">
-		<h2 class="mb-4 text-primary fw-bold">Help</h2>
-		<div class="accordion accordion-flush" id="helpAccordion">
+	<section class="py-5">
+		<div class="container">
+			<div class="card shadow-sm mb-4">
+				<div class="card-body p-4 p-lg-5">
+					<div class="row align-items-center g-4">
+						<div class="col-lg-8">
+							<span class="badge bg-primary-subtle text-primary mb-3">
+								<i class="fas fa-life-ring me-2"></i>Help Center
+							</span>
+							<h2 class="fw-bold mb-3">Find guidance for each step of your review workflow</h2>
+							<p class="lead mb-0">Browse practical instructions for planning, conducting, reporting, and exporting projects in Thoth.</p>
+						</div>
+						<div class="col-lg-4">
+							<div class="list-group">
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-list text-primary"></i>
+									<span>Step-by-step topics</span>
+								</div>
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-book text-primary"></i>
+									<span>Role-specific guidance</span>
+								</div>
+								<div class="list-group-item d-flex align-items-center gap-2">
+									<i class="fas fa-hands-helping text-primary"></i>
+									<span>Common task support</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-4 mb-4">
+				<div class="col-md-6 col-xl-3">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h6 class="fw-semibold mb-2 d-flex align-items-center gap-2">
+								<i class="fas fa-user-circle text-primary"></i>
+								Account Basics
+							</h6>
+							<p class="mb-0 text-muted small">Sign in, sign up, and profile topics to get started quickly.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h6 class="fw-semibold mb-2 d-flex align-items-center gap-2">
+								<i class="fas fa-project-diagram text-primary"></i>
+								Project Setup
+							</h6>
+							<p class="mb-0 text-muted small">Create and manage projects, members, and project metadata.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h6 class="fw-semibold mb-2 d-flex align-items-center gap-2">
+								<i class="fas fa-play-circle text-primary"></i>
+								Review Workflow
+							</h6>
+							<p class="mb-0 text-muted small">Navigate planning, conducting, and reporting with confidence.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xl-3">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h6 class="fw-semibold mb-2 d-flex align-items-center gap-2">
+								<i class="fas fa-file-export text-primary"></i>
+								Results & Export
+							</h6>
+							<p class="mb-0 text-muted small">Learn how to review outputs and export project artifacts.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card shadow-sm">
+				<div class="card-header">
+					<h4 class="mb-0 fw-semibold">Documentation Topics</h4>
+				</div>
+				<div class="card-body">
+					<div class="accordion accordion-flush" id="helpAccordion">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="headingSignin">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#signin" aria-expanded="false" aria-controls="signin">
@@ -256,6 +338,9 @@
 					</div>
 				</div>
 			</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</section>
 {% endblock %}
