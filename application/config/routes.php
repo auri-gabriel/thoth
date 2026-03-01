@@ -57,6 +57,9 @@ $route['login'] = 'Login_Controller/login';
 $route['signup'] = 'Login_Controller/register';
 $route['logout'] = 'Login_Controller/logout';
 $route['profile'] = 'User_Controller/profile';
+$route['user/update_basic_info'] = 'User_Controller/update_basic_info';
+$route['user/update_password'] = 'User_Controller/update_password';
+$route['user/update_institution_lattes'] = 'User_Controller/update_institution_lattes';
 $route['dashboard'] = 'User_Controller';
 
 // Password Reset
