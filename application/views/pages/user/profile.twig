@@ -13,39 +13,52 @@
 								{{ session.name|e }}</h2>
 						</div>
 						<div class="card-body p-4">
-							<form method="post" action="#">
+							{% if session.flashdata('success') %}
+								<div class="alert alert-success">{{ session.flashdata('success') }}</div>
+							{% endif %}
+							{% if session.flashdata('error') %}
+								<div class="alert alert-danger">{{ session.flashdata('error') }}</div>
+							{% endif %}
+
+							{{ form_open('', {'class': 'form-profile', 'autocomplete': 'off'})|raw }}
 								<div class="mb-3">
-									<label for="name" class="form-label">Name</label>
-									<input type="text" name="name" class="form-control form-control-lg" id="name" placeholder="Name" required>
+									{{ form_label('Name', 'name', {'class': 'form-label'})|raw }}
+									{{ form_input({'name': 'name', 'id': 'name', 'class': 'form-control form-control-lg', 'type': 'text', 'placeholder': 'Name', 'required': 'required'}, set_value('name', user.name))|raw }}
+									{{ form_error('name', '<div class="text-danger">', '</div>')|raw }}
 								</div>
 								<div class="mb-3">
-									<label for="email" class="form-label">Email address</label>
-									<input type="email" name="email" class="form-control form-control-lg" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+									{{ form_label('Email address', 'email', {'class': 'form-label'})|raw }}
+									{{ form_input({'name': 'email', 'id': 'email', 'class': 'form-control form-control-lg', 'type': 'email', 'placeholder': 'Enter email', 'required': 'required'}, set_value('email', user.email))|raw }}
+									{{ form_error('email', '<div class="text-danger">', '</div>')|raw }}
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-6">
-										<label for="new_password" class="form-label">New Password</label>
-										<input type="password" name="new_password" class="form-control form-control-lg" id="new_password" placeholder="Password">
+										{{ form_label('New Password', 'new_password', {'class': 'form-label'})|raw }}
+										{{ form_password({'name': 'new_password', 'id': 'new_password', 'class': 'form-control form-control-lg', 'placeholder': 'Password', 'autocomplete': 'off'})|raw }}
+										{{ form_error('new_password', '<div class="text-danger">', '</div>')|raw }}
 									</div>
 									<div class="col-md-6">
-										<label for="confirm_password" class="form-label">Confirm Password</label>
-										<input type="password" name="confirm_password" class="form-control form-control-lg" id="confirm_password" placeholder="Confirm Password">
+										{{ form_label('Confirm Password', 'confirm_password', {'class': 'form-label'})|raw }}
+										{{ form_password({'name': 'confirm_password', 'id': 'confirm_password', 'class': 'form-control form-control-lg', 'placeholder': 'Confirm Password', 'autocomplete': 'off'})|raw }}
+										{{ form_error('confirm_password', '<div class="text-danger">', '</div>')|raw }}
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-6">
-										<label for="institution" class="form-label">Institution</label>
-										<input type="text" name="institution" class="form-control form-control-lg" id="institution" placeholder="Institution">
+										{{ form_label('Institution', 'institution', {'class': 'form-label'})|raw }}
+										{{ form_input({'name': 'institution', 'id': 'institution', 'class': 'form-control form-control-lg', 'type': 'text', 'placeholder': 'Institution'}, set_value('institution', user.institution))|raw }}
+										{{ form_error('institution', '<div class="text-danger">', '</div>')|raw }}
 									</div>
 									<div class="col-md-6">
-										<label for="lattes_link" class="form-label">Lattes Link</label>
-										<input type="text" name="lattes_link" class="form-control form-control-lg" id="lattes_link" placeholder="Lattes Link">
+										{{ form_label('Lattes Link', 'lattes_link', {'class': 'form-label'})|raw }}
+										{{ form_input({'name': 'lattes_link', 'id': 'lattes_link', 'class': 'form-control form-control-lg', 'type': 'text', 'placeholder': 'Lattes Link'}, set_value('lattes_link', user.lattes_link))|raw }}
+										{{ form_error('lattes_link', '<div class="text-danger">', '</div>')|raw }}
 									</div>
 								</div>
 								<div class="d-grid gap-2">
-									<button type="submit" class="btn btn-success btn-lg">Save</button>
+									{{ form_submit({'class': 'btn btn-success btn-lg'}, 'Save')|raw }}
 								</div>
-							</form>
+							{{ form_close()|raw }}
 						</div>
 					</div>
 				</div>

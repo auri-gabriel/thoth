@@ -211,4 +211,33 @@ class User_Model extends CI_Model
 		$this->db->from('user');
 		return $this->db->count_all_results();
 	}
+
+	/**
+	 * Get user data by email
+	 * @param string $email
+	 * @return array|null
+	 */
+	public function get_user_by_email($email)
+	{
+		$this->db->select('id_user, name, email, institution, lattes_link');
+		$this->db->from('user');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		}
+		return null;
+	}
+
+	/**
+	 * Update user data
+	 * @param string $email Current email
+	 * @param array $data Associative array of fields to update
+	 * @return bool
+	 */
+	public function update_user($email, $data)
+	{
+		$this->db->where('email', $email);
+		return $this->db->update('user', $data);
+	}
 }
