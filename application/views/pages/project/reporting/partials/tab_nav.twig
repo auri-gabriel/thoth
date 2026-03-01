@@ -25,11 +25,13 @@
                 <span class="tab-label">Quality<br>Assessment</span>
             </a>
         </li>
+        {% if data.project is defined and data.project.get_extraction > 0 %}
         <li class="nav-item">
             <a data-bs-toggle="pill" class="nav-link modern-tab d-flex flex-column align-items-center justify-content-center py-2 px-3 fw-semibold" href="#tab_data_extraction" aria-label="Data Extraction">
                 <span class="icon-circle mb-1"><i class="fas fa-table fa-lg"></i></span>
                 <span class="tab-label">Data<br>Extraction</span>
             </a>
         </li>
+        {% endif %}
     </ul>
 </nav>

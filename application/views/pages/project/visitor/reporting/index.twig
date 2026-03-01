@@ -1,343 +1,160 @@
 {% extends "layout.twig" %}
-{% block title %}
-	Thoth - Reporting
-{% endblock %}
+{% block title %} Thoth - Reporting {% endblock %}
 {% block content %}
-	<div class="container py-4">
-		<div class="card">
-			{% include 'pages/project/partials/card_header.twig' with {active_tab: 'reporting', is_owner: false, project: data.project} %}
+<div class="container py-4">
+	<div class="card">
+		{% include 'pages/project/partials/card_header.twig' with {active_tab: 'reporting', is_owner: false, project: data.project} %}
 
-			<div class="card-body bg-light">
-				<h4>Reporting</h4>
-				{% include 'pages/project/reporting/partials/tab_nav.twig' %}
-				<div class="tab-content p-3" id="reportingTabContent">
-					<div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
-						{% include 'pages/project/reporting/tabs/tab_overview.twig' %}
-					</div>
-					<div class="tab-pane fade container-fluid" id="tab_import_studies" role="tabpanel" aria-labelledby="tab_import_studies">
-						{% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
-					</div>
-					<div class="tab-pane fade container-fluid" id="tab_study_selection" role="tabpanel" aria-labelledby="tab_study_selection">
-						{% include 'pages/project/reporting/tabs/tab_study_selection.twig' %}
-					</div>
-					<div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality_assessment">
-						{% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' %}
-					</div>
-					{% if data.project is defined and data.project.get_extraction > 0 %}
-						<div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_data_extraction">
-							{% include 'pages/project/reporting/tabs/tab_data_extraction.twig' %}
-						</div>
-					{% endif %}
+		<div class="card-body bg-light">
+			<h4>Reporting</h4>
+			{% include 'pages/project/reporting/partials/tab_nav.twig' %}
+			<div class="tab-content p-3" id="reportingTabContent">
+				<div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
+					{% include 'pages/project/reporting/tabs/tab_overview.twig' %}
 				</div>
+				<div class="tab-pane fade container-fluid" id="tab_import_studies" role="tabpanel" aria-labelledby="tab_import_studies-tab">
+					{% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
+				</div>
+				<div class="tab-pane fade container-fluid" id="tab_study_selection" role="tabpanel" aria-labelledby="tab_study_selection-tab">
+					{% include 'pages/project/reporting/tabs/tab_study_selection.twig' with {is_owner: false} %}
+				</div>
+				<div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality_assessment-tab">
+					{% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' with {is_owner: false} %}
+				</div>
+				{% if data.project is defined and data.project.get_extraction > 0 %}
+					<div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_data_extraction-tab">
+						{% include 'pages/project/reporting/tabs/tab_data_extraction.twig' with {data: data} %}
+					</div>
+				{% endif %}
 			</div>
-			<br>
 		</div>
+		<br>
 	</div>
-	<script>
-		$(function () { // Overview tab charts
-if ($('#overview_tab_funnel').length) {
-Highcharts.chart('overview_tab_funnel', {
-chart: {
-type: 'funnel'
-},
-title: {
-text: '{{ data.project.get_title }}Funnel'
-},
-plotOptions: {},
-legend: {
-enabled: false
-},
-series: [{{ funnel|raw }}],
-responsive: {
-rules: [
-{
-condition: {
-maxWidth: 500
-},
-chartOptions: {}
-}
-]
-}
-});
-}
-if ($('#overview_tab_act').length) {
-Highcharts.chart('overview_tab_act', {
-chart: {
-type: 'line'
-},
-title: {
-text: 'Failure of Daily Project Activities'
-},
-xAxis: {
-categories: {{ data.activity_categories|raw }}
-},
-yAxis: {},
-plotOptions: {},
-series: {{ data.activity_series|raw }}
-});
-}
-if ($('#overview_tab_papers_per_database').length) {
-Highcharts.chart('overview_tab_papers_per_database', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Database'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-column: {
-colorByPoint: true
-},
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.databases|raw }}
-}
-]
-});
-}
-if ($('#overview_tab_papers_per_selection').length) {
-Highcharts.chart('overview_tab_papers_per_selection', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Status Selection'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.status_selection|raw }}
-}
-]
-});
-}
-if ($('#overview_tab_papers_per_quality').length) {
-Highcharts.chart('overview_tab_papers_per_quality', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Status Quality'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.status_qa|raw }}
-}
-]
-});
-}
-if ($('#overview_tab_papers_gen_score').length) {
-Highcharts.chart('overview_tab_papers_gen_score', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per General Score'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.gen_score|raw }}
-}
-]
-});
-}
+</div>
 
-// Import tab chart
-if ($('#import_tab_papers_per_database').length) {
-Highcharts.chart('import_tab_papers_per_database', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Database'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-column: {
-colorByPoint: true
-},
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.databases|raw }}
-}
-]
-});
-}
+<script>
+	$(function () {
+		const dataLabelsPie = {
+			enabled: true,
+			format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+			style: {
+				color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+			}
+		};
 
-// Selection tab chart
-if ($('#selection_tab_papers_per_selection').length) {
-Highcharts.chart('selection_tab_papers_per_selection', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Status Selection'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.status_selection|raw }}
-}
-]
-});
-}
+		const pieBase = {
+			chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+			tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
+			plotOptions: {
+				column: { colorByPoint: true },
+				pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: dataLabelsPie }
+			}
+		};
 
-// Quality tab charts
-if ($('#quality_tab_papers_per_quality').length) {
-Highcharts.chart('quality_tab_papers_per_quality', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per Status Quality'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.status_qa|raw }}
-}
-]
-});
-}
-if ($('#quality_tab_papers_gen_score').length) {
-Highcharts.chart('quality_tab_papers_gen_score', {
-chart: {
-plotBackgroundColor: null,
-plotBorderWidth: null,
-plotShadow: false,
-type: 'pie'
-},
-title: {
-text: 'Papers per General Score'
-},
-tooltip: {
-pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})'
-},
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {}
-}
-},
-series: [
-{
-name: 'Brands',
-colorByPoint: true,
-data: {{ data.gen_score|raw }}
-}
-]
-});
-}
+		if ($('#overview_tab_funnel').length) {
+			Highcharts.chart('overview_tab_funnel', {
+				chart: { type: 'funnel' },
+				title: { text: '{{ data.project.get_title|e('js') }} Funnel' },
+				plotOptions: {
+					series: {
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b> ({point.y:,.0f})',
+							softConnector: true
+						},
+						center: ['40%', '50%'],
+						neckWidth: '30%',
+						neckHeight: '25%',
+						width: '80%'
+					}
+				},
+				legend: { enabled: false },
+				series: [{{ data.funnel|json_encode|raw }}]
+			});
+		}
 
-// Extraction tab charts
-if ($('#tab_extraction').length) {
-let qe = null;{% if data.project is defined and data.extraction is defined and data.project.get_extraction > 0 %}{% for qe in data.extraction %}qe = new Extraction_Chars('{{ qe.id }}', '{{ qe.type }}', {{ qe.data|raw }});
-qe.show();{% endfor %}{% if multiple is defined %}{% for qe in multiple %}qe = new Extraction_Chars('{{ qe.id }}', '{{ qe.type }}', {{ qe.data|raw }});
-qe.show();{% endfor %}{% endif %}
-{% else %}
-// No extraction data
-{% endif %}
-}
-});
-	</script>
+		if ($('#overview_tab_act').length) {
+			Highcharts.chart('overview_tab_act', {
+				chart: { type: 'line' },
+				title: { text: 'Failure of Daily Project Activities' },
+				xAxis: { categories: {{ data.activity_categories|json_encode|raw }} },
+				yAxis: { title: { text: 'Activities' } },
+				plotOptions: { line: { dataLabels: { enabled: true }, enableMouseTracking: false } },
+				series: {{ data.activity_series|json_encode|raw }}
+			});
+		}
+
+		if ($('#overview_tab_papers_per_database').length) {
+			Highcharts.chart('overview_tab_papers_per_database', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Database' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#overview_tab_papers_per_selection').length) {
+			Highcharts.chart('overview_tab_papers_per_selection', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Status Selection' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#overview_tab_papers_per_quality').length) {
+			Highcharts.chart('overview_tab_papers_per_quality', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Status Quality' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#overview_tab_papers_gen_score').length) {
+			Highcharts.chart('overview_tab_papers_gen_score', Object.assign({}, pieBase, {
+				title: { text: 'Papers per General Score' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#import_tab_papers_per_database').length) {
+			Highcharts.chart('import_tab_papers_per_database', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Database' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#selection_tab_papers_per_selection').length) {
+			Highcharts.chart('selection_tab_papers_per_selection', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Status Selection' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#quality_tab_papers_per_quality').length) {
+			Highcharts.chart('quality_tab_papers_per_quality', Object.assign({}, pieBase, {
+				title: { text: 'Papers per Status Quality' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#quality_tab_papers_gen_score').length) {
+			Highcharts.chart('quality_tab_papers_gen_score', Object.assign({}, pieBase, {
+				title: { text: 'Papers per General Score' },
+				series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|json_encode|raw }} }]
+			}));
+		}
+
+		if ($('#tab_data_extraction').length) {
+			let qe = null;
+			{% if data.project is defined and data.extraction is defined and data.project.get_extraction > 0 %}
+				{% for qe in data.extraction %}
+					qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
+					qe.show();
+				{% endfor %}
+				{% if data.multiple is defined %}
+					{% for qe in data.multiple %}
+						qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
+						qe.show();
+					{% endfor %}
+				{% endif %}
+			{% endif %}
+		}
+	});
+</script>
 {% endblock %}

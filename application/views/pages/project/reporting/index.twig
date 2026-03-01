@@ -6,149 +6,268 @@
         {% include 'pages/project/partials/card_header.twig' with {active_tab: 'reporting', is_owner: true, project: data.project} %}
         <div class="card-body bg-light">
             <h4>Reporting</h4>
-            {% include 'pages/project/reporting/partials/tab_nav.twig' %}
-            <div class="tab-content p-3" id="reportingTabContent">
-                <div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
-                    {% include 'pages/project/reporting/tabs/tab_overview.twig' %}
+
+            {% set can_report = data.project.get_planning == 100 and data.project.get_import == 100 and (data.project.get_selection > 0 or data.project.get_quality > 0 or data.project.get_extraction > 0) %}
+
+            {% if can_report %}
+                {% include 'pages/project/reporting/partials/tab_nav.twig' %}
+                <div class="tab-content p-3" id="reportingTabContent">
+                    <div class="tab-pane fade show active container-fluid" id="tab_overview" role="tabpanel" aria-labelledby="tab_overview-tab">
+                        {% include 'pages/project/reporting/tabs/tab_overview.twig' %}
+                    </div>
+                    <div class="tab-pane fade container-fluid" id="tab_import_studies" role="tabpanel" aria-labelledby="tab_import_studies-tab">
+                        {% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
+                    </div>
+                    <div class="tab-pane fade container-fluid" id="tab_study_selection" role="tabpanel" aria-labelledby="tab_study_selection-tab">
+                        {% include 'pages/project/reporting/tabs/tab_study_selection.twig' with {is_owner: true} %}
+                    </div>
+                    <div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality_assessment-tab">
+                        {% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' with {is_owner: true} %}
+                    </div>
+                    {% if data.project is defined and data.project.get_extraction > 0 %}
+                    <div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_data_extraction-tab">
+                        {% include 'pages/project/reporting/tabs/tab_data_extraction.twig' with {data: data} %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="tab-pane fade container-fluid" id="tab_import_studies" role="tabpanel" aria-labelledby="tab_import-tab">
-                    {% include 'pages/project/reporting/tabs/tab_import_studies.twig' %}
+            {% else %}
+                <div class="alert alert-warning container-fluid alert-dismissible fade show" role="alert">
+                    <h5>Complete these tasks to advance</h5>
+                    <ul>
+                        {% for error in data.project.get_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <div class="tab-pane fade container-fluid" id="tab_study_selection" role="tabpanel" aria-labelledby="tab_selection-tab">
-                    {% include 'pages/project/reporting/tabs/tab_study_selection.twig' %}
-                </div>
-                <div class="tab-pane fade container-fluid" id="tab_quality_assessment" role="tabpanel" aria-labelledby="tab_quality-tab">
-                    {% include 'pages/project/reporting/tabs/tab_quality_assessment.twig' %}
-                </div>
-                {% if data.project is defined and data.project.get_extraction > 0 %}
-                <div class="tab-pane fade container-fluid" id="tab_data_extraction" role="tabpanel" aria-labelledby="tab_extraction-tab">
-                    {% include 'pages/project/reporting/tabs/tab_data_extraction.twig' with {data: data} %}
-                </div>
-                {% endif %}
-            </div>
+            {% endif %}
         </div>
         <br>
     </div>
 </div>
+
+{% include 'modal/modal_paper_rep.twig' %}
+
 <script>
     $(function() {
-        // Overview tab charts
+        const canReport = {{ can_report ? 'true' : 'false' }};
+        if (!canReport) {
+            return;
+        }
+
+        const dataLabelsPie = {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+        };
+
+        const pieBase = {
+            chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
+            plotOptions: {
+                column: { colorByPoint: true },
+                pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: dataLabelsPie }
+            }
+        };
+
         if ($('#overview_tab_funnel').length) {
             Highcharts.chart('overview_tab_funnel', {
                 chart: { type: 'funnel' },
-                title: { text: '{{ data.project.get_title }} Funnel' },
-                plotOptions: {},
+                title: { text: '{{ data.project.get_title|e('js') }} Funnel' },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b> ({point.y:,.0f})',
+                            softConnector: true
+                        },
+                        center: ['40%', '50%'],
+                        neckWidth: '30%',
+                        neckHeight: '25%',
+                        width: '80%'
+                    }
+                },
                 legend: { enabled: false },
-                series: [{{ funnel|raw }}],
-                responsive: { rules: [{ condition: { maxWidth: 500 }, chartOptions: {} }] }
+                series: [{{ data.funnel|json_encode|raw }}],
+                responsive: {
+                    rules: [{
+                        condition: { maxWidth: 500 },
+                        chartOptions: { plotOptions: { series: { dataLabels: { inside: true }, center: ['50%', '50%'], width: '100%' } } }
+                    }]
+                }
             });
         }
+
         if ($('#overview_tab_act').length) {
             Highcharts.chart('overview_tab_act', {
                 chart: { type: 'line' },
                 title: { text: 'Failure of Daily Project Activities' },
-                xAxis: { categories: {{ data.activity_categories|raw }} },
-                yAxis: {},
-                plotOptions: {},
-                series: {{ data.activity_series|raw }}
+                xAxis: { categories: {{ data.activity_categories|json_encode|raw }} },
+                yAxis: { title: { text: 'Activities' } },
+                plotOptions: { line: { dataLabels: { enabled: true }, enableMouseTracking: false } },
+                series: {{ data.activity_series|json_encode|raw }}
             });
         }
+
         if ($('#overview_tab_papers_per_database').length) {
-            Highcharts.chart('overview_tab_papers_per_database', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('overview_tab_papers_per_database', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Database' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { column: { colorByPoint: true }, pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|json_encode|raw }} }]
+            }));
         }
+
         if ($('#overview_tab_papers_per_selection').length) {
-            Highcharts.chart('overview_tab_papers_per_selection', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('overview_tab_papers_per_selection', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Status Selection' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|json_encode|raw }} }]
+            }));
         }
+
         if ($('#overview_tab_papers_per_quality').length) {
-            Highcharts.chart('overview_tab_papers_per_quality', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('overview_tab_papers_per_quality', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Status Quality' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|json_encode|raw }} }]
+            }));
         }
+
         if ($('#overview_tab_papers_gen_score').length) {
-            Highcharts.chart('overview_tab_papers_gen_score', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('overview_tab_papers_gen_score', Object.assign({}, pieBase, {
                 title: { text: 'Papers per General Score' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|json_encode|raw }} }]
+            }));
         }
 
-        // Import tab chart
         if ($('#import_tab_papers_per_database').length) {
-            Highcharts.chart('import_tab_papers_per_database', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('import_tab_papers_per_database', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Database' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { column: { colorByPoint: true }, pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.databases|json_encode|raw }} }]
+            }));
         }
 
-        // Selection tab chart
         if ($('#selection_tab_papers_per_selection').length) {
-            Highcharts.chart('selection_tab_papers_per_selection', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('selection_tab_papers_per_selection', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Status Selection' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_selection|json_encode|raw }} }]
+            }));
         }
 
-        // Quality tab charts
         if ($('#quality_tab_papers_per_quality').length) {
-            Highcharts.chart('quality_tab_papers_per_quality', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
+            Highcharts.chart('quality_tab_papers_per_quality', Object.assign({}, pieBase, {
                 title: { text: 'Papers per Status Quality' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|raw }} }]
-            });
-        }
-        if ($('#quality_tab_papers_gen_score').length) {
-            Highcharts.chart('quality_tab_papers_gen_score', {
-                chart: { plotBackgroundColor: null, plotBorderWidth: null, plotShadow: false, type: 'pie' },
-                title: { text: 'Papers per General Score' },
-                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> ({point.y})' },
-                plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: {} } },
-                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|raw }} }]
-            });
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.status_qa|json_encode|raw }} }]
+            }));
         }
 
-        // Extraction tab charts
-        if ($('#tab_extraction').length) {
+        if ($('#quality_tab_papers_gen_score').length) {
+            Highcharts.chart('quality_tab_papers_gen_score', Object.assign({}, pieBase, {
+                title: { text: 'Papers per General Score' },
+                series: [{ name: 'Brands', colorByPoint: true, data: {{ data.gen_score|json_encode|raw }} }]
+            }));
+        }
+
+        if ($('#tab_data_extraction').length) {
             let qe = null;
             {% if data.project is defined and data.extraction is defined and data.project.get_extraction > 0 %}
                 {% for qe in data.extraction %}
-                    qe = new Extraction_Chars('{{ qe.id }}', '{{ qe.type }}', {{ qe.data|raw }});
+                    qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
                     qe.show();
                 {% endfor %}
-                {% if multiple is defined %}
-                    {% for qe in multiple %}
-                        qe = new Extraction_Chars('{{ qe.id }}', '{{ qe.type }}', {{ qe.data|raw }});
+
+                {% if data.multiple is defined %}
+                    {% for qe in data.multiple %}
+                        qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
                         qe.show();
                     {% endfor %}
                 {% endif %}
-            {% else %}
-                // No extraction data
             {% endif %}
+        }
+
+        if ($('#table_papers_quality_rep').length && $.fn.DataTable) {
+            const table = $('#table_papers_quality_rep').DataTable({
+                initComplete: function () {
+                    const size = this.api().columns().data().length;
+                    this.api().columns(size - 1).every(function () {
+                        const column = this;
+                        const select = $('<select id="select_status5" class="form-control"><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                column.search(val ? '^' + val + '$' : '', true, false).draw();
+                            });
+
+                        select.append('<option value="Accepted">Accepted</option>');
+                        select.append('<option value="Rejected">Rejected</option>');
+                        select.append('<option value="Unclassified">Unclassified</option>');
+                        select.append('<option value="Removed">Removed</option>');
+                    });
+                },
+                responsive: true,
+                order: [[0, 'asc']],
+                select: { style: 'single' },
+                dom: 'Bfrtip',
+                buttons: [
+                    { extend: 'copy', text: '<i class="fas fa-copy fa-2x"></i>' },
+                    { extend: 'csv', text: '<i class="fas fa-file-csv fa-2x"></i>' },
+                    { extend: 'excel', text: '<i class="fas fa-file-excel fa-2x"></i>' },
+                    { extend: 'pdf', text: '<i class="fas fa-file-pdf fa-2x"></i>' },
+                    { extend: 'print', text: '<i class="fas fa-print fa-2x"></i>' }
+                ]
+            });
+
+            table.on('select', function (e, dt, type, indexes) {
+                const rowData = table.rows(indexes).data().toArray();
+                const idProject = $('#id_project').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: base_url + 'Quality_Controller/get_paper_qa/',
+                    data: { id_project: idProject, id: rowData[0][0] },
+                    error: function () {
+                        SwalAdapter.fire({
+                            type: 'error',
+                            title: 'Error',
+                            html: 'Something caused an <label class="font-weight-bold text-danger">Error</label>',
+                            showCancelButton: false,
+                            confirmButtonText: 'Ok'
+                        });
+                    },
+                    success: function (response) {
+                        const details = JSON.parse(response);
+
+                        $('#index_paper_rep').val(indexes);
+                        $('#paper_id_rep').text(rowData[0][0]);
+                        $('#id_paper_rep').val(rowData[0][0]);
+                        $('#paper_title_rep').text(rowData[0][1]);
+
+                        $('#paper_author_rep').text(details.author);
+                        $('#paper_year_rep').text(details.year);
+                        $('#paper_database_rep').text(details.database);
+                        $('#paper_keywords_rep').text(details.keywords !== '' ? details.keywords : 'This article does not have Keywords');
+                        $('#paper_abstract_rep').text(details.abstract !== '' ? details.abstract : 'This article does not have Abstract');
+
+                        const doi = $('#paper_doi_rep');
+                        if (details.doi !== '') {
+                            doi.removeClass('disabled');
+                            doi.attr('href', 'https://doi.org/' + details.doi);
+                        } else {
+                            doi.attr('href', '');
+                            doi.addClass('disabled');
+                        }
+
+                        const url = $('#paper_url_rep');
+                        if (details.url !== '') {
+                            url.removeClass('disabled');
+                            url.attr('href', details.url);
+                        } else {
+                            url.attr('href', '');
+                            url.addClass('disabled');
+                        }
+
+                        $('#modal_paper_rep').modal('show');
+                    }
+                });
+            });
         }
     });
 </script>

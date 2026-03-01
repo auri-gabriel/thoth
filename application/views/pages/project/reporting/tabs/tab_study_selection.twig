@@ -1,4 +1,71 @@
 <div class="container-fluid">
+	{% if is_owner|default(false) %}
+		<div class="row justify-content-center mb-4">
+			<div class="col-md-10">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						{% for member in data.project.get_members %}
+							{% if member.get_level == 'Administrator' or member.get_level == 'Researcher' %}
+								{% set member_counts = data.count_papers_sel[member.get_email]|default({}) %}
+								{% set total = member_counts[6]|default(0) %}
+								{% set acc = total > 0 ? ((member_counts[1]|default(0) * 100) / total)|number_format(2) : 0 %}
+								{% set rej = total > 0 ? ((member_counts[2]|default(0) * 100) / total)|number_format(2) : 0 %}
+								{% set unc = total > 0 ? ((member_counts[3]|default(0) * 100) / total)|number_format(2) : 0 %}
+								{% set dup = total > 0 ? ((member_counts[4]|default(0) * 100) / total)|number_format(2) : 0 %}
+								{% set rem = total > 0 ? ((member_counts[5]|default(0) * 100) / total)|number_format(2) : 0 %}
+
+								<h5 class="text-center">{{ member.get_name }}</h5>
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
+									<div class="progress-bar bg-danger" role="progressbar" style="width: {{ rej }}%" aria-valuenow="{{ rej }}" aria-valuemin="0" aria-valuemax="100">{{ rej }}%</div>
+									<div class="progress-bar bg-dark" role="progressbar" style="width: {{ unc }}%" aria-valuenow="{{ unc }}" aria-valuemin="0" aria-valuemax="100">{{ unc }}%</div>
+									<div class="progress-bar bg-warning" role="progressbar" style="width: {{ dup }}%" aria-valuenow="{{ dup }}" aria-valuemin="0" aria-valuemax="100">{{ dup }}%</div>
+									<div class="progress-bar bg-info" role="progressbar" style="width: {{ rem }}%" aria-valuenow="{{ rem }}" aria-valuemin="0" aria-valuemax="100">{{ rem }}%</div>
+								</div>
+								<br>
+								<div class="form-inline">
+									<div class="input-group col-md-2"><label class="text-success"><span class="fas fa-check fa-lg"></span> Accepted: <span>{{ member_counts[1]|default(0) }}</span></label></div>
+									<div class="input-group col-md-2"><label class="text-danger"><span class="fas fa-times fa-lg"></span> Rejected: <span>{{ member_counts[2]|default(0) }}</span></label></div>
+									<div class="input-group col-md-2"><label class="text-dark"><span class="fas fa-question fa-lg"></span> Unclassified: <span>{{ member_counts[3]|default(0) }}</span></label></div>
+									<div class="input-group col-md-2"><label class="text-warning"><span class="fas fa-copy fa-lg"></span> Duplicate: <span>{{ member_counts[4]|default(0) }}</span></label></div>
+									<div class="input-group col-md-2"><label class="text-info"><span class="fas fa-trash-alt fa-lg"></span> Removed: <span>{{ member_counts[5]|default(0) }}</span></label></div>
+									<div class="input-group col-md-2"><label class="text-secondary"><span class="fas fa-bars fa-lg"></span> Total: <span>{{ member_counts[6]|default(0) }}</span></label></div>
+								</div>
+								<br>
+								<hr>
+							{% endif %}
+						{% endfor %}
+
+						{% set project_total = data.count_project_sel[6]|default(0) %}
+						{% set acc = project_total > 0 ? ((data.count_project_sel[1]|default(0) * 100) / project_total)|number_format(2) : 0 %}
+						{% set rej = project_total > 0 ? ((data.count_project_sel[2]|default(0) * 100) / project_total)|number_format(2) : 0 %}
+						{% set unc = project_total > 0 ? ((data.count_project_sel[3]|default(0) * 100) / project_total)|number_format(2) : 0 %}
+						{% set dup = project_total > 0 ? ((data.count_project_sel[4]|default(0) * 100) / project_total)|number_format(2) : 0 %}
+						{% set rem = project_total > 0 ? ((data.count_project_sel[5]|default(0) * 100) / project_total)|number_format(2) : 0 %}
+
+						<h5 class="text-center">{{ data.project.get_title }}</h5>
+						<div class="progress">
+							<div id="prog_acc" class="progress-bar bg-success" role="progressbar" style="width: {{ acc }}%" aria-valuenow="{{ acc }}" aria-valuemin="0" aria-valuemax="100">{{ acc }}%</div>
+							<div id="prog_rej" class="progress-bar bg-danger" role="progressbar" style="width: {{ rej }}%" aria-valuenow="{{ rej }}" aria-valuemin="0" aria-valuemax="100">{{ rej }}%</div>
+							<div id="prog_unc" class="progress-bar bg-dark" role="progressbar" style="width: {{ unc }}%" aria-valuenow="{{ unc }}" aria-valuemin="0" aria-valuemax="100">{{ unc }}%</div>
+							<div id="prog_dup" class="progress-bar bg-warning" role="progressbar" style="width: {{ dup }}%" aria-valuenow="{{ dup }}" aria-valuemin="0" aria-valuemax="100">{{ dup }}%</div>
+							<div id="prog_rem" class="progress-bar bg-info" role="progressbar" style="width: {{ rem }}%" aria-valuenow="{{ rem }}" aria-valuemin="0" aria-valuemax="100">{{ rem }}%</div>
+						</div>
+						<br>
+						<div class="form-inline">
+							<div class="input-group col-md-2"><label class="text-success"><span class="fas fa-check fa-lg"></span> Accepted: <span id="count_acc">{{ data.count_project_sel[1]|default(0) }}</span></label></div>
+							<div class="input-group col-md-2"><label class="text-danger"><span class="fas fa-times fa-lg"></span> Rejected: <span id="count_rej">{{ data.count_project_sel[2]|default(0) }}</span></label></div>
+							<div class="input-group col-md-2"><label class="text-dark"><span class="fas fa-question fa-lg"></span> Unclassified: <span id="count_unc">{{ data.count_project_sel[3]|default(0) }}</span></label></div>
+							<div class="input-group col-md-2"><label class="text-warning"><span class="fas fa-copy fa-lg"></span> Duplicate: <span id="count_dup">{{ data.count_project_sel[4]|default(0) }}</span></label></div>
+							<div class="input-group col-md-2"><label class="text-info"><span class="fas fa-trash-alt fa-lg"></span> Removed: <span id="count_rem">{{ data.count_project_sel[5]|default(0) }}</span></label></div>
+							<div class="input-group col-md-2"><label class="text-secondary"><span class="fas fa-bars fa-lg"></span> Total: <span id="count_total">{{ data.count_project_sel[6]|default(0) }}</span></label></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
 	<div class="row justify-content-center">
 		<div class="col-md-10">
 			<div class="card shadow-sm">
