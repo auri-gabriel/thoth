@@ -1,6 +1,15 @@
 
-
 # Thoth: Systematic Literature Review Platform [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/auri-gabriel/Thoth)
+
+Thoth is a web platform that supports the workflow of a Systematic Literature Review (SLR), including project organization, extraction activities, and progress tracking.
+
+## Legacy version notice
+
+> This repository contains the **legacy version** of Thoth, intended mainly for educational, experimental, and archival use.
+>
+> For production usage and the latest features, visit **[Thoth 2.0](https://thoth-slr.com/)**.
+
+This refactored legacy codebase is maintained for historical interest and community contributions. It is **not recommended for mission-critical usage**.
 
 ## Screenshot
 
@@ -8,85 +17,78 @@
    <img src="./docs/readme/screenshot.png" alt="Thoth Systematic Review Platform Screenshot" width="800" />
 </p>
 
-<p align="center"><em>Example of the Thoth project dashboard and progress tracking interface.</em></p>
+<p align="center"><em>Example of the Thoth dashboard and progress tracking interface.</em></p>
 
-**Legacy Version**
+## Getting started (Docker)
 
-> **Notice:** This repository contains the legacy version of Thoth, intended primarily for educational, experimental, and archival purposes. For production use and the latest features, please visit [Thoth 2.0](https://thoth-slr.com/).
+Use Docker Compose to run Thoth locally.
 
-This project is a refactored version of the original Thoth software, maintained for historical interest and community contributions. It is **not recommended for use in real-world or mission-critical projects**.
+### 1) Clone the repository
 
+```sh
+git clone https://github.com/auri-gabriel/thoth.git
+cd thoth
+```
 
----
+### 2) Configure application files
 
-## License
+```sh
+cp application/config/database_sample.php application/config/database.php
+cp application/config/config_sample.php application/config/config.php
+```
 
-This project is licensed under the MIT License. See [LICENSE.txt](license.txt) for details.
+Optionally edit these files to match your local database settings.
 
+### 3) Start containers
 
-## Getting Started (Docker)
+```sh
+docker compose up --build
+```
 
-Follow these steps to set up and run Thoth locally using Docker:
+Application URL: [http://localhost:8080](http://localhost:8080)
 
-## Running Locally with Docker
+### 4) Initialize the database
 
-1. **Clone the repository:**
+```sh
+docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
+```
 
-   ```sh
-   git clone https://github.com/unipampa-lesse/thoth-legacy.git
-   cd thoth-legacy
-   ```
+Replace `<mysql_container_name>` with your actual container name (for example, `thoth-db-1`).
 
-2. **Copy and configure application settings:**
+### 5) Session directory permissions (if needed)
 
-   ```sh
-   cp application/config/database_sample.php application/config/database.php
-   cp application/config/config_sample.php application/config/config.php
-   # (Optional) Edit these files to adjust database credentials or other settings
-   ```
+If you get session path/permission errors:
 
-3. **Build and start the containers:**
+```sh
+mkdir -p application/cache/sessions
+chmod 777 application/cache/sessions
+```
 
-   ```sh
-   docker compose up --build
-   ```
+### 6) Default credentials
 
-   - The app will be available at [http://localhost:8080](http://localhost:8080)
+Check the database seed data (or ask your admin) for available default users.
 
-4. **Initialize the database:**
+### 7) Stop containers
 
-   ```sh
-   docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
-   ```
+```sh
+docker compose down -v
+```
 
-   Replace `<mysql_container_name>` with the actual name (e.g., `thoth-db-1`).
+## Troubleshooting
 
-5. **Create and set permissions for the sessions directory:**
-   If you encounter errors related to session save path or permissions, run:
-
-   ```sh
-   mkdir -p application/cache/sessions
-   chmod 777 application/cache/sessions
-   ```
-
-   This ensures PHP can write session files.
-
-6. **Default credentials:**
-   - Check your database seed or ask your admin for the default login.
-
-7. **Stopping the app:**
-
-   ```sh
-   docker compose down -v
-   ```
-
----
+- If login fails, confirm the SQL import was executed successfully.
+- If sessions do not persist, verify `application/cache/sessions` exists and is writable.
+- If containers fail to start, run `docker compose logs` to inspect service errors.
 
 ## Contributing
 
-Contributions are welcome! Please see [contributing.md](contributing.md) for guidelines.
+Contributions are welcome. See [contributing.md](contributing.md) for contribution guidelines.
+
+## License
+
+This project is licensed under the MIT License. See [license.txt](license.txt) for details.
 
 ## Contact
 
-For questions or support, please open an issue on the [GitHub repository](https://github.com/unipampa-lesse/thoth-legacy).
+For questions or support, open an issue in this repository: [auri-gabriel/thoth](https://github.com/auri-gabriel/thoth).
 
