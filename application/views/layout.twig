@@ -5,12 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-    <meta property="og:url" content="http://www.lesse.com.br/tools/thoth" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content=" " />
-    <meta property="og:author" content="Lesse" />
-    <meta property="og:description" content="SLR Tool" />
     <title>{% block title %}Thoth{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Thoth is an open source platform to plan, conduct, and report systematic literature reviews collaboratively.{% endblock %}">
+    <meta name="robots" content="{% block meta_robots %}index,follow{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{{ site_url() }}{% endblock %}">
+
+    <meta property="og:url" content="{% block og_url %}{{ site_url() }}{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ block('title')|striptags|trim }}" />
+    <meta property="og:description" content="{{ block('meta_description')|striptags|trim }}" />
+    <meta property="og:image" content="{{ base_url('assets/img/favicon.png') }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ block('title')|striptags|trim }}" />
+    <meta name="twitter:description" content="{{ block('meta_description')|striptags|trim }}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ base_url('assets/img/favicon.png') }}" />
