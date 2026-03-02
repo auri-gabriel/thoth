@@ -178,7 +178,7 @@
 						<div class="row g-3">
 							{% for contributor in contributors %}
 								<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-									<a href="{{ contributor.profile_url }}" target="_blank" rel="noopener noreferrer" class="list-group-item bg-light list-group-item bg-light-action border rounded d-flex align-items-center gap-3 h-100 text-decoration-none px-2 py-1">
+									<a href="{{ contributor.profile_url }}" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action border rounded d-flex align-items-center gap-3 h-100 text-decoration-none px-2 py-1">
 										<img src="{{ contributor.avatar_url }}" alt="{{ contributor.login }} avatar" class="rounded-circle" width="40" height="40" loading="lazy">
 										<div>
 											<div class="fw-semibold text-body">{{ contributor.login }}</div>
