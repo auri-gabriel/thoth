@@ -142,6 +142,34 @@ Check the database seed data (or ask your admin) for available default users.
 docker compose down -v
 ```
 
+### 11) Xdebug (optional)
+
+Xdebug is installed in the `web` container and is disabled by default.
+
+Start the stack with debug mode enabled:
+
+```sh
+XDEBUG_MODE=debug,develop docker compose up --build
+```
+
+Then set a breakpoint in VS Code and start listening on port `9003`.
+
+Because `xdebug.start_with_request=trigger`, only requests with a trigger will start debugging. Use one of these:
+
+```text
+Cookie: XDEBUG_TRIGGER=1
+```
+
+```text
+Query string: ?XDEBUG_TRIGGER=1
+```
+
+For coverage commands, use:
+
+```sh
+XDEBUG_MODE=coverage docker compose run --rm web composer test:coverage
+```
+
 ## Troubleshooting
 
 - If login fails, confirm the SQL import was executed successfully.

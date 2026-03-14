@@ -4,6 +4,10 @@ FROM php:8.1-apache
 # Install PHP extensions required by CodeIgniter
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Install and enable Xdebug for step debugging and coverage
+RUN pecl install xdebug \
+	&& docker-php-ext-enable xdebug
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
